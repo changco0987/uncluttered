@@ -1,0 +1,29 @@
+body{
+    background-color: #e2f0f7;
+    font-family: "Lato", sans-serif;
+}
+
+#pageIcon{
+    height: 80px;
+}
+
+
+.container{
+    background-color: #f1f1f1; /* Fallback color */
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 15px;
+    width: 400px;
+    height: 300px;
+    box-shadow: 1px 1px 15px 3px black;
+}
+
+.myRow{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-30%);
+}
