@@ -25,13 +25,19 @@
     <title>Uncluttered - User Dashboard</title>
 </head>
 <body>
-    <div class="container">
-        <div class="row h-100">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-
+    <div class="container-fluid ">
+        <div class="row flex-grow-1 bg-danger">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 bg-success mx-1">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
             </div>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-8 col-xl-8 bg-warning mx-1">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                    <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                    <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                    <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+                </div>
             </div>
 
         </div>
