@@ -1,7 +1,9 @@
 <?php
-    include_once 'connection.php';
 
 
-    
+    function CreateUserAccount($conn,$data)
+    {
+        
+    }
 
 ?>
