@@ -34,6 +34,10 @@
  
 
 
+ .form-control{
+    border: 0;
+}
+
 
  @media screen and (max-height: 850px) {
 
@@ -201,14 +205,14 @@ footer * {
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="text" class="form-control" id="usernameTb" name="usernameTb" placeholder="Username" maxlength="20" required>
+                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom bg-light" id="usernameTb" name="usernameTb" placeholder="Username" maxlength="20" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <input type="password" class="form-control" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required>
+                                    <input type="password" class="form-control form-control-plaintext border-primary border-bottom form-control-sm bg-light" id="passwordTb" name="passwordTb" placeholder="Password" minlength="8" maxlength="20" required>
                                 </div>
                             </div>
                         </div>
