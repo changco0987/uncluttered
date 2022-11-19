@@ -258,7 +258,7 @@ footer * {
         ?>
         <!-- Alert message container-->
         <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
-            <strong id="errorMsg">Holy guacamole!</strong>
+            <strong id="errorMsg">Username is already exist!</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

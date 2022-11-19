@@ -17,7 +17,15 @@
 
     function ReadUserAccount($conn,$data)
     {
-        $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb");
+
+        if($data->getUsername())
+        {//if theres username in data
+            $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb WHERE username='".$data->getUsername());
+        }
+        else
+        {
+            $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb");
+        }
         return $dbData;
     }
 

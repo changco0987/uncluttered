@@ -219,7 +219,7 @@ footer * {
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Login</button>
+                                    <button type="submit" class="form-control btn" id="submitLogin" name="submitLogin" style="background-color: #3466AA; color:white;">Login</button>
                                     <small>Don't have any account? <a class="text-primary" href="pages/signup.php">Just Click here</a> to create</small><br>
 
                                     <small><button type="button" class="text-primary border-0" onclick="gotoFindAccount();">Forgot Password?</button></small>

@@ -6,6 +6,8 @@
 
     if($_POST['submitLogin'])
     {
+        $data = new userAccountModel();
+        
 
     }
 
