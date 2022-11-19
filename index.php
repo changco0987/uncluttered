@@ -220,9 +220,8 @@ footer * {
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <button type="submit" class="form-control btn" id="submitBtn" style="background-color: #3466AA; color:white;">Login</button>
-                                    <small>Don't have any account? <a class="text-primary" href="visitorSignup.php">Just Click here</a> to create</small><br>
+                                    <small>Don't have any account? <a class="text-primary" href="pages/signup.php">Just Click here</a> to create</small><br>
 
-                                    <?php $_SESSION['accType'] = 'visitor';?>
                                     <small><button type="button" class="text-primary border-0" onclick="gotoFindAccount();">Forgot Password?</button></small>
                                 </div>
                             </div>
@@ -244,28 +243,43 @@ footer * {
         </footer>
     </div>
 
+    <?php
+    if(isset($_GET['signupRes'])==1)
+    {
+        unset($_GET['signupRes']);
+        ?>
+            <!-- Alert message container-->
+            <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
+                <strong id="successMsg">Account Created Successfully</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
 
-    <!-- Alert message container-->
-    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
-        <strong id="errorMsg">Holy guacamole!</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <!-- Alert message container-->
-    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
-        <strong id="successMsg"></strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    }
+    else if(isset($_GET['signupRes'])==2)
+    {
+        ?>
+            <!-- Alert message container-->
+            <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
+                <strong id="errorMsg">Holy guacamole!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+
+    }
+
+    ?>
     
 </body>
     <!--alert message script-->
     <script>
-        document.getElementById('successBox').style.display = 'none';
-        document.getElementById('alertBox').style.display = 'none';
-        var successSignal = localStorage.getItem('state');
+        //document.getElementById('successBox').style.display = 'none';
+        //document.getElementById('alertBox').style.display = 'none';
+        //var successSignal = localStorage.getItem('state');
 
         if(successSignal==1)
         {
@@ -312,6 +326,6 @@ footer * {
         }
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-        localStorage.setItem('state',0);
+        //localStorage.setItem('state',0);
     </script>
 </html>

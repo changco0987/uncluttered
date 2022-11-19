@@ -232,7 +232,7 @@ footer * {
                         <div class="form-group">
                             <div class="row pb-1 mb-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
+                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -252,19 +252,27 @@ footer * {
             </div>
         </footer>
     </div>
+<?php
+    if(isset($_GET['signupRes'])==1)
+    {
+        ?>
+        <!-- Alert message container-->
+        <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
+            <strong id="errorMsg">Holy guacamole!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php
 
-    <!-- Alert message container-->
-    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
-        <strong id="errorMsg">Holy guacamole!</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    }
+
+?>
 </body>
     <!--alert message script-->
     <script>
-        document.getElementById('alertBox').style.display = 'none';
-        var successSignal = localStorage.getItem('state');
+        //document.getElementById('alertBox').style.display = 'none';
+        //var successSignal = localStorage.getItem('state');
 
         if(successSignal==1)
         {
@@ -290,6 +298,6 @@ footer * {
         }
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-        localStorage.setItem('state',0);
+        //localStorage.setItem('state',0);
     </script>
 </html>

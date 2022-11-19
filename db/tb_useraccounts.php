@@ -1,13 +1,14 @@
 <?php
+    include_once '../model/userAccountModel.php';
 
-
+    $data = new userAccountModel();
     function CreateUserAccount($conn,$data)
     {
         $username = mysqli_real_escape_string($conn,$data->getUsername());
         //$address = mysqli_real_escape_string($conn,$data->getAddress());
-
-        mysqli_query($conn, "INSERT INTO useraccountstb(firstname,lastname,username,password,email) values($data->getFirstname(),$data->getLastname()
-        ,$username,$data->getPassword(),$data->getEmail());");
+        $email = mysqli_real_escape_string($conn,$data->getEmail());
+        mysqli_query($conn, "INSERT INTO useraccountstb(firstname,lastname,username,password,email) values('".$data->getFirstname()."','".$data->getLastname()
+        ."','".$username."','".$data->getPassword()."','".$email."');");
         $id = mysqli_insert_id($conn);
         return $id;
     }
