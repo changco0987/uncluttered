@@ -7,19 +7,19 @@
     if(isset($_POST['submitBtn']))
     {
         $data = new userAccountModel();
-        $result = ReadUserAccount($conn,$data);
         $data->setUsername($_POST['usernameTb']);
+        
+        $result = ReadUserAccount($conn,$data);
+        $row = mysqli_fetch_assoc($result);
 
-        while($row = mysqli_fetch_assoc($result))
+
+        //this will check if the inputted username is existed
+        if($row['username']==$data->getUsername())
         {
-
-            //this will check if the inputted username is existed
-            if($row['username']==$data->getUsername())
-            {
-                header("location: ../pages/signup.php?signupRes=1");
-            }
-
+            header("location: ../pages/signup.php?signupRes=1");
         }
+
+        
 
         $data->setFirstname($_POST['fnameTb']);
         $data->setLastname($_POST['lnameTb']);

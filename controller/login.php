@@ -4,6 +4,7 @@
     include_once '../model/userAccountModel.php';
 
 
+    session_start();
     if(isset($_POST['submitLogin']))
     {
         $data = new userAccountModel();
@@ -16,7 +17,8 @@
    
         if(isset($row['password']) == $data->getPassword())
         {
-            echo '1';
+            $_SESSION['username'] = $row['username'];
+            header("location: ../pages/userdashboard.php");
         }
         else
         {

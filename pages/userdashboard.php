@@ -1,4 +1,25 @@
 <?php
+    include_once '../db/connection.php';
+    include_once '../db/tb_useraccounts.php';
+    include_once '../model/userAccountModel.php';
+    
+    include_once '../db/tb_repository.php';
+    include_once '../model/repositoryModel.php';
+
+    session_start();
+    if(!isset($_SESSION['username']))
+    {
+        header("location: ../index.php");
+    }
+    else
+    {
+        $data = new userAccountModel();
+        $data->setUsername($_SESSION['username']);
+
+        $result = ReadUserAccount($conn,$data);
+
+        $row = mysqli_fetch_assoc($result);
+    }
 
 
 
@@ -26,17 +47,48 @@
 </head>
 <body>
     <div class="container-fluid ">
-        <div class="row flex-grow-1 bg-danger">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 bg-success mx-1">
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+
+        <div class="row my-2 py-2 flex-grow-1 mx-1 px-1 ">
+
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 mx-auto bg-primary">
+                <div class="bg-success rounded d-flex justify-content-center mb-2">
+                    <div class="userImage mt-5 pt-5 mb-2 ">
+                        <?php
+                            if($row['imageName']!==null && $row['imageName']!=='')
+                            {
+                                ?>
+                                    <img src="../upload/<?php echo $row['username'];?>/<?php echo $row['imageName'];?>" width="60" height="60" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;">
+                                <?php
+                            }
+                            else 
+                            {
+                                ?>
+                                    <img src="../asset/user.png" width="200" height="200" class="border border-dark ml-3" alt="" style="border-radius: 50%;">
+                                <?php
+                            }
+                        
+                        ?>
+                        <button type="button" class="form-control btn d-flex justify-content-center" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</button>
+                        <button type="button" class="form-control btn d-flex justify-content-center" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
+                        <button type="button" class="form-control btn d-flex justify-content-center bg-danger" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="color:white;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</button>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-8 col-xl-8 bg-warning mx-1">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                    <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                    <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                    <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9 col-xl-9 mx-auto">
+                <div class="bg-warning rounded">
+                    <h2 class="pt-2 ml-2"><i class="bi bi-folder-fill"></i> Repositories</h2>
+                    <div class="list-group mx-2"style="height: 50rem;">
+                        <?php
+                            $repo = new repositoryModel();
+                        ?>
+                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+                    </div>
                 </div>
             </div>
 

@@ -194,7 +194,7 @@ footer * {
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container">
                 <div class="d-flex justify-content-center my-3">
-                    <form action="../controller/login.php" method="post" enctype="multipart/form-data">  
+                    <form action="controller/login.php" method="post" enctype="multipart/form-data">  
                         <input type="hidden" name="accType" value="visitor">
                         <div class="form-group">
                             <center>

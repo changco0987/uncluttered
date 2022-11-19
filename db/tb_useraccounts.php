@@ -20,7 +20,7 @@
 
         if($data->getUsername())
         {//if theres username in data
-            $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb WHERE username='".$data->getUsername());
+            $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb WHERE username='".$data->getUsername()."'");
         }
         else
         {
