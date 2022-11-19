@@ -4,7 +4,7 @@
         private $id;
         private $repositoryName;
         private $members;
-        private $userAccountsId;
+        private $userAccountId;
 
         public function getId()
         {
@@ -39,26 +39,17 @@
         }
 
 
-        public function getUserAccountsId()
+        public function getUserAccountId()
         {
-            return $this->userAccountsId;   
+            return $this->userAccountId;   
         }
 
-        public function setUserAccountsId($userAccountsId)
+        public function setUserAccountId($userAccountId)
         {
-            $this->userAccountsId = $userAccountsId;
+            $this->userAccountId = $userAccountId;
         }
 
 
-        public function getImageName()
-        {
-            return $this->imageName;   
-        }
-
-        public function setImageName($imageName)
-        {
-            $this->imageName = $imageName;
-        }
     }
 
 ?>
