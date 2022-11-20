@@ -21,7 +21,7 @@
                 $findings = $findings. "<tr>".
                                             "<td>".$count."</td>".
                                             "<td><img src='../asset/".$row['imageName']."' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'></td>".
-                                            "<td>".$row['firstname']."</td>".
+                                            "<td>".$row['firstname'].' '.$row['lastname']."</td>".
                                         "</tr>";
             }
             else
@@ -30,7 +30,31 @@
                 $findings = $findings. "<tr>".
                                             "<td>".$count."</td>".
                                             "<td><img src='../asset/user.png' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'></td>".
-                                            "<td>".$row['firstname']."</td>".
+                                            "<td>".$row['firstname'].' '.$row['lastname']."</td>".
+                                        "</tr>";
+
+            }
+            $count++;
+        }
+        else if(strtolower($row['lastname']) == strtolower($search) ||
+        str_contains(strtolower($row['lastname']),strtolower($search)))
+        {
+            
+            if($row['imageName']!==null && $row['imageName']!=='')
+            {
+                $findings = $findings. "<tr>".
+                                            "<td>".$count."</td>".
+                                            "<td><img src='../asset/".$row['imageName']."' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'></td>".
+                                            "<td>".$row['firstname'].' '.$row['lastname']."</td>".
+                                        "</tr>";
+            }
+            else
+            {
+                
+                $findings = $findings. "<tr>".
+                                            "<td>".$count."</td>".
+                                            "<td><img src='../asset/user.png' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'></td>".
+                                            "<td>".$row['firstname'].' '.$row['lastname']."</td>".
                                         "</tr>";
 
             }
