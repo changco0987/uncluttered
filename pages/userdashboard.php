@@ -43,6 +43,15 @@
     <link rel="stylesheet" href="../css/defaultStyle.css">
 
     <style>
+        .my-custom-scrollbar {
+        position: relative;
+        height: 200px;
+        overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+        display: block;
+        }
+
         #repoList{
             max-height: 780px;
             overflow-y:scroll;
@@ -81,7 +90,7 @@
                         <p><?php echo $row['username'];?></p>
                         <button type="button" class="form-control btn d-flex justify-content-center my-2" data-toggle="modal" data-target="#createRepoModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</button>
                         <button type="button" class="form-control btn d-flex justify-content-center my-2" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
-                        <button type="button" class="form-control btn d-flex justify-content-center bg-danger my-2" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="color:white;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</button>
+                        <a type="button" class="form-control btn d-flex justify-content-center bg-danger my-2" id="signoutBtn" style="color:white;" href="../controller/wipedata.php"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</a>
                     </div>
                     
                 </div>
@@ -133,10 +142,10 @@
 
     
     <!-- Account Settings Modal -->
-    <div class="modal fade" id="createRepoModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header modal-xl" style="background-color: #6E85B7; color:whitesmoke;">
+    <div class="modal fade" id="createRepoModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px ;">
+            <div class="modal-content" style="border-radius:12px;">
+                <div class="modal-header modal-xl" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
                     <h5 class="modal-title" id="accSettModalLongTitle">Create Repository</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -146,6 +155,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                             <form action="accSettings.php" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="creatorId" value="<?php echo $row['id'];?>">
                                 <div class="input-group">
                                     <input class="form-control form-control-sm" type="text" name="repoNameTb" placeholder="Repository Name">
                                 </div>
@@ -172,9 +182,11 @@
                                                 <th scope="col" >#</th>
                                                 <th scope="col">Image</th> 
                                                 <th scope="col" >Name</th>
+                                                <th scope="col" ></th>
                                             </tr>
                                         </thead>
                                         <tbody id="userList">
+                                         <!-- user first and last name shows here after the search result-->
                                             
                                         </tbody>
                                 </table>
