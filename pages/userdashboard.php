@@ -102,11 +102,24 @@
 
                                 foreach($members as $userId)
                                 {
+                                    //to filter every repo that has the userid involved
                                     if($userId == $row['id'])
                                     {
-                                        ?>
-                                            <a href="#" class="list-group-item list-group-item-action"><?php echo $repoRow['repositoryName'];?></a>
-                                        <?php 
+                                        //this filter if the current user is the owner/creator of the repository
+                                        if($repoRow['userAccountId']==$row['id'])
+                                        {
+                                            ?>
+                                                
+                                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Creator <i class="bi bi-person-workspace"></i></span> </a>
+                                            <?php 
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                                
+                                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Member <i class="bi bi-people-fill"></i></span> </a>
+                                            <?php 
+                                        }
                                     }
                                 }
                             }
