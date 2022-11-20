@@ -42,6 +42,14 @@
 
     <link rel="stylesheet" href="../css/defaultStyle.css">
 
+    <style>
+        #repoList{
+            max-height: 780px;
+            overflow-y:scroll;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 5px;
+        }
+    </style>
     <link rel="icon" href="../asset/appIcon.png">
     <title>Uncluttered - User Dashboard</title>
 </head>
@@ -50,44 +58,48 @@
 
         <div class="row my-2 py-2 flex-grow-1 mx-1 px-1 ">
 
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 mx-auto bg-primary">
-                <div class="bg-success rounded d-flex justify-content-center mb-2">
-                    <div class="userImage mt-5 pt-5 mb-2 ">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 mx-auto bg-primary d-flex  justify-content-center">
+                <div class="bg-success rounded  mb-2 ">
+                    <div class="userImage mt-5 pt-5 mb-2 text-center">
                         <?php
                             if($row['imageName']!==null && $row['imageName']!=='')
                             {
                                 ?>
-                                    <img src="../upload/<?php echo $row['username'];?>/<?php echo $row['imageName'];?>" width="60" height="60" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;">
+                                    <img src="../upload/<?php echo $row['username'];?>/<?php echo $row['imageName'];?>" width="60" height="60" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                                 <?php
                             }
                             else 
                             {
                                 ?>
-                                    <img src="../asset/user.png" width="200" height="200" class="border border-dark ml-3" alt="" style="border-radius: 50%;">
+                                    <img src="../asset/user.png" width="200" height="200" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                                 <?php
                             }
                         
                         ?>
-                        <button type="button" class="form-control btn d-flex justify-content-center" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</button>
-                        <button type="button" class="form-control btn d-flex justify-content-center" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
-                        <button type="button" class="form-control btn d-flex justify-content-center bg-danger" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="color:white;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</button>
+                        <h5 class="my-2"><?php echo $row['firstname'].' '.$row['lastname']?></h5>
+                        <p><?php echo $row['username'];?></p>
+                        <button type="button" class="form-control btn d-flex justify-content-center my-2" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</button>
+                        <button type="button" class="form-control btn d-flex justify-content-center my-2" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
+                        <button type="button" class="form-control btn d-flex justify-content-center bg-danger my-2" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="color:white;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</button>
                     </div>
                     
                 </div>
             </div>
 
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9 col-xl-9 mx-auto">
-                <div class="bg-warning rounded">
+                <div class="bg-warning rounded  pb-2">
                     <h2 class="pt-2 ml-2"><i class="bi bi-folder-fill"></i> Repositories</h2>
-                    <div class="list-group mx-2"style="height: 50rem;">
+                    <div class="list-group mx-2 bg-light" style="height: 50rem;" id="repoList">
                         <?php
                             $repo = new repositoryModel();
+                            $repo->setUserAccountId($row['id']);
+                            
                         ?>
                         <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                         <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                         <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
                         <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+                    
                     </div>
                 </div>
             </div>
