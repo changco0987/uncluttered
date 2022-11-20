@@ -9,14 +9,35 @@
     $result = ReadUserAccount($conn,$data);
 
     $findings = "";
+    $count = 1;
     while($row = mysqli_fetch_assoc($result))
     {
         if(strtolower($row['firstname']) == strtolower($search) ||
         str_contains(strtolower($row['firstname']),strtolower($search)))
         {
-            $findings = $findings. "<a href='#' class='list-group-item list-group-item-action d-flex justify-content-between'>".$row['firstname']."</a>";
+            
+            if($row['imageName']!==null && $row['imageName']!=='')
+            {
+                $findings = $findings. "<tr>".
+                                            "<td>".$count."</td>".
+                                            "<td><img src='../asset/".$row['imageName']."' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'></td>".
+                                            "<td>".$row['firstname']."</td>".
+                                        "</tr>";
+            }
+            else
+            {
+                
+                $findings = $findings. "<tr>".
+                                            "<td>".$count."</td>".
+                                            "<td><img src='../asset/user.png' width='60' height='60' class='d-inline-block align-top img-fluid border border-dark' alt='' style='border-radius: 50%;'></td>".
+                                            "<td>".$row['firstname']."</td>".
+                                        "</tr>";
+
+            }
+            $count++;
         }
     }
+
     $response = $findings;
     echo $response;
 ?>

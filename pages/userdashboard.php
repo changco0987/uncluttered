@@ -164,8 +164,20 @@
 
                     <div class="row mt-2">
                         <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="list-group mx-2 bg-light" style="height: 15rem;" id="userList">
-                     
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" style="height:15rem;">
+                                <table class="table table-striped table-hover table-sm text-justify mb-0"  style="font-size:small;">
+                                        <caption id="tbCaption"></caption>
+                                        <thead class="text-light" style="background-color:#234471;">
+                                            <tr>
+                                                <th scope="col" >#</th>
+                                                <th scope="col">Image</th> 
+                                                <th scope="col" >Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="userList">
+                                            
+                                        </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
