@@ -54,6 +54,7 @@
     <title>Uncluttered - User Dashboard</title>
 </head>
 <body>
+
     <div class="container-fluid ">
         
         <div class="row my-2 py-2 flex-grow-1 mx-1 px-1 ">
@@ -78,7 +79,7 @@
                         ?>
                         <h5 class="my-2"><?php echo $row['firstname'].' '.$row['lastname']?></h5>
                         <p><?php echo $row['username'];?></p>
-                        <button type="button" class="form-control btn d-flex justify-content-center my-2" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</button>
+                        <button type="button" class="form-control btn d-flex justify-content-center my-2" data-toggle="modal" data-target="#createRepoModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</button>
                         <button type="button" class="form-control btn d-flex justify-content-center my-2" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
                         <button type="button" class="form-control btn d-flex justify-content-center bg-danger my-2" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="color:white;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</button>
                     </div>
@@ -127,9 +128,80 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
+    
+    <!-- Account Settings Modal -->
+    <div class="modal fade" id="createRepoModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-xl" style="background-color: #6E85B7; color:whitesmoke;">
+                    <h5 class="modal-title" id="accSettModalLongTitle">Create Repository</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-xl">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                            <form action="accSettings.php" method="post" enctype="multipart/form-data">
+                                <div class="input-group">
+                                    <input class="form-control form-control-sm" type="text" name="repoNameTb" placeholder="Repository Name">
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="border-0 rounded btn btn-sm"><i class="bi bi-search"></i></button> 
+                                </div>
+                                <input class="form-control form-control-sm" type="text" name="repoNameTb" placeholder="Search" onkeyup="showResult(this.value)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="list-group mx-2 bg-light" style="height: 15rem;" id="userList">
+                     
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-sm bg-success" style="width: 8rem; color:whitesmoke;">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </body>
+<script>
+    function showResult(str) 
+    {
+        /*
+        if (str.length==0) {
+            document.getElementById("livesearch").innerHTML="";
+            document.getElementById("livesearch").style.border="0px";
+            return;
+        }
+        */
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() 
+        {
+            if (this.readyState==4 && this.status==200) {
+            document.getElementById("userList").innerHTML=this.responseText;
+            //document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+            }
+        }
+        xmlhttp.open("GET","../controller/userSearch.php?search="+str,true);
+        xmlhttp.send();
+    }
+</script>
 </html>
