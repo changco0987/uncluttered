@@ -44,12 +44,15 @@
 
     <style>
         .my-custom-scrollbar {
-        position: relative;
-        height: 200px;
-        overflow: auto;
+            position: relative;
+            height: 200px;
+            overflow: auto;
         }
         .table-wrapper-scroll-y {
-        display: block;
+            display: block;
+        }
+        .modal-xl {
+            max-width: 50% !important;
         }
 
         #repoList{
@@ -143,62 +146,62 @@
     
     <!-- Account Settings Modal -->
     <div class="modal fade" id="createRepoModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
-        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px ;">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
             <div class="modal-content" style="border-radius:12px;">
-                <div class="modal-header modal-xl" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
                     <h5 class="modal-title" id="accSettModalLongTitle">Create Repository</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body modal-xl">
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                            <form action="accSettings.php" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="creatorId" value="<?php echo $row['id'];?>">
-                                <div class="input-group">
-                                    <input class="form-control form-control-sm" type="text" name="repoNameTb" placeholder="Repository Name">
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <input type="hidden" name="creatorId" value="<?php echo $row['id'];?>">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                                    <div class="input-group">
+                                        <input class="form-control form-control-sm" type="text" name="repoNameTb" placeholder="Repository Name">
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
-                        
-                        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button class="border-0 rounded btn btn-sm"><i class="bi bi-search"></i></button> 
+                                
+                                <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="border-0 rounded btn btn-sm"><i class="bi bi-search"></i></button> 
+                                        </div>
+                                        <input class="form-control form-control-sm" type="text" name="repoNameTb" placeholder="Search" onkeyup="showResult(this.value)">
+                                    </div>
                                 </div>
-                                <input class="form-control form-control-sm" type="text" name="repoNameTb" placeholder="Search" onkeyup="showResult(this.value)">
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row mt-2">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" style="height:15rem;">
-                                <table class="table table-striped table-hover table-sm text-justify mb-0"  style="font-size:small;">
-                                        <caption id="tbCaption"></caption>
-                                        <thead class="text-light" style="background-color:#234471;">
-                                            <tr>
-                                                <th scope="col" >#</th>
-                                                <th scope="col">Image</th> 
-                                                <th scope="col" >Name</th>
-                                                <th scope="col" ></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="userList">
-                                         <!-- user first and last name shows here after the search result-->
-                                            
-                                        </tbody>
-                                </table>
+                            <div class="row mt-2">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" style="height:15rem;">
+                                        <table class="table table-striped table-hover table-sm text-justify mb-0"  style="font-size:small;">
+                                                <caption id="tbCaption"></caption>
+                                                <thead class="text-light" style="background-color:#234471;">
+                                                    <tr>
+                                                        <th scope="col" >#</th>
+                                                        <th scope="col">Image</th> 
+                                                        <th scope="col" >Name</th>
+                                                        <th scope="col" ></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="userList">
+                                                <!-- user first and last name shows here after the search result-->
+                                                    
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row mt-1">
-                        <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-sm bg-success" style="width: 8rem; color:whitesmoke;">Create</button>
-                        </div>
-                    </div>
+                            <div class="row mt-2">
+                                <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-sm bg-success" style="width: 8rem; color:whitesmoke;">Create</button>
+                                </div>
+                            </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -207,25 +210,43 @@
 
 </body>
 <script>
+    //for searching user realtime
     function showResult(str) 
     {
-        /*
-        if (str.length==0) {
-            document.getElementById("livesearch").innerHTML="";
-            document.getElementById("livesearch").style.border="0px";
-            return;
-        }
-        */
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.onreadystatechange=function() 
         {
-            if (this.readyState==4 && this.status==200) {
-            document.getElementById("userList").innerHTML=this.responseText;
-            //document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+            if (this.readyState==4 && this.status==200)
+            {
+                document.getElementById("userList").innerHTML=this.responseText;
+                
             }
         }
         xmlhttp.open("GET","../controller/userSearch.php?search="+str,true);
         xmlhttp.send();
+    }
+
+    const members = [];
+    //for adding user as member
+    function addUser(userId)
+    {
+        //This will add userid to array members and check if its already added
+        if(members.includes(userId)==false)
+        {
+            members.push(userId);
+            document.getElementById('btn'+userId).style.backgroundColor = "red";
+        }
+        else
+        {
+            index = members.indexOf(userId);
+            if(index > -1)
+            {  
+                //This will remove userid if already existed inside array members
+                members.splice(index,1);
+                document.getElementById('btn'+userId).style.backgroundColor = "green";
+            }
+        }
+        console.log(members);
     }
 </script>
 </html>
