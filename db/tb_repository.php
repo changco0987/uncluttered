@@ -14,13 +14,8 @@
 
     function ReadRepo($conn,$data)
     {
-
-        if($data->getUserAccountId())
-        {
-            //if theres useraccountid in data
-            $dbData = mysqli_query($conn, "SELECT * FROM repositorytb WHERE userAccountId ='".$data->getUserAccountId()."'");
-        }
-        else if($data->getId())
+        
+        if($data->getId())
         {
             //if theres id in data
             $dbData = mysqli_query($conn, "SELECT * FROM repositorytb WHERE id ='".$data->getId()."'");

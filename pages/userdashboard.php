@@ -55,9 +55,9 @@
 </head>
 <body>
     <div class="container-fluid ">
-
+        
         <div class="row my-2 py-2 flex-grow-1 mx-1 px-1 ">
-
+            <!-- Profile column-->
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 mx-auto bg-primary d-flex  justify-content-center">
                 <div class="bg-success rounded  mb-2 ">
                     <div class="userImage mt-5 pt-5 mb-2 text-center">
@@ -85,26 +85,38 @@
                     
                 </div>
             </div>
-
+    
+            <!-- This column is for repository-->
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9 col-xl-9 mx-auto">
                 <div class="bg-warning rounded  pb-2">
                     <h2 class="pt-2 ml-2"><i class="bi bi-folder-fill"></i> Repositories</h2>
                     <div class="list-group mx-2 bg-light" style="height: 50rem;" id="repoList">
                         <?php
                             $repo = new repositoryModel();
-                            $repo->setUserAccountId($row['id']);
-                            
+                            $result = ReadRepo($conn,$repo);
+
+                            while($repoRow = mysqli_fetch_assoc($result))
+                            {
+                                $members = array();
+                                $members = unserialize($repoRow['members']);
+
+                                foreach($members as $userId)
+                                {
+                                    if($userId == $row['id'])
+                                    {
+                                        ?>
+                                            <a href="#" class="list-group-item list-group-item-action"><?php echo $repoRow['repositoryName'];?></a>
+                                        <?php 
+                                    }
+                                }
+                            }
                         ?>
-                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                    
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+
 </body>
 </html>
