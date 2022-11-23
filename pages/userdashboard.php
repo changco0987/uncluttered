@@ -161,7 +161,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                                     <div class="input-group">
-                                        <input class="form-control form-control-sm" type="text" name="repoNameTb" placeholder="Repository Name">
+                                        <input type="text" class="form-control form-control-sm" name="repoNameTb" id="repoNameTb" placeholder="Repository Name" maxlength="100" require>
                                     </div>
                                 </div>
                                 
@@ -170,7 +170,7 @@
                                         <div class="input-group-prepend">
                                             <button class="border-0 rounded btn btn-sm"><i class="bi bi-search"></i></button> 
                                         </div>
-                                        <input class="form-control form-control-sm" type="text" name="repoNameTb" placeholder="Search" onkeyup="showResult(this.value)">
+                                        <input class="form-control form-control-sm" type="text" name="searchNameTb" placeholder="Search" onkeyup="showResult(this.value)">
                                     </div>
                                 </div>
                             </div>
@@ -261,21 +261,20 @@
     {
         var length = members.length-1;
       
-            while(length>=0)
+        while(length>=0)
+        {
+            console.log('inside while');
+            if(members.includes(members[length]))
             {
-                console.log('inside while');
-                if(members.includes(members[length]))
+                console.log('inside if '+ members[length]);
+                var btnColor = document.getElementById(members[length]);
+                if(btnColor!=null)
                 {
-                    console.log('inside if '+ members[length]);
-                    var btnColor = document.getElementById(members[length]);
-                    if(btnColor!=null)
-                    {
-                        document.getElementById(members[length]).style.backgroundColor = "red";
-                    }
+                    document.getElementById(members[length]).style.backgroundColor = "red";
                 }
-                length--;
             }
-       
+            length--;
+        }
     }
 </script>
 </html>

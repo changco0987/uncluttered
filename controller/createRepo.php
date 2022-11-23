@@ -8,10 +8,23 @@
     {
         $members = array();
         $members = json_decode($_POST['memberTb']);
-        $str = serialize($members);
-        echo $str;
-        //$arr = unserialize($str);
-        print_r($members);
+        
+        $str = serialize($members); //To encrypt the data to string format
+
+        $repo = new repositoryModel();
+        $repo->setRepositoryName($_POST['repoNameTb']);
+        $repo->setMembers($str);
+        $repo->setUserAccountId($_POST['creatorId']);
+
+        CreateRepo($conn,$repo);
+
+        header("location: ../pages/userdashboard.php");
+
+
+
+        //echo $str;
+        //$arr = unserialize($str);//This will be used to decrypt and back to the array type
+        //print_r($members);
     }
 
 ?>
