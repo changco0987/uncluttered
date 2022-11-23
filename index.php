@@ -256,7 +256,6 @@ footer * {
                 </button>
             </div>
         <?php
-
     }
     else if(isset($_GET['signupRes'])==2)
     {

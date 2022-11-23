@@ -155,8 +155,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post">
+                    <form action="../controller/createRepo.php" method="post">
                         <input type="hidden" name="creatorId" value="<?php echo $row['id'];?>">
+                        <input type="hidden" name="memberTb" id="memberTb" value="<?php echo $row['id'];?>">
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                                     <div class="input-group">
@@ -198,7 +199,7 @@
 
                             <div class="row mt-2">
                                 <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-sm bg-success" style="width: 8rem; color:whitesmoke;">Create</button>
+                                    <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Create</button>
                                 </div>
                             </div>
                     </form>
@@ -210,6 +211,9 @@
 
 </body>
 <script>
+
+
+
     //for searching user realtime
     function showResult(str) 
     {
@@ -219,12 +223,14 @@
             if (this.readyState==4 && this.status==200)
             {
                 document.getElementById("userList").innerHTML=this.responseText;
+                preserveBtnColor();
                 
             }
         }
         xmlhttp.open("GET","../controller/userSearch.php?search="+str,true);
         xmlhttp.send();
     }
+
 
     const members = [];
     //for adding user as member
@@ -234,7 +240,7 @@
         if(members.includes(userId)==false)
         {
             members.push(userId);
-            document.getElementById('btn'+userId).style.backgroundColor = "red";
+            document.getElementById(userId).style.backgroundColor = "red";
         }
         else
         {
@@ -243,10 +249,33 @@
             {  
                 //This will remove userid if already existed inside array members
                 members.splice(index,1);
-                document.getElementById('btn'+userId).style.backgroundColor = "green";
+                document.getElementById(userId).style.backgroundColor = "green";
             }
         }
-        console.log(members);
+        const vala = document.getElementById('memberTb').value = JSON.stringify(members);
+        console.log(vala);
+    }
+
+    //This is to preserve the added color 'red' to every button
+    function preserveBtnColor()
+    {
+        var length = members.length-1;
+      
+            while(length>=0)
+            {
+                console.log('inside while');
+                if(members.includes(members[length]))
+                {
+                    console.log('inside if '+ members[length]);
+                    var btnColor = document.getElementById(members[length]);
+                    if(btnColor!=null)
+                    {
+                        document.getElementById(members[length]).style.backgroundColor = "red";
+                    }
+                }
+                length--;
+            }
+       
     }
 </script>
 </html>
