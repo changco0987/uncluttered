@@ -112,11 +112,37 @@
                             {
                                 $members = array();
                                 $members = unserialize($repoRow['members']);
-
-                                foreach($members as $userId)
+                                
+                                //This will check if he is the only one in the repository to avoid error in array checking in only 1 element
+                                if(is_array($members))
+                                {
+                                    foreach($members as $userId)
+                                    {
+                                        //to filter every repo that has the userid involved
+                                        if($userId == $row['id'])
+                                        {
+                                            //this filter if the current user is the owner/creator of the repository
+                                            if($repoRow['userAccountId']==$row['id'])
+                                            {
+                                                ?>
+                                                    
+                                                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Creator <i class="bi bi-person-workspace"></i></span> </a>
+                                                <?php 
+                                            }
+                                            else
+                                            {
+                                                ?>
+                                                    
+                                                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Member <i class="bi bi-people-fill"></i></span> </a>
+                                                <?php 
+                                            }
+                                        }
+                                    }
+                                }
+                                else
                                 {
                                     //to filter every repo that has the userid involved
-                                    if($userId == $row['id'])
+                                    if($members == $row['id'])
                                     {
                                         //this filter if the current user is the owner/creator of the repository
                                         if($repoRow['userAccountId']==$row['id'])
@@ -161,7 +187,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm" name="repoNameTb" id="repoNameTb" placeholder="Repository Name" maxlength="100" require>
+                                        <input type="text" class="form-control form-control-sm" name="repoNameTb" id="repoNameTb" placeholder="Repository Name" maxlength="100" required>
                                     </div>
                                 </div>
                                 
