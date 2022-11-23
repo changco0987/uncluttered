@@ -63,7 +63,7 @@
         }
     </style>
     <link rel="icon" href="../asset/appIcon.png">
-    <title>Uncluttered - User Dashboard</title>
+    <title>Uncluttered - Repository Dashboard</title>
 </head>
 <body>
 
@@ -125,13 +125,13 @@
                                             if($repoRow['userAccountId']==$row['id'])
                                             {
                                                 ?>
-                                                    <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Creator <i class="bi bi-person-workspace"></i></span></a>
+                                                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Creator <i class="bi bi-person-workspace"></i></span></a>
                                                 <?php 
                                             }
                                             else
                                             {
                                                 ?>
-                                                    <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Member <i class="bi bi-people-fill"></i></span></a>
+                                                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Member <i class="bi bi-people-fill"></i></span></a>
                                                 <?php 
                                             }
                                         }
@@ -147,14 +147,14 @@
                                         {
                                             ?>
                                                 
-                                                <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Creator <i class="bi bi-person-workspace"></i></span> </a>
+                                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Creator <i class="bi bi-person-workspace"></i></span> </a>
                                             <?php 
                                         }
                                         else
                                         {
                                             ?>
                                                 
-                                                <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Member <i class="bi bi-people-fill"></i></span> </a>
+                                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success">Member <i class="bi bi-people-fill"></i></span> </a>
                                             <?php 
                                         }
                                     }
