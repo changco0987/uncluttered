@@ -96,20 +96,22 @@
 
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-primary d-flex flex-xs-column justify-content-lg-start justify-content-center align-items-center" style="height: 20rem;">
                 <div class="bg-danger">
-                    <h4 class="my-2"><?php echo $userRow['firstname'].' '.$userRow['lastname']?></h4>
+                    <h3 class="my-2"><?php echo $userRow['firstname'].' '.$userRow['lastname']?></h3>
                 
                     <h6><?php echo $userRow['username'];?></h6>
                 </div>
             </div>
-            <!-- Un-finish part-->
+            <!-- Unfinish part-->
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 bg-light d-flex justify-content-lg-end justify-content-center align-items-end" style="height: 20rem;">
-                <button type="button" class="btn bg-primary mx-1 px-5"><i class="bi bi-chat-dots"></i></button>
-                <button type="button" class="btn bg-primary mx-1 px-5"><i class="bi bi-pencil-square"></i></button>
-                <button type="button" class="btn bg-primary mx-1 px-5"><i class="bi bi-gear"></i></button>
+                <button type="button" class="btn btn-sm bg-primary mx-1 px-5"><i class="bi bi-chat-dots"></i></button>
+                <button type="button" class="btn btn-sm bg-primary mx-1 px-5"><i class="bi bi-pencil-square"></i></button>
+                <button type="button" class="btn btn-sm bg-primary mx-1 px-5"><i class="bi bi-gear"></i></button>
             </div>
         </div>
+
         <div class="row my-2 py-2 flex-grow-1 mx-1 px-1 ">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto bg-warning" style="height:35rem;">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-warning" style="height:35rem;">
+                <h2 class="mt-1"><i class="bi bi-folder2"></i><span style="font-size: 28px;"> <?php echo $repoRow['repositoryName'];?></span></h2>
             </div>
         </div>
 
