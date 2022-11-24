@@ -58,9 +58,12 @@
             return $this->datetimeCreation;
         }
         
-        public function setDatetimeCreation($datetimeCreation)
+        public function setDatetimeCreation()
         {
-            $this->datetimeCreation = $datetimeCreation;
+            date_default_timezone_set('Asia/Manila');
+            $currentDateTime = date('Y-m-d h:i a');
+
+            $this->datetimeCreation = $currentDateTime;
         }
 
 
