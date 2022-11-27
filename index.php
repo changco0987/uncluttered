@@ -251,8 +251,8 @@ footer * {
     </div>
 
     <!-- Alert message container-->
-    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
-        <strong id="errorMsg">Username is already exist!</strong>
+    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none ;">
+        <strong id="errorMsg"></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -289,6 +289,15 @@ footer * {
                     document.getElementById('errorMsg').innerHTML = 'Incorrect password';
                 </script>
             <?php
+        }
+        else if($_GET['loginRes']==2)
+        {
+            ?>
+                <script>
+                    document.getElementById('alertBox').style.display = 'block';
+                    document.getElementById('errorMsg').innerHTML = 'Username doesn\'t exist';
+                </script>
+            <?php 
         }
         ?>
             <script>

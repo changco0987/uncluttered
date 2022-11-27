@@ -15,16 +15,23 @@
 
         while($row = mysqli_fetch_assoc($result))
         {
-            if(isset($row['password']) == $data->getPassword())
+            if($row['password'] == $data->getPassword())
             {
                 $_SESSION['username'] = $row['username'];
                 header("location: ../pages/userdashboard.php");
                 exit;
             }
+            else
+            {
+                //show a error message - incorrect password
+                header("location: ../index.php?loginRes=1");
+                exit;
+            }
         }
-            //show a error message
-            header("location: ../index.php?loginRes=1");
-            exit;
+
+        //show a error message - username doesn't exist
+        header("location: ../index.php?loginRes=2");
+        exit;
         
 
         
