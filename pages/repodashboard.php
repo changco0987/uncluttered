@@ -323,9 +323,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../controller/createRepo.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="creatorId" value="<?php echo $row['id'];?>">
-                        <input type="hidden" name="memberTb" id="memberTb" value="<?php echo $row['id'];?>">
+                    <form action="../controller/editRepo.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
+                        <input type="hidden" name="memberTb" id="memberTb">
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                                     <div class="input-group">
@@ -398,8 +398,11 @@
     }
 
 
+    //This is to get the current repository members and assign it to id=memberTb
     var members = [];
     members = <?php echo json_encode(unserialize($repoRow['members']));?>;
+    document.getElementById('memberTb').value = JSON.stringify(members);
+
     //console.log(members);
     //for adding user as member
     function addUser(userId)

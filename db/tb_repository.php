@@ -31,7 +31,10 @@
 
     function UpdateRepo($conn,$data)
     {
-        mysqli_query($conn,"UPDATE repositorytb SET username = $data->getUsername() WHERE id = $data->getId()");
+        if($data->getMembers())
+        {
+            mysqli_query($conn,"UPDATE repositorytb SET repositoryName = '".$data->getRepositoryName()."', members ='". $data->getMembers()."' WHERE id =". $data->getId());
+        }
     }
 
     
