@@ -229,9 +229,9 @@
                 if($repoRow['userAccountId'] != $userRow['id'])
                 {
                     ?>
-                    <script>
-                        $('#repoSettBtn').prop('disabled',true);//this will disable the edit repo button if the user is not the creator
-                    </script>
+                        <script>
+                            $('#repoSettBtn').prop('disabled',true);//this will disable the edit repo button if the user is not the creator
+                        </script>
                     <?php
                 }
               ?>
@@ -329,7 +329,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm" name="repoNameTb" id="repoNameTb" placeholder="Repository Name" maxlength="100" required/>
+                                        <input type="text" class="form-control form-control-sm" name="repoNameTb" id="repoNameTb" placeholder="Repository Name" maxlength="100" required value="<?php echo $repoRow['repositoryName'];?>"/>
                                     </div>
                                 </div>
                                 
