@@ -26,10 +26,8 @@
         $result = ReadRepo($conn,$repo);
 
         $repoRow = mysqli_fetch_assoc($result);
+        
     }
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -165,7 +163,6 @@
     <title>Uncluttered - Repository Dashboard</title>
 </head>
 <body>
-
 <div class="sidebar">
     <a class="navbar-brand d-flex justify-content-center" href="#">
         <?php
@@ -227,7 +224,17 @@
 
               <button type="button" onclick="gotoLogs()" class="collapse-item btn btn-sm my-1 collapseBtn"><i class="bi bi-gear"></i> Account</button><br>
              
-              <button type="button" onclick="gotoLogs()" class="collapse-item btn btn-sm my-1 collapseBtn"><i class="bi bi-wrench-adjustable-circle"></i> Repository</button><br>
+              <button type="button" class="collapse-item btn btn-sm my-1 collapseBtn" id="repoSettBtn" data-toggle="modal" data-target="#editRepoModal"><i class="bi bi-wrench-adjustable-circle"></i> Repository</button><br>
+              <?php
+                if($repoRow['userAccountId'] != $userRow['id'])
+                {
+                    ?>
+                    <script>
+                        $('#repoSettBtn').prop('disabled',true);//this will disable the edit repo button if the user is not the creator
+                    </script>
+                    <?php
+                }
+              ?>
       
         </div>
     </div>
@@ -306,11 +313,11 @@
 
     
     <!-- Account Settings Modal -->
-    <div class="modal fade" id="createRepoModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+    <div class="modal fade" id="editRepoModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
             <div class="modal-content" style="border-radius:12px;">
                 <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
-                    <h5 class="modal-title" id="accSettModalLongTitle">Create Repository</h5>
+                    <h5 class="modal-title" id="accSettModalLongTitle">Edit Repository</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -360,7 +367,7 @@
 
                             <div class="row mt-2">
                                 <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Create</button>
+                                    <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Submit Changes</button>
                                 </div>
                             </div>
                     </form>
@@ -384,7 +391,6 @@
             {
                 document.getElementById("userList").innerHTML=this.responseText;
                 preserveBtnColor();
-                
             }
         }
         xmlhttp.open("GET","../controller/userSearch.php?search="+str,true);
@@ -392,7 +398,9 @@
     }
 
 
-    const members = [];
+    var members = [];
+    members = <?php echo json_encode(unserialize($repoRow['members']));?>;
+    //console.log(members);
     //for adding user as member
     function addUser(userId)
     {
