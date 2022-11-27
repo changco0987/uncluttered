@@ -13,17 +13,19 @@
 
         $result = ReadUserAccount($conn,$data);
 
-        $row = mysqli_fetch_assoc($result);
-   
-        if(isset($row['password']) == $data->getPassword())
+        while($row = mysqli_fetch_assoc($result))
         {
-            $_SESSION['username'] = $row['username'];
-            header("location: ../pages/userdashboard.php");
+            if(isset($row['password']) == $data->getPassword())
+            {
+                $_SESSION['username'] = $row['username'];
+                header("location: ../pages/userdashboard.php");
+                exit;
+            }
         }
-        else
-        {
-            echo '2';
-        }
+            //show a error message
+            header("location: ../index.php?loginRes=1");
+            exit;
+        
 
         
 

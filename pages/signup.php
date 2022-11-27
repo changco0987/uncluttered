@@ -263,6 +263,12 @@ footer * {
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+        <script>
+            //to reset the $_GET in URL
+            const url = new URL(window.location.href);
+            url.searchParams.delete('signupRes');
+            window.history.replaceState(null, null, url); // or pushState
+        </script>
         <?php
 
     }

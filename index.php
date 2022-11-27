@@ -242,34 +242,64 @@ footer * {
             </div>
         </footer>
     </div>
+    <!-- Alert message container-->
+    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
+        <strong id="successMsg"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- Alert message container-->
+    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
+        <strong id="errorMsg">Username is already exist!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
     <?php
-    if(isset($_GET['signupRes'])==1)
+    if(isset($_GET['signupRes']))
     {
-        unset($_GET['signupRes']);
+        if($_GET['signupRes']==2)
+        {
+            ?>
+                <script>
+                    document.getElementById('successBox').style.display = 'block';
+                    document.getElementById('successMsg').innerHTML = 'Account Created Successfully';
+                </script>
+            <?php
+        }
         ?>
-            <!-- Alert message container-->
-            <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:block;">
-                <strong id="successMsg">Account Created Successfully</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            <script>
+                //to reset the $_GET in URL
+                const url = new URL(window.location.href);
+                url.searchParams.delete('signupRes');
+                window.history.replaceState(null, null, url); // or pushState
+            </script>
         <?php
     }
-    else if(isset($_GET['signupRes'])==2)
+    else if(isset($_GET['loginRes']))
     {
+        if($_GET['loginRes']==1)
+        {
+            ?>
+                <script>
+                    document.getElementById('alertBox').style.display = 'block';
+                    document.getElementById('errorMsg').innerHTML = 'Incorrect password';
+                </script>
+            <?php
+        }
         ?>
-            <!-- Alert message container-->
-            <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block;">
-                <strong id="errorMsg">Holy guacamole!</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            <script>
+                //to reset the $_GET in URL
+                const url = new URL(window.location.href);
+                url.searchParams.delete('loginRes');
+                window.history.replaceState(null, null, url); // or pushState
+            </script>
         <?php
-
     }
+    
 
     ?>
     
