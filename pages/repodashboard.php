@@ -253,7 +253,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a type="button" class="btn nav-link bg-success rounded text-light" href="#"><i class="bi bi-plus-lg"></i> Create Post <span class="sr-only">(current)</span></a>
+                    <button type="button" class="btn nav-link bg-success rounded text-light" data-toggle="modal" data-target="#createPostModal"><i class="bi bi-plus-lg"></i> Create Post <span class="sr-only">(current)</span></button>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -342,8 +342,65 @@
 </div>
 
 
+
     
-    <!-- Account Settings Modal -->
+    <!-- Create Post Modal -->
+    <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
+            <div class="modal-content" style="border-radius:12px;">
+                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                    <h5 class="modal-title" id="accSettModalLongTitle"><i class="bi bi-pen"></i> Create Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="../controller/editRepo.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
+                        <input type="hidden" name="memberTb" id="memberTb">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                        <label for="titleTb">Title</label>
+                                        <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTb" placeholder="Write a title" maxlength="50" required value="<?php echo $repoRow['repositoryName'];?>"/>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                        <label for="fileTb">Attach File:</label>
+                                        <input type="file" class="form-control-file form-control-sm" id="fileTb">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                        <textarea name="noteTb" id="noteTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength()"></textarea>
+                                        <span class="d-flex justify-content-end"><p id="lengthTxt">0/500</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Submit</button>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    <!-- Repository settings Modal -->
     <div class="modal fade" id="editRepoModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
             <div class="modal-content" style="border-radius:12px;">
@@ -477,6 +534,13 @@
             }
             length--;
         }
+    }
+
+
+    function getTxtLength()
+    {
+        var length = document.getElementById('noteTb').value;
+        document.getElementById('lengthTxt').innerHTML = length.length+'/500';
     }
 </script>
 </html>
