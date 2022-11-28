@@ -184,7 +184,8 @@
                 
     <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel"><?php echo $userRow['username'];?></h6>
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="dashboard.php" role="button"><i class="bi bi-megaphone-fill mr-1"></i> Announcements</a>
-    <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="collapse" data-target="#collapseMaintenance" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
+    <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="dashboard.php" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="collapse" data-target="#collapseMaintenance" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
         <div id="collapseMaintenance" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
             <div class="py-2 collapse-inner rounded mx-4">
                 <h6 class="collapse-header" style="font-size: 13px;"></h6>
@@ -238,8 +239,8 @@
       
         </div>
     </div>
-
 </div>
+
 <div class="content">
     <!--Header of the page-->
     <nav class="navbar navbar-expand-lg navbar-light rounded"   style="background-color: #6E85B7;">
@@ -282,6 +283,36 @@
     <!-- 2nd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1 bg-danger rounded">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 bg-success" style="height: 20rem;">
+            <h2>Updates</h2>
+            <div class="list-group" >
+                <button type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;">
+                    <img src="../asset/user.png" width="50" height="50" class="border-dark" alt="" style="border-radius: 50%;"> Cras justo odioasddddddddddd
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;" >
+                    <img src="../asset/user.png" width="50" height="50" class="border-dark" alt="" style="border-radius: 50%;"> Dapibus ac facilisis in\
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;" >
+                    <img src="../asset/user.png" width="50" height="50" class="border-dark" alt="" style="border-radius: 50%;"> Dapibus ac facilisis in\
+                </button>
+            </div>
+        </div>
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-primary d-flex flex-xs-column justify-content-lg-start justify-content-center align-items-center" style="height: 20rem;">
+            <div class="bg-danger">
+                <h3 class="my-2"><?php echo $userRow['firstname'].' '.$userRow['lastname']?></h3>
+            
+                <h6><?php echo $userRow['username'];?></h6>
+            </div>
+        </div>
+        <!-- Unfinish part-->
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 bg-light d-flex flex-column justify-content-center align-items-end" style="height: 20rem;">
+           
+        </div>
+    </div>
+    
+    <!-- 3rd main div in content-->
+    <div class="row no-gutters my-2 py-2 mx-auto px-1 bg-danger rounded">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 bg-success" style="height: 27rem;">
             <h2>Updates</h2>
             <div class="list-group" >
                 <button type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;">
