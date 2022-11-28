@@ -355,14 +355,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../controller/editRepo.php" method="post" enctype="multipart/form-data">
+                    <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
-                        <input type="hidden" name="memberTb" id="memberTb">
+                        <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                         <label for="titleTb">Title</label>
-                                        <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTb" placeholder="Write a title" maxlength="50" required value="<?php echo $repoRow['repositoryName'];?>"/>
+                                        <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTb" placeholder="Write a title" maxlength="50" required/>
                                         
                                     </div>
                                 </div>
@@ -371,7 +371,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                         <label for="fileTb">Attach File:</label>
-                                        <input type="file" class="form-control-file form-control-sm" id="fileTb">
+                                        <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
                                         
                                     </div>
                                 </div>
@@ -386,9 +386,9 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-2">
+                            <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Submit</button>
+                                    <button type="submit" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
                                 </div>
                             </div>
                     </form>
