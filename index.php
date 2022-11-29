@@ -1,13 +1,9 @@
 <?php
-/*
-    session_start();
-    if(isset($_SESSION['username']) && isset($_SESSION['login']))
-    {
-        header("Location: userDashboard.php");
-    }
-    
-    date_default_timezone_set('Asia/Manila');
-    */
+   session_start();
+   if(isset($_SESSION['username']))
+   {
+       header("location: pages/userdashboard.php");
+   }
 ?>
 
 <!DOCTYPE html>

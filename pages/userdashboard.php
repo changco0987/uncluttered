@@ -79,8 +79,8 @@
 
         #pageTitle{
             font-weight: bold;
-            color: #F1F1F1;
-            text-shadow: 1px 1px #1C1C1C;
+            color: #1C1C1C;
+            text-shadow: 1px 1px #F1F1F1;
         }
 
 
@@ -104,7 +104,7 @@
         div.content {
             margin-left: 200px;
             padding: 1px 16px;
-            height: 1000px;
+            height: max-content;
         }
         
         @media screen and (max-width: 700px) {
@@ -148,54 +148,54 @@
     <title>Uncluttered - User Dashboard</title>
 </head>
 <body>
-    
-<div class="sidebar">
-            <!-- Alert message container-->
-            <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
-                <strong id="successMsg"></strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+        
+    <div class="sidebar">
+                <!-- Alert message container-->
+                <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
+                    <strong id="successMsg"></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-            <!-- Alert message container-->
-            <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none ;">
-                <strong id="errorMsg"></strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-    <a class="navbar-brand d-flex justify-content-center" href="#">
-        <?php
-            if($row['imageName']!==null && $row['imageName']!=='')
-            {
-                ?>
-                    <img src="../upload/<?php echo $row['username'];?>/<?php echo $row['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
-                <?php
-            }
-            else 
-            {
-                ?>
-                    <img src="../asset/user.png" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
-                <?php
-            }
-        ?>
-    </a>
-    <h4 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="nameLabel"><?php echo $row['firstname'].' '.$row['lastname']?></h4>
-                
-    <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel"><?php echo $row['username'];?></h6>
-    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#createRepoModal" style="color: whitesmoke;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</a>
-    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#createRepoModal" style="color: whitesmoke;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</a>              
-    <hr style="height:2px; border-width:0;background-color: #39445c;">
-    <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn bg-danger" href="userdashboard.php" role="button" style="background-color: #485d8c;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</a>
-</div>
+                <!-- Alert message container-->
+                <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none ;">
+                    <strong id="errorMsg"></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+        <a class="navbar-brand d-flex justify-content-center" href="#">
+            <?php
+                if($row['imageName']!==null && $row['imageName']!=='')
+                {
+                    ?>
+                        <img src="../upload/<?php echo $row['username'];?>/<?php echo $row['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <?php
+                }
+                else 
+                {
+                    ?>
+                        <img src="../asset/user.png" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <?php
+                }
+            ?>
+        </a>
+        <h4 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="nameLabel"><?php echo $row['firstname'].' '.$row['lastname']?></h4>
+                    
+        <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel"><?php echo $row['username'];?></h6>
+        <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#createRepoModal" style="color: whitesmoke;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</a>
+        <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#createRepoModal2" style="color: whitesmoke;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</a>              
+        <hr style="height:2px; border-width:0;background-color: #39445c;">
+        <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn bg-danger" id="signoutBtn" href="../controller/wipedata.php" role="button" style="background-color: #485d8c;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</a>
+    </div>
 
     <div class="content">
         <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
             <!-- This column is for repository-->
-            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pb-2" style="background-color: #6E85B7;">
-                <h2 class="pt-2 ml-2" id="pageTitle"><i class="bi bi-folder-fill"></i> Repositories</h2>
-                <div class="list-group mx-2 bg-light rounded" style="height: 50rem;" id="repoList">
+            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pb-2">
+                <h5 class="pt-2 ml-2" id="pageTitle"><i class="bi bi-folder-fill"></i> Repositories</h5>
+                <div class="list-group mx-2 bg-light rounded" style="height: 52rem;" id="repoList">
                     <?php
                         $repo = new repositoryModel();
                         $result = ReadRepo($conn,$repo);
@@ -214,7 +214,7 @@
                                     if($userId == $row['id'])
                                     {
                                         //this filter if the current user is the owner/creator of the repository
-                                        if($repoRow['userAccountId']==$row['id'])
+                                        if($repoRow['userAccountId'] == $row['id'])
                                         {
                                             ?>
                                                 <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Creator <i class="bi bi-person-workspace"></i></span></a>
@@ -235,10 +235,9 @@
                                 if($members == $row['id'])
                                 {
                                     //this filter if the current user is the owner/creator of the repository
-                                    if($repoRow['userAccountId']==$row['id'])
+                                    if($repoRow['userAccountId'] == $row['id'])
                                     {
                                         ?>
-                                            
                                             <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Creator <i class="bi bi-person-workspace"></i></span> </a>
                                         <?php 
                                     }
