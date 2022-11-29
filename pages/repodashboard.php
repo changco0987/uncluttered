@@ -184,7 +184,7 @@
 </head>
 <body>
     
-<div class="sidebar">
+<div class="sidebar text-center">
             <!-- Alert message container-->
             <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
                 <strong id="successMsg"></strong>
@@ -225,15 +225,6 @@
         <div id="collapseMaintenance" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
             <div class="py-2 collapse-inner rounded mx-4">
                 <h6 class="collapse-header" style="font-size: 13px;"></h6>
-
-                <!--input type="hidden" name="departmentName" value=""-->
-                <button type="button" onclick="gotoAdminStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Students</button><br>
-
-                <button type="button" onclick="gotoAdminFaculty()" class="collapse-item btn btn-sm my-1 collapseBtn">Faculty/Staff</button><br>
-
-                <button type="button" onclick="gotoAdminVisitor()" class="collapse-item btn btn-sm my-1 collapseBtn">Visitors</button><br>
-
-                <button type="button" onclick="gotoAdminGuardian()" class="collapse-item btn btn-sm my-1 collapseBtn">Guardians</button><br>
         
             </div>
         </div>
@@ -362,9 +353,7 @@
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="min-height:20rem;">
-            <div class="chart-container mx-auto" >
-                <canvas id="line1"style="width: 100px; height: 100px;"></canvas>
-            </div>
+            <h5 class="ml-2 pt-3 pb-1 mb-2"><span class=" d-flex justify-content-between">Ideas <button class="btn btn-sm btn-success rounded mr-1"><i class="bi bi-plus-square"></i></button></span></h5>
         </div>
     </div>
     <script>
@@ -417,24 +406,95 @@
                                                 <td><?php echo $checkUserRow['firstname'].' '.$checkUserRow['lastname'];?></td>
                                                 <td style="font-size:small ;"><?php echo date("M d, Y h:i a", strtotime($updateRow['datetimeCreation']));?></td>
                                                 <td></td>
+                                                
+                                                <!-- Note Button -->
                                                 <td style="width:15px;">
                                                     <div class="col-1">
-                                                        <button class="btn btn-sm btn-primary rounded"><i class="bi bi-chat-left-dots"></i></button>
+                                                        <?php
+                                                            if($updateRow['note'] != "")
+                                                            {
+                                                                ?>
+                                                                    <button class="btn btn-sm btn-primary rounded"><i class="bi bi-chat-left-dots"></i></button>
+                                                                <?php
+                                                            }
+                                                            else
+                                                            {
+                                                                ?>
+                                                                    <button class="btn btn-sm btn-secondary rounded disabled"><i class="bi bi-chat-left-dots"></i></button>
+                                                                <?php
+                                                            }
+                                                        ?>
                                                     </div>
                                                 </td>
+
+                                                <!-- Edit Button -->
                                                 <td style="width:15px;">
                                                     <div class="col-1">
-                                                        <button class="btn btn-sm btn-warning rounded"><i class="bi bi-pencil-square"></i></button>
+                                                        <?php
+                                                            if($userRow['id'] == $updateRow['userAccountId'])
+                                                            {
+                                                                ?>
+                                                                    <button class="btn btn-sm btn-warning rounded"><i class="bi bi-pencil-square"></i></button>
+                                                                <?php
+                                                            }
+                                                            else
+                                                            {
+                                                                ?>
+                                                                    <button class="btn btn-sm btn-secondary rounded disabled"><i class="bi bi-pencil-square"></i></button>
+                                                                <?php
+                                                            }
+                                                        ?>
                                                     </div>
                                                 </td>
+
+                                                <!-- Version Button -->
                                                 <td style="width:15px;">
                                                     <div class="col-1">
-                                                        <button class="btn btn-sm rounded" style="background-color: #A020F0; color:whitesmoke;"><i class="bi bi-diagram-3"></i></button>
+                                                        <button class="btn btn-sm rounded" style="background-color: #A020F0; color:whitesmoke;" data-toggle="collapse" data-target="#collapseVersion<?php echo $updateRow['id'];?>" aria-expanded="true" aria-controls="collapseVersion<?php echo $updateRow['id'];?>"><i class="bi bi-diagram-3"></i></button>
+                                                        <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
+                                                            <div class="py-2 collapse-inner rounded mx-4">
+                                                                <h6 class="collapse-header" style="font-size: 13px;"></h6>
+                                                                    
+                                                                <div class="table-wrapper-scroll-y my-custom-scrollbar rounded" style="min-height:15rem;">
+                                                                    <table class="table table-striped table-hover table-sm text-justify mb-0 rounded" >
+                                                                            <caption id="tbCaption"></caption>
+                                                                            <thead class="text-light rounded" style="background-color:#234471;">
+                                                                                <tr style="font-size: 13px;">
+                                                                                    <!--th scope="col" >#</th-->
+                                                                                    <th scope="col">Title</th> 
+                                                                                    <th scope="col" >Name</th>
+                                                                                    <th colspan="2" scope="col" >Datetime</th>
+                                                                                    <th colspan="4" class="text-center" scope="col">Actions</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="updateList">
+                                                                                <tr><td><h1>adasdad</h1></td></tr>
+                                                                            </tbody>
+                                                                    </table>
+                                                                </div>
+                                                        
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td>
+
+                                                <!-- Download Button -->
                                                 <td style="width:15px;">
                                                     <div class="col-1">
-                                                        <button class="btn btn-sm btn-success rounded"><i class="bi bi-download"></i></button>
+                                                        <?php
+                                                            if($updateRow['filename']!="")
+                                                            {
+                                                                ?>
+                                                                    <button class="btn btn-sm btn-success rounded"><i class="bi bi-download"></i></button>
+                                                                <?php
+                                                            }
+                                                            else
+                                                            {
+                                                                ?>
+                                                                    <button class="btn btn-sm btn-secondary rounded disabled"><i class="bi bi-download"></i></button>
+                                                                <?php
+                                                            }
+                                                        ?>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -153,7 +153,7 @@
 </head>
 <body>
         
-    <div class="sidebar">
+    <div class="sidebar text-center">
                 <!-- Alert message container-->
                 <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
                     <strong id="successMsg"></strong>
