@@ -347,41 +347,41 @@
     </div>
     
     <!-- 3rd main div in content-->
-    <div class="row no-gutters my-2 py-2 mx-auto px-1 bg-danger rounded">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-success" style="height: 27rem;">
+    <div class="row no-gutters my-2 py-2 mx-auto px-1">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-success rounded" style="height: 27rem;">
             <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" style="height:15rem;">
-                <table class="table table-striped table-hover table-sm text-justify mb-0"  style="font-size:large; font-weight:bold;">
+                <table class="table table-striped table-hover table-sm text-justify mb-0 rounded" >
                         <caption id="tbCaption"></caption>
-                        <!--thead class="text-light" style="background-color:#234471;">
-                            <tr>
-                                <th scope="col" >#</th>
-                                <th scope="col">Image</th> 
+                        <thead class="text-light rounded" style="background-color:#234471;">
+                            <tr style="font-size: 13px;">
+                                <!--th scope="col" >#</th-->
+                                <th scope="col">Title</th> 
                                 <th scope="col" >Name</th>
-                                <th scope="col" ></th>
+                                <th scope="col" >Datetime</th>
+                                <th colspan="4" class="text-center" scope="col">Actions</th>
                             </tr>
-                        </thead-->
+                        </thead>
                         <tbody id="updateList">
-                            <tr>
+                            
                                 <?php
                                     while($updateRow = mysqli_fetch_assoc($result))
                                     {
-                                        ?>
-                                            <td><?php echo $updateRow['title'];?></td>
-                                        <?php
-                                            $data = new userAccountModel();
-                                            $data->setId($updateRow['userAccountId']);
-                                            $result = ReadUserAccount($conn,$data);
-                                            $checkUserRow = mysqli_fetch_assoc($result);
-
-
-                                        ?>
-                                            <td><?php echo $checkUserRow['firstname'].' '.$checkUserRow['lastname'];?></td>
-                                            <td><?php echo $updateRow['title'];?></td>
+                                        ?><tr>
+                                                <td style="font-size:large; font-weight:bold;"><?php echo $updateRow['title'];?></td>
+                                            <?php
+                                                $data = new userAccountModel();
+                                                $data->setId($updateRow['userAccountId']);
+                                                $checkUserResult = ReadUserAccount($conn,$data);
+                                                $checkUserRow = mysqli_fetch_assoc($checkUserResult);
+                                            ?>
+                                                <td><?php echo $checkUserRow['firstname'].' '.$checkUserRow['lastname'];?></td>
+                                                <td style="font-size:small ;"><?php echo date("M d, Y h:i a", strtotime($updateRow['datetimeCreation']));?></td>
+                                            </tr>
                                         <?php
                                         
                                     }
                                 ?>
-                            </tr>
+                            
                             
                         </tbody>
                 </table>
