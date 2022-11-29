@@ -42,7 +42,7 @@
             $data->setPassword($_POST['passwordTb']);
         }
 
-        if($_FILES['imgTb']['name']!="")
+        if($_FILES['imgTb']['name'] != "" && $_FILES['imgTb']['size'] != 0)
         {
             $data->setImageName('user'.$_POST['idTb']. "." .$fileExtension);
 
@@ -60,7 +60,7 @@
 
         //if the program is occur in this area it means that the username is unique and successfully created
         UpdateUserAccount($conn,$data);
-        header("location: ../pages/userdashboard.php?editAccRes=2");
+        //header("location: ../pages/userdashboard.php?editAccRes=2");
         exit;
 
 

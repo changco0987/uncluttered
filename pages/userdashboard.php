@@ -357,10 +357,24 @@
                 <div class="modal-body">
                     <form action="../controller/editAccount.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="idTb" value="<?php echo $row['id'];?>">
+                        <input type="hidden" name="imgNameTb" value="<?php echo $row['imageName'];?>">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-2 mt-2 d-flex justify-content-center">
-                                    <img src="../asset/user.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
+                                    <?php
+                                        if($row['imageName'])
+                                        {
+                                            ?>
+                                                <img src="../upload/userImage/<?php echo $row['imageName'];?>" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
+                                            <?php
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                                <img src="../asset/user.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
+                                            <?php
+                                        }
+                                    ?>
                                 </div>
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-2 mt-2 d-flex justify-content-center">
                                     <div class="custom-file" style="width:fit-content;">
