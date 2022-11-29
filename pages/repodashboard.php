@@ -364,12 +364,12 @@
         </div>
 
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border">
-            <div class="chart-container mx-auto" style="position: relative; height:25vh; width:25vw" >
+            <div class="chart-container mx-auto">
                 <canvas id="pie1"style="width: 100px; height: 100px;"></canvas>
             </div>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="height: 20rem;">
-            <div class="chart-container mx-auto" style="position: relative; height:45vh; width:25vw">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="min-height:20rem;">
+            <div class="chart-container mx-auto" >
                 <canvas id="line1"style="width: 100px; height: 100px;"></canvas>
             </div>
         </div>
