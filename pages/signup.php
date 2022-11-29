@@ -185,7 +185,6 @@ footer * {
             <div class="containerForm my-2">
                 <div class="d-flex justify-content-center">
                     <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="accType" value="visitor">
                         <div class="form-group mt-1 pt-1">
                             <center>
                                 <h1 style="font-weight:bold; color:#3466AA;">Sign up</small></h1>

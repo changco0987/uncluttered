@@ -143,6 +143,10 @@
             color:whitesmoke;
             text-shadow: 1px 1px #1C1C1C;
         }
+        label{
+            font-size: 12px;
+            color: #234471;
+        }
     </style>
     <link rel="icon" href="../asset/appIcon.png">
     <title>Uncluttered - User Dashboard</title>
@@ -185,7 +189,7 @@
                     
         <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel"><?php echo $row['username'];?></h6>
         <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#createRepoModal" style="color: whitesmoke;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</a>
-        <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#createRepoModal2" style="color: whitesmoke;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</a>              
+        <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#accSettModal" style="color: whitesmoke;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</a>              
         <hr style="height:2px; border-width:0;background-color: #39445c;">
         <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn bg-danger" id="signoutBtn" href="../controller/wipedata.php" role="button" style="background-color: #485d8c;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</a>
     </div>
@@ -276,11 +280,11 @@
 
     
     <!-- Create Repository Modal -->
-    <div class="modal fade" id="createRepoModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+    <div class="modal fade" id="createRepoModal" tabindex="-1" role="dialog" aria-labelledby="createRepoModalTitle" aria-hidden="true" style="border-radius:12px;">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
             <div class="modal-content" style="border-radius:12px;">
                 <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
-                    <h5 class="modal-title" id="accSettModalLongTitle">Create Repository</h5>
+                    <h5 class="modal-title" id="createRepoModalLongTitle">Create Repository</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -333,6 +337,83 @@
                                     <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Create</button>
                                 </div>
                             </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Account Settings Modal -->
+    <div class="modal fade" id="accSettModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
+            <div class="modal-content" style="border-radius:12px;">
+                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                    <h5 class="modal-title" id="accSettModalLongTitle">Account Settings</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="accType" value="visitor">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-2 mt-2 d-flex justify-content-center">
+                                    <img src="../asset/user.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-2 mt-2 d-flex justify-content-center">
+                                    <div class="custom-file" style="width:fit-content;">
+                                        <input type="file" accept=".jpg, .png, .jpeg" class="custom-file-input" id="imgTb" name="imgTb">
+                                        <label class="custom-file-label text-left mt-2 pt-2" for="imgTb">Upload Photo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-2">
+                                    <label class="d-flex align-items-start" for="fnameTb">First name</label>
+                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="fnameTb" name="fnameTb" placeholder="Ex. Marie" maxlength="50" required value="<?php echo $row['firstname'];?>">
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-2">
+                                    <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
+                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required value="<?php echo $row['lastname'];?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="usernameTb">Username</label>
+                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required value="<?php echo $row['username'];?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="passwordTb">New Password</label>
+                                    <input type="password" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20">
+                                    <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="emailTb">Email Address</label>
+                                    <input type="email" class="form-control form-control-plaintext border-primary border-bottom border-top-0 form-control-sm bg-light" id="emailTb" name="emailTb" placeholder="Ex. myMail@gmail.com" maxlength="100" required  value="<?php echo $row['email'];?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pb-1 mb-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -405,6 +486,14 @@
             }
             length--;
         }
+    }    
+
+    //this will make a image preview before it was uploaded
+    imgTb.onchange = evt => {
+    const [file] = imgTb.files
+    if (file) {
+        userImg.src = URL.createObjectURL(file)
+    }
     }
 </script>
 </html>
