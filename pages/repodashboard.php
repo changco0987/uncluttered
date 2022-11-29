@@ -367,6 +367,10 @@
             </div>
         </div>
     </div>
+    <script>
+        var myContri = 0;
+        var memberContri = 0;
+    </script>
     
     <!-- 3rd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1">
@@ -395,6 +399,20 @@
                                                 $data->setId($updateRow['userAccountId']);
                                                 $checkUserResult = ReadUserAccount($conn,$data);
                                                 $checkUserRow = mysqli_fetch_assoc($checkUserResult);
+
+                                                //This will collect the contribution of the current user vs. other members
+                                                if($userRow['id'] == $updateRow['userAccountId'])
+                                                {
+                                                    ?>
+                                                        <script>myContri++;</script>
+                                                    <?php
+                                                }
+                                                else
+                                                {
+                                                    ?>
+                                                        <script>memberContri++;</script>
+                                                    <?php
+                                                }
                                             ?>
                                                 <td><?php echo $checkUserRow['firstname'].' '.$checkUserRow['lastname'];?></td>
                                                 <td style="font-size:small ;"><?php echo date("M d, Y h:i a", strtotime($updateRow['datetimeCreation']));?></td>
@@ -421,7 +439,6 @@
                                                 </td>
                                             </tr>
                                         <?php
-                                        
                                     }
                                 ?>
                             
@@ -672,17 +689,18 @@
         
 
     var ctx = document.getElementById("pie1").getContext('2d');
-    var dataStat = [43,54];
+    var dataStat = [myContri,memberContri];
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Locked','Unlocked'],
+            labels: ['My contribution','Other members'],
             datasets: [{
                 label: 'Status',
                 data: dataStat,
                 backgroundColor: [
-                    '#EE4B2B',
+                    
                     '#50C878',
+                    '#EE4B2B',
                     '#8b0000',
                     '#234471',
                     '#AEC6CF',
@@ -704,7 +722,7 @@
             plugins: {
                 title: {
                     display: true,
-                    text: 'Account Status',
+                    text: 'Project Contribution',
                     fontSize: 300
                 },
                 legend:{
