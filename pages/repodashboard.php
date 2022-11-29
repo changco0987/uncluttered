@@ -103,12 +103,12 @@
         }
         
         .sidebar a.active {
-            background-color: #114084;
+            background-color: #5d73a3;
             color: white;
         }
 
         .sidebar a:hover:not(.active) {
-            background-color: #82B7DC;
+            background-color: #5d73a3;
             color: white;
         }
         
@@ -137,17 +137,17 @@
 
 
         #collapseUtilities, #collapseMaintenance, #collapseHealthRecord{
-            background-color:#234471 ;
+            background-color:#5d73a3 ;
         }
 
         .collapseBtn{
             color:whitesmoke;
-            background-color: #3466AA;
+            background-color: #485d8c;
             width: 150px;
             text-shadow: 1px 1px #1C1C1C;
         }
         .collapseBtn:hover {
-            background-color:#114084;
+            background-color:#5d73a3;
         }
 
         .mainBtn{
