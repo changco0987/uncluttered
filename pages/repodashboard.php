@@ -38,6 +38,7 @@
             $updates = new updatesModel();
             $updates->setRepositoryId($_GET['id']);
 
+            $latestResult = ReadUpdate($conn,$updates);
             $result = ReadUpdate($conn,$updates);
 
         }
@@ -322,15 +323,43 @@
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded border bg-light" >
             <h5 class="ml-2 py-3 mb-4">Updates</h5>
             <div class="list-group mx-1 border">
-                <a type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; background-color:#e5e5e5;" role="button" href="#">
-                    <img src="../asset/user.png" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> Thesis Update for final defense
-                </a>
-                <a type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; background-color:#e5e5e5;" role="button" href="#">
-                    <img src="../asset/user.png" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> Manuscript revision
-                </a>
-                <a type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; background-color:#e5e5e5;" role="button" href="#">
-                    <img src="../asset/user.png" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> manuscript revision 2
-                </a>
+                <?php
+                //This will only get the newes 3 updates
+                    $count = 0;
+                    $data = new userAccountModel();
+                    while($latestUpdateRow = mysqli_fetch_assoc($latestResult))
+                    {
+                        if($count < 3)
+                        {
+                            $data->setId($latestUpdateRow['userAccountId']);
+                            $latestUserResult = ReadUserAccount($conn,$data);
+                            $latestUserRow = mysqli_fetch_assoc($latestUserResult);
+                            ?>
+                                <a type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; background-color:#e5e5e5;" role="button" href="#<?php echo $latestUpdateRow['title'];?>">
+                                    <?php
+                                        if($latestUserRow['imageName'])
+                                        {
+                                            ?>
+                                                <img src="../upload/userImage/<?php echo $latestUserRow['imageName'];?>" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                            <?php
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                                <img src="../asset/user.png" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                            <?php
+                                        }
+                                    ?>
+                                </a>
+                            <?php
+                            $count++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                ?>
             </div>
         </div>
 
@@ -348,8 +377,8 @@
     
     <!-- 3rd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-success rounded" style="height: 27rem;">
-            <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" style="height:15rem;">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded" style="height: 27rem;">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar rounded" style="height:15rem;">
                 <table class="table table-striped table-hover table-sm text-justify mb-0 rounded" >
                         <caption id="tbCaption"></caption>
                         <thead class="text-light rounded" style="background-color:#234471;">
@@ -357,7 +386,7 @@
                                 <!--th scope="col" >#</th-->
                                 <th scope="col">Title</th> 
                                 <th scope="col" >Name</th>
-                                <th scope="col" >Datetime</th>
+                                <th colspan="2" scope="col" >Datetime</th>
                                 <th colspan="4" class="text-center" scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -366,7 +395,7 @@
                                 <?php
                                     while($updateRow = mysqli_fetch_assoc($result))
                                     {
-                                        ?><tr>
+                                        ?><tr id="<?php echo $updateRow['title'];?>">
                                                 <td style="font-size:large; font-weight:bold;"><?php echo $updateRow['title'];?></td>
                                             <?php
                                                 $data = new userAccountModel();
@@ -376,6 +405,27 @@
                                             ?>
                                                 <td><?php echo $checkUserRow['firstname'].' '.$checkUserRow['lastname'];?></td>
                                                 <td style="font-size:small ;"><?php echo date("M d, Y h:i a", strtotime($updateRow['datetimeCreation']));?></td>
+                                                <td></td>
+                                                <td style="width:15px;">
+                                                    <div class="col-1">
+                                                        <button class="btn btn-sm btn-primary rounded"><i class="bi bi-chat-left-dots"></i></button>
+                                                    </div>
+                                                </td>
+                                                <td style="width:15px;">
+                                                    <div class="col-1">
+                                                        <button class="btn btn-sm btn-warning rounded"><i class="bi bi-pencil-square"></i></button>
+                                                    </div>
+                                                </td>
+                                                <td style="width:15px;">
+                                                    <div class="col-1">
+                                                        <button class="btn btn-sm rounded" style="background-color: #A020F0; color:whitesmoke;"><i class="bi bi-diagram-3"></i></button>
+                                                    </div>
+                                                </td>
+                                                <td style="width:15px;">
+                                                    <div class="col-1">
+                                                        <button class="btn btn-sm btn-success rounded"><i class="bi bi-download"></i></button>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         <?php
                                         
