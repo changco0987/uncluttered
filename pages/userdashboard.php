@@ -174,7 +174,7 @@
                 if($row['imageName']!==null && $row['imageName']!=='')
                 {
                     ?>
-                        <img src="../upload/<?php echo $row['username'];?>/<?php echo $row['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                        <img src="../upload/userImage/<?php echo $row['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                     <?php
                 }
                 else 
@@ -419,7 +419,39 @@
             </div>
         </div>
     </div>
+        
 
+    <?php
+        if(isset($_GET['editAccRes']))
+        {
+            if($_GET['editAccRes']==1)
+            {
+                ?>
+                    <script>
+                        document.getElementById('alertBox').style.display = 'block';
+                        document.getElementById('errorMsg').innerHTML = 'Username already Exist!';
+                    </script>
+                <?php
+            }
+            else if($_GET['editAccRes']==2)
+            {
+                ?>
+                    <script>
+                        document.getElementById('successBox').style.display = 'block';
+                        document.getElementById('successMsg').innerHTML = 'Saved Data successfully!';
+                    </script>
+                <?php
+            }
+            ?>
+                <script>
+                    //to reset the $_GET in URL
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete('editAccRes');
+                    window.history.replaceState(null, null, url); // or pushState
+                </script>
+            <?php
+        }
+    ?>
 </body>
 <script>
 

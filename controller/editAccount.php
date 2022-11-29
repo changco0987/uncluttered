@@ -33,6 +33,7 @@
         }
             
     
+        $data->setId($_POST['idTb']);
         $data->setFirstname($_POST['fnameTb']);
         $data->setLastname($_POST['lnameTb']);
 
@@ -61,7 +62,6 @@
         UpdateUserAccount($conn,$data);
         header("location: ../pages/userdashboard.php?editAccRes=2");
         exit;
-
 
 
     }
