@@ -18,7 +18,7 @@
         if($data->getRepositoryId())
         {
             //if theres id in data
-            $dbData = mysqli_query($conn, "SELECT * FROM updatestb WHERE repositoryId ='".$data->getRepositoryId()."'");
+            $dbData = mysqli_query($conn, "SELECT * FROM updatestb WHERE repositoryId ='".$data->getRepositoryId()."' ORDER BY id DESC");
         }
         else
         {
