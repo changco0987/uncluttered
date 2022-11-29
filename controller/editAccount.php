@@ -55,12 +55,16 @@
             }
             copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
         }
+        else
+        {
+            $data->setImageName($_POST['imageNameTb']);
+        }
 
         $data->setEmail($_POST['emailTb']);
 
         //if the program is occur in this area it means that the username is unique and successfully created
         UpdateUserAccount($conn,$data);
-        //header("location: ../pages/userdashboard.php?editAccRes=2");
+        header("location: ../pages/userdashboard.php?editAccRes=2");
         exit;
 
 
