@@ -19,8 +19,14 @@
     {
 
         if($data->getUsername())
-        {//if theres username in data
+        {
+            //if theres username in data
             $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb WHERE username='".$data->getUsername()."'");
+        }
+        else if($data->getId())
+        {
+            //this is used in repodashboard to fetch usernames in updates
+            $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb WHERE id=".$data->getId());
         }
         else
         {
