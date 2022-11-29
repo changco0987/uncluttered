@@ -39,7 +39,21 @@
 
     function UpdateUserAccount($conn,$data)
     {
-        mysqli_query($conn,"UPDATE useraccountstb SET username = $data->getUsername() WHERE id = $data->getId()");
+        if($data->getId()!=null)
+        {
+            if($data->getPassword()!=null)
+            {
+                mysqli_query($conn,"UPDATE useraccountstb SET firstname='".$data->getFirstname()."', lastname='".$data->getLastname()
+                ."',username = '".$data->getUsername()."', password ='".$data->getPassword()."', imageName ='".$data->getImageName()
+                ."', email='".$data->getEmail()."' WHERE id =". $data->getId());
+            }
+            else
+            {
+                mysqli_query($conn,"UPDATE useraccountstb SET firstname='".$data->getFirstname()."', lastname='".$data->getLastname()
+                ."',username = '".$data->getUsername()."', imageName ='".$data->getImageName()
+                ."', email='".$data->getEmail()."' WHERE id =". $data->getId());
+            }
+        }
     }
 
     

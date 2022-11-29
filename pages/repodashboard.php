@@ -205,7 +205,7 @@
             if($userRow['imageName']!==null && $userRow['imageName']!=='')
             {
                 ?>
-                    <img src="../upload/<?php echo $userRow['username'];?>/<?php echo $userRow['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <img src="../upload/userImage/<?php echo $userRow['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                 <?php
             }
             else 

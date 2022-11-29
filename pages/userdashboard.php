@@ -355,8 +355,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                <form action="../controller/signup.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="accType" value="visitor">
+                    <form action="../controller/editAccount.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="idTb" value="<?php echo $row['id'];?>">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-2 mt-2 d-flex justify-content-center">
