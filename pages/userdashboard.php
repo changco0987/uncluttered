@@ -61,107 +61,198 @@
             -webkit-overflow-scrolling: touch;
             border-radius: 5px;
         }
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #6E85B7;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        #nameLabel, #usernameLabel{
+            font-weight: bolder;
+            color: #82B7DC;
+            text-shadow: 1px 1px #1C1C1C;
+        }
+
+        #pageTitle{
+            font-weight: bold;
+            color: #F1F1F1;
+            text-shadow: 1px 1px #1C1C1C;
+        }
+
+
+        .sidebar a {
+            display: block;
+            color: #F1F1F1;
+            padding: 16px;
+            text-decoration: none;
+        }
+        
+        .sidebar a.active {
+            background-color: #5d73a3;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #5d73a3;
+            color: white;
+        }
+        
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+        
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                    width: 100%;
+                    height: auto;
+                    position: relative;
+            }
+            div.content {margin-left: 0;}
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                    text-align: center;
+                    float: none;
+            }
+        }
+
+
+
+        #collapseUtilities, #collapseMaintenance, #collapseHealthRecord{
+            background-color:#5d73a3 ;
+        }
+
+        .collapseBtn{
+            color:whitesmoke;
+            background-color: #485d8c;
+            width: 150px;
+            text-shadow: 1px 1px #1C1C1C;
+        }
+        .collapseBtn:hover {
+            background-color:#5d73a3;
+        }
+
+        .mainBtn{
+            color:whitesmoke;
+            text-shadow: 1px 1px #1C1C1C;
+        }
     </style>
     <link rel="icon" href="../asset/appIcon.png">
     <title>Uncluttered - User Dashboard</title>
 </head>
 <body>
-
-    <div class="container-fluid ">
-        
-        <div class="row my-2 py-2 flex-grow-1 mx-1 px-1 ">
-            <!-- Profile column-->
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 mx-auto bg-primary d-flex  justify-content-center">
-                <div class="bg-success rounded  mb-2 ">
-                    <div class="userImage mt-5 pt-5 mb-2 text-center">
-                        <?php
-                            if($row['imageName']!==null && $row['imageName']!=='')
-                            {
-                                ?>
-                                    <img src="../upload/<?php echo $row['username'];?>/<?php echo $row['imageName'];?>" width="60" height="60" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
-                                <?php
-                            }
-                            else 
-                            {
-                                ?>
-                                    <img src="../asset/user.png" width="200" height="200" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
-                                <?php
-                            }
-                        
-                        ?>
-                        <h5 class="my-2"><?php echo $row['firstname'].' '.$row['lastname']?></h5>
-                        <p><?php echo $row['username'];?></p>
-                        <button type="button" class="form-control btn d-flex justify-content-center my-2" data-toggle="modal" data-target="#createRepoModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</button>
-                        <button type="button" class="form-control btn d-flex justify-content-center my-2" data-toggle="modal" data-target="#accSettModal" id="accSettBtn" style="background-color: #3466AA; color:white;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</button>
-                        <a type="button" class="form-control btn d-flex justify-content-center bg-danger my-2" id="signoutBtn" style="color:white;" href="../controller/wipedata.php"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</a>
-                    </div>
-                    
-                </div>
-            </div>
     
-            <!-- This column is for repository-->
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9 col-xl-9 mx-auto">
-                <div class="bg-warning rounded  pb-2">
-                    <h2 class="pt-2 ml-2"><i class="bi bi-folder-fill"></i> Repositories</h2>
-                    <div class="list-group mx-2 bg-light" style="height: 50rem;" id="repoList">
-                        <?php
-                            $repo = new repositoryModel();
-                            $result = ReadRepo($conn,$repo);
+<div class="sidebar">
+            <!-- Alert message container-->
+            <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
+                <strong id="successMsg"></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-                            while($repoRow = mysqli_fetch_assoc($result))
+            <!-- Alert message container-->
+            <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none ;">
+                <strong id="errorMsg"></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    <a class="navbar-brand d-flex justify-content-center" href="#">
+        <?php
+            if($row['imageName']!==null && $row['imageName']!=='')
+            {
+                ?>
+                    <img src="../upload/<?php echo $row['username'];?>/<?php echo $row['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                <?php
+            }
+            else 
+            {
+                ?>
+                    <img src="../asset/user.png" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                <?php
+            }
+        ?>
+    </a>
+    <h4 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="nameLabel"><?php echo $row['firstname'].' '.$row['lastname']?></h4>
+                
+    <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel"><?php echo $row['username'];?></h6>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#createRepoModal" style="color: whitesmoke;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</a>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#createRepoModal" style="color: whitesmoke;"><i class="bi bi bi-sliders mr-2"></i>Account Settings</a>              
+    <hr style="height:2px; border-width:0;background-color: #39445c;">
+    <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn bg-danger" href="userdashboard.php" role="button" style="background-color: #485d8c;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</a>
+</div>
+
+    <div class="content">
+        <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
+            <!-- This column is for repository-->
+            <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pb-2" style="background-color: #6E85B7;">
+                <h2 class="pt-2 ml-2" id="pageTitle"><i class="bi bi-folder-fill"></i> Repositories</h2>
+                <div class="list-group mx-2 bg-light rounded" style="height: 50rem;" id="repoList">
+                    <?php
+                        $repo = new repositoryModel();
+                        $result = ReadRepo($conn,$repo);
+
+                        while($repoRow = mysqli_fetch_assoc($result))
+                        {
+                            $members = array();
+                            $members = unserialize($repoRow['members']);
+                            
+                            //This will check if he is the only one in the repository to avoid error in array checking in only 1 element
+                            if(is_array($members))
                             {
-                                $members = array();
-                                $members = unserialize($repoRow['members']);
-                                
-                                //This will check if he is the only one in the repository to avoid error in array checking in only 1 element
-                                if(is_array($members))
-                                {
-                                    foreach($members as $userId)
-                                    {
-                                        //to filter every repo that has the userid involved
-                                        if($userId == $row['id'])
-                                        {
-                                            //this filter if the current user is the owner/creator of the repository
-                                            if($repoRow['userAccountId']==$row['id'])
-                                            {
-                                                ?>
-                                                    <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Creator <i class="bi bi-person-workspace"></i></span></a>
-                                                <?php 
-                                            }
-                                            else
-                                            {
-                                                ?>
-                                                    <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Member <i class="bi bi-people-fill"></i></span></a>
-                                                <?php 
-                                            }
-                                        }
-                                    }
-                                }
-                                else
+                                foreach($members as $userId)
                                 {
                                     //to filter every repo that has the userid involved
-                                    if($members == $row['id'])
+                                    if($userId == $row['id'])
                                     {
                                         //this filter if the current user is the owner/creator of the repository
                                         if($repoRow['userAccountId']==$row['id'])
                                         {
                                             ?>
-                                                
-                                                <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Creator <i class="bi bi-person-workspace"></i></span> </a>
+                                                <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Creator <i class="bi bi-person-workspace"></i></span></a>
                                             <?php 
                                         }
                                         else
                                         {
                                             ?>
-                                                
-                                                <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Member <i class="bi bi-people-fill"></i></span> </a>
+                                                <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Member <i class="bi bi-people-fill"></i></span></a>
                                             <?php 
                                         }
                                     }
                                 }
                             }
-                        ?>
-                    </div>
+                            else
+                            {
+                                //to filter every repo that has the userid involved
+                                if($members == $row['id'])
+                                {
+                                    //this filter if the current user is the owner/creator of the repository
+                                    if($repoRow['userAccountId']==$row['id'])
+                                    {
+                                        ?>
+                                            
+                                            <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Creator <i class="bi bi-person-workspace"></i></span> </a>
+                                        <?php 
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                            
+                                            <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Member <i class="bi bi-people-fill"></i></span> </a>
+                                        <?php 
+                                    }
+                                }
+                            }
+                        }
+                    ?>
                 </div>
             </div>
         </div>

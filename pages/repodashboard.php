@@ -13,19 +13,26 @@
     }
     else
     {
-        $data = new userAccountModel();
-        $data->setUsername($_SESSION['username']);
-
-        $result = ReadUserAccount($conn,$data);
-
-        $userRow = mysqli_fetch_assoc($result);
-
-        $repo = new repositoryModel();
-        $repo->setId($_GET['id']);
-
-        $result = ReadRepo($conn,$repo);
-
-        $repoRow = mysqli_fetch_assoc($result);
+        if(isset($_GET['id']))
+        {
+            $data = new userAccountModel();
+            $data->setUsername($_SESSION['username']);
+    
+            $result = ReadUserAccount($conn,$data);
+    
+            $userRow = mysqli_fetch_assoc($result);
+    
+            $repo = new repositoryModel();
+            $repo->setId($_GET['id']);
+    
+            $result = ReadRepo($conn,$repo);
+    
+            $repoRow = mysqli_fetch_assoc($result);
+        }
+        else 
+        {
+            header("location: userdashboard.php");
+        }
         
     }
 ?>
@@ -255,6 +262,8 @@
       
         </div>
     </div>
+    <hr style="height:2px; border-width:0;background-color: #39445c;">
+    <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn" href="userdashboard.php" role="button" style="background-color: #485d8c;"><i class="bi bi-arrow-left mr-1"></i> Return</a>
 </div>
 
 <div class="content">
