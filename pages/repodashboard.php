@@ -87,7 +87,7 @@
         }
 
         #repoList{
-            max-height: 780px;
+            max-height: 700px;
             overflow-y:scroll;
             -webkit-overflow-scrolling: touch;
             border-radius: 5px;
@@ -321,43 +321,36 @@
     <!-- 2nd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded border bg-light" >
-            <h5 class="ml-2 py-3 mb-4">Updates</h5>
-            <div class="list-group mx-1 border">
+            <h5 class="ml-2 pt-3 pb-1 mb-2">Recent Updates</h5>
+            <div class="list-group mx-2 bg-light rounded" style="height: 17rem;" id="repoList">
                 <?php
                 //This will only get the newes 3 updates
                     $count = 0;
                     $data = new userAccountModel();
                     while($latestUpdateRow = mysqli_fetch_assoc($latestResult))
                     {
-                        if($count < 3)
-                        {
                             $data->setId($latestUpdateRow['userAccountId']);
                             $latestUserResult = ReadUserAccount($conn,$data);
                             $latestUserRow = mysqli_fetch_assoc($latestUserResult);
                             ?>
-                                <a type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; background-color:#e5e5e5;" role="button" href="#<?php echo $latestUpdateRow['title'];?>">
+                                <a type="button" class="list-group-item list-group-item-action" role="button" href="#<?php echo $latestUpdateRow['title'];?>">
                                     <?php
                                         if($latestUserRow['imageName'])
                                         {
                                             ?>
-                                                <img src="../upload/userImage/<?php echo $latestUserRow['imageName'];?>" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <img src="../upload/userImage/<?php echo $latestUserRow['imageName'];?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
                                             <?php
                                         }
                                         else
                                         {
                                             ?>
-                                                <img src="../asset/user.png" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <img src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
                                             <?php
                                         }
                                     ?>
                                 </a>
                             <?php
-                            $count++;
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        
                     }
                 ?>
             </div>
@@ -378,7 +371,7 @@
     <!-- 3rd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded" style="height: 27rem;">
-            <div class="table-wrapper-scroll-y my-custom-scrollbar rounded" style="height:15rem;">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar rounded" style="height:25rem;">
                 <table class="table table-striped table-hover table-sm text-justify mb-0 rounded" >
                         <caption id="tbCaption"></caption>
                         <thead class="text-light rounded" style="background-color:#234471;">
