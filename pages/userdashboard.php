@@ -275,7 +275,7 @@
     </div>
 
     
-    <!-- Account Settings Modal -->
+    <!-- Create Repository Modal -->
     <div class="modal fade" id="createRepoModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
             <div class="modal-content" style="border-radius:12px;">

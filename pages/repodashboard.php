@@ -306,32 +306,31 @@
     </nav>
 
     <!-- 2nd main div in content-->
-    <div class="row no-gutters my-2 py-2 mx-auto px-1 bg-danger rounded">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 bg-success" style="height: 20rem;">
-            <h2>Updates</h2>
-            <div class="list-group" >
-                <button type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;">
-                    <img src="../asset/user.png" width="50" height="50" class="border-dark" alt="" style="border-radius: 50%;"> Cras justo odioasddddddddddd
-                </button>
-                <button type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;" >
-                    <img src="../asset/user.png" width="50" height="50" class="border-dark" alt="" style="border-radius: 50%;"> Dapibus ac facilisis in\
-                </button>
-                <button type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis;" >
-                    <img src="../asset/user.png" width="50" height="50" class="border-dark" alt="" style="border-radius: 50%;"> Dapibus ac facilisis in\
-                </button>
+    <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded border bg-light" >
+            <h5 class="ml-2 py-3 mb-4">Updates</h5>
+            <div class="list-group mx-1 border">
+                <a type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; background-color:#e5e5e5;" role="button" href="#">
+                    <img src="../asset/user.png" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> Thesis Update for final defense
+                </a>
+                <a type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; background-color:#e5e5e5;" role="button" href="#">
+                    <img src="../asset/user.png" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> Manuscript revision
+                </a>
+                <a type="button" class="list-group-item list-group-item-action" style="overflow:hidden; white-space: nowrap; text-overflow: ellipsis; background-color:#e5e5e5;" role="button" href="#">
+                    <img src="../asset/user.png" width="45" height="45" class="border-dark" alt="" style="border-radius: 50%;"> manuscript revision 2
+                </a>
             </div>
         </div>
 
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-primary d-flex flex-xs-column justify-content-lg-start justify-content-center align-items-center" style="height: 20rem;">
-            <div class="bg-danger">
-                <h3 class="my-2"><?php echo $userRow['firstname'].' '.$userRow['lastname']?></h3>
-            
-                <h6><?php echo $userRow['username'];?></h6>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border">
+            <div class="chart-container mx-auto" style="position: relative; height:25vh; width:25vw" >
+                <canvas id="pie1"style="width: 100px; height: 100px;"></canvas>
             </div>
         </div>
-        <!-- Unfinish part-->
-        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 bg-light d-flex flex-column justify-content-center align-items-end" style="height: 20rem;">
-           
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="height: 20rem;">
+            <div class="chart-container mx-auto" style="position: relative; height:45vh; width:25vw">
+                <canvas id="line1"style="width: 100px; height: 100px;"></canvas>
+            </div>
         </div>
     </div>
     
@@ -600,5 +599,120 @@
         var length = document.getElementById('noteTb').value;
         document.getElementById('lengthTxt').innerHTML = length.length+'/500';
     }
+
+
+        
+
+    var ctx = document.getElementById("pie1").getContext('2d');
+    var dataStat = [43,54];
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Locked','Unlocked'],
+            datasets: [{
+                label: 'Status',
+                data: dataStat,
+                backgroundColor: [
+                    '#EE4B2B',
+                    '#50C878',
+                    '#8b0000',
+                    '#234471',
+                    '#AEC6CF',
+                    '#0000FF',
+                    '#FF00FF',
+                    '#00FFFF',
+                    '#ffa500',
+                    '#9400d3',
+                    '#808080',
+                    '#00ffff',
+                    '#8fbc8f',
+                    '#1e90ff'
+
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Account Status',
+                    fontSize: 300
+                },
+                legend:{
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+
+    
+    var ctx2 = document.getElementById("line1").getContext('2d');
+    var datasets = [43,54];
+    var mybar = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['Locked','Unlocked'],
+            datasets: [{
+                label: 'HEADCOUNT',
+                data: datasets,
+                backgroundColor: [
+                    '#FF0000',
+                    '#008000',
+                    '#FFFF00',
+                    '#0000FF',
+                    '#FF00FF',
+                    '#00FFFF',
+                    '#ffa500',
+                    '#9400d3',
+                    '#808080',
+                    '#00ffff',
+                    '#8fbc8f',
+                    '#1e90ff'
+
+                ],
+                borderColor: 'green',
+                tension: 0.4,
+                fill: false,
+                spanGaps: true
+            },
+            {
+                label: 'Percent',
+                data: dataStat,
+                backgroundColor: [
+                    '#FF0000',
+                    '#008000',
+                    '#FFFF00',
+                    '#0000FF',
+                    '#FF00FF',
+                    '#00FFFF',
+                    '#ffa500',
+                    '#9400d3',
+                    '#808080',
+                    '#00ffff',
+                    '#8fbc8f',
+                    '#1e90ff'
+
+                ],
+                borderColor: 'blue',
+                tension: 0.4,
+                fill: false,
+                spanGaps: true
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: "das",
+                    fontSize: 300
+                },
+                legend:{
+                    display: true
+                }
+            }
+        }
+    });
 </script>
 </html>
