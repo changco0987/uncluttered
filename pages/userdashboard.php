@@ -191,15 +191,32 @@
     </div>
 
     <div class="content">
-        <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
+        <div class="row no-gutters my-2 py-3 mx-auto px-1 rounded">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded d-flex align-items-center bg-light" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <?php
+                $repo = new repositoryModel();
+                $result = ReadRepo($conn,$repo);
+            ?>
+                <h5 class="mx-auto">Repository: </h5>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 rounded d-flex align-items-center bg-light mx-auto" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+        
+                <h5 class="mx-auto">Repository: </h5>
+
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded d-flex align-items-center bg-light" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            
+                <h5 class="mx-auto">Repository: </h5>
+
+            </div>
+        </div>
+        <div class="row no-gutters my-1 py-1 mx-auto px-1 rounded bg-warning">
             <!-- This column is for repository-->
             <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pb-2">
                 <h5 class="pt-2 ml-2" id="pageTitle"><i class="bi bi-folder-fill"></i> Repositories</h5>
-                <div class="list-group mx-2 bg-light rounded" style="height: 52rem;" id="repoList">
+                <div class="list-group mx-2 bg-light rounded" style="height: 37rem;" id="repoList">
                     <?php
-                        $repo = new repositoryModel();
-                        $result = ReadRepo($conn,$repo);
-
                         while($repoRow = mysqli_fetch_assoc($result))
                         {
                             $members = array();
