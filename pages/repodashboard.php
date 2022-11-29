@@ -163,7 +163,23 @@
     <title>Uncluttered - Repository Dashboard</title>
 </head>
 <body>
+    
 <div class="sidebar">
+            <!-- Alert message container-->
+            <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
+                <strong id="successMsg"></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Alert message container-->
+            <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none ;">
+                <strong id="errorMsg"></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
     <a class="navbar-brand d-flex justify-content-center" href="#">
         <?php
             if($userRow['imageName']!==null && $userRow['imageName']!=='')
@@ -463,6 +479,39 @@
             </div>
         </div>
     </div>
+    
+
+    <?php
+        if(isset($_GET['updateRes']))
+        {
+            if($_GET['updateRes']==1)
+            {
+                ?>
+                    <script>
+                        document.getElementById('successBox').style.display = 'block';
+                        document.getElementById('successMsg').innerHTML = 'Update Posted!';
+                    </script>
+                <?php
+            }
+            else if($_GET['updateRes']==2)
+            {
+                ?>
+                    <script>
+                        document.getElementById('successBox').style.display = 'block';
+                        document.getElementById('successMsg').innerHTML = 'Repository Update Successfully!';
+                    </script>
+                <?php
+            }
+            ?>
+                <script>
+                    //to reset the $_GET in URL
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete('updateRes');
+                    window.history.replaceState(null, null, url); // or pushState
+                </script>
+            <?php
+        }
+    ?>
 
 </body>
 <script>

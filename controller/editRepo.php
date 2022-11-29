@@ -18,7 +18,7 @@
 
         UpdateRepo($conn,$repo);
 
-        header("location: ../pages/repodashboard.php?id=".$_POST['repoId']);//bind repoId $_GET
+        header("location: ../pages/repodashboard.php?id=".$_POST['repoId']."&updateRes=2");//bind repoId $_GET
 
 
 

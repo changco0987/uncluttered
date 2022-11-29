@@ -40,6 +40,10 @@
             copy($uploadedFile,$imgPath.$data->getFilename());//This will move the uploaded file into file directory (web)
         }
 
+        CreateUpdate($conn,$data);
+
+        header("Location: ../pages/repodashboard.php?id=".$_POST['repoId']."&updateRes=1");
+
 
         
     }
