@@ -8,6 +8,9 @@
     
     include_once '../db/tb_updates.php';
     include_once '../model/updatesModel.php';
+    
+    include_once '../db/tb_version.php';
+    include_once '../model/versionModel.php';
 
     session_start();
     if(!isset($_SESSION['username']))
@@ -489,6 +492,14 @@ td a {
                                                     <td colspan="8">
                                                         <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse  my-1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded bg-success" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
                                                             <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                                                <?php
+                                                                    $version = new versionModel();
+
+                                                                    while()
+                                                                    {
+
+                                                                    }
+                                                                ?>
                                                                 <h6 class="collapse-header mr-3 pr-3" style="font-size: 13px;">ID: collapseVersion23322</h6>
                                                                 <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
                                                                 <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
