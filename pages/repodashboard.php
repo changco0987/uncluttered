@@ -428,7 +428,34 @@ td a {
                                                             if($updateRow['note'] != "")
                                                             {
                                                                 ?>
-                                                                    <button class="btn btn-sm btn-primary rounded"><i class="bi bi-chat-left-dots"></i></button>
+                                                                    <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#noteModal<?php echo $updateRow['id'];?>"><i class="bi bi-chat-left-dots"></i></button>
+
+                                                                                                                                    
+                                                                    <!-- Note Modal -->
+                                                                    <div class="modal fade" id="noteModal<?php echo $updateRow['id'];?>" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+                                                                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
+                                                                            <div class="modal-content" style="border-radius:12px;">
+                                                                                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                                                                                    <h5 class="modal-title" id="accSettModalLongTitle">Note</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form action="../controller/editRepo.php" method="post" enctype="multipart/form-data">
+                                                                                        <div class="form-group">
+                                                                                            <div class="row">
+                                                                                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                                                                                    <textarea name="noteTb" id="noteTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onclick="getTxtLength()" disabled><?php echo $updateRow['note'];?></textarea>
+                                                                                                    <!--span class="d-flex justify-content-end"><p id="lengthTxt">0/500</p></span-->
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 <?php
                                                             }
                                                             else
@@ -653,6 +680,10 @@ td a {
             </div>
         </div>
     </div>
+
+
+
+    
     
 
     <?php
