@@ -177,11 +177,7 @@
             color:whitesmoke;
             text-shadow: 1px 1px #1C1C1C;
         }
-td a { 
-   display: block; 
-   border: 1px solid black;
-   padding: 16px; 
-}
+
   
 
 
@@ -495,23 +491,15 @@ td a {
                                                     
                                                     </div>
                                                 </td>
-                                                <!-- Download Button -->
+                                                <!-- Download and create version Button -->
                                                 <td style="width:15px;">
                                                     <div class="col-1">
-                                                        <?php
-                                                            if($updateRow['filename']!="")
-                                                            {
-                                                                ?>
-                                                                    <button class="btn btn-sm btn-success rounded"><i class="bi bi-download"></i></button>
-                                                                <?php
-                                                            }
-                                                            else
-                                                            {
-                                                                ?>
-                                                                    <button class="btn btn-sm btn-secondary rounded disabled"><i class="bi bi-download"></i></button>
-                                                                <?php
-                                                            }
-                                                        ?>
+                                                        <button class="btn border-0 btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#d0d0d0;"><i class="bi bi-three-dots-vertical"></i></button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="#">Action</a>
+                                                            <a class="dropdown-item" href="#">Another action</a>
+                                                            <a class="dropdown-item" href="#">Something else here</a>
+                                                        </div>
                                                     </div>
                                                 </td>
 <!--Unfinish part-->
