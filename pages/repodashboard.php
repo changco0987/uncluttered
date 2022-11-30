@@ -174,6 +174,11 @@
             color:whitesmoke;
             text-shadow: 1px 1px #1C1C1C;
         }
+td a { 
+   display: block; 
+   border: 1px solid black;
+   padding: 16px; 
+}
   
 
 
@@ -320,6 +325,8 @@
                     $data = new userAccountModel();
                     while($latestUpdateRow = mysqli_fetch_assoc($latestResult))
                     {
+                        if($count<10)
+                        {
                             $data->setId($latestUpdateRow['userAccountId']);
                             $latestUserResult = ReadUserAccount($conn,$data);
                             $latestUserRow = mysqli_fetch_assoc($latestUserResult);
@@ -341,6 +348,8 @@
                                     ?>
                                 </a>
                             <?php
+                            $count++;
+                        }
                         
                     }
                 ?>
@@ -364,7 +373,7 @@
     <!-- 3rd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded" style="height: 27rem;">
-            <div class="table-wrapper-scroll-y my-custom-scrollbar rounded" style="height:25rem;">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar rounded " style="height:25rem;">
                 <table class="table table-striped table-hover table-sm text-justify mb-0 rounded" >
                         <caption id="tbCaption"></caption>
                         <thead class="text-light rounded" style="background-color:#234471;">
@@ -381,28 +390,30 @@
                                 <?php
                                     while($updateRow = mysqli_fetch_assoc($result))
                                     {
-                                        ?><tr id="<?php echo $updateRow['title'];?>">
+                                        ?>
+                                        
+                                            <tr id="<?php echo $updateRow['title'];?>">
                                                 <td style="font-size:large; font-weight:bold;"><?php echo $updateRow['title'];?></td>
-                                            <?php
-                                                $data = new userAccountModel();
-                                                $data->setId($updateRow['userAccountId']);
-                                                $checkUserResult = ReadUserAccount($conn,$data);
-                                                $checkUserRow = mysqli_fetch_assoc($checkUserResult);
+                                                <?php
+                                                    $data = new userAccountModel();
+                                                    $data->setId($updateRow['userAccountId']);
+                                                    $checkUserResult = ReadUserAccount($conn,$data);
+                                                    $checkUserRow = mysqli_fetch_assoc($checkUserResult);
 
-                                                //This will collect the contribution of the current user vs. other members
-                                                if($userRow['id'] == $updateRow['userAccountId'])
-                                                {
-                                                    ?>
-                                                        <script>myContri++;</script>
-                                                    <?php
-                                                }
-                                                else
-                                                {
-                                                    ?>
-                                                        <script>memberContri++;</script>
-                                                    <?php
-                                                }
-                                            ?>
+                                                    //This will collect the contribution of the current user vs. other members
+                                                    if($userRow['id'] == $updateRow['userAccountId'])
+                                                    {
+                                                        ?>
+                                                            <script>myContri++;</script>
+                                                        <?php
+                                                    }
+                                                    else
+                                                    {
+                                                        ?>
+                                                            <script>memberContri++;</script>
+                                                        <?php
+                                                    }
+                                                ?>
                                                 <td><?php echo $checkUserRow['firstname'].' '.$checkUserRow['lastname'];?></td>
                                                 <td style="font-size:small ;"><?php echo date("M d, Y h:i a", strtotime($updateRow['datetimeCreation']));?></td>
                                                 <td></td>
@@ -450,34 +461,10 @@
                                                 <!-- Version Button -->
                                                 <td style="width:15px;">
                                                     <div class="col-1">
-                                                        <button class="btn btn-sm rounded" style="background-color: #A020F0; color:whitesmoke;" data-toggle="collapse" data-target="#collapseVersion<?php echo $updateRow['id'];?>" aria-expanded="true" aria-controls="collapseVersion<?php echo $updateRow['id'];?>"><i class="bi bi-diagram-3"></i></button>
-                                                        <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
-                                                            <div class="py-2 collapse-inner rounded mx-4">
-                                                                <h6 class="collapse-header" style="font-size: 13px;"></h6>
-                                                                    
-                                                                <div class="table-wrapper-scroll-y my-custom-scrollbar rounded" style="min-height:15rem;">
-                                                                    <table class="table table-striped table-hover table-sm text-justify mb-0 rounded" >
-                                                                            <caption id="tbCaption"></caption>
-                                                                            <thead class="text-light rounded" style="background-color:#234471;">
-                                                                                <tr style="font-size: 13px;">
-                                                                                    <!--th scope="col" >#</th-->
-                                                                                    <th scope="col">Title</th> 
-                                                                                    <th scope="col" >Name</th>
-                                                                                    <th colspan="2" scope="col" >Datetime</th>
-                                                                                    <th colspan="4" class="text-center" scope="col">Actions</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody id="updateList">
-                                                                                <tr><td><h1>adasdad</h1></td></tr>
-                                                                            </tbody>
-                                                                    </table>
-                                                                </div>
-                                                        
-                                                            </div>
-                                                        </div>
+                                                        <button class="btn btn-sm rounded" style="background-color: #A020F0; color:whitesmoke;" type="button" data-toggle="collapse" data-target="#collapseVersion<?php echo $updateRow['id'];?>" aria-expanded="true" aria-controls="collapseVersion<?php echo $updateRow['id'];?>"><i class="bi bi-diagram-3"></i></button>
+                                                    
                                                     </div>
                                                 </td>
-
                                                 <!-- Download Button -->
                                                 <td style="width:15px;">
                                                     <div class="col-1">
@@ -497,15 +484,43 @@
                                                         ?>
                                                     </div>
                                                 </td>
+<!--Unfinish part-->
+                                                <tr>
+                                                    <td colspan="8">
+                                                        <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse  my-1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded bg-success" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
+                                                            <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                                                <h6 class="collapse-header mr-3 pr-3" style="font-size: 13px;">ID: collapseVersion23322</h6>
+                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
+                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
+                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
+                                                            </div>
+                                                            <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                                        
+                                                                <h6 class="collapse-header mr-3 pr-3" style="font-size: 13px;">ID: collapseVersion23322</h6>
+                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
+                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
+                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
+                                                            </div>
+                                                            <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                                        
+                                                                <h6 class="collapse-header mr-3 pr-3" style="font-size: 13px;">ID: collapseVersion23322</h6>
+                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
+                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
+                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
                                             </tr>
                                         <?php
                                     }
                                 ?>
-                            
-                            
                         </tbody>
                 </table>
+                
             </div>
+
         </div>
     </div>
 </div>
@@ -793,7 +808,7 @@
     });
 
 
-    
+/*
     var ctx2 = document.getElementById("line1").getContext('2d');
     var datasets = [43,54];
     var mybar = new Chart(ctx2, {
@@ -860,5 +875,6 @@
             }
         }
     });
+    */
 </script>
 </html>
