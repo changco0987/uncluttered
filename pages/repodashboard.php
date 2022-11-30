@@ -490,35 +490,30 @@ td a {
 <!--Unfinish part-->
                                                 <tr>
                                                     <td colspan="8">
-                                                        <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse  my-1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded bg-success" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
-                                                            <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                                                                <?php
-                                                                    $version = new versionModel();
-
-                                                                    while()
-                                                                    {
-
-                                                                    }
-                                                                ?>
-                                                                <h6 class="collapse-header mr-3 pr-3" style="font-size: 13px;">ID: collapseVersion23322</h6>
-                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
-                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
-                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
-                                                            </div>
-                                                            <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                                        <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse my-1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded bg-success" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
                                                         
-                                                                <h6 class="collapse-header mr-3 pr-3" style="font-size: 13px;">ID: collapseVersion23322</h6>
-                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
-                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
-                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
-                                                            </div>
-                                                            <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                                                        
-                                                                <h6 class="collapse-header mr-3 pr-3" style="font-size: 13px;">ID: collapseVersion23322</h6>
-                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
-                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
-                                                                <h6 class="collapse-item mr-3 pr-3">ID: collapseVersion23322</h6>
-                                                            </div>
+                                                            <?php
+                                                                //Version
+                                                                $version = new versionModel();
+                                                                $version->setUpdateId($updateRow['id']);
+                                                                $versionResult = ReadVersion($conn,$version);
+                                                                while($versionRow = mysqli_fetch_assoc($versionResult))
+                                                                {
+                                                                    //user who owns the version fetched
+                                                                    $data = new userAccountModel();
+                                                                    $data->setId($updateRow['userAccountId']);
+                                                                    $userVersionResult = ReadUserAccount($conn,$data);
+                                                                    $userVersionRow = mysqli_fetch_assoc($cuserVersionResult);
+                                                                    ?>
+                                                                        <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                                                            <h6 class="collapse-item mr-3 pr-3" style="font-size: 13px; font-weight:bold;"><?php echo $versionRow['title'];?></h6>
+                                                                            <h6 class="collapse-item mr-3 pr-3" style="font-size: 13px;"><?php echo $userVersionRow['firstname'].' '.$userVersionRow['lastname'];?></h6>
+                                                                            <h6 class="collapse-item mr-3 pr-3"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation']));?></h6>
+                                                                        </div>
+                                                                    <?php
+
+                                                                }
+                                                            ?>
                                                         </div>
                                                     </td>
                                                 </tr>
