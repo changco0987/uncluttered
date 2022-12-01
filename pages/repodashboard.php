@@ -485,9 +485,9 @@
                                                                                         </button>
                                                                                     </div>
                                                                                     <div class="modal-body">
-                                                                                        <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
-                                                                                            <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
-                                                                                            <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
+                                                                                        <form action="../controller/updatePost.php" method="post" enctype="multipart/form-data">
+                                                                                            <input type="hidden" name="updateId" id="updateId" value="<?php echo $updateRow['id'];?>">
+                                                                                            <input type="hidden" name="repoId" id="repoId" value="<?php echo $repoRow['id'];?>">
                                                                                                 <div class="form-group">
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
@@ -568,9 +568,9 @@
                                                     <div class="col-1">
                                                         <button class="btn border-0 btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#d0d0d0;"><i class="bi bi-three-dots-vertical"></i></button>
                                                         <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#"><i class="bi bi-diagram-2-fill mr-1"></i>Create a version</a>
+                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target=""><i class="bi bi-diagram-2-fill mr-1"></i>Create a version</a>
                                                             <?php
-                                                            //This will only trigger if theres a file to download
+                                                                //This will only trigger if theres a file to download
                                                                 if($updateRow['filename']!="")
                                                                 {
                                                                     ?>

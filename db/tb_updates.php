@@ -31,8 +31,20 @@
 
     function UpdateUpdate($conn,$data)
     {
-        mysqli_query($conn,"UPDATE updatestb SET title = '".$data->getTitle()."', filename = '".$data->getFilename()."', note = '".$data->getNote()
-        ."' WHERE id = ".$data->getId());
+        if($data->getId())
+        {
+            if($data->getFilename())
+            {
+                mysqli_query($conn,"UPDATE updatestb SET title = '".$data->getTitle()."', filename = '".$data->getFilename()."', note = '".$data->getNote()
+                ."', datetimeCreation = '".$data->getDatetimeCreation()."' WHERE id = ".$data->getId());
+            }
+            else
+            {
+                //is theres no file passed in getFilename()
+                mysqli_query($conn,"UPDATE updatestb SET title = '".$data->getTitle()."', note = '".$data->getNote()
+                ."', datetimeCreation = '".$data->getDatetimeCreation()."' WHERE id = ".$data->getId());
+            }
+        }
     }
 
     
