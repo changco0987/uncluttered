@@ -562,12 +562,14 @@
                                                     
                                                     </div>
                                                 </td>
+
                                                 <!-- Download and create version Button -->
                                                 <td style="width:15px;">
                                                     <div class="col-1">
                                                         <button class="btn border-0 btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#d0d0d0;"><i class="bi bi-three-dots-vertical"></i></button>
                                                         <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target=""><i class="bi bi-diagram-2-fill mr-1"></i>Create a version</a>
+                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#versionModal<?php echo $updateRow['id'];?>"><i class="bi bi-diagram-2-fill mr-1"></i>Create a version</a>
+                                                            
                                                             <?php
                                                                 //This will only trigger if theres a file to download
                                                                 if($updateRow['filename']!="")
@@ -577,6 +579,53 @@
                                                                     <?php
                                                                 }
                                                             ?>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Create Version Modal -->
+                                                    <div class="modal fade" id="versionModal<?php echo $updateRow['id'];?>" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+                                                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
+                                                            <div class="modal-content" style="border-radius:12px;">
+                                                                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                                                                    <h5 class="modal-title" id="accSettModalLongTitle"><i class="bi bi-diagram-2-fill mr-1"></i>Version: <span class="text-warning" style="font-size: 15px;"><?php echo $updateRow['title'];?></span></h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="../controller/updatePost.php" method="post" enctype="multipart/form-data">
+                                                                        <input type="hidden" name="updateId" id="updateId" value="<?php echo $updateRow['id'];?>">
+                                                                        <input type="hidden" name="repoId" id="repoId" value="<?php echo $repoRow['id'];?>">
+                                                                        <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
+                                                                            <div class="form-group">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                          
+                                                                                        <label for="fileTb">Attach File:</label>
+                                                                                        <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
+                                                                                         
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                                                                        <textarea name="noteTb" id="versionNoteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength(this.id,'versionLengthTxt<?php echo $updateRow['id'];?>')"></textarea>
+                                                                                        
+                                                                                        <span class="d-flex justify-content-end"><p id="versionLengthTxt<?php echo $updateRow['id'];?>">0/500</p></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                                                                                    <button type="button" class="btn btn-sm bg-danger mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;" onclick="deletePost(<?php echo $updateRow['id'];?>);">Delete Post</button>
+                                                                                    <button type="submit" class="btn btn-sm bg-success mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
+                                                                                </div>
+                                                                            </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </td>
