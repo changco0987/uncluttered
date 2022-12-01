@@ -632,7 +632,7 @@
 <!--Unfinish part-->
                                                 <tr>
                                                     <td colspan="8">
-                                                        <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse my-1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded bg-success" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
+                                                        <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse my-1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="background-color:#b5b9bb;">
                                                         
                                                             <?php
                                                                 //Version
@@ -647,10 +647,11 @@
                                                                     $userVersionResult = ReadUserAccount($conn,$versionUser);
                                                                     $userVersionRow = mysqli_fetch_assoc($userVersionResult);
                                                                     ?>
-                                                                        <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                                                                            <h6 class="collapse-item mr-3 pr-3" style="font-size: 13px; font-weight:bold;"><?php echo $updateRow['title'];?></h6>
-                                                                            <h6 class="collapse-item mr-3 pr-3" style="font-size: 13px;"><?php echo $userVersionRow['firstname'].' '.$userVersionRow['lastname'];?></h6>
-                                                                            <h6 class="collapse-item mr-3 pr-3"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation']));?></h6>
+                                                                        <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                                            <h6 class="mt-2" style="font-size: 16px; font-weight:bold;"><i class="bi bi-arrow-bar-right mr-2"></i></h6>
+                                                                            <h6 class="collapse-item mr-3 pr-3 mt-2" style="font-size: 13px; font-weight:bold;"><?php echo $updateRow['title'];?></h6>
+                                                                            <h6 class="collapse-item mx-3 px-3 mt-2" style="font-size: 13px;"><?php echo $userVersionRow['firstname'].' '.$userVersionRow['lastname'];?></h6>
+                                                                            <h6 class="collapse-item mx-4 px-3 mt-2" style="font-size: 13px;"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation']));?></h6>
                                                                         </div>
                                                                     <?php
 
