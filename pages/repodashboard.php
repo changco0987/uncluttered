@@ -535,8 +535,8 @@
 
                                                                                                 <div class="row">
                                                                                                     <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                                                                                        <button type="button" class="btn btn-sm bg-danger mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;">Delete Post</button>
-                                                                                                        <button type="submit" class="btn btn-sm bg-success mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;" onclick="deletePost(<?php echo $updateRow['id'];?>);">Submit</button>
+                                                                                                        <button type="button" class="btn btn-sm bg-danger mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;" onclick="deletePost(<?php echo $updateRow['id'];?>);">Delete Post</button>
+                                                                                                        <button type="submit" class="btn btn-sm bg-success mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
                                                                                                     </div>
                                                                                                 </div>
                                                                                         </form>
@@ -798,21 +798,25 @@
     dataStat.push(Math.round(percentage));
 
     //for deleting attached files
-
-    function deleteFile(filename) 
+    function deletePost(postId) 
     {
         try
         {
             var http = new XMLHttpRequest();
-            http.open("POST", "../controller/codeDecrypt.php", true);
+            http.open("POST", "../controller/deletePost.php", true);
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             //This is the form input fields data
-            var params = "filename="+filename; // probably use document.getElementById(...).value
+            var params = "postId="+postId; // probably use document.getElementById(...).value
             http.send(params);
             http.onload = function() 
             {
                 var data = http.responseText;
                 console.log(data);
+
+                if(data=='deleted')
+                {
+                    location.reload();
+                }
                 //returnDate();
                 //console.log(params);
             }
