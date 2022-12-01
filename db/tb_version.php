@@ -1,7 +1,7 @@
 <?php
     include_once '../model/versionModel.php';
 
-    $data = new updatesModel;
+    $data = new versionModel;
     function CreateVersion($conn,$data)
     {
         mysqli_query($conn, "INSERT INTO versiontb(updateId, userAccountId, datetimeCreation, note, filename) values('".$data->getUpdateId()."','".

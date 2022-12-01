@@ -592,7 +592,7 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="../controller/updatePost.php" method="post" enctype="multipart/form-data">
+                                                                    <form action="../controller/createVersion.php" method="post" enctype="multipart/form-data">
                                                                         <input type="hidden" name="updateId" id="updateId" value="<?php echo $updateRow['id'];?>">
                                                                         <input type="hidden" name="repoId" id="repoId" value="<?php echo $repoRow['id'];?>">
                                                                         <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
@@ -642,13 +642,13 @@
                                                                 while($versionRow = mysqli_fetch_assoc($versionResult))
                                                                 {
                                                                     //user who owns the version fetched
-                                                                    $data = new userAccountModel();
-                                                                    $data->setId($updateRow['userAccountId']);
-                                                                    $userVersionResult = ReadUserAccount($conn,$data);
-                                                                    $userVersionRow = mysqli_fetch_assoc($cuserVersionResult);
+                                                                    $versionUser = new userAccountModel();
+                                                                    $versionUser->setId($updateRow['userAccountId']);
+                                                                    $userVersionResult = ReadUserAccount($conn,$versionUser);
+                                                                    $userVersionRow = mysqli_fetch_assoc($userVersionResult);
                                                                     ?>
                                                                         <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                                                                            <h6 class="collapse-item mr-3 pr-3" style="font-size: 13px; font-weight:bold;"><?php echo $versionRow['title'];?></h6>
+                                                                            <h6 class="collapse-item mr-3 pr-3" style="font-size: 13px; font-weight:bold;"><?php echo $updateRow['title'];?></h6>
                                                                             <h6 class="collapse-item mr-3 pr-3" style="font-size: 13px;"><?php echo $userVersionRow['firstname'].' '.$userVersionRow['lastname'];?></h6>
                                                                             <h6 class="collapse-item mr-3 pr-3"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation']));?></h6>
                                                                         </div>
@@ -820,6 +820,15 @@
                     <script>
                         document.getElementById('successBox').style.display = 'block';
                         document.getElementById('successMsg').innerHTML = 'Repository Update Successfully!';
+                    </script>
+                <?php
+            }
+            else if($_GET['updateRes']==3)
+            {
+                ?>
+                    <script>
+                        document.getElementById('successBox').style.display = 'block';
+                        document.getElementById('successMsg').innerHTML = 'Version Created!';
                     </script>
                 <?php
             }
