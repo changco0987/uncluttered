@@ -507,7 +507,6 @@
                                                                                                                     ?>
                                                                                                                         <label for="fileTb">Attached File:</label>
                                                                                                                         <a class="text-success" href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>"><?php echo $updateRow['filename'];?></a>
-                                                                                                                        <button type="button" role="button" class="btn btn-sm bg-danger text-light">Remove</button>
                                                                                                                     <?php
 
                                                                                                                 }
@@ -536,7 +535,8 @@
 
                                                                                                 <div class="row">
                                                                                                     <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                                                                                        <button type="submit" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
+                                                                                                        <button type="button" class="btn btn-sm bg-danger mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;">Delete Post</button>
+                                                                                                        <button type="submit" class="btn btn-sm bg-success mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;" onclick="deletePost(<?php echo $updateRow['id'];?>);">Submit</button>
                                                                                                     </div>
                                                                                                 </div>
                                                                                         </form>
@@ -797,6 +797,32 @@
     percentage = percentage*100;
     dataStat.push(Math.round(percentage));
 
+    //for deleting attached files
+
+    function deleteFile(filename) 
+    {
+        try
+        {
+            var http = new XMLHttpRequest();
+            http.open("POST", "../controller/codeDecrypt.php", true);
+            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //This is the form input fields data
+            var params = "filename="+filename; // probably use document.getElementById(...).value
+            http.send(params);
+            http.onload = function() 
+            {
+                var data = http.responseText;
+                console.log(data);
+                //returnDate();
+                //console.log(params);
+            }
+        }
+        catch(err)
+        {
+            //this will reload the page if an error has occur
+            location.reload();
+        }
+    }
 
 
     //for searching user realtime
