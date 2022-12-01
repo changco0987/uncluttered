@@ -500,13 +500,13 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                            <label for="fileTb">Attach File:</label>
 
                                                                                                             <?php
                                                                                                                 if($updateRow['filename'])
                                                                                                                 {
                                                                                                                     ?>
-                                                                                                                        <h6 class="text-success"><?php echo $updateRow['filename'];?></h6>
+                                                                                                                        <label for="fileTb">Attached File:</label>
+                                                                                                                        <a class="text-success" href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>"><?php echo $updateRow['filename'];?></a>
                                                                                                                         <button type="button" role="button" class="btn btn-sm bg-danger text-light">Remove</button>
                                                                                                                     <?php
 
@@ -514,6 +514,7 @@
                                                                                                                 else
                                                                                                                 {
                                                                                                                     ?>
+                                                                                                                        <label for="fileTb">Attach File:</label>
                                                                                                                         <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
                                                                                                                     <?php
                                                                                                                 }
