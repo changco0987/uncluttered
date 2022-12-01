@@ -500,7 +500,6 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-
                                                                                                             <?php
                                                                                                                 if($updateRow['filename'])
                                                                                                                 {
@@ -574,7 +573,7 @@
                                                                 if($updateRow['filename']!="")
                                                                 {
                                                                     ?>
-                                                                        <a class="dropdown-item"><i class="bi bi-download mr-1"></i>Download</a>
+                                                                        <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>"><i class="bi bi-download mr-1"></i>Download</a>
                                                                     <?php
                                                                 }
                                                             ?>
