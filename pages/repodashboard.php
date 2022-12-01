@@ -526,7 +526,7 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                            <textarea name="noteTb" id="noteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onfocus="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')"><?php echo $updateRow['title'];?></textarea>
+                                                                                                            <textarea name="noteTb" id="noteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onfocus="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')" oninput="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')"><?php echo $updateRow['title'];?></textarea>
                                                                                                             
                                                                                                             <span class="d-flex justify-content-end"><p id="lengthTxt<?php echo $updateRow['id'];?>">0/500</p></span>
                                                                                                         </div>
