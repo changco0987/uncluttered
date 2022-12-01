@@ -367,6 +367,7 @@
     <script>
         var myContri = 0;
         var memberContri = 0;
+        var dataStat = [];
     </script>
     
     <!-- 3rd main div in content-->
@@ -471,7 +472,60 @@
                                                             if($userRow['id'] == $updateRow['userAccountId'])
                                                             {
                                                                 ?>
-                                                                    <button class="btn btn-sm btn-warning rounded"><i class="bi bi-pencil-square"></i></button>
+                                                                    <button class="btn btn-sm btn-warning rounded" data-toggle="modal" data-target="#editPostModal"><i class="bi bi-pencil-square"></i></button>
+                                                                                                                                        
+                                                                        <!-- Edit Post Modal -->
+                                                                        <div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+                                                                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
+                                                                                <div class="modal-content" style="border-radius:12px;">
+                                                                                    <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                                                                                        <h5 class="modal-title" id="accSettModalLongTitle"><i class="bi bi-pen"></i> Edit Post</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
+                                                                                            <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
+                                                                                            <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
+                                                                                                <div class="form-group">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                                                                                            <label for="titleTb">Title</label>
+                                                                                                            <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTb" placeholder="Write a title" maxlength="50" required value="<?php echo $updateRow['title'];?>"/>
+                                                                                                            
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                                                                                            <label for="fileTb">Attach File:</label>
+                                                                                                            <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb" value="../upload/repoId<?php echo $updateRow['repositoryId'];?>/<?php echo $updateRow['filename'];?>">
+                                                                                                            
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="form-group">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                                                                                            <textarea name="noteTb" id="noteTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength()"><?php echo $updateRow['title'];?></textarea>
+                                                                                                            <span class="d-flex justify-content-end"><p id="lengthTxt">0/500</p></span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="row">
+                                                                                                    <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                                                                                                        <button type="submit" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                 <?php
                                                             }
                                                             else
@@ -495,10 +549,17 @@
                                                 <td style="width:15px;">
                                                     <div class="col-1">
                                                         <button class="btn border-0 btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#d0d0d0;"><i class="bi bi-three-dots-vertical"></i></button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#">Action</a>
-                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                            <a class="dropdown-item" href="#">Something else here</a>
+                                                        <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="#"><i class="bi bi-diagram-2-fill mr-1"></i>Create a version</a>
+                                                            <?php
+                                                            //This will only trigger if theres a file to download
+                                                                if($updateRow['filename']!="")
+                                                                {
+                                                                    ?>
+                                                                        <a class="dropdown-item"><i class="bi bi-download mr-1"></i>Download</a>
+                                                                    <?php
+                                                                }
+                                                            ?>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -670,6 +731,7 @@
     </div>
 
 
+    
 
     
     
@@ -708,6 +770,14 @@
 
 </body>
 <script>
+    var total = myContri+memberContri;
+    var percentage = myContri/total;
+    percentage = percentage*100;
+    dataStat.push(Math.round(percentage));
+
+    percentage = memberContri/total;
+    percentage = percentage*100;
+    dataStat.push(Math.round(percentage));
 
 
 
@@ -789,11 +859,10 @@
         
 
     var ctx = document.getElementById("pie1").getContext('2d');
-    var dataStat = [myContri,memberContri];
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['My contribution','Other members'],
+            labels: ['My contribution(%)','Other members(%)'],
             datasets: [{
                 label: 'Status',
                 data: dataStat,
