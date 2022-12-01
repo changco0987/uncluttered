@@ -472,10 +472,10 @@
                                                             if($userRow['id'] == $updateRow['userAccountId'])
                                                             {
                                                                 ?>
-                                                                    <button class="btn btn-sm btn-warning rounded" data-toggle="modal" data-target="#editPostModal"><i class="bi bi-pencil-square"></i></button>
+                                                                    <button class="btn btn-sm btn-warning rounded" data-toggle="modal" data-target="#editPostModal<?php echo $updateRow['id'];?>"><i class="bi bi-pencil-square"></i></button>
                                                                                                                                         
                                                                         <!-- Edit Post Modal -->
-                                                                        <div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+                                                                        <div class="modal fade" id="editPostModal<?php echo $updateRow['id'];?>" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
                                                                             <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
                                                                                 <div class="modal-content" style="border-radius:12px;">
                                                                                     <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
@@ -501,7 +501,23 @@
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                                                                                             <label for="fileTb">Attach File:</label>
-                                                                                                            <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb" value="../upload/repoId<?php echo $updateRow['repositoryId'];?>/<?php echo $updateRow['filename'];?>">
+
+                                                                                                            <?php
+                                                                                                                if($updateRow['filename'])
+                                                                                                                {
+                                                                                                                    ?>
+                                                                                                                        <h6 class="text-success"><?php echo $updateRow['filename'];?></h6>
+                                                                                                                        <button type="button" role="button" class="btn btn-sm bg-danger text-light">Remove</button>
+                                                                                                                    <?php
+
+                                                                                                                }
+                                                                                                                else
+                                                                                                                {
+                                                                                                                    ?>
+                                                                                                                        <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
+                                                                                                                    <?php
+                                                                                                                }
+                                                                                                            ?>
                                                                                                             
                                                                                                         </div>
                                                                                                     </div>

@@ -39,7 +39,8 @@
 
     function DeleteUpdate($conn,$data)
     {
-        mysqli_query($conn,"DELETE FROM updatestb WHERE id = $data->getId()");
+        mysqli_query($conn,"DELETE FROM updatestb WHERE id = ".$data->getId());
+        $_GET['deleteRes'] = 1;
     }
 
 ?>
