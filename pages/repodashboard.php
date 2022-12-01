@@ -443,7 +443,7 @@
                                                                                         <div class="form-group">
                                                                                             <div class="row">
                                                                                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                    <textarea name="noteTb" id="noteTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onclick="getTxtLength()" disabled><?php echo $updateRow['note'];?></textarea>
+                                                                                                    <textarea name="noteTb" id="noteTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onclick="getTxtLength(this.id,'null')" disabled><?php echo $updateRow['note'];?></textarea>
                                                                                                     <!--span class="d-flex justify-content-end"><p id="lengthTxt">0/500</p></span-->
                                                                                                 </div>
                                                                                             </div>
@@ -527,8 +527,9 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                            <textarea name="noteTb" id="noteTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength()"><?php echo $updateRow['title'];?></textarea>
-                                                                                                            <span class="d-flex justify-content-end"><p id="lengthTxt">0/500</p></span>
+                                                                                                            <textarea name="noteTb" id="noteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onfocus="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')"><?php echo $updateRow['title'];?></textarea>
+                                                                                                            
+                                                                                                            <span class="d-flex justify-content-end"><p id="lengthTxt<?php echo $updateRow['id'];?>">0/500</p></span>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -663,8 +664,8 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                        <textarea name="noteTb" id="noteTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength()"></textarea>
-                                        <span class="d-flex justify-content-end"><p id="lengthTxt">0/500</p></span>
+                                        <textarea name="noteTb" id="notePostTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength(this.id,'postLengthTxt')"></textarea>
+                                        <span class="d-flex justify-content-end"><p id="postLengthTxt">0/500</p></span>
                                     </div>
                                 </div>
                             </div>
@@ -866,10 +867,10 @@
     }
 
 
-    function getTxtLength()
+    function getTxtLength(noteId,txtLength)
     {
-        var length = document.getElementById('noteTb').value;
-        document.getElementById('lengthTxt').innerHTML = length.length+'/500';
+        var length = document.getElementById(noteId).value;
+        document.getElementById(txtLength).innerHTML = length.length+'/500';
     }
 
 
