@@ -286,7 +286,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <button type="button" class="btn nav-link bg-success rounded text-light" data-toggle="modal" data-target="#createPostModal"><i class="bi bi-plus-lg"></i> Create Post <span class="sr-only">(current)</span></button>
+                    <a type="button" class="btn btn-sm nav-link bg-success rounded text-light" role="button" data-toggle="modal" data-target="#createPostModal"><i class="bi bi-plus-lg"></i> Create Post <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -302,7 +302,7 @@
             </ul>
             <form class="form my-2 my-lg-0">
                 <div class="input-group">
-                    <input class="form-control border-right-0" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control form-control-sm border-right-0" type="search" placeholder="Search" aria-label="Search">
                     <span class="input-group-append bg-white border-left-0">
                         <span class="input-group-text bg-transparent">
                             <i class="bi bi-search"></i>
@@ -349,7 +349,6 @@
                             <?php
                             $count++;
                         }
-                        
                     }
                 ?>
             </div>
@@ -362,6 +361,9 @@
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="min-height:20rem;">
             <h5 class="ml-2 pt-3 pb-1 mb-2"><span class=" d-flex justify-content-between">Ideas <button class="btn btn-sm btn-success rounded mr-1"><i class="bi bi-plus-square"></i></button></span></h5>
+            <div class="d-flex justify-content-center">
+                <textarea class="rounded" name="" id="" cols="35" rows="10" style="background-color:#FADB6F;"></textarea>
+            </div>
         </div>
     </div>
     <script>
@@ -393,7 +395,7 @@
                                         ?>
                                         
                                             <tr id="<?php echo $updateRow['title'];?>">
-                                                <td style="font-size:large; font-weight:bold;"><?php echo $updateRow['title'];?></td>
+                                                <td style="font-size: 14px; font-weight:bold;"><?php echo $updateRow['title'];?></td>
                                                 <?php
                                                     $data = new userAccountModel();
                                                     $data->setId($updateRow['userAccountId']);
@@ -414,8 +416,8 @@
                                                         <?php
                                                     }
                                                 ?>
-                                                <td><?php echo $checkUserRow['firstname'].' '.$checkUserRow['lastname'];?></td>
-                                                <td style="font-size:small ;"><?php echo date("M d, Y h:i a", strtotime($updateRow['datetimeCreation']));?></td>
+                                                <td style="font-size: 13px;"><?php echo $checkUserRow['firstname'].' '.$checkUserRow['lastname'];?></td>
+                                                <td style="font-size: 13px;"><?php echo date("M d, Y h:i a", strtotime($updateRow['datetimeCreation']));?></td>
                                                 <td></td>
                                                 
                                                 <!-- Note Button -->
@@ -649,9 +651,10 @@
                                                                     ?>
                                                                         <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                                                             <h6 class="mt-2" style="font-size: 16px; font-weight:bold;"><i class="bi bi-arrow-bar-right mr-2"></i></h6>
-                                                                            <h6 class="collapse-item mr-3 pr-3 mt-2" style="font-size: 13px; font-weight:bold;"><?php echo $updateRow['title'];?></h6>
-                                                                            <h6 class="collapse-item mx-3 px-3 mt-2" style="font-size: 13px;"><?php echo $userVersionRow['firstname'].' '.$userVersionRow['lastname'];?></h6>
-                                                                            <h6 class="collapse-item mx-4 px-3 mt-2" style="font-size: 13px;"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation']));?></h6>
+                                                                            <h6 class="collapse-item mr-3 pr-3 mt-2" style="font-size: 12px; font-weight:bold;"><?php echo $updateRow['title'];?></h6>
+                                                                            <h6 class="collapse-item mx-3 px-3 mt-2" style="font-size: 12px;"><?php echo $userVersionRow['firstname'].' '.$userVersionRow['lastname'];?></h6>
+                                                                            <h6 class="collapse-item mx-4 px-3 mt-2" style="font-size: 12px;"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation']));?></h6>
+                                                                            <a class="collapse-item ml-auto px-2 mt-2" href="#" style="font-size: 12px;">Note</a>
                                                                         </div>
                                                                     <?php
 
