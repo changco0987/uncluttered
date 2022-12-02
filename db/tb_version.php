@@ -4,8 +4,9 @@
     $data = new versionModel;
     function CreateVersion($conn,$data)
     {
+        $note = mysqli_real_escape_string($conn,$data->getNote());
         mysqli_query($conn, "INSERT INTO versiontb(updateId, userAccountId, datetimeCreation, note, filename) values('".$data->getUpdateId()."','".
-        $data->getUserAccountId()."','".$data->getDatetimeCreation()."','".$data->getNote()."','".$data->getFilename()."');");
+        $data->getUserAccountId()."','".$data->getDatetimeCreation()."','".$note."','".$data->getFilename()."');");
         $id = mysqli_insert_id($conn);
         return $id;
     }
