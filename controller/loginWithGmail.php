@@ -17,8 +17,10 @@
         {
             if($row['password'] == $data->getPassword())
             {
+                $_SESSION['gmail_Id'] = $row['gmail_Id'];
                 $_SESSION['username'] = $row['username'];
-                header("location: ../pages/userdashboard.php");
+                echo '3';
+                //header("location: ../pages/userdashboard.php");
                 exit;
             }
             else

@@ -31,11 +31,11 @@
 
     function ReadUserAccount($conn,$data)
     {
-
         if($data->getUsername())
         {
+            $username = mysqli_real_escape_string($conn,$data->getUsername());
             //if theres username in data
-            $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb WHERE username='".$data->getUsername()."'");
+            $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb WHERE username='".$username."'");
         }
         else if($data->getId())
         {

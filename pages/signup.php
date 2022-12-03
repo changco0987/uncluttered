@@ -278,51 +278,52 @@ footer * {
     </div>
     <script>
         const url = new URL(window.location.href);
+        
         function handleCredentialResponse(response)
         {
-        const responsePayload = decodeJwtResponse(response.credential);
-        console.log('ID: '+responsePayload.sub);
-        console.log('Full Name: '+responsePayload.name);
-        console.log('Given Name: '+responsePayload.given_name);
-        console.log('Family Name: '+responsePayload.family_name);
-        console.log('Image URL: '+responsePayload.picture);
-        console.log('Email: '+responsePayload.email);
+            const responsePayload = decodeJwtResponse(response.credential);
+            console.log('ID: '+responsePayload.sub);
+            console.log('Full Name: '+responsePayload.name);
+            console.log('Given Name: '+responsePayload.given_name);
+            console.log('Family Name: '+responsePayload.family_name);
+            console.log('Image URL: '+responsePayload.picture);
+            console.log('Email: '+responsePayload.email);
 
-        var http = new XMLHttpRequest();
-            http.open("POST", "../controller/signupWithGmail.php", true);
-            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            var http = new XMLHttpRequest();
+                http.open("POST", "../controller/signupWithGmail.php", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
-            //This is the form input fields data
-            var params = "submitBtn="+true+
-                         "&usernameTb="+responsePayload.email+
-                         "&passwordTb="+responsePayload.sub+
-                         "&fnameTb="+responsePayload.given_name+
-                         "&lnameTb="+responsePayload.family_name+
-                         "&emailTb="+responsePayload.email+
-                         "&imageName="+responsePayload.picture+
-                         "&gmail_IdTb="+responsePayload.sub; // probably use document.getElementById(...).value
+                //This is the form input fields data
+                var params = "submitBtn="+true+
+                            "&usernameTb="+responsePayload.email+
+                            "&passwordTb="+responsePayload.sub+
+                            "&fnameTb="+responsePayload.given_name+
+                            "&lnameTb="+responsePayload.family_name+
+                            "&emailTb="+responsePayload.email+
+                            "&imageName="+responsePayload.picture+
+                            "&gmail_IdTb="+responsePayload.sub; // probably use document.getElementById(...).value
 
-            http.send(params);
-            http.onload = function() 
-            {
-                var signupRes = http.responseText;
-                console.log(signupRes);
-
-                if(signupRes =='1')
+                http.send(params);
+                http.onload = function() 
                 {
-                    //url.searchParams.set('signupRes', signupRes);
-                    //window.history.replaceState(null, null, url); // or pushState
-                    //window.location = '../pages/signup.php';
+                    var signupRes = http.responseText;
+                    console.log(signupRes);
+
+                    if(signupRes =='1')
+                    {
+                        //url.searchParams.set('signupRes', signupRes);
+                        //window.history.replaceState(null, null, url); // or pushState
+                        //window.location = '../pages/signup.php';
+                    }
+                    else if(signupRes =='2')
+                    {
+                        url.searchParams.set('signupRes', signupRes);
+                        window.history.replaceState(null, null, url); // or pushState
+                        window.location = '../index.php';
+                    }
+                    //returnDate();
+                    //console.log(params);
                 }
-                else if(signupRes =='2')
-                {
-                    url.searchParams.set('signupRes', signupRes);
-                    window.history.replaceState(null, null, url); // or pushState
-                    window.location = '../index.php';
-                }
-                //returnDate();
-                //console.log(params);
-            }
         }
 
         function decodeJwtResponse(data)
