@@ -330,18 +330,18 @@
                             $latestUserResult = ReadUserAccount($conn,$data);
                             $latestUserRow = mysqli_fetch_assoc($latestUserResult);
                             ?>
-                                <a type="button" class="list-group-item list-group-item-action" role="button" href="#<?php echo $latestUpdateRow['title'];?>">
+                                <a type="button" class="list-group-item list-group-item-action" role="button" href="#<?php echo $latestUpdateRow['title'];?>" style="font-size: 13px; font-weight:bold;">
                                     <?php
                                         if($latestUserRow['imageName'])
                                         {
                                             ?>
-                                                <img src="../upload/userImage/<?php echo $latestUserRow['imageName'];?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <img class="mr-1" src="../upload/userImage/<?php echo $latestUserRow['imageName'];?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
                                             <?php
                                         }
                                         else
                                         {
                                             ?>
-                                                <img src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
                                             <?php
                                         }
                                     ?>

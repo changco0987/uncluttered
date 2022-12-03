@@ -22,6 +22,8 @@
     <!--Bootstrap icon--> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
+    <!--Google API (GSI)-->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <script src="../javascript/linked.js"></script>
     <link rel="stylesheet" href="css/login.css">
@@ -216,6 +218,29 @@ footer * {
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <button type="submit" class="form-control btn" id="submitLogin" name="submitLogin" style="background-color: #3466AA; color:white;">Login</button>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 text-center">
+                                    <h6 style="font-size: 13px;">OR</h6>
+                                    <div id="g_id_onload"
+                                        data-client_id="509002600811-8ht8f7pc6hufkis14h82o1klij3k0797.apps.googleusercontent.com"
+                                        data-login_uri="http://localhost/uncluttered/"
+                                        data-auto_prompt="false">
+                                    </div>
+
+                                    <center>
+                                        <div class="g_id_signin"
+                                            data-type="standard"
+                                            data-size="large"
+                                            data-theme="outline"
+                                            data-text="sign_in_with"
+                                            data-shape="rectangular"
+                                            data-logo_alignment="left">
+                                        </div>
+                                        
+                                        <div id="buttonDiv"></div> 
+                                    </center>
                                     <small>Don't have any account? <a class="text-primary" href="pages/signup.php">Just Click here</a> to create</small><br>
 
                                     <small><button type="button" class="text-primary border-0" onclick="gotoFindAccount();">Forgot Password?</button></small>
