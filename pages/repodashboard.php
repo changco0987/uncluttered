@@ -216,7 +216,7 @@
             if($userRow['gmail_Id']!=null)
             {
                 ?>
-                    <img src="<?php echo $userRow['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <img src="<?php echo strval($userRow['imageName']);?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                 <?php
             }
             else
@@ -352,7 +352,7 @@
                                         if($latestUserRow['gmail_Id'])
                                         {
                                             ?>
-                                                <img class="mr-1" src="<?php echo $latestUserRow['imageName'];?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <img class="mr-1" src="<?php echo strval($latestUserRow['imageName']);?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
                                             <?php
                                         }
                                         else
@@ -680,7 +680,7 @@
                                                                             <h6 class="collapse-item mr-3 pr-3 mt-2" style="font-size: 12px; font-weight:bold;"><?php echo $updateRow['title']; ?></h6>
                                                                             <h6 class="collapse-item mx-3 px-3 mt-2" style="font-size: 12px;"><?php echo $userVersionRow['firstname'].' '.$userVersionRow['lastname']; ?></h6>
                                                                             <h6 class="collapse-item mx-4 px-3 mt-2" style="font-size: 12px;"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation'])); ?></h6>
-                                                                            <a class="collapse-item ml-auto px-2 mt-2" href="#" style="font-size: 12px;">Note</a>
+                                                                            <button class="btn border-0 btn-sm rounded collapse-item ml-auto px-2 mt-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#b5b9bb;"><i class="bi bi-three-dots-vertical"></i></button>
                                                                         </div>
                                                                     <?php
 
