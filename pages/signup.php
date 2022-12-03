@@ -276,6 +276,61 @@ footer * {
             </div>
         </footer>
     </div>
+    <script>
+        const url = new URL(window.location.href);
+        function handleCredentialResponse(response)
+        {
+        const responsePayload = decodeJwtResponse(response.credential);
+        console.log('ID: '+responsePayload.sub);
+        console.log('Full Name: '+responsePayload.name);
+        console.log('Given Name: '+responsePayload.given_name);
+        console.log('Family Name: '+responsePayload.family_name);
+        console.log('Image URL: '+responsePayload.picture);
+        console.log('Email: '+responsePayload.email);
+
+        var http = new XMLHttpRequest();
+            http.open("POST", "../controller/signupWithGmail.php", true);
+            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+            //This is the form input fields data
+            var params = "submitBtn="+true+
+                         "&usernameTb="+responsePayload.email+
+                         "&passwordTb="+responsePayload.sub+
+                         "&fnameTb="+responsePayload.given_name+
+                         "&lnameTb="+responsePayload.family_name+
+                         "&emailTb="+responsePayload.email+
+                         "&imageName="+responsePayload.picture+
+                         "&gmail_IdTb="+responsePayload.sub; // probably use document.getElementById(...).value
+
+            http.send(params);
+            http.onload = function() 
+            {
+                var signupRes = http.responseText;
+                console.log(signupRes);
+
+                if(signupRes =='1')
+                {
+                    //url.searchParams.set('signupRes', signupRes);
+                    //window.history.replaceState(null, null, url); // or pushState
+                    //window.location = '../pages/signup.php';
+                }
+                else if(signupRes =='2')
+                {
+                    url.searchParams.set('signupRes', signupRes);
+                    window.history.replaceState(null, null, url); // or pushState
+                    window.location = '../index.php';
+                }
+                //returnDate();
+                //console.log(params);
+            }
+        }
+
+        function decodeJwtResponse(data)
+        {
+            var tokens = data.split(".");
+            return JSON.parse(atob(tokens[1]));
+        }
+    </script>
 <?php
     if(isset($_GET['signupRes'])==1)
     {
@@ -289,7 +344,6 @@ footer * {
         </div>
         <script>
             //to reset the $_GET in URL
-            const url = new URL(window.location.href);
             url.searchParams.delete('signupRes');
             window.history.replaceState(null, null, url); // or pushState
         </script>
@@ -305,50 +359,7 @@ footer * {
         //var successSignal = localStorage.getItem('state');
 
     //for sign in with Google Button
-    function handleCredentialResponse(response)
-    {
-        const responsePayload = decodeJwtResponse(response.credential);
-        console.log('ID: '+responsePayload.sub);
-        console.log('Full Name: '+responsePayload.name);
-        console.log('Given Name: '+responsePayload.given_name);
-        console.log('Family Name: '+responsePayload.family_name);
-        console.log('Image URL: '+responsePayload.picture);
-        console.log('Email: '+responsePayload.email);
-
-        var http = new XMLHttpRequest();
-            http.open("POST", "../controller/deletePost.php", true);
-            http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            
-            //This is the form input fields data
-            var params = "submitBtn="+true+
-                         "&usernameTb="+responsePayload.email+
-                         "&passwordTb="+responsePayload.sub+
-                         "&fnameTb="+responsePayload.given_name+
-                         "&lnameTb="+responsePayload.family_name+
-                         "&emailTb="+responsePayload.email+
-                         "&imageName="+responsePayload.picture+
-                         "&gmail_IdTb="+responsePayload.sub; // probably use document.getElementById(...).value
-
-            http.send(params);
-            http.onload = function() 
-            {
-                var data = http.responseText;
-                console.log(data);
-
-                if(data=='deleted')
-                {
-                    location.reload();
-                }
-                //returnDate();
-                //console.log(params);
-            }
-    }
-
-    function decodeJwtResponse(data)
-    {
-        var tokens = data.split(".");
-        return JSON.parse(atob(tokens[1]));
-    }
+    
 
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
         //localStorage.setItem('state',0);

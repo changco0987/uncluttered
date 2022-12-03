@@ -7,6 +7,7 @@
         $username = mysqli_real_escape_string($conn,$data->getUsername());
         //$address = mysqli_real_escape_string($conn,$data->getAddress());
         $email = mysqli_real_escape_string($conn,$data->getEmail());
+
         mysqli_query($conn, "INSERT INTO useraccountstb(firstname,lastname,username,password,email) values('".$data->getFirstname()."','".$data->getLastname()
         ."','".$username."','".$data->getPassword()."','".$email."');");
         $id = mysqli_insert_id($conn);
@@ -19,6 +20,7 @@
         $username = mysqli_real_escape_string($conn,$data->getUsername());
         $imageName = mysqli_real_escape_string($conn,$data->getImageName());
         $email = mysqli_real_escape_string($conn,$data->getEmail());
+
         mysqli_query($conn, "INSERT INTO useraccountstb(firstname,lastname,username,password,email,imageName,gmail_Id) values('".$data->getFirstname()."','".$data->getLastname()
         ."','".$username."','".$data->getPassword()."','".$email."','".$imageName."','".$data->getGmail_Id()."');");
         $id = mysqli_insert_id($conn);
@@ -43,6 +45,18 @@
         else
         {
             $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb");
+        }
+        return $dbData;
+    }
+
+    
+    function ReadGmailUser($conn,$data)
+    {
+
+        if($data->getGmail_Id())
+        {
+            //if theres username in data
+            $dbData = mysqli_query($conn, "SELECT * FROM useraccountstb WHERE gmail_Id='".$data->getGmail_Id()."'");
         }
         return $dbData;
     }

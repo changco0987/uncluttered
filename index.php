@@ -225,7 +225,6 @@ footer * {
                                     <h6 style="font-size: 13px;">OR</h6>
                                     <div id="g_id_onload"
                                         data-client_id="509002600811-8ht8f7pc6hufkis14h82o1klij3k0797.apps.googleusercontent.com"
-                                        data-login_uri="http://localhost/uncluttered/"
                                         data-auto_prompt="false">
                                     </div>
 
