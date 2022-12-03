@@ -14,6 +14,18 @@
     }
 
     
+    function CreateGmailUser($conn,$data)
+    {
+        $username = mysqli_real_escape_string($conn,$data->getUsername());
+        $imageName = mysqli_real_escape_string($conn,$data->getImageName());
+        $email = mysqli_real_escape_string($conn,$data->getEmail());
+        mysqli_query($conn, "INSERT INTO useraccountstb(firstname,lastname,username,password,email,imageName,gmail_Id) values('".$data->getFirstname()."','".$data->getLastname()
+        ."','".$username."','".$data->getPassword()."','".$email."','".$imageName."','".$data->getGmail_Id()."');");
+        $id = mysqli_insert_id($conn);
+        return $id;
+    }
+
+    
 
     function ReadUserAccount($conn,$data)
     {

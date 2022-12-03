@@ -9,6 +9,7 @@
         private $imageName;
         private $resetCode;
         private $email;
+        private $gmail_Id;
 
         public function getId()
         {
@@ -96,7 +97,19 @@
         {
             $this->email = $email;
         }
+
+
+
+        public function getGmail_Id()
+        {
+            return $this->gmail_Id;
+        }
     
+        
+        public function setGmail_Id($gmail_Id)
+        {
+            $this->gmail_Id = $gmail_Id;
+        }
     }
 
 ?>

@@ -234,7 +234,7 @@ footer * {
                                             data-type="standard"
                                             data-size="medium"
                                             data-theme="filled_blue"
-                                            data-text="sign_in_with"
+                                            data-text="continue_with"
                                             data-shape="circle"
                                             data-logo_alignment="left">
                                         </div>
