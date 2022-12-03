@@ -71,15 +71,20 @@
             overflow: auto;
         }
 
-        #nameLabel, #usernameLabel{
+        #nameLabel{
             font-weight: bolder;
             color: #82B7DC;
             text-shadow: 1px 1px #1C1C1C;
         }
+        #usernameLabel{
+            font-weight: lighter;
+            color: whitesmoke;
+            text-shadow: 1px 1px #1C1C1C;
+        }
 
         #pageTitle{
-            color: #1C1C1C;
-            text-shadow: 1px 1px #F1F1F1;
+            color: #F1F1F1;
+            text-shadow: 1px 1px #1C1C1C;
         }
 
 
@@ -197,7 +202,8 @@
         </a>
         <h4 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="nameLabel"><?php echo $row['firstname'].' '.$row['lastname']?></h4>
                     
-        <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel" style="font-size: 13px;"><?php echo $row['username'];?></h6>
+        <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel" style="font-size: 12px;"><?php echo $row['username'];?></h6>
+        <hr style="height:2px; border-width:0;background-color: #39445c;">
         <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#createRepoModal" style="color: whitesmoke;"><i class="bi bi-folder-plus mr-2"></i>Create Repository</a>
         <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn" data-toggle="modal" role="button" data-target="#accSettModal" style="color: whitesmoke;" id="accSettBtn"><i class="bi bi bi-sliders mr-2"></i>Account Settings</a>        
         <?php
@@ -235,7 +241,7 @@
 
             </div>
         </div>
-        <div class="row no-gutters my-1 py-1 mx-auto px-1 rounded" style="background-color:whitesmoke ;">
+        <div class="row no-gutters my-1 py-1 mx-auto px-1 rounded" style="background-color: #6E85B7;">
             <!-- This column is for repository-->
             <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pb-2">
                 <h5 class="pt-2 ml-2" id="pageTitle"><i class="bi bi-folder-fill"></i> Repositories</h5>
