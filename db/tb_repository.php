@@ -22,7 +22,7 @@
         }
         else
         {
-            $dbData = mysqli_query($conn, "SELECT * FROM repositorytb");
+            $dbData = mysqli_query($conn, "SELECT * FROM repositorytb ORDER BY id DESC");
         }
         return $dbData;
     }
