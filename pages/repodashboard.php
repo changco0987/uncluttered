@@ -305,7 +305,7 @@
                 <li class="nav-item active">
                     <a type="button" class="btn btn-sm nav-link bg-success rounded text-light" role="button" data-toggle="modal" data-target="#createPostModal"><i class="bi bi-plus-lg"></i> Create Post <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
+                <!--li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown
                     </a>
@@ -315,7 +315,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>
+                </li-->
             </ul>
             <form class="form my-2 my-lg-0">
                 <div class="input-group">
@@ -333,7 +333,7 @@
     <!-- 2nd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded border bg-light" >
-            <h5 class="ml-2 pt-3 pb-1 mb-2">Recent Updates</h5>
+            <h5 class="ml-2 pt-3 pb-1 mb-2" style="font-size: 15px;">Recent Updates</h5>
             <div class="list-group mx-2 bg-light rounded" style="height: 17rem;" id="repoList">
                 <?php
                 //This will only get the newes 3 updates
@@ -352,7 +352,7 @@
                                         if($latestUserRow['gmail_Id'])
                                         {
                                             ?>
-                                                <img class="mr-1" src="<?php echo strval($latestUserRow['imageName']);?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <img class="mr-1" src="<?php echo strval($latestUserRow['imageName']);?>" width="40" height="40" class="border-dark" alt="none" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
                                             <?php
                                         }
                                         else
