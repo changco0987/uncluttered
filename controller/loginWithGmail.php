@@ -26,13 +26,13 @@
             else
             {
                 //show a error message - incorrect password
-                header("location: ../index.php?loginRes=1");
+                echo '1';
                 exit;
             }
         }
 
         //show a error message - username doesn't exist
-        header("location: ../index.php?loginRes=2");
+        echo '2';
         exit;
         
 

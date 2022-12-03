@@ -174,6 +174,10 @@ footer * {
     <title>Uncluttered - Sign up</title>
 </head>
 <body>
+    <script>
+        
+        const url = new URL(window.location.href);
+    </script>
     
     <!-- Image and text Header-->
     <nav class="navbar navbar-light" style="background-color: #6E85B7;">
@@ -277,7 +281,6 @@ footer * {
         </footer>
     </div>
     <script>
-        const url = new URL(window.location.href);
         
         function handleCredentialResponse(response)
         {
@@ -311,9 +314,10 @@ footer * {
 
                     if(signupRes =='1')
                     {
-                        //url.searchParams.set('signupRes', signupRes);
-                        //window.history.replaceState(null, null, url); // or pushState
-                        //window.location = '../pages/signup.php';
+                        url.searchParams.set('signupRes', signupRes);
+                        window.history.replaceState(null, null, url); // or pushState
+                        location.reload();
+                        
                     }
                     else if(signupRes =='2')
                     {

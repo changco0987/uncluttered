@@ -206,23 +206,33 @@
             </div>
     <a class="navbar-brand d-flex justify-content-center" href="#">
         <?php
-            if($userRow['imageName']!==null && $userRow['imageName']!=='')
+        
+            if($userRow['gmail_Id']!=null)
             {
                 ?>
-                    <img src="../upload/userImage/<?php echo $userRow['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <img src="<?php echo $userRow['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                 <?php
             }
-            else 
+            else
             {
-                ?>
-                    <img src="../asset/user.png" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
-                <?php
+                if($userRow['imageName']!==null && $userRow['imageName']!=='')
+                {
+                    ?>
+                        <img src="../upload/userImage/<?php echo $userRow['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <?php
+                }
+                else 
+                {
+                    ?>
+                        <img src="../asset/user.png" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <?php
+                }
             }
         ?>
     </a>
     <h4 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="nameLabel"><?php echo $userRow['firstname'].' '.$userRow['lastname']?></h4>
                 
-    <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel"><?php echo $userRow['username'];?></h6>
+    <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel" style="font-size: 13px;"><?php echo $userRow['username'];?></h6>
     <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="dashboard.php" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="dashboard.php" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="collapse" data-target="#collapseMaintenance" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
@@ -332,17 +342,26 @@
                             ?>
                                 <a type="button" class="list-group-item list-group-item-action" role="button" href="#<?php echo $latestUpdateRow['title'];?>" style="font-size: 13px; font-weight:bold;">
                                     <?php
-                                        if($latestUserRow['imageName'])
+                                        if($latestUserRow['gmail_Id'])
                                         {
                                             ?>
-                                                <img class="mr-1" src="../upload/userImage/<?php echo $latestUserRow['imageName'];?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <img class="mr-1" src="<?php echo $latestUserRow['imageName'];?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
                                             <?php
                                         }
                                         else
                                         {
-                                            ?>
-                                                <img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
-                                            <?php
+                                            if($latestUserRow['imageName'])
+                                            {
+                                                ?>
+                                                    <img class="mr-1" src="../upload/userImage/<?php echo $latestUserRow['imageName'];?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <?php
+                                            }
+                                            else
+                                            {
+                                                ?>
+                                                    <img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <?php
+                                            }
                                         }
                                     ?>
                                 </a>

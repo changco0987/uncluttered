@@ -309,23 +309,24 @@ footer * {
                 http.send(params);
                 http.onload = function() 
                 {
-                    var signupRes = http.responseText;
-                    console.log(signupRes);
-                    if(signupRes == '3')
+                    var loginRes = http.responseText;
+                    console.log(loginRes);
+                    if(loginRes == '3')
                     {
+                        //successfully login
                         window.location = 'pages/userdashboard.php';
                     }
-                    else if(signupRes =='1')
+                    else if(loginRes =='1')
                     {
-                        //url.searchParams.set('signupRes', signupRes);
-                        //window.history.replaceState(null, null, url); // or pushState
-                        //window.location = '../pages/signup.php';
-                    }
-                    else if(signupRes =='2')
-                    {
-                        url.searchParams.set('signupRes', signupRes);
+                        url.searchParams.set('loginRes', loginRes);
                         window.history.replaceState(null, null, url); // or pushState
-                        window.location = '../index.php';
+                        location.reload();
+                    }
+                    else if(loginRes =='2')
+                    {
+                        url.searchParams.set('loginRes', loginRes);
+                        window.history.replaceState(null, null, url); // or pushState
+                        location.reload();
                     }
                     //returnDate();
                     //console.log(params);
