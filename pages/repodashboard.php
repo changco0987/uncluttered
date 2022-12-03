@@ -386,7 +386,7 @@
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="min-height:20rem;">
-            <h5 class="ml-2 pt-3 pb-1 mb-2"><span class=" d-flex justify-content-between">Ideas <button class="btn btn-sm btn-success rounded mr-1"><i class="bi bi-plus-square"></i></button></span></h5>
+            <h5 class="ml-2 mt-2 pt-3 pb-1 mb-2" style="font-size: 16px;"><span class=" d-flex justify-content-between">Ideas <button class="btn btn-sm btn-success rounded mr-3"><i class="bi bi-clipboard-check"></i></button></span></h5>
             <div class="d-flex justify-content-center">
                 <textarea class="rounded" name="" id="" cols="35" rows="10" style="background-color:#FADB6F;"></textarea>
             </div>

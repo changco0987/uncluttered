@@ -252,7 +252,7 @@
                             $members = array();
                             $members = unserialize($repoRow['members']);
                             
-                            //This will check if he is the only one in the repository to avoid error in array checking in only 1 element
+                            //This will check if he/she is the only one in the repository to avoid error in array checking in only 1 element
                             if(is_array($members))
                             {
                                 foreach($members as $userId)
@@ -516,6 +516,7 @@
 
 
     const members = [];
+    members.push(<?php echo json_encode($row['id']);?>);
     //for adding user as member
     function addUser(userId)
     {
