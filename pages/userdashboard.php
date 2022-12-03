@@ -78,7 +78,6 @@
         }
 
         #pageTitle{
-            font-weight: bold;
             color: #1C1C1C;
             text-shadow: 1px 1px #F1F1F1;
         }
@@ -236,7 +235,7 @@
 
             </div>
         </div>
-        <div class="row no-gutters my-1 py-1 mx-auto px-1 rounded bg-warning">
+        <div class="row no-gutters my-1 py-1 mx-auto px-1 rounded" style="background-color:whitesmoke ;">
             <!-- This column is for repository-->
             <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pb-2">
                 <h5 class="pt-2 ml-2" id="pageTitle"><i class="bi bi-folder-fill"></i> Repositories</h5>
