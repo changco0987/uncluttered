@@ -25,7 +25,7 @@
     <!--Google API (GSI)-->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-    <script src="../javascript/linked.js"></script>
+    <!--script src="javascript/linked.js"></script-->
     <link rel="stylesheet" href="css/login.css">
 
     <style>
@@ -232,10 +232,10 @@ footer * {
                                     <center>
                                         <div class="g_id_signin"
                                             data-type="standard"
-                                            data-size="large"
-                                            data-theme="outline"
+                                            data-size="medium"
+                                            data-theme="filled_blue"
                                             data-text="sign_in_with"
-                                            data-shape="rectangular"
+                                            data-shape="circle"
                                             data-logo_alignment="left">
                                         </div>
                                         
@@ -339,7 +339,7 @@ footer * {
         //document.getElementById('successBox').style.display = 'none';
         //document.getElementById('alertBox').style.display = 'none';
         //var successSignal = localStorage.getItem('state');
-
+/*
         if(successSignal==1)
         {
             //if incorrect password
@@ -383,7 +383,7 @@ footer * {
             document.getElementById('successMsg').innerHTML = "Reset Password Successfully!";
             console.log("okay");
         }
-
+*/
         //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
         //localStorage.setItem('state',0);
     </script>
