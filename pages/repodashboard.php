@@ -352,7 +352,7 @@
                                         if($latestUserRow['gmail_Id'])
                                         {
                                             ?>
-                                                <img class="mr-1" src="<?php echo strval($latestUserRow['imageName']);?>" width="40" height="40" class="border-dark" alt="none" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <img class="mr-1" src="<?php echo strval($latestUserRow['imageName']);?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
                                             <?php
                                         }
                                         else
@@ -680,6 +680,19 @@
                                                                             <h6 class="collapse-item mx-3 px-3 mt-2" style="font-size: 12px;"><?php echo $userVersionRow['firstname'].' '.$userVersionRow['lastname']; ?></h6>
                                                                             <h6 class="collapse-item mx-4 px-3 mt-2" style="font-size: 12px;"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation'])); ?></h6>
                                                                             <button class="btn border-0 btn-sm rounded collapse-item ml-auto px-2 mt-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#b5b9bb;"><i class="bi bi-three-dots-vertical"></i></button>
+                                                                            <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
+                                                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#versionModal<?php echo $updateRow['id'];?>"><i class="bi bi-stickies mr-1"></i>Note</a>
+                                                                                
+                                                                                <?php
+                                                                                    //This will only trigger if theres a file to download
+                                                                                    if($updateRow['filename']!="")
+                                                                                    {
+                                                                                        ?>
+                                                                                            <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/version/<?php echo $versionRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
+                                                                                        <?php
+                                                                                    }
+                                                                                ?>
+                                                                            </div>
                                                                         </div>
                                                                     <?php
 
