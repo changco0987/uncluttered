@@ -647,7 +647,6 @@
 
                                                                             <div class="row">
                                                                                 <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                                                                    <button type="button" class="btn btn-sm bg-danger mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;" onclick="deletePost(<?php echo $updateRow['id'];?>);">Delete Post</button>
                                                                                     <button type="submit" class="btn btn-sm bg-success mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
                                                                                 </div>
                                                                             </div>

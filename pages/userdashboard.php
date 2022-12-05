@@ -222,12 +222,19 @@
 
     <div class="content">
         <div class="row no-gutters my-2 py-3 mx-auto px-1 rounded">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded d-flex align-items-center bg-light" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-light" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
             <?php
                 $repo = new repositoryModel();
                 $result = ReadRepo($conn,$repo);
             ?>
-                <h5 class="mx-auto">Repository: </h5>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-success" >
+                
+            <h5 class="mx-auto">Repository: </h5>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-success ">
+                
+            <h5 class="mx-auto">Repository: </h5>
+            </div>
 
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 rounded d-flex align-items-center bg-light mx-auto" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
