@@ -227,24 +227,24 @@
                 $repo = new repositoryModel();
                 $result = ReadRepo($conn,$repo);
             ?>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-success" >
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-2 pt-2">
                 
-            <h5 class="mx-auto">Repository: </h5>
+            <h5 class="mx-auto" style="font-size: 15px;">Hosted Repository: </h5>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-success ">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded mt-4 pt-2">
                 
-            <h5 class="mx-auto">Repository: </h5>
+            <h5 class="mx-auto" style="font-size: 16px;">Count: </h5>
             </div>
 
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 rounded d-flex align-items-center bg-light mx-auto" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
         
-                <h5 class="mx-auto">Repository: </h5>
+                <h5 class="mx-auto">Data Chart: </h5>
 
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded d-flex align-items-center bg-light" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
             
-                <h5 class="mx-auto">Repository: </h5>
+                <h5 class="mx-auto">Data Chart: </h5>
 
             </div>
         </div>

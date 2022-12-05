@@ -603,7 +603,7 @@
                                                                 if($updateRow['filename']!="")
                                                                 {
                                                                     ?>
-                                                                        <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>"><i class="bi bi-download mr-1"></i>Download</a>
+                                                                        <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
                                                                     <?php
                                                                 }
                                                             ?>
