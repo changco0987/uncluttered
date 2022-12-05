@@ -681,7 +681,7 @@
                                                                             <h6 class="collapse-item mx-4 px-3 mt-2" style="font-size: 12px;"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation'])); ?></h6>
                                                                             <button class="btn border-0 btn-sm rounded collapse-item ml-auto px-2 mt-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#b5b9bb;"><i class="bi bi-three-dots-vertical"></i></button>
                                                                             <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
-                                                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#versionModal<?php echo $updateRow['id'];?>"><i class="bi bi-stickies mr-1"></i>Note</a>
+                                                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#versionNoteModal<?php echo $versionRow['id'];?>"><i class="bi bi-stickies mr-1"></i>Note</a>
                                                                                 
                                                                                 <?php
                                                                                     //This will only trigger if theres a file to download
@@ -692,6 +692,33 @@
                                                                                         <?php
                                                                                     }
                                                                                 ?>
+                                                                            </div>
+
+
+                                                                            <!-- Note Modal for version-->
+                                                                            <div class="modal fade" id="versionNoteModal<?php echo $versionRow['id'];?>" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+                                                                                <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
+                                                                                    <div class="modal-content" style="border-radius:12px;">
+                                                                                        <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                                                                                            <h5 class="modal-title" id="accSettModalLongTitle">Note</h5>
+                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <form action="../controller/editRepo.php" method="post" enctype="multipart/form-data">
+                                                                                                <div class="form-group">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                                                                                            <textarea name="noteTb" id="noteTb<?php echo $versionRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." disabled><?php echo $versionRow['note'];?></textarea>
+                                                                                                            <!--span class="d-flex justify-content-end"><p id="lengthTxt">0/500</p></span-->
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     <?php
