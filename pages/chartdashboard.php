@@ -333,6 +333,7 @@
         var myContri = 0;
         var memberContri = 0;
         var dataStat = [];
+        var memberUpdates = [];
         var repoMember = [];
         
         //console.log(repoMember);
@@ -347,13 +348,20 @@
         {
             foreach($members as $userId)
             {
+                //To get the member details such as name
                 $data = new userAccountModel();
                 $data->setId($userId);
                 $memberResult = ReadUserAccount($conn,$data);
-
                 $memberRow = mysqli_fetch_assoc($memberResult);
+
+                $data = new updatesModel();
+                $data->setUserAccountId($userId);
+                $data->setRepositoryId($repoRow['id']);
+                $memberUpdateResult = ReadUpdate($conn,$data);
+                $memberUpdateRow = mysqli_num_rows($memberUpdateResult);
                 ?>
                     <script>
+                        memberUpdates.push(<?php echo $memberUpdateRow; ?>);
                         repoMember.push(<?php echo json_encode($memberRow['lastname']); ?>);
                     </script>
                 <?php
@@ -794,8 +802,8 @@ console.log(repoMember);
         data: {
             labels: repoMember,
             datasets: [{
-                label: 'HEADCOUNT',
-                data: datasets,
+                label: 'Post',
+                data: memberUpdates,
                 backgroundColor: [
                     '#FF0000',
                     '#008000',
@@ -817,7 +825,7 @@ console.log(repoMember);
                 spanGaps: true
             },
             {
-                label: 'Percent',
+                label: 'Version',
                 data: dataStats,
                 backgroundColor: [
                     '#FF0000',
@@ -844,7 +852,7 @@ console.log(repoMember);
             plugins: {
                 title: {
                     display: true,
-                    text: "das",
+                    text: "Participation Report",
                     fontSize: 300
                 },
                 legend:{

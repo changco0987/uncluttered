@@ -15,10 +15,22 @@
     function ReadUpdate($conn,$data)
     {
         
-        if($data->getRepositoryId())
+        if($data->getRepositoryId() && $data->getUserAccountId()==null)
         {
             //if theres id in data
             $dbData = mysqli_query($conn, "SELECT * FROM updatestb WHERE repositoryId ='".$data->getRepositoryId()."' ORDER BY id DESC");
+        }
+        else if($data->getUserAccountId())
+        {
+            //if theres id of user in data
+            if($data->getRepositoryId())
+            {
+                $dbData = mysqli_query($conn, "SELECT * FROM updatestb WHERE userAccountId =".$data->getUserAccountId()." AND repositoryId =".$data->getRepositoryId()." ORDER BY id DESC");
+            }
+            else
+            {
+                $dbData = mysqli_query($conn, "SELECT * FROM updatestb WHERE userAccountId =".$data->getUserAccountId()." ORDER BY id DESC");
+            }
         }
         else
         {
