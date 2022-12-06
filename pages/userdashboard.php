@@ -156,23 +156,22 @@
     <title>Uncluttered - User Dashboard</title>
 </head>
 <body>
-        
-    <div class="sidebar text-center">
-                <!-- Alert message container-->
-                <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
-                    <strong id="successMsg"></strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+    <!-- Alert message container-->
+    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="position:absolute; display:none; z-index: 1;">
+        <strong id="successMsg"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
-                <!-- Alert message container-->
-                <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none ;">
-                    <strong id="errorMsg"></strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+    <!-- Alert message container-->
+    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="position:absolute; display:none; z-index: 1;">
+        <strong id="errorMsg"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="sidebar text-center">
         <a class="navbar-brand d-flex justify-content-center" href="#">
             <?php
 

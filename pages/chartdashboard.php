@@ -354,11 +354,19 @@
                 $memberResult = ReadUserAccount($conn,$data);
                 $memberRow = mysqli_fetch_assoc($memberResult);
 
+                //To get the member update in the currect repository
                 $data = new updatesModel();
                 $data->setUserAccountId($userId);
                 $data->setRepositoryId($repoRow['id']);
                 $memberUpdateResult = ReadUpdate($conn,$data);
                 $memberUpdateRow = mysqli_num_rows($memberUpdateResult);
+
+                //To get the member update in the currect repository
+                /*$data = new versionModel();
+                $data->setUserAccountId($userId);
+                $data->setRepositoryId($repoRow['id']);
+                $memberUpdateResult = ReadUpdate($conn,$data);
+                $memberUpdateRow = mysqli_num_rows($memberUpdateResult);*/
                 ?>
                     <script>
                         memberUpdates.push(<?php echo $memberUpdateRow; ?>);
@@ -395,52 +403,8 @@
     
     <!-- 3rd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded bg-danger">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded border bg-warning">
-            <h5 class="ml-2 pt-3 pb-1 mb-2" style="font-size: 15px;">Recent Updates</h5>
-            <div class="list-group mx-2 bg-light rounded" style="height: 20rem;" id="repoList">
-                <?php
-                //This will only get the newes 3 updates
-                    $count = 0;
-                    $data = new userAccountModel();
-                    while($latestUpdateRow = mysqli_fetch_assoc($latestResult))
-                    {
-                        if($count<10)
-                        {
-                            $data->setId($latestUpdateRow['userAccountId']);
-                            $latestUserResult = ReadUserAccount($conn,$data);
-                            $latestUserRow = mysqli_fetch_assoc($latestUserResult);
-                            ?>
-                                <a type="button" class="list-group-item list-group-item-action" role="button" href="#<?php echo $latestUpdateRow['title'];?>" style="font-size: 13px; font-weight:bold;">
-                                    <?php
-                                        if($latestUserRow['gmail_Id'])
-                                        {
-                                            ?>
-                                                <img class="mr-1" src="<?php echo strval($latestUserRow['imageName']);?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
-                                            <?php
-                                        }
-                                        else
-                                        {
-                                            if($latestUserRow['imageName'])
-                                            {
-                                                ?>
-                                                    <img class="mr-1" src="../upload/userImage/<?php echo $latestUserRow['imageName'];?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
-                                                <?php
-                                            }
-                                            else
-                                            {
-                                                ?>
-                                                    <img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
-                                                <?php
-                                            }
-                                        }
-                                    ?>
-                                </a>
-                            <?php
-                            $count++;
-                        }
-                    }
-                ?>
-            </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded border bg-light">
+            
         </div>
 
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border">
@@ -449,10 +413,7 @@
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="min-height:20rem;">
-            <h5 class="ml-2 mt-2 pt-3 pb-1 mb-2" style="font-size: 16px;"><span class=" d-flex justify-content-between">Ideas <button class="btn btn-sm btn-success rounded mr-3"><i class="bi bi-clipboard-check"></i></button></span></h5>
-            <div class="d-flex justify-content-center">
-                <textarea class="rounded" name="" id="" cols="35" rows="10" style="background-color:#FADB6F;" maxlength="1000"></textarea>
-            </div>
+            
         </div>
     </div>
     
