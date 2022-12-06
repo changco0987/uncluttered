@@ -144,7 +144,7 @@
         div.content {
             margin-left: 200px;
             padding: 1px 16px;
-            height: 1000px;
+            height: max-content;
         }
         
         @media screen and (max-width: 700px) {

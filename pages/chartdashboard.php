@@ -144,7 +144,7 @@
         div.content {
             margin-left: 200px;
             padding: 1px 16px;
-            height: 1000px;
+            height: max-content;
         }
         
         @media screen and (max-width: 700px) {
@@ -329,12 +329,67 @@
             </form>
         </div>
     </nav>
+    <script>
+        var myContri = 0;
+        var memberContri = 0;
+        var dataStat = [];
+        var repoMember = [];
+        
+        //console.log(repoMember);
+    </script>
+    <?php
+    
+        $members = array();
+        $members = unserialize($repoRow['members']);
+
+        //check if the data is array
+        if(is_array($members))
+        {
+            foreach($members as $userId)
+            {
+                $data = new userAccountModel();
+                $data->setId($userId);
+                $memberResult = ReadUserAccount($conn,$data);
+
+                $memberRow = mysqli_fetch_assoc($memberResult);
+                ?>
+                    <script>
+                        repoMember.push(<?php echo json_encode($memberRow['lastname']); ?>);
+                    </script>
+                <?php
+            }
+        }
+        else
+        {
+            $data = new userAccountModel();
+            $data->setId($members);
+            $memberResult = ReadUserAccount($conn,$data);
+
+            $memberRow = mysqli_fetch_assoc($memberResult);
+            ?>
+                <script>
+                    repoMember.push(<?php echo json_encode($memberRow['lastname']); ?>);
+                </script>
+            <?php
+        }
+    
+    ?>
 
     <!-- 2nd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded border bg-light" >
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-light rounded border">
+            <div class="chart-container mx-auto">
+                <canvas id="line1" style="width: 100px; height: 28px;"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 3rd main div in content-->
+    <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded bg-danger">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded border bg-warning">
             <h5 class="ml-2 pt-3 pb-1 mb-2" style="font-size: 15px;">Recent Updates</h5>
-            <div class="list-group mx-2 bg-light rounded" style="height: 17rem;" id="repoList">
+            <div class="list-group mx-2 bg-light rounded" style="height: 20rem;" id="repoList">
                 <?php
                 //This will only get the newes 3 updates
                     $count = 0;
@@ -392,354 +447,7 @@
             </div>
         </div>
     </div>
-    <script>
-        var myContri = 0;
-        var memberContri = 0;
-        var dataStat = [];
-    </script>
     
-    <!-- 3rd main div in content-->
-    <div class="row no-gutters my-2 py-2 mx-auto px-1">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded" style="height: 27rem;">
-            <div class="table-wrapper-scroll-y my-custom-scrollbar rounded " style="height:25rem;">
-                <table class="table table-striped table-hover table-sm text-justify mb-0 rounded" >
-                        <caption id="tbCaption"></caption>
-                        <thead class="text-light rounded" style="background-color:#234471;">
-                            <tr style="font-size: 13px;">
-                                <!--th scope="col" >#</th-->
-                                <th scope="col">Title</th> 
-                                <th scope="col" >Name</th>
-                                <th colspan="2" scope="col" >Datetime</th>
-                                <th colspan="4" class="text-center" scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="updateList">
-                            
-                                <?php
-                                    while($updateRow = mysqli_fetch_assoc($result))
-                                    {
-                                        ?>
-                                        
-                                            <tr id="<?php echo $updateRow['title'];?>">
-                                                <td style="font-size: 14px; font-weight:bold;"><?php echo $updateRow['title'];?></td>
-                                                <?php
-                                                    $data = new userAccountModel();
-                                                    $data->setId($updateRow['userAccountId']);
-                                                    $checkUserResult = ReadUserAccount($conn,$data);
-                                                    $checkUserRow = mysqli_fetch_assoc($checkUserResult);
-
-                                                    //This will collect the contribution of the current user vs. other members
-                                                    if($userRow['id'] == $updateRow['userAccountId'])
-                                                    {
-                                                        ?>
-                                                            <script>myContri++;</script>
-                                                        <?php
-                                                    }
-                                                    else
-                                                    {
-                                                        ?>
-                                                            <script>memberContri++;</script>
-                                                        <?php
-                                                    }
-                                                ?>
-                                                <td style="font-size: 13px;"><?php echo $checkUserRow['firstname'].' '.$checkUserRow['lastname'];?></td>
-                                                <td style="font-size: 13px;"><?php echo date("M d, Y h:i a", strtotime($updateRow['datetimeCreation']));?></td>
-                                                <td></td>
-                                                
-                                                <!-- Note Button -->
-                                                <td style="width:15px;">
-                                                    <div class="col-1">
-                                                        <?php
-                                                            if($updateRow['note'] != "")
-                                                            {
-                                                                ?>
-                                                                    <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#noteModal<?php echo $updateRow['id'];?>"><i class="bi bi-chat-left-dots"></i></button>
-
-                                                                                                                                    
-                                                                    <!-- Note Modal -->
-                                                                    <div class="modal fade" id="noteModal<?php echo $updateRow['id'];?>" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
-                                                                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
-                                                                            <div class="modal-content" style="border-radius:12px;">
-                                                                                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
-                                                                                    <h5 class="modal-title" id="accSettModalLongTitle">Note</h5>
-                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                        <span aria-hidden="true">&times;</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <form action="../controller/editRepo.php" method="post" enctype="multipart/form-data">
-                                                                                        <div class="form-group">
-                                                                                            <div class="row">
-                                                                                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                    <textarea name="noteTb" id="noteTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onclick="getTxtLength(this.id,'null')" disabled><?php echo $updateRow['note'];?></textarea>
-                                                                                                    <!--span class="d-flex justify-content-end"><p id="lengthTxt">0/500</p></span-->
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php
-                                                            }
-                                                            else
-                                                            {
-                                                                ?>
-                                                                    <button class="btn btn-sm btn-secondary rounded disabled"><i class="bi bi-chat-left-dots"></i></button>
-                                                                <?php
-                                                            }
-                                                        ?>
-                                                    </div>
-                                                </td>
-
-                                                <!-- Edit Button -->
-                                                <td style="width:15px;">
-                                                    <div class="col-1">
-                                                        <?php
-                                                            if($userRow['id'] == $updateRow['userAccountId'])
-                                                            {
-                                                                ?>
-                                                                    <button class="btn btn-sm btn-warning rounded" data-toggle="modal" data-target="#editPostModal<?php echo $updateRow['id'];?>"><i class="bi bi-pencil-square"></i></button>
-                                                                                                                                        
-                                                                        <!-- Edit Post Modal -->
-                                                                        <div class="modal fade" id="editPostModal<?php echo $updateRow['id'];?>" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
-                                                                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
-                                                                                <div class="modal-content" style="border-radius:12px;">
-                                                                                    <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
-                                                                                        <h5 class="modal-title" id="accSettModalLongTitle"><i class="bi bi-pen"></i> Edit Post</h5>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                            <span aria-hidden="true">&times;</span>
-                                                                                        </button>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <form action="../controller/updatePost.php" method="post" enctype="multipart/form-data">
-                                                                                            <input type="hidden" name="updateId" id="updateId" value="<?php echo $updateRow['id'];?>">
-                                                                                            <input type="hidden" name="repoId" id="repoId" value="<?php echo $repoRow['id'];?>">
-                                                                                                <div class="form-group">
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                            <label for="titleTb">Title</label>
-                                                                                                            <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTb" placeholder="Write a title" maxlength="50" required value="<?php echo $updateRow['title'];?>"/>
-                                                                                                            
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group">
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                            <?php
-                                                                                                                if($updateRow['filename'])
-                                                                                                                {
-                                                                                                                    ?>
-                                                                                                                        <label for="fileTb">Attached File:</label>
-                                                                                                                        <a class="text-success" href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>"><?php echo $updateRow['filename'];?></a>
-                                                                                                                    <?php
-
-                                                                                                                }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    ?>
-                                                                                                                        <label for="fileTb">Attach File:</label>
-                                                                                                                        <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
-                                                                                                                    <?php
-                                                                                                                }
-                                                                                                            ?>
-                                                                                                            
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                <div class="form-group">
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                            <textarea name="noteTb" id="noteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onfocus="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')" oninput="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')"><?php echo $updateRow['title'];?></textarea>
-                                                                                                            
-                                                                                                            <span class="d-flex justify-content-end"><p id="lengthTxt<?php echo $updateRow['id'];?>">0/500</p></span>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-
-                                                                                                <div class="row">
-                                                                                                    <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                                                                                        <button type="button" class="btn btn-sm bg-danger mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;" onclick="deletePost(<?php echo $updateRow['id'];?>);">Delete Post</button>
-                                                                                                        <button type="submit" class="btn btn-sm bg-success mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                <?php
-                                                            }
-                                                            else
-                                                            {
-                                                                ?>
-                                                                    <button class="btn btn-sm btn-secondary rounded disabled"><i class="bi bi-pencil-square"></i></button>
-                                                                <?php
-                                                            }
-                                                        ?>
-                                                    </div>
-                                                </td>
-
-                                                <!-- Version Button -->
-                                                <td style="width:15px;">
-                                                    <div class="col-1">
-                                                        <button class="btn btn-sm rounded" style="background-color: #A020F0; color:whitesmoke;" type="button" data-toggle="collapse" data-target="#collapseVersion<?php echo $updateRow['id'];?>" aria-expanded="true" aria-controls="collapseVersion<?php echo $updateRow['id'];?>"><i class="bi bi-diagram-3"></i></button>
-                                                    
-                                                    </div>
-                                                </td>
-
-                                                <!-- Download and create version Button -->
-                                                <td style="width:15px;">
-                                                    <div class="col-1">
-                                                        <button class="btn border-0 btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#d0d0d0;"><i class="bi bi-three-dots-vertical"></i></button>
-                                                        <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
-                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#versionModal<?php echo $updateRow['id'];?>"><i class="bi bi-diagram-2-fill mr-1"></i>Create a version</a>
-                                                            
-                                                            <?php
-                                                                //This will only trigger if theres a file to download
-                                                                if($updateRow['filename']!="")
-                                                                {
-                                                                    ?>
-                                                                        <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
-                                                                    <?php
-                                                                }
-                                                            ?>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Create Version Modal -->
-                                                    <div class="modal fade" id="versionModal<?php echo $updateRow['id'];?>" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
-                                                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
-                                                            <div class="modal-content" style="border-radius:12px;">
-                                                                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
-                                                                    <h5 class="modal-title" id="accSettModalLongTitle"><i class="bi bi-diagram-2-fill mr-1"></i>Version: <span class="text-warning" style="font-size: 15px;"><?php echo $updateRow['title'];?></span></h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="../controller/createVersion.php" method="post" enctype="multipart/form-data">
-                                                                        <input type="hidden" name="updateId" id="updateId" value="<?php echo $updateRow['id'];?>">
-                                                                        <input type="hidden" name="repoId" id="repoId" value="<?php echo $repoRow['id'];?>">
-                                                                        <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
-                                                                            <div class="form-group">
-                                                                                <div class="row">
-                                                                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                          
-                                                                                        <label for="fileTb">Attach File:</label>
-                                                                                        <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
-                                                                                         
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group">
-                                                                                <div class="row">
-                                                                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                        <textarea name="noteTb" id="versionNoteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength(this.id,'versionLengthTxt<?php echo $updateRow['id'];?>')"></textarea>
-                                                                                        
-                                                                                        <span class="d-flex justify-content-end"><p id="versionLengthTxt<?php echo $updateRow['id'];?>">0/500</p></span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="row">
-                                                                                <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                                                                    <button type="submit" class="btn btn-sm bg-success mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
-                                                                                </div>
-                                                                            </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-<!--Unfinish part-->
-                                                <tr>
-                                                    <td colspan="8">
-                                                        <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse my-1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="background-color:#b5b9bb;">
-                                                        
-                                                            <?php
-                                                                //Version
-                                                                $version = new versionModel();
-                                                                $version->setUpdateId($updateRow['id']);
-                                                                $versionResult = ReadVersion($conn,$version);
-                                                                while($versionRow = mysqli_fetch_assoc($versionResult))
-                                                                {
-                                                                    //user who owns the version fetched
-                                                                    $versionUser = new userAccountModel();
-                                                                    $versionUser->setId($versionRow['userAccountId']);
-                                                                    $userVersionResult = ReadUserAccount($conn,$versionUser);
-                                                                    $userVersionRow = mysqli_fetch_assoc($userVersionResult);
-                                                                    ?>
-                                                                        <div class="d-flex py-2 collapse-inner rounded col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                                            <h6 class="mt-2" style="font-size: 16px; font-weight:bold;"><i class="bi bi-arrow-bar-right mr-2"></i></h6>
-                                                                            <h6 class="collapse-item mr-3 pr-3 mt-2" style="font-size: 12px; font-weight:bold;"><?php echo $updateRow['title']; ?></h6>
-                                                                            <h6 class="collapse-item mx-3 px-3 mt-2" style="font-size: 12px;"><?php echo $userVersionRow['firstname'].' '.$userVersionRow['lastname']; ?></h6>
-                                                                            <h6 class="collapse-item mx-4 px-3 mt-2" style="font-size: 12px;"><?php echo date("M d, Y h:i a", strtotime($versionRow['datetimeCreation'])); ?></h6>
-                                                                            <button class="btn border-0 btn-sm rounded collapse-item ml-auto px-2 mt-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#b5b9bb;"><i class="bi bi-three-dots-vertical"></i></button>
-                                                                            <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
-                                                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#versionNoteModal<?php echo $versionRow['id'];?>"><i class="bi bi-stickies mr-1"></i>Note</a>
-                                                                                
-                                                                                <?php
-                                                                                    //This will only trigger if theres a file to download
-                                                                                    if($updateRow['filename']!="")
-                                                                                    {
-                                                                                        ?>
-                                                                                            <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/version/<?php echo $versionRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
-                                                                                        <?php
-                                                                                    }
-                                                                                ?>
-                                                                            </div>
-
-
-                                                                            <!-- Note Modal for version-->
-                                                                            <div class="modal fade" id="versionNoteModal<?php echo $versionRow['id'];?>" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
-                                                                                <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
-                                                                                    <div class="modal-content" style="border-radius:12px;">
-                                                                                        <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
-                                                                                            <h5 class="modal-title" id="accSettModalLongTitle">Note</h5>
-                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                                <span aria-hidden="true">&times;</span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                        <div class="modal-body">
-                                                                                            <form action="../controller/editRepo.php" method="post" enctype="multipart/form-data">
-                                                                                                <div class="form-group">
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                            <textarea name="noteTb" id="noteTb<?php echo $versionRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Empty....." disabled><?php echo $versionRow['note'];?></textarea>
-                                                                                                            <!--span class="d-flex justify-content-end"><p id="lengthTxt">0/500</p></span-->
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </form>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-
-                                                                }
-                                                            ?>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                
-                                            </tr>
-                                        <?php
-                                    }
-                                ?>
-                        </tbody>
-                </table>
-                
-            </div>
-
-        </div>
-    </div>
 </div>
 
 
@@ -914,14 +622,14 @@
 
 </body>
 <script>
-    var total = myContri+memberContri;
+   /* var total = myContri+memberContri;
     var percentage = myContri/total;
     percentage = percentage*100;
     dataStat.push(Math.round(percentage));
 
     percentage = memberContri/total;
     percentage = percentage*100;
-    dataStat.push(Math.round(percentage));
+    dataStat.push(Math.round(percentage));*/
 
     //for deleting attached files
     function deletePost(postId) 
@@ -1032,6 +740,7 @@
 
         
 
+/*
     var ctx = document.getElementById("pie1").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'pie',
@@ -1074,15 +783,16 @@
             }
         }
     });
+*/
 
-
-/*
+console.log(repoMember);
     var ctx2 = document.getElementById("line1").getContext('2d');
-    var datasets = [43,54];
+    var datasets = [43,54,45,32,16,15,51,18];
+    var dataStats = [31,32,22,32,34,21,23,12];
     var mybar = new Chart(ctx2, {
         type: 'line',
         data: {
-            labels: ['Locked','Unlocked'],
+            labels: repoMember,
             datasets: [{
                 label: 'HEADCOUNT',
                 data: datasets,
@@ -1108,7 +818,7 @@
             },
             {
                 label: 'Percent',
-                data: dataStat,
+                data: dataStats,
                 backgroundColor: [
                     '#FF0000',
                     '#008000',
@@ -1143,6 +853,5 @@
             }
         }
     });
-    */
 </script>
 </html>
