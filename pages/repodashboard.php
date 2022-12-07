@@ -11,6 +11,9 @@
     
     include_once '../db/tb_version.php';
     include_once '../model/versionModel.php';
+    
+    include_once '../db/tb_ideas.php';
+    include_once '../model/ideasModel.php';
 
     session_start();
     if(!isset($_SESSION['username']))
@@ -77,6 +80,7 @@
     <link rel="stylesheet" href="../css/defaultStyle.css">
 
     <style>
+        
         .my-custom-scrollbar {
             position: relative;
             height: 200px;
@@ -386,10 +390,35 @@
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="min-height:20rem;">
-            <h5 class="ml-2 mt-2 pt-3 pb-1 mb-2" style="font-size: 16px;"><span class=" d-flex justify-content-between">Ideas <button class="btn btn-sm btn-success rounded mr-3"><i class="bi bi-clipboard-check"></i></button></span></h5>
+        <form action="../controller/submitIdea.php" method="post">
+            <input type="hidden" name="userId" value="<?php echo $userRow['id'];?>">
+            <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
+            <h5 class="ml-2 mt-2 pt-3 pb-1 mb-2" style="font-size: 16px;"><span class=" d-flex justify-content-between">Ideas <button type="submit" class="btn btn-sm btn-success rounded mr-3" name="submitIdea"><i class="bi bi-clipboard-check"></i></button></span></h5>
             <div class="d-flex justify-content-center">
-                <textarea class="rounded" name="" id="" cols="35" rows="10" style="background-color:#FADB6F;" maxlength="1000"></textarea>
+                <?php
+                    $idea = new ideasModel();
+                    $idea->setUserAccountId($userRow['id']);
+                    $idea->setRepositoryId($repoRow['id']);
+                    $ideaResult = ReadIdea($conn,$idea);
+                    $ideaRow = mysqli_fetch_assoc($ideaResult);
+                    //this will tell if the user has data in idea in this particular repo
+                    if(isset($ideaRow['id']))
+                    {
+                        ?>
+                            <input type="hidden" name="ideaId" value="<?php echo $ideaRow['id'];?>">
+                            <textarea class="rounded" name="ideaTb" id="ideaTb" cols="35" rows="10" style="background-color:#FADB6F;" maxlength="1000"><?php echo $ideaRow['idea'];?></textarea>
+                        <?php
+                    }
+                    else
+                    {
+                        ?>
+                            <textarea class="rounded" name="ideaTb" id="ideaTb" cols="35" rows="10" style="background-color:#FADB6F;" maxlength="1000"></textarea>
+                        <?php
+                    }
+                ?>
             </div>
+        </form>
+            
         </div>
     </div>
     <script>

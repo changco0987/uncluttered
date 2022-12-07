@@ -4,8 +4,9 @@
     $data = new ideasModel;
     function CreateIdea($conn,$data)
     {
-        mysqli_query($conn, "INSERT INTO ideastb(userAccountId, repositoryId, ideas) values(".$data->getUserAccountId().",".$data->getRepositoryId()
-        .",'".$data->getIdeas()."');");
+        $idea = mysqli_real_escape_string($conn,$data->getIdea());
+        mysqli_query($conn, "INSERT INTO ideastb(userAccountId, repositoryId, idea) values(".$data->getUserAccountId().",".$data->getRepositoryId()
+        .",'".$idea."');");
         $id = mysqli_insert_id($conn);
         return $id;
     }
@@ -20,10 +21,12 @@
             //if theres id in data
             $dbData = mysqli_query($conn, "SELECT * FROM ideastb WHERE userAccountId =".$data->getUserAccountId()." AND repositoryId =".$data->getRepositoryId());
         }
+        /*
         else
         {
             $dbData = mysqli_query($conn, "SELECT * FROM ideastb ORDER BY id DESC");
         }
+        */
         return $dbData;
     }
 
@@ -33,7 +36,8 @@
     {
         if($data->getId())
         {
-            mysqli_query($conn,"UPDATE ideastb SET ideas = '".$data->getIdeas()."'  WHERE id =". $data->getId());
+            $idea = mysqli_real_escape_string($conn,$data->getIdea());
+            mysqli_query($conn,"UPDATE ideastb SET idea = '".$idea."'  WHERE id =". $data->getId());
         }
     }
 
