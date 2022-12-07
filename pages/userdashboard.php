@@ -219,6 +219,10 @@
         <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn bg-danger" id="signoutBtn" href="../controller/wipedata.php" role="button" style="background-color: #485d8c;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</a>
     </div>
 
+    <script>
+        
+        var hostedRepoCount = 0;
+    </script>
     <div class="content">
         <div class="row no-gutters my-2 py-3 mx-auto px-1 rounded">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-light" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
@@ -230,11 +234,12 @@
                 
             <h5 class="mx-auto" style="font-size: 15px;">Hosted Repository: </h5>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded mt-4 pt-2">
-                
-            <h5 class="mx-auto" style="font-size: 16px;">Count: </h5>
-            </div>
-
+            <center>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-4 pt-2">
+                    <h2 class="mx-auto" style="font-size: 36px; color:#3466AA;"><i class="bi bi-person-workspace"></i> <span id="hostedCount"></span></h2>
+                    <hr style="height:2px; border-width:0;background-color: #39445c;">
+                </div>
+            </center>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 rounded d-flex align-items-center bg-light mx-auto" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
         
@@ -271,6 +276,9 @@
                                         {
                                             ?>
                                                 <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Creator <i class="bi bi-person-workspace"></i></span></a>
+                                                <script>
+                                                hostedRepoCount++;
+                                                </script>
                                             <?php 
                                         }
                                         else
@@ -292,6 +300,9 @@
                                     {
                                         ?>
                                             <a href="repodashboard.php?id=<?php echo $repoRow['id']?>" class="list-group-item list-group-item-action d-flex justify-content-between"><?php echo $repoRow['repositoryName'];?> <span class="text-success font-weight-bold">Creator <i class="bi bi-person-workspace"></i></span> </a>
+                                            <script>
+                                                hostedRepoCount++;
+                                            </script>
                                         <?php 
                                     }
                                     else
@@ -500,6 +511,11 @@
     ?>
 </body>
 <script>
+    hostRepoCount(hostedRepoCount);
+    function hostRepoCount(count)
+    {
+        document.getElementById('hostedCount').innerHTML = count;
+    }
 
 
 
