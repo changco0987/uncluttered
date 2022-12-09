@@ -246,7 +246,7 @@
     <hr style="height:2px; border-width:0;background-color: #39445c;">
     <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="repodashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
-    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="collapse" data-target="#collapseMaintenance" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
         <div id="collapseMaintenance" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
             <div class="py-2 collapse-inner rounded mx-4">
                 <h6 class="collapse-header" style="font-size: 13px;"></h6>
@@ -914,6 +914,60 @@
                             <div class="row mt-2">
                                 <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Submit Changes</button>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Test Chat Modal -->
+    <div class="modal fade" id="chatModal" tabindex="1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
+            <div class="modal-content" style="border-radius:12px;">
+                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                    <h5 class="modal-title" id="accSettModalLongTitle"><i class="bi bi-pen"></i> Create Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
+                        <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                        <label for="titleTb">Title</label>
+                                        <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTb" placeholder="Write a title" maxlength="50" required/>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                        <label for="fileTb">Attach File:</label>
+                                        <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                        <textarea name="noteTb" id="notePostTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength(this.id,'postLengthTxt')"></textarea>
+                                        <span class="d-flex justify-content-end"><p id="postLengthTxt">0/500</p></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
                                 </div>
                             </div>
                     </form>

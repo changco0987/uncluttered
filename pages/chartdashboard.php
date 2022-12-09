@@ -412,7 +412,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-light rounded border">
             <div class="chart-container mx-auto">
-                <canvas id="line1" style="width: 100px; height: 28px;"></canvas>
+                <canvas id="line1" style="width: 100px; height: 35px;"></canvas>
             </div>
         </div>
     </div>
@@ -425,10 +425,10 @@
 
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border">
             <div class="chart-container mx-auto">
-                <canvas id="pie1"style="width: 100px; height: 100px;"></canvas>
+                <canvas id="pie1"style="width: 100px; height: 345px;"></canvas>
             </div>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="min-height:20rem;">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border">
             
         </div>
     </div>
