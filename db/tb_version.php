@@ -19,7 +19,7 @@
         if($data->getUpdateId())
         {
             //if theres id in data
-            $dbData = mysqli_query($conn, "SELECT * FROM versiontb WHERE updateId ='".$data->getUpdateId()."' ORDER BY id DESC");
+            $dbData = mysqli_query($conn, "SELECT * FROM versiontb WHERE updateId =".$data->getUpdateId());
         }
         else
         {

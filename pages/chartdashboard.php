@@ -335,11 +335,23 @@
         var dataStat = [];
         var memberUpdates = [];
         var repoMember = [];
+        var updateTotal = 0;
         
         //console.log(repoMember);
     </script>
     <?php
-    
+        //This will get the total update in the current repository
+        $data = new updatesModel();
+        $data->setRepositoryId($repoRow['id']);
+        $totalUpdateResult = ReadUpdate($conn,$data);
+        $totalUpdateRow = mysqli_num_rows($totalUpdateResult);
+        ?>
+            <script>
+                updateTotal = <?php echo $totalUpdateRow;?>;
+                //console.log(updateTotal);
+            </script>
+        <?php
+
         $members = array();
         $members = unserialize($repoRow['members']);
 
@@ -369,7 +381,11 @@
                 $memberUpdateRow = mysqli_num_rows($memberUpdateResult);*/
                 ?>
                     <script>
-                        memberUpdates.push(<?php echo $memberUpdateRow; ?>);
+                        //this will get the percentage of the contribution
+                        var percent = <?php echo $memberUpdateRow;?>/updateTotal;
+                        percent = percent*100;
+                        console.log(Math.round(percent));
+                        memberUpdates.push(Math.round(percent));
                         repoMember.push(<?php echo json_encode($memberRow['lastname']); ?>);
                     </script>
                 <?php
@@ -763,14 +779,15 @@ console.log(repoMember);
         data: {
             labels: repoMember,
             datasets: [{
-                label: 'Post',
+                label: 'Post (%)',
                 data: memberUpdates,
                 backgroundColor: [
+                    '#BE1818',
+                    '#0047AB',
+                    '#FF00FF',
                     '#FF0000',
                     '#008000',
                     '#FFFF00',
-                    '#0000FF',
-                    '#FF00FF',
                     '#00FFFF',
                     '#ffa500',
                     '#9400d3',
@@ -780,20 +797,21 @@ console.log(repoMember);
                     '#1e90ff'
 
                 ],
-                borderColor: 'green',
+                borderColor: '#BE1818',
                 tension: 0.4,
                 fill: false,
                 spanGaps: true
             },
             {
-                label: 'Version',
+                label: 'Version (%)',
                 data: dataStats,
                 backgroundColor: [
+                    '#BE1818',
+                    '#0047AB',
+                    '#FF00FF',
                     '#FF0000',
                     '#008000',
                     '#FFFF00',
-                    '#0000FF',
-                    '#FF00FF',
                     '#00FFFF',
                     '#ffa500',
                     '#9400d3',
@@ -803,7 +821,7 @@ console.log(repoMember);
                     '#1e90ff'
 
                 ],
-                borderColor: 'blue',
+                borderColor: '#0047AB',
                 tension: 0.4,
                 fill: false,
                 spanGaps: true

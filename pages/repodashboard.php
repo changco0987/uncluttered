@@ -167,8 +167,6 @@
             }
         }
 
-
-
         #collapseUtilities, #collapseMaintenance, #collapseHealthRecord{
             background-color:#5d73a3 ;
         }
@@ -386,7 +384,7 @@
 
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border">
             <div class="chart-container mx-auto">
-                <canvas id="pie1"style="width: 100px; height: 100px;"></canvas>
+                <canvas id="pie1" style="width: 100px; height: 100px;"></canvas>
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border" style="min-height:20rem;">
@@ -1070,7 +1068,6 @@
                 label: 'Status',
                 data: dataStat,
                 backgroundColor: [
-                    
                     '#50C878',
                     '#EE4B2B',
                     '#8b0000',
