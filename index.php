@@ -114,8 +114,8 @@
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    height: 890px;
-    width: 350px;
+    height:max-content;
+    width:max-content;
     padding: 20px;
     text-align: center;
     border-radius: 0px;
@@ -191,7 +191,7 @@ footer * {
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container">
-                <div class="d-flex justify-content-center my-3">
+                <div class="d-flex justify-content-center my-3 mx-3">
                     <form action="controller/login.php" method="post" enctype="multipart/form-data">  
                         <input type="hidden" name="accType" value="visitor">
                         <div class="form-group">
