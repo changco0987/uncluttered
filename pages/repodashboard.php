@@ -720,9 +720,31 @@
                                                                                             <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/version/<?php echo $versionRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
                                                                                         <?php
 
+                                                                                        /*
+                                                                                        //Temporary removed
                                                                                         //to check the file extension type that appropriate to be check
-                                                                                        $fileExtension = pathinfo($versionRow['filename'],PATHINFO_EXTENSION);
-                                                                                        echo $fileExtension;
+                                                                                        $updateExtension = pathinfo($updateRow['filename'],PATHINFO_EXTENSION);
+                                                                                        $versionExtension = pathinfo($versionRow['filename'],PATHINFO_EXTENSION);
+
+                                                                                        if(strtolower($updateExtension) == 'txt' ||
+                                                                                           strtolower($updateExtension) == 'doc' || 
+                                                                                           strtolower($updateExtension) == 'docx' ||
+                                                                                           strtolower($updateExtension) == 'pdf')
+                                                                                        {
+                                                                                            if(strtolower($versionExtension) == 'txt' ||
+                                                                                               strtolower($versionExtension) == 'doc' || 
+                                                                                               strtolower($versionExtension) == 'docx' ||
+                                                                                               strtolower($versionExtension) == 'pdf')
+                                                                                            {
+                                                                                                $fileData1 = file_get_contents("../upload/repoId". $repoRow['id'] ."/". $updateRow['filename']);
+                                                                                                $fileData2 = file_get_contents("../upload/repoId". $repoRow['id'] ."/version/". $versionRow['filename']);
+
+                                                                                                
+                                                                                                echo checkSimilarity($fileData1,$fileData2);
+
+                                                                                            }
+                                                                                        }
+                                                                                        */
                                  
 
                                                                                     }
