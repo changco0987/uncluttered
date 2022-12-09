@@ -18,7 +18,7 @@ body{
     border-radius: 15px;
     width: 400px;
     height: max-content;
-    box-shadow: 1px 1px 15px 3px black;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .myRow{

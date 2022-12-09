@@ -52,7 +52,7 @@
     padding: 5px;
     text-align: center;
     border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 }
 

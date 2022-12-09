@@ -35,11 +35,11 @@ label{
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     height: max-content;
-    width: 650px;
+    width: max-content;
     padding: 20px;
     text-align: center;
     border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     
 }
 
@@ -65,12 +65,12 @@ label{
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    height: 610px;
-    width: 400px;
+    height: max-content;
+    width: max-content;
     padding: 15px;
     text-align: center;
     border-radius: 15px;
-    box-shadow: -1px 1px 20px 6px black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 }
 
