@@ -15,6 +15,8 @@
     include_once '../db/tb_ideas.php';
     include_once '../model/ideasModel.php';
 
+    include_once '../controller/similarityChecker.php';
+
     session_start();
     if(!isset($_SESSION['username']))
     {
@@ -683,7 +685,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-<!--Unfinish part-->
+                                            <!--Version Row-->
                                                 <tr>
                                                     <td colspan="8">
                                                         <div id="collapseVersion<?php echo $updateRow['id'];?>" class="collapse my-1 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="background-color:#b5b9bb;">
@@ -712,11 +714,17 @@
                                                                                 
                                                                                 <?php
                                                                                     //This will only trigger if theres a file to download
-                                                                                    if($updateRow['filename']!="")
+                                                                                    if($versionRow['filename'] != "")
                                                                                     {
                                                                                         ?>
                                                                                             <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/version/<?php echo $versionRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
                                                                                         <?php
+
+                                                                                        //to check the file extension type that appropriate to be check
+                                                                                        $fileExtension = pathinfo($versionRow['filename'],PATHINFO_EXTENSION);
+                                                                                        echo $fileExtension;
+                                 
+
                                                                                     }
                                                                                 ?>
                                                                             </div>
