@@ -1091,7 +1091,7 @@ console.log(new Date().toLocaleString());
         {
             //This is for the other member message
 
-            var divData =   '<div class="d-flex justify-content-start">'+
+            var divData =   '<div class="d-flex justify-content-start my-2">'+
                                             '<div class="px-1 d-flex align-items-end">'+
                                                 '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">'+
                                             '</div>'+
