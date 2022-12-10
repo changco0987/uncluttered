@@ -76,6 +76,9 @@
     
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
     
+    <!-- JQuery for chat system in firebase -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
     <!--Chart.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.2/chart.min.js" integrity="sha512-zjlf0U0eJmSo1Le4/zcZI51ks5SjuQXkU0yOdsOBubjSmio9iCUp8XPLkEAADZNBdR9crRy3cniZ65LF2w8sRA==" crossorigin="anonymous"></script>
     
@@ -954,67 +957,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
-                        <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
-                            <div class="row mt-2">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" style="height:21rem;">
-                                        
-                                        <div class="d-flex justify-content-start">
-                                            <div class="otherMsg bg-primary px-2 py-2">
-                                            dasdasdasddsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa asdas dsa dsa dasd as dsa dasd asd asd ad asdsa dsa dad sad sads ads ad sad sad sad sa dsad asd asd sadas dddddddddddddddddddd
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-end my-2">
-                                            <div class="myMsg px-2 py-2">
-                                                dasdasdasddsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa asdas dsa dsa dasd as dsa dasd asd asd ad asdsa dsa dad sad sads ads ad sad sad sad sa dsad asd asd sadas dddddddddddddddddddd
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-start">
-                                            <div class="otherMsg bg-primary px-2 py-2 ">
-                                                dasdasdasd
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-end my-2">
-                                            <div class="myMsg px-2 py-2">
-                                                dasdasdasddsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa asdas dsa dsa dasd as dsa dasd asd asd ad asdsa dsa dad sad sads ads ad sad sad sad sa dsad asd asd sadas dddddddddddddddddddd
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="d-flex justify-content-start">
-                                            <div class="otherMsg bg-primary px-2 py-2">
-                                                dasdasdasd
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-end my-2">
-                                            <div class="myMsg px-2 py-2">
-                                                dasdasdasddsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa asdas dsa dsa dasd as dsa dasd asd asd ad asdsa dsa dad sad sads ads ad sad sad sad sa dsad asd asd sadas dddddddddddddddddddd
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" style="height:21rem;">
+                            <div id="allMsg">
 
-                            <div class="row mt-2">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="input-group">
-                                        <textarea type="text" class="form-control form-control-sm mr-1" name="repoNameTb" id="repoNameTb" placeholder="Write a message..." maxlength="200" required style="height: 2.5rem;"></textarea>
-                                        <button type="submit" class="btn bg-success" name="submitRepo" style="color:whitesmoke;"><i class="bi bi-send"></i></button>
-                                    </div>
-                                </div>
                             </div>
-                    </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="input-group">
+                                <textarea type="text" class="form-control form-control-sm mr-1" name="messageTb" id="message" placeholder="Write a message..." maxlength="200" required style="height: 2.5rem; max-height: 2.5rem;"></textarea>
+                                <button type="submit" class="btn bg-success" name="sendMsg" id="sendMsg" style="color:whitesmoke;"><i class="bi bi-send"></i></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 
-    
 
-    
-    
 
     <?php
         if(isset($_GET['updateRes']))
@@ -1058,6 +1026,102 @@
     ?>
 
 </body>
+
+<script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+import { getDatabase, set, ref, push, child, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyAS14_LkpIZA55I1BlI0PfTNVkSxuShWCE",
+    authDomain: "collaboratorychat.firebaseapp.com",
+    projectId: "collaboratorychat",
+    storageBucket: "collaboratorychat.appspot.com",
+    messagingSenderId: "843037096034",
+    appId: "1:843037096034:web:8bbec1e76e2a2c3d28393b",
+    measurementId: "G-LXPLGYM2Q6",
+    databaseURL: "https://collaboratorychat-default-rtdb.asia-southeast1.firebasedatabase.app/"
+};
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const analytics = getAnalytics(app);
+
+console.log(new Date().toLocaleString());
+
+    var message = $('#message').val();
+    var myId = <?php echo $userRow['id']?>;
+    var currRepoId = <?php echo $repoRow['id']?>;
+    var myName = <?php echo json_encode($userRow['username'])?>;
+    var myImage = <?php echo json_encode($userRow['imageName'])?>;
+
+    /*
+        console.log(message);
+        console.log(myId);
+        console.log(currRepoId);
+        console.log(myName);
+        console.log(myImage);
+    */
+
+    const id = push(child(ref(database), 'messages')).key;
+
+    $("#sendMsg").click(function(){
+    var message = $('#message').val();
+            set(ref(database, 'messages/' + id),{
+                repoId: currRepoId,
+                userId: myId,
+                name: myName,
+                message: message,
+                imageName: myImage,
+                time: new Date().toLocaleString()
+            });
+        
+            //alert('message has sent');
+    });
+    const newMsg = ref(database, 'messages/');
+    onChildAdded(newMsg, (data) => {
+        if(data.val().name != myName)
+        {
+            //This is for the other member message
+
+            var divData =   '<div class="d-flex justify-content-start">'+
+                                            '<div class="px-1 d-flex align-items-end">'+
+                                                '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">'+
+                                            '</div>'+
+                                            '<div class="otherMsg bg-primary px-2 py-2">'+
+                                                data.val().message+
+                                            '</div>'+
+                                        '</div>';
+
+
+            var d1 = document.getElementById('allMsg');
+            d1.insertAdjacentHTML('beforebegin', divData);
+        }
+        else
+        {
+            //This is for the user message
+
+            var divData = '<div class="d-flex justify-content-end my-2">'+
+                                            '<div class="myMsg px-2 py-2">'+
+                                                data.val().message+
+                                            '</div>'+
+                                            '<div class="px-1 d-flex align-items-end">'+
+                                                '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">'+
+                                            '</div>'+
+                                        '</div>';
+            
+            var d1 = document.getElementById('allMsg');
+            d1.insertAdjacentHTML('beforebegin', divData);
+        }
+    });
+</script>
 <script>
     var total = myContri+memberContri;
     var percentage = myContri/total;
