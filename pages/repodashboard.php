@@ -959,10 +959,10 @@
                 <div class="modal-body">
                     <div class="row mt-2">
                         <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" style="height:21rem;">
-                            <div id="allMsg">
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" id="msgBody1" style="height:21rem;">
+                                <div id="allMsg">
 
-                            </div>
+                                </div>
                                 
                             </div>
                         </div>
@@ -972,7 +972,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="input-group">
                                 <textarea type="text" class="form-control form-control-sm mr-1" name="messageTb" id="message" placeholder="Write a message..." maxlength="200" required style="height: 2.5rem; max-height: 2.5rem;"></textarea>
-                                <button type="submit" class="btn bg-success" name="sendMsg" id="sendMsg" style="color:whitesmoke;"><i class="bi bi-send"></i></button>
+                                <button type="button" class="btn bg-success" name="sendMsg" id="sendMsg" style="color:whitesmoke;"><i class="bi bi-send"></i></button>
                             </div>
                         </div>
                     </div>
@@ -1056,7 +1056,7 @@ const analytics = getAnalytics(app);
 
 console.log(new Date().toLocaleString());
 
-    var message = $('#message').val();
+    //var message = $('#message').val();
     var myId = <?php echo $userRow['id']?>;
     var currRepoId = <?php echo $repoRow['id']?>;
     var myName = <?php echo json_encode($userRow['username'])?>;
@@ -1070,10 +1070,11 @@ console.log(new Date().toLocaleString());
         console.log(myImage);
     */
 
-    const id = push(child(ref(database), 'messages')).key;
 
     $("#sendMsg").click(function(){
-    var message = $('#message').val();
+        
+    var id = push(child(ref(database), 'messages')).key;
+    var message = document.getElementById('message').value;
             set(ref(database, 'messages/' + id),{
                 repoId: currRepoId,
                 userId: myId,
@@ -1082,7 +1083,8 @@ console.log(new Date().toLocaleString());
                 imageName: myImage,
                 time: new Date().toLocaleString()
             });
-        
+
+        $('#message').val('');
             //alert('message has sent');
     });
     const newMsg = ref(database, 'messages/');
@@ -1101,8 +1103,8 @@ console.log(new Date().toLocaleString());
                                         '</div>';
 
 
-            var d1 = document.getElementById('allMsg');
-            d1.insertAdjacentHTML('beforebegin', divData);
+            var msgContainer = document.getElementById('allMsg');
+            msgContainer.insertAdjacentHTML('beforebegin', divData);
         }
         else
         {
@@ -1117,12 +1119,15 @@ console.log(new Date().toLocaleString());
                                             '</div>'+
                                         '</div>';
             
-            var d1 = document.getElementById('allMsg');
-            d1.insertAdjacentHTML('beforebegin', divData);
+            var msgContainer = document.getElementById('allMsg');
+            msgContainer.insertAdjacentHTML('beforebegin', divData);
         }
     });
 </script>
 <script>
+    var objDiv = document.getElementById("msgBody1");
+    objDiv.scrollTop = objDiv.scrollHeight;
+
     var total = myContri+memberContri;
     var percentage = myContri/total;
     percentage = percentage*100;
