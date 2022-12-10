@@ -921,14 +921,34 @@
             </div>
         </div>
     </div>
+    <style>
+        .myMsg{
+            background-color: #53d769;
+            color: #fdfdfd;
+            width: fit-content;
+            max-width: 25rem;
+            border-radius: 12px;
+        }
+
+        .otherMsg{
+            background-color: #218aff;
+            color: #fdfdfd;
+            width: fit-content;
+            max-width: 25rem;
+            border-radius: 12px;
+        }
+        #myChatModal{
+            height: 500px;
+        }
+    </style>
 
     
     <!-- Test Chat Modal -->
     <div class="modal fade" id="chatModal" tabindex="1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
-            <div class="modal-content" style="border-radius:12px;">
+            <div class="modal-content" style="border-radius:12px;" id="myChatModal">
                 <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
-                    <h5 class="modal-title" id="accSettModalLongTitle"><i class="bi bi-pen"></i> Create Post</h5>
+                    <h5 class="modal-title" id="accSettModalLongTitle" style="font-size: 18px;"><i class="bi bi-envelope"></i> Group Chat</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -937,37 +957,51 @@
                     <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
                         <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                        <label for="titleTb">Title</label>
-                                        <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTb" placeholder="Write a title" maxlength="50" required/>
+                            <div class="row mt-2">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" style="height:21rem;">
                                         
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                        <label for="fileTb">Attach File:</label>
-                                        <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
+                                        <div class="d-flex justify-content-start">
+                                            <div class="otherMsg bg-primary px-2 py-2">
+                                            dasdasdasddsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa asdas dsa dsa dasd as dsa dasd asd asd ad asdsa dsa dad sad sads ads ad sad sad sad sa dsad asd asd sadas dddddddddddddddddddd
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end my-2">
+                                            <div class="myMsg px-2 py-2">
+                                                dasdasdasddsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa asdas dsa dsa dasd as dsa dasd asd asd ad asdsa dsa dad sad sads ads ad sad sad sad sa dsad asd asd sadas dddddddddddddddddddd
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-start">
+                                            <div class="otherMsg bg-primary px-2 py-2 ">
+                                                dasdasdasd
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end my-2">
+                                            <div class="myMsg px-2 py-2">
+                                                dasdasdasddsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa asdas dsa dsa dasd as dsa dasd asd asd ad asdsa dsa dad sad sads ads ad sad sad sad sa dsad asd asd sadas dddddddddddddddddddd
+                                            </div>
+                                        </div>
                                         
+                                        <div class="d-flex justify-content-start">
+                                            <div class="otherMsg bg-primary px-2 py-2">
+                                                dasdasdasd
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end my-2">
+                                            <div class="myMsg px-2 py-2">
+                                                dasdasdasddsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa asdas dsa dsa dasd as dsa dasd asd asd ad asdsa dsa dad sad sads ads ad sad sad sad sa dsad asd asd sadas dddddddddddddddddddd
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                        <textarea name="noteTb" id="notePostTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength(this.id,'postLengthTxt')"></textarea>
-                                        <span class="d-flex justify-content-end"><p id="postLengthTxt">0/500</p></span>
+                            <div class="row mt-2">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="input-group">
+                                        <textarea type="text" class="form-control form-control-sm mr-1" name="repoNameTb" id="repoNameTb" placeholder="Write a message..." maxlength="200" required style="height: 2.5rem;"></textarea>
+                                        <button type="submit" class="btn bg-success" name="submitRepo" style="color:whitesmoke;"><i class="bi bi-send"></i></button>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
                                 </div>
                             </div>
                     </form>
