@@ -241,7 +241,7 @@
     <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel" style="font-size: 12px;"><?php echo $userRow['username'];?></h6>
     <hr style="height:2px; border-width:0;background-color: #39445c;">
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="repodashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
-    <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
+    <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="collapse" data-target="#collapseMaintenance" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
         <div id="collapseMaintenance" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
             <div class="py-2 collapse-inner rounded mx-4">
@@ -861,6 +861,8 @@ console.log(repoMember);
                         '#1e90ff'
 
                     ],
+                    borderColor: 'black',
+                    borderWidth: 1,
                     fill: true,
                     spanGaps: true
                 },
@@ -883,6 +885,8 @@ console.log(repoMember);
                         '#1e90ff'
 
                     ],
+                    borderColor: 'black',
+                    borderWidth: 1,
                     fill: true,
                     spanGaps: true
                 }]

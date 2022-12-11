@@ -946,7 +946,7 @@
     </style>
 
     
-    <!-- Test Chat Modal -->
+    <!-- Chat Modal -->
     <div class="modal fade" id="chatModal" tabindex="1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
             <div class="modal-content" style="border-radius:12px;" id="myChatModal">
@@ -1088,6 +1088,7 @@ console.log(new Date().toLocaleString());
     });
     const newMsg = ref(database, 'messages/');
     onChildAdded(newMsg, (data) => {
+
         //This will filter all messages that belongs to this repository
         if(data.val().repoId == currRepoId)
         {
@@ -1149,12 +1150,10 @@ console.log(new Date().toLocaleString());
             
             $('#msgBody1').stop(false,true);
             
-  /*          
-            var messageBody = document.querySelector('#msgBody1');
-messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
-*/
+
         }
     });
+    
     
 </script>
 <script>
