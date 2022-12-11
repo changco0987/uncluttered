@@ -943,6 +943,9 @@
         #myChatModal{
             height: 500px;
         }
+        #msgBody1{
+            overflow:auto; display:flex; flex-direction:column-reverse;
+        }
     </style>
 
     
@@ -1126,18 +1129,22 @@ console.log(new Date().toLocaleString());
                 var msgContainer = document.getElementById('allMsg');
                 msgContainer.insertAdjacentHTML('beforebegin', divData);
             }
+  /*          
+            var messageBody = document.querySelector('#msgBody1');
+messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+*/
         }
     });
 </script>
 <script>
-    var objDiv = document.getElementById("msgBody1");
-    objDiv.scrollTop = objDiv.scrollHeight;
 
+    //To get my contribution
     var total = myContri+memberContri;
     var percentage = myContri/total;
     percentage = percentage*100;
     dataStat.push(Math.round(percentage));
 
+    //To get member contribution
     percentage = memberContri/total;
     percentage = percentage*100;
     dataStat.push(Math.round(percentage));
