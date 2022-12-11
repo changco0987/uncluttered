@@ -943,9 +943,6 @@
         #myChatModal{
             height: 500px;
         }
-        #msgBody1{
-            overflow:auto; display:flex; flex-direction:column-reverse;
-        }
     </style>
 
     
@@ -966,7 +963,6 @@
                                 <div id="allMsg">
 
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -1087,7 +1083,7 @@ console.log(new Date().toLocaleString());
                 time: new Date().toLocaleString()
             });
 
-        $('#message').val('');
+    $('#message').val('');
             //alert('message has sent');
     });
     const newMsg = ref(database, 'messages/');
@@ -1129,6 +1125,7 @@ console.log(new Date().toLocaleString());
                 var msgContainer = document.getElementById('allMsg');
                 msgContainer.insertAdjacentHTML('beforebegin', divData);
             }
+            $('#msgBody1').animate({scrollTop: 9999});
   /*          
             var messageBody = document.querySelector('#msgBody1');
 messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
