@@ -1147,7 +1147,7 @@ console.log(new Date().toLocaleString());
 
             $('#msgBody1').animate({scrollTop: 9999});
             
-    $('#msgBody1').stop(false,true);
+            $('#msgBody1').stop(false,true);
             
   /*          
             var messageBody = document.querySelector('#msgBody1');

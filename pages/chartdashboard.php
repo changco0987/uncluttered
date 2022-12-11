@@ -418,18 +418,12 @@
     </div>
     
     <!-- 3rd main div in content-->
-    <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded bg-danger">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded border bg-light">
-            
-        </div>
+    <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
 
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-light rounded border">
             <div class="chart-container mx-auto">
-                <canvas id="pie1"style="width: 100px; height: 345px;"></canvas>
+                <canvas id="bar1"style="width: 100px; height: 35px;"></canvas>
             </div>
-        </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 bg-light rounded border">
-            
         </div>
     </div>
     
@@ -785,9 +779,9 @@ console.log(repoMember);
                     '#BE1818',
                     '#0047AB',
                     '#FF00FF',
-                    '#FF0000',
+                    '#925cff',
                     '#008000',
-                    '#FFFF00',
+                    '#fff75c',
                     '#00FFFF',
                     '#ffa500',
                     '#9400d3',
@@ -809,9 +803,9 @@ console.log(repoMember);
                     '#BE1818',
                     '#0047AB',
                     '#FF00FF',
-                    '#FF0000',
+                    '#925cff',
                     '#008000',
-                    '#FFFF00',
+                    '#fff75c',
                     '#00FFFF',
                     '#ffa500',
                     '#9400d3',
@@ -840,5 +834,71 @@ console.log(repoMember);
             }
         }
     });
+
+
+    
+    var ctx3 = document.getElementById("bar1").getContext('2d');
+        var myline = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: repoMember,
+                datasets: [{
+                    label: 'HEADCOUNT',
+                    data: memberUpdates,
+                    backgroundColor: [
+                        '#BE1818',
+                        '#0047AB',
+                        '#FF00FF',
+                        '#925cff',
+                        '#008000',
+                        '#fff75c',
+                        '#00FFFF',
+                        '#ffa500',
+                        '#9400d3',
+                        '#808080',
+                        '#00ffff',
+                        '#8fbc8f',
+                        '#1e90ff'
+
+                    ],
+                    fill: true,
+                    spanGaps: true
+                },
+                {
+                    label: 'Percent',
+                    data: dataStats,
+                    backgroundColor: [
+                        '#BE1818',
+                        '#0047AB',
+                        '#FF00FF',
+                        '#925cff',
+                        '#008000',
+                        '#fff75c',
+                        '#00FFFF',
+                        '#ffa500',
+                        '#9400d3',
+                        '#808080',
+                        '#00ffff',
+                        '#8fbc8f',
+                        '#1e90ff'
+
+                    ],
+                    fill: true,
+                    spanGaps: true
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Interaction',
+                        fontSize: 300
+                    },
+                    legend:{
+                        display: true
+                    }
+                }
+            }
+        });
 </script>
 </html>
