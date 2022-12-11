@@ -961,7 +961,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" id="msgBody1" style="height:21rem;">
                                 <div id="allMsg">
-
+                                    <!-- This where the message inserted in JQuery-->
                                 </div>
                             </div>
                         </div>
@@ -1096,9 +1096,18 @@ console.log(new Date().toLocaleString());
             {
                 //This is for the other member message
 
+                //this will check the file origin of the image of user
+                if(data.val().imageName!=null && data.val().imageName!="")
+                {
+                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+                else
+                {
+                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
                 var divData =   '<div class="d-flex justify-content-start my-2">'+
                                                 '<div class="px-1 d-flex align-items-end">'+
-                                                    '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">'+
+                                                    imageFile+
                                                 '</div>'+
                                                 '<div class="otherMsg bg-primary px-2 py-2">'+
                                                     data.val().message+
@@ -1108,30 +1117,45 @@ console.log(new Date().toLocaleString());
 
                 var msgContainer = document.getElementById('allMsg');
                 msgContainer.insertAdjacentHTML('beforebegin', divData);
+
             }
             else
             {
                 //This is for the user message
 
+                //this will check the file origin of the image of user
+                if(data.val().imageName!=null && data.val().imageName!="")
+                {
+                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+                else
+                {
+                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
                 var divData = '<div class="d-flex justify-content-end my-2">'+
                                                 '<div class="myMsg px-2 py-2">'+
                                                     data.val().message+
                                                 '</div>'+
                                                 '<div class="px-1 d-flex align-items-end">'+
-                                                    '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">'+
+                                                imageFile+
                                                 '</div>'+
                                             '</div>';
                 
                 var msgContainer = document.getElementById('allMsg');
                 msgContainer.insertAdjacentHTML('beforebegin', divData);
             }
+
             $('#msgBody1').animate({scrollTop: 9999});
+            
+    $('#msgBody1').stop(false,true);
+            
   /*          
             var messageBody = document.querySelector('#msgBody1');
 messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
 */
         }
     });
+    
 </script>
 <script>
 
