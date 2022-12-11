@@ -242,7 +242,7 @@
     <hr style="height:2px; border-width:0;background-color: #39445c;">
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="repodashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
     <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
-    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="collapse" data-target="#collapseMaintenance" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
         <div id="collapseMaintenance" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
             <div class="py-2 collapse-inner rounded mx-4">
                 <h6 class="collapse-header" style="font-size: 13px;"></h6>
@@ -553,7 +553,42 @@
     </div>
 
 
-    
+        
+    <!-- Chat Modal -->
+    <div class="modal fade" id="chatModal" tabindex="1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
+            <div class="modal-content" style="border-radius:12px;" id="myChatModal">
+                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                    <h5 class="modal-title" id="accSettModalLongTitle" style="font-size: 18px;"><i class="bi bi-envelope"></i> Group Chat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" id="msgBody1" style="height:21rem;">
+                                <div id="allMsg">
+                                    <!-- This where the message inserted in JQuery-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="input-group">
+                                <textarea type="text" class="form-control form-control-sm mr-1" name="messageTb" id="message" placeholder="Write a message..." maxlength="200" required style="height: 2.5rem; max-height: 2.5rem;"></textarea>
+                                <button type="button" class="btn bg-success" name="sendMsg" id="sendMsg" style="color:whitesmoke;"><i class="bi bi-send"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     
     
