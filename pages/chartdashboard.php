@@ -71,6 +71,9 @@
     
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
     
+    <!-- JQuery for chat system in firebase -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <!--Chart.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.2/chart.min.js" integrity="sha512-zjlf0U0eJmSo1Le4/zcZI51ks5SjuQXkU0yOdsOBubjSmio9iCUp8XPLkEAADZNBdR9crRy3cniZ65LF2w8sRA==" crossorigin="anonymous"></script>
     
@@ -552,6 +555,26 @@
         </div>
     </div>
 
+    <style>
+        .myMsg{
+            background-color: #53d769;
+            color: #fdfdfd;
+            width: fit-content;
+            max-width: 25rem;
+            border-radius: 12px;
+        }
+
+        .otherMsg{
+            background-color: #218aff;
+            color: #fdfdfd;
+            width: fit-content;
+            max-width: 25rem;
+            border-radius: 12px;
+        }
+        #myChatModal{
+            height: 500px;
+        }
+    </style>
 
         
     <!-- Chat Modal -->
@@ -635,6 +658,138 @@
     ?>
 
 </body>
+
+<!-- Script for chat system-->
+<script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+import { getDatabase, set, ref, push, child, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyAS14_LkpIZA55I1BlI0PfTNVkSxuShWCE",
+    authDomain: "collaboratorychat.firebaseapp.com",
+    projectId: "collaboratorychat",
+    storageBucket: "collaboratorychat.appspot.com",
+    messagingSenderId: "843037096034",
+    appId: "1:843037096034:web:8bbec1e76e2a2c3d28393b",
+    measurementId: "G-LXPLGYM2Q6",
+    databaseURL: "https://collaboratorychat-default-rtdb.asia-southeast1.firebasedatabase.app/"
+};
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const analytics = getAnalytics(app);
+
+console.log(new Date().toLocaleString());
+
+    //var message = $('#message').val();
+    var myId = <?php echo $userRow['id']?>;
+    var currRepoId = <?php echo $repoRow['id']?>;
+    var myName = <?php echo json_encode($userRow['username'])?>;
+    var myImage = <?php echo json_encode($userRow['imageName'])?>;
+
+    /*
+        console.log(message);
+        console.log(myId);
+        console.log(currRepoId);
+        console.log(myName);
+        console.log(myImage);
+    */
+
+
+    $("#sendMsg").click(function(){
+        
+    var id = push(child(ref(database), 'messages')).key;
+    var message = document.getElementById('message').value;
+            set(ref(database, 'messages/' + id),{
+                repoId: currRepoId,
+                userId: myId,
+                name: myName,
+                message: message,
+                imageName: myImage,
+                time: new Date().toLocaleString()
+            });
+
+    $('#message').val('');
+            //alert('message has sent');
+    });
+    const newMsg = ref(database, 'messages/');
+    onChildAdded(newMsg, (data) => {
+
+        //This will filter all messages that belongs to this repository
+        if(data.val().repoId == currRepoId)
+        {
+
+            if(data.val().name != myName)
+            {
+                //This is for the other member message
+
+                //this will check the file origin of the image of user
+                if(data.val().imageName!=null && data.val().imageName!="")
+                {
+                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+                else
+                {
+                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+                var divData =   '<div class="d-flex justify-content-start my-2">'+
+                                                '<div class="px-1 d-flex align-items-end">'+
+                                                    imageFile+
+                                                '</div>'+
+                                                '<div class="otherMsg bg-primary px-2 py-2">'+
+                                                    data.val().message+
+                                                '</div>'+
+                                            '</div>';
+
+
+                var msgContainer = document.getElementById('allMsg');
+                msgContainer.insertAdjacentHTML('beforebegin', divData);
+
+            }
+            else
+            {
+                //This is for the user message
+
+                //this will check the file origin of the image of user
+                if(data.val().imageName!=null && data.val().imageName!="")
+                {
+                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+                else
+                {
+                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+                var divData = '<div class="d-flex justify-content-end my-2">'+
+                                                '<div class="myMsg px-2 py-2">'+
+                                                    data.val().message+
+                                                '</div>'+
+                                                '<div class="px-1 d-flex align-items-end">'+
+                                                imageFile+
+                                                '</div>'+
+                                            '</div>';
+                
+                var msgContainer = document.getElementById('allMsg');
+                msgContainer.insertAdjacentHTML('beforebegin', divData);
+            }
+
+            $('#msgBody1').animate({scrollTop: 9999});
+            
+            $('#msgBody1').stop(false,true);
+            
+
+        }
+    });
+    
+    
+</script>
 <script>
    /* var total = myContri+memberContri;
     var percentage = myContri/total;
@@ -878,7 +1033,7 @@ console.log(repoMember);
             data: {
                 labels: repoMember,
                 datasets: [{
-                    label: 'HEADCOUNT',
+                    label: 'Actual Messages',
                     data: memberUpdates,
                     backgroundColor: [
                         '#BE1818',
@@ -902,8 +1057,8 @@ console.log(repoMember);
                     spanGaps: true
                 },
                 {
-                    label: 'Percent',
-                    data: dataStats,
+                    label: 'Percentage (%)',
+                    data: memberUpdates,
                     backgroundColor: [
                         '#BE1818',
                         '#0047AB',
