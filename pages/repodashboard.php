@@ -1089,38 +1089,43 @@ console.log(new Date().toLocaleString());
     });
     const newMsg = ref(database, 'messages/');
     onChildAdded(newMsg, (data) => {
-        if(data.val().name != myName)
+        //This will filter all messages that belongs to this repository
+        if(data.val().repoId == currRepoId)
         {
-            //This is for the other member message
 
-            var divData =   '<div class="d-flex justify-content-start my-2">'+
-                                            '<div class="px-1 d-flex align-items-end">'+
-                                                '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">'+
-                                            '</div>'+
-                                            '<div class="otherMsg bg-primary px-2 py-2">'+
-                                                data.val().message+
-                                            '</div>'+
-                                        '</div>';
+            if(data.val().name != myName)
+            {
+                //This is for the other member message
+
+                var divData =   '<div class="d-flex justify-content-start my-2">'+
+                                                '<div class="px-1 d-flex align-items-end">'+
+                                                    '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">'+
+                                                '</div>'+
+                                                '<div class="otherMsg bg-primary px-2 py-2">'+
+                                                    data.val().message+
+                                                '</div>'+
+                                            '</div>';
 
 
-            var msgContainer = document.getElementById('allMsg');
-            msgContainer.insertAdjacentHTML('beforebegin', divData);
-        }
-        else
-        {
-            //This is for the user message
+                var msgContainer = document.getElementById('allMsg');
+                msgContainer.insertAdjacentHTML('beforebegin', divData);
+            }
+            else
+            {
+                //This is for the user message
 
-            var divData = '<div class="d-flex justify-content-end my-2">'+
-                                            '<div class="myMsg px-2 py-2">'+
-                                                data.val().message+
-                                            '</div>'+
-                                            '<div class="px-1 d-flex align-items-end">'+
-                                                '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">'+
-                                            '</div>'+
-                                        '</div>';
-            
-            var msgContainer = document.getElementById('allMsg');
-            msgContainer.insertAdjacentHTML('beforebegin', divData);
+                var divData = '<div class="d-flex justify-content-end my-2">'+
+                                                '<div class="myMsg px-2 py-2">'+
+                                                    data.val().message+
+                                                '</div>'+
+                                                '<div class="px-1 d-flex align-items-end">'+
+                                                    '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">'+
+                                                '</div>'+
+                                            '</div>';
+                
+                var msgContainer = document.getElementById('allMsg');
+                msgContainer.insertAdjacentHTML('beforebegin', divData);
+            }
         }
     });
 </script>
