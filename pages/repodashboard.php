@@ -926,6 +926,7 @@
     </div>
     <style>
         .myMsg{
+            font-size: 14px;
             background-color: #53d769;
             color: #fdfdfd;
             width: fit-content;
@@ -934,6 +935,7 @@
         }
 
         .otherMsg{
+            font-size: 14px;
             background-color: #218aff;
             color: #fdfdfd;
             width: fit-content;
@@ -942,6 +944,10 @@
         }
         #myChatModal{
             height: 500px;
+        }
+        .chatName{
+            font-weight: lighter;
+            font-size: 13px;
         }
     </style>
 
@@ -1101,17 +1107,18 @@ console.log(new Date().toLocaleString());
                 //this will check the file origin of the image of user
                 if(data.val().imageName!=null && data.val().imageName!="")
                 {
-                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
                 }
                 else
                 {
-                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
                 }
                 var divData =   '<div class="d-flex justify-content-start my-2">'+
                                                 '<div class="px-1 d-flex align-items-end">'+
                                                     imageFile+
                                                 '</div>'+
                                                 '<div class="otherMsg bg-primary px-2 py-2">'+
+                                                    '<p class="chatName">'+data.val().name+'</p>'+
                                                     data.val().message+
                                                 '</div>'+
                                             '</div>';
@@ -1128,14 +1135,15 @@ console.log(new Date().toLocaleString());
                 //this will check the file origin of the image of user
                 if(data.val().imageName!=null && data.val().imageName!="")
                 {
-                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
                 }
                 else
                 {
-                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;">';
+                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
                 }
                 var divData = '<div class="d-flex justify-content-end my-2">'+
                                                 '<div class="myMsg px-2 py-2">'+
+                                                    '<p class="chatName">'+data.val().name+'</p>'+
                                                     data.val().message+
                                                 '</div>'+
                                                 '<div class="px-1 d-flex align-items-end">'+
@@ -1158,6 +1166,7 @@ console.log(new Date().toLocaleString());
     
 </script>
 <script>
+
 
     //To get my contribution
     var total = myContri+memberContri;
