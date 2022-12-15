@@ -339,7 +339,9 @@
         var memberUpdates = [];
         var repoMember = [];
         var updateTotal = 0;
-        
+        var chatInteraction = [];
+        var interactionPercent = [];
+        var chatTotal = 0;
         //console.log(repoMember);
     </script>
     <?php
@@ -389,7 +391,9 @@
                         percent = percent*100;
                         console.log(Math.round(percent));
                         memberUpdates.push(Math.round(percent));
-                        repoMember.push(<?php echo json_encode($memberRow['lastname']); ?>);
+                        chatInteraction.push(0);//This will only inserted to make the chatInteraction array have a same array length as the repoMember
+                        interactionPercent.push(0);//This will only inserted to make the interactionPercent array have a same array length as the repoMember
+                        repoMember.push(<?php echo json_encode($memberRow['username']); ?>);
                     </script>
                 <?php
             }
@@ -699,6 +703,7 @@ console.log(new Date().toLocaleString());
     var myId = <?php echo $userRow['id']?>;
     var currRepoId = <?php echo $repoRow['id']?>;
     var myName = <?php echo json_encode($userRow['username'])?>;
+    var myLastName = <?php echo json_encode($userRow['lastname'])?>;
     var myImage = <?php echo json_encode($userRow['imageName'])?>;
 
     /*
@@ -718,6 +723,7 @@ console.log(new Date().toLocaleString());
                 repoId: currRepoId,
                 userId: myId,
                 name: myName,
+                lastname: myLastName,
                 message: message,
                 imageName: myImage,
                 time: new Date().toLocaleString()
@@ -736,6 +742,10 @@ console.log(new Date().toLocaleString());
             if(data.val().name != myName)
             {
                 //This is for the other member message
+
+                //This will get the index position of the name in the array
+                chatInteraction[repoMember.indexOf(data.val().name)] += 1;
+                chatTotal++;
 
                 //this will check the file origin of the image of user
                 if(data.val().imageName!=null && data.val().imageName!="")
@@ -761,9 +771,14 @@ console.log(new Date().toLocaleString());
                 msgContainer.insertAdjacentHTML('beforebegin', divData);
 
             }
-            else
+            else if(data.val().name == myName)
             {
                 //This is for the user message
+
+                //This will get the index position of the name in the array
+                chatInteraction[repoMember.indexOf(data.val().name)] += 1;
+                chatTotal+=1;
+                
 
                 //this will check the file origin of the image of user
                 if(data.val().imageName!=null && data.val().imageName!="")
@@ -795,8 +810,22 @@ console.log(new Date().toLocaleString());
 
         }
     });
+    /*
+    var delayInMilliseconds = 1000; //1 second
+
+    setTimeout(function() {
+    //your code to be executed after 1 second
+    }, delayInMilliseconds);
     
-    
+    console.log('Mem: '+chatInteraction);
+    for(var count = 0; count < repoMember.length;count++)
+    {
+        var chatPercentage = chatInteraction[count]/chatTotal;
+        console.log("Total: "+chatInteraction.reduce(function(chatInteraction, val) { return chatInteraction + val; }, 0));
+        chatPercentage = chatPercentage*100;
+        interactionPercent[count] = Math.round(chatPercentage);
+    }
+    */
 </script>
 <script>
    /* var total = myContri+memberContri;
@@ -962,6 +991,7 @@ console.log(new Date().toLocaleString());
     });
 */
 
+console.log(interactionPercent);
 console.log(repoMember);
     var ctx2 = document.getElementById("line1").getContext('2d');
     var datasets = [43,54,45,32,16,15,51,18];
@@ -1033,7 +1063,6 @@ console.log(repoMember);
         }
     });
 
-
     
     var ctx3 = document.getElementById("bar1").getContext('2d');
         var myline = new Chart(ctx3, {
@@ -1042,7 +1071,7 @@ console.log(repoMember);
                 labels: repoMember,
                 datasets: [{
                     label: 'Actual Messages',
-                    data: memberUpdates,
+                    data: chatInteraction,
                     backgroundColor: [
                         '#BE1818',
                         '#0047AB',
