@@ -274,7 +274,7 @@
         <div class="py-2 collapse-inner rounded mx-4">
             <h6 class="collapse-header text-light" style="font-size: 13px;">Settings</h6>
 
-              <button type="button" onclick="gotoLogs()" class="collapse-item btn btn-sm my-1 collapseBtn"><i class="bi bi-gear"></i> Account</button><br>
+            <button type="button" class="collapse-item btn btn-sm my-1 collapseBtn"  data-toggle="modal" data-target="#accSettModal" style="color: whitesmoke;" id="accSettBtn"><i class="bi bi-gear"></i> Account</button><br>
              
               <button type="button" class="collapse-item btn btn-sm my-1 collapseBtn" id="repoSettBtn" data-toggle="modal" data-target="#editRepoModal"><i class="bi bi-wrench-adjustable-circle"></i> Repository</button><br>
               <?php
@@ -553,6 +553,97 @@
                                     <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Submit Changes</button>
                                 </div>
                             </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     
+    <!-- Account Settings Modal -->
+    <div class="modal fade" id="accSettModal" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
+            <div class="modal-content" style="border-radius:12px;">
+                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
+                    <h5 class="modal-title" id="accSettModalLongTitle">Account Settings</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="../controller/editAccount.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="idTb" value="<?php echo $userRow['id'];?>">
+                        <input type="hidden" name="imageNameTb" value="<?php echo $userRow['imageName'];?>">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-2 mt-2 d-flex justify-content-center">
+                                    <?php
+                                        if($userRow['imageName'])
+                                        {
+                                            ?>
+                                                <img src="../upload/userImage/<?php echo $userRow['imageName'];?>" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
+                                            <?php
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                                <img src="../asset/user.png" width="90" height="90" class="d-inline-block align-top border border-dark" alt="" style="border-radius: 50%;" id="userImg">
+                                            <?php
+                                        }
+                                    ?>
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-2 mt-2 d-flex justify-content-center">
+                                    <div class="custom-file" style="width:fit-content;">
+                                        <input type="file" accept=".jpg, .png, .jpeg" class="custom-file-input" id="imgTb" name="imgTb">
+                                        <label class="custom-file-label text-left mt-2 pt-2" for="imgTb">Upload Photo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-2">
+                                    <label class="d-flex align-items-start" for="fnameTb">First name</label>
+                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="fnameTb" name="fnameTb" placeholder="Ex. Marie" maxlength="50" required value="<?php echo $userRow['firstname'];?>">
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 pt-2 mt-2">
+                                    <label class="d-flex align-items-start" for="lnameTb">Last name</label> 
+                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="lnameTb" name="lnameTb" placeholder="Ex. Cruz" maxlength="50" required value="<?php echo $userRow['lastname'];?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="usernameTb">Username</label>
+                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required value="<?php echo $userRow['username'];?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="passwordTb">New Password</label>
+                                    <input type="password" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20">
+                                    <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="emailTb">Email Address</label>
+                                    <input type="email" class="form-control form-control-plaintext border-primary border-bottom border-top-0 form-control-sm bg-light" id="emailTb" name="emailTb" placeholder="Ex. myMail@gmail.com" maxlength="100" required  value="<?php echo $userRow['email'];?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pb-1 mb-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -943,9 +1034,6 @@ console.log(new Date().toLocaleString());
         document.getElementById(txtLength).innerHTML = length.length+'/500';
     }
 
-
-        
-
 /*
     var ctx = document.getElementById("pie1").getContext('2d');
     var myChart = new Chart(ctx, {
@@ -1131,5 +1219,14 @@ console.log(repoMember);
                 }
             }
         });
+
+        
+    //this will make a image preview before it was uploaded
+    imgTb.onchange = evt => {
+    const [file] = imgTb.files
+    if (file) {
+        userImg.src = URL.createObjectURL(file)
+    }
+    }
 </script>
 </html>

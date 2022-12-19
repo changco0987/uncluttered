@@ -1492,5 +1492,14 @@ console.log(new Date().toLocaleString());
         }
     });
     */
+
+   
+    //this will make a image preview before it was uploaded
+    imgTb.onchange = evt => {
+    const [file] = imgTb.files
+    if (file) {
+        userImg.src = URL.createObjectURL(file)
+    }
+    }
 </script>
 </html>
