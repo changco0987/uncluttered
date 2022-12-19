@@ -423,15 +423,85 @@
             </div>
         </div>
     </div>
+    <style>
+                
+        .loadingUl{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,50%);
+            margin:0;
+            padding:0;
+            display:flex;
+
+        }
+
+        .loadingUl li {
+            list-style:none;
+            width:20px;
+            height:20px;
+            background:#2169ce;
+            margin:0 5px;
+            border-radius:50%;
+            animation:animate 1.4s linear infinite;
+        }
+
+        @keyframes animate{
+            0%{
+                transform:translateY(0);
+            }
+            60%{
+                transform:translateY(0);
+            }
+            80%{
+                transform:translateY(-20px);
+            }
+            
+            100%{
+                transform:translateY(0px);
+            }
+        }
+
+        .loadingUl li:nth-child(1){
+            animation-delay:-1.2s;
+        }
+
+        .loadingUl li:nth-child(2){
+            animation-delay:-1.0s;
+        }
+
+        .loadingUl li:nth-child(3){
+            animation-delay: -.8s;
+        }
+
+        .loadingUl li:nth-child(4){
+            animation-delay:-0.6s;
+        }
+
+
+    </style>
     
     <!-- 3rd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-light rounded border">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-light rounded border" id="barChartDiv" style="height: 24rem;">
             <div class="chart-container mx-auto">
+                
                 <canvas id="bar1"style="width: 100px; height: 35px;"></canvas>
+                
+            
+                <div id="loadingDiv">
+                    <ul class="loadingUl">
+                        <li class="loadingLi"> </li>
+                        <li class="loadingLi"> </li>
+                        <li class="loadingLi"> </li>
+                        <li class="loadingLi"> </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
+        
     </div>
     
 </div>
@@ -917,6 +987,7 @@ console.log(new Date().toLocaleString());
         interactionPercent[count] = Math.round(chatPercentage);
     }
     */
+    const myTimeout = setTimeout(barChart, 3000);
 </script>
 <script>
    /* var total = myContri+memberContri;
@@ -1151,8 +1222,11 @@ console.log(repoMember);
         }
     });
 
-    
-    var ctx3 = document.getElementById("bar1").getContext('2d');
+    function barChart()
+    {
+        $('#loadingDiv').hide();
+        $('#barChartDiv').css("height","");
+        var ctx3 = document.getElementById("bar1").getContext('2d');
         var myline = new Chart(ctx3, {
             type: 'bar',
             data: {
@@ -1219,6 +1293,9 @@ console.log(repoMember);
                 }
             }
         });
+    }
+    
+    
 
         
     //this will make a image preview before it was uploaded
