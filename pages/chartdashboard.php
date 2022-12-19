@@ -987,6 +987,8 @@ console.log(new Date().toLocaleString());
         interactionPercent[count] = Math.round(chatPercentage);
     }
     */
+
+    //To wait the data in chat interaction to fetch completely
     const myTimeout = setTimeout(barChart, 3000);
 </script>
 <script>
@@ -1226,6 +1228,14 @@ console.log(repoMember);
     {
         $('#loadingDiv').hide();
         $('#barChartDiv').css("height","");
+        for(var count = 0; count < repoMember.length;count++)
+        {
+            var chatPercentage = chatInteraction[count]/chatTotal;
+            console.log("Total: "+chatInteraction.reduce(function(chatInteraction, val) { return chatInteraction + val; }, 0));
+            chatPercentage = chatPercentage*100;
+            interactionPercent[count] = Math.round(chatPercentage);
+        }
+
         var ctx3 = document.getElementById("bar1").getContext('2d');
         var myline = new Chart(ctx3, {
             type: 'bar',
@@ -1257,7 +1267,7 @@ console.log(repoMember);
                 },
                 {
                     label: 'Percentage (%)',
-                    data: memberUpdates,
+                    data: interactionPercent,
                     backgroundColor: [
                         '#BE1818',
                         '#0047AB',
