@@ -1142,7 +1142,6 @@ const firebaseConfig = {
     databaseURL: "https://collaboratorychat-default-rtdb.asia-southeast1.firebasedatabase.app/"
 };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
@@ -1154,6 +1153,7 @@ console.log(new Date().toLocaleString());
     var myId = <?php echo $userRow['id']?>;
     var currRepoId = <?php echo $repoRow['id']?>;
     var myName = <?php echo json_encode($userRow['username'])?>;
+    var myLastName = <?php echo json_encode($userRow['lastname'])?>;
     var myImage = <?php echo json_encode($userRow['imageName'])?>;
 
     /*
@@ -1169,7 +1169,6 @@ console.log(new Date().toLocaleString());
         
     var id = push(child(ref(database), 'messages')).key;
     var message = document.getElementById('message').value;
-
     if(message.length>0 && message.replace(/\s/g, '').length!=0)
     {
         set(ref(database, 'messages/' + id),{
@@ -1186,6 +1185,7 @@ console.log(new Date().toLocaleString());
     }
             //alert('message has sent');
     });
+
     const newMsg = ref(database, 'messages/');
     onChildAdded(newMsg, (data) => {
 
@@ -1197,6 +1197,7 @@ console.log(new Date().toLocaleString());
             {
                 //This is for the other member message
 
+
                 //this will check the file origin of the image of user
                 if(data.val().imageName!=null && data.val().imageName!="")
                 {
@@ -1206,7 +1207,6 @@ console.log(new Date().toLocaleString());
                 {
                     var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
                 }
-
                 var divData =   '<div class="d-flex justify-content-start my-2">'+
                                                 '<div class="px-1 d-flex align-items-end">'+
                                                     imageFile+
@@ -1222,9 +1222,10 @@ console.log(new Date().toLocaleString());
                 msgContainer.insertAdjacentHTML('beforebegin', divData);
 
             }
-            else
+            else if(data.val().name == myName)
             {
                 //This is for the user message
+                
 
                 //this will check the file origin of the image of user
                 if(data.val().imageName!=null && data.val().imageName!="")
