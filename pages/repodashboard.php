@@ -1206,6 +1206,7 @@ console.log(new Date().toLocaleString());
                 {
                     var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
                 }
+                
                 var divData =   '<div class="d-flex justify-content-start my-2">'+
                                                 '<div class="px-1 d-flex align-items-end">'+
                                                     imageFile+

@@ -245,13 +245,7 @@
     <hr style="height:2px; border-width:0;background-color: #39445c;">
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="repodashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
     <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
-    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
-        <div id="collapseMaintenance" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
-            <div class="py-2 collapse-inner rounded mx-4">
-                <h6 class="collapse-header" style="font-size: 13px;"></h6>
-        
-            </div>
-        </div>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true" aria-controls="collapseMaintenance" onClick='scrollToBottom("userList");'><i class="bi bi-chat-dots mr-1"></i> Chat</a>
     <!--Health Record button-->
   <!--a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn"  href="#healthRecord" role="button" data-toggle="collapse" data-target="#collapseHealthRecord" aria-expanded="true" aria-controls="collapseHealthRecord"><i class="bi bi-card-checklist mr-1"></i> Health Records</a>
     <div id="collapseHealthRecord" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
@@ -333,6 +327,11 @@
         </div>
     </nav>
     <script>
+        
+    const scrollToBottom = (id) => {
+	 const element = document.getElementById(id);
+   element.scrollTop = element.scrollHeight;
+}
         var myContri = 0;
         var memberContri = 0;
         var dataStat = [];
@@ -1235,6 +1234,8 @@ console.log(repoMember);
             chatPercentage = chatPercentage*100;
             interactionPercent[count] = Math.round(chatPercentage);
         }
+
+     
 
         var ctx3 = document.getElementById("bar1").getContext('2d');
         var myline = new Chart(ctx3, {
