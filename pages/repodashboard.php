@@ -1169,16 +1169,21 @@ console.log(new Date().toLocaleString());
         
     var id = push(child(ref(database), 'messages')).key;
     var message = document.getElementById('message').value;
-            set(ref(database, 'messages/' + id),{
-                repoId: currRepoId,
-                userId: myId,
-                name: myName,
-                message: message,
-                imageName: myImage,
-                time: new Date().toLocaleString()
-            });
 
-    $('#message').val('');
+    if(message.length>0 && message.replace(/\s/g, '').length!=0)
+    {
+        set(ref(database, 'messages/' + id),{
+            repoId: currRepoId,
+            userId: myId,
+            name: myName,
+            lastname: myLastName,
+            message: message,
+            imageName: myImage,
+            time: new Date().toLocaleString()
+        });
+
+        $('#message').val('');
+    }
             //alert('message has sent');
     });
     const newMsg = ref(database, 'messages/');
