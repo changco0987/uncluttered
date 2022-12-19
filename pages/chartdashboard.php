@@ -245,23 +245,8 @@
     <hr style="height:2px; border-width:0;background-color: #39445c;">
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="repodashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
     <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
-    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true" aria-controls="collapseMaintenance" onClick='scrollToBottom("userList");'><i class="bi bi-chat-dots mr-1"></i> Chat</a>
-    <!--Health Record button-->
-  <!--a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn"  href="#healthRecord" role="button" data-toggle="collapse" data-target="#collapseHealthRecord" aria-expanded="true" aria-controls="collapseHealthRecord"><i class="bi bi-card-checklist mr-1"></i> Health Records</a>
-    <div id="collapseHealthRecord" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
-        <div class="py-2 collapse-inner rounded mx-4">
-            <h6 class="collapse-header" style="font-size: 13px;"></h6>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
 
-              <button type="button" onclick="gotoRecordStudent()" class="collapse-item btn btn-sm my-1 collapseBtn">Students</button><br>
-
-              <button type="button" onclick="gotoRecordFaculty()" class="collapse-item btn btn-sm my-1 collapseBtn">Faculty/Staff</button><br>
-              
-              <button type="button" onclick="gotoRecordVisitor()" class="collapse-item btn btn-sm my-1 collapseBtn">Visitors</button><br>
-          
-              <button type="button" onclick="gotoRecordGuardian()" class="collapse-item btn btn-sm my-1 collapseBtn">Guardians</button><br>
-      
-        </div>
-    </div-->
   
   <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn"  href="#about" role="button" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"><i class="bi bi-tools mr-1"></i> Utilities</a>
     <div id="collapseUtilities" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
@@ -327,11 +312,8 @@
         </div>
     </nav>
     <script>
-        
-    const scrollToBottom = (id) => {
-	 const element = document.getElementById(id);
-   element.scrollTop = element.scrollHeight;
-}
+
+     
         var myContri = 0;
         var memberContri = 0;
         var dataStat = [];
@@ -879,19 +861,23 @@ console.log(new Date().toLocaleString());
         
     var id = push(child(ref(database), 'messages')).key;
     var message = document.getElementById('message').value;
-            set(ref(database, 'messages/' + id),{
-                repoId: currRepoId,
-                userId: myId,
-                name: myName,
-                lastname: myLastName,
-                message: message,
-                imageName: myImage,
-                time: new Date().toLocaleString()
-            });
+    if(message.length>0 && message.replace(/\s/g, '').length!=0)
+    {
+        set(ref(database, 'messages/' + id),{
+            repoId: currRepoId,
+            userId: myId,
+            name: myName,
+            lastname: myLastName,
+            message: message,
+            imageName: myImage,
+            time: new Date().toLocaleString()
+        });
 
-    $('#message').val('');
+        $('#message').val('');
+    }
             //alert('message has sent');
     });
+
     const newMsg = ref(database, 'messages/');
     onChildAdded(newMsg, (data) => {
 
