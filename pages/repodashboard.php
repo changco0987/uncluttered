@@ -250,12 +250,7 @@
     <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="repodashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
-        <div id="collapseMaintenance" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
-            <div class="py-2 collapse-inner rounded mx-4">
-                <h6 class="collapse-header" style="font-size: 13px;"></h6>
-        
-            </div>
-        </div>
+
     <!--Health Record button-->
   <!--a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn"  href="#healthRecord" role="button" data-toggle="collapse" data-target="#collapseHealthRecord" aria-expanded="true" aria-controls="collapseHealthRecord"><i class="bi bi-card-checklist mr-1"></i> Health Records</a>
     <div id="collapseHealthRecord" class="collapse my-1" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" >
@@ -1206,7 +1201,7 @@ console.log(new Date().toLocaleString());
                 {
                     var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
                 }
-                
+
                 var divData =   '<div class="d-flex justify-content-start my-2">'+
                                                 '<div class="px-1 d-flex align-items-end">'+
                                                     imageFile+
