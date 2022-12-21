@@ -244,8 +244,8 @@
     <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel" style="font-size: 12px;"><?php echo $userRow['username'];?></h6>
     <hr style="height:2px; border-width:0;background-color: #39445c;">
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="repodashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
-    <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
-    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
+    <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="#" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
 
   
   <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn"  href="#about" role="button" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"><i class="bi bi-tools mr-1"></i> Utilities</a>
@@ -456,10 +456,27 @@
     <!-- 3rd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-light rounded border" id="barChartDiv" style="height: 48rem;">
-            <div class="chart-container mx-auto">
-                
-                
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded border bg-light pb-2" id="barChartDiv">
+            <div class="mx-auto">
+                <div class="row mt-3 mb-1 mx-1">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="table-wrapper-scroll-y my-custom-scrollbar rounded border rounded bg-light " id="msgBody1" style="height:44rem;">
+                            <div id="allMsg">
+                                <!-- This where the message inserted in JQuery-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mx-1">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="input-group">
+                            <textarea type="text" class="form-control form-control-sm mr-1" name="messageTb" id="message" placeholder="Write a message..." maxlength="200" required style="height: 2.5rem; max-height: 2.5rem;"></textarea>
+                            <button type="button" class="btn bg-success" name="sendMsg" id="sendMsg" style="color:whitesmoke;"><i class="bi bi-send"></i></button>
+                        </div>
+                    </div>
+                </div>
+            
             
                 <div id="loadingDiv">
                     <ul class="loadingUl">

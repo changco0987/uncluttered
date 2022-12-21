@@ -172,7 +172,7 @@
         </button>
     </div>
     <div class="sidebar text-center">
-        <a class="navbar-brand d-flex justify-content-center" href="#">
+        <div class="navbar-brand d-flex justify-content-center">
             <?php
 
                 if($row['gmail_Id']!=null)
@@ -198,7 +198,7 @@
                     }
                 }
             ?>
-        </a>
+        </div>
         <h4 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="nameLabel"><?php echo $row['firstname'].' '.$row['lastname']?></h4>
                     
         <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel" style="font-size: 12px;"><?php echo $row['username'];?></h6>

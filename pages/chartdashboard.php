@@ -245,7 +245,7 @@
     <hr style="height:2px; border-width:0;background-color: #39445c;">
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="repodashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
     <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
-    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="chatbox.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
 
   
   <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn"  href="#about" role="button" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"><i class="bi bi-tools mr-1"></i> Utilities</a>
