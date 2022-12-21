@@ -886,102 +886,94 @@ console.log(new Date().toLocaleString());
     });
 
     const newMsg = ref(database, 'messages/');
-    onChildAdded(newMsg, (data) => {
-
-        //This will filter all messages that belongs to this repository
-        if(data.val().repoId == currRepoId)
-        {
-
-            if(data.val().name != myName)
-            {
-                //This is for the other member message
-
-                //This will get the index position of the name in the array
-                chatInteraction[repoMember.indexOf(data.val().name)] += 1;
-                chatTotal++;
-
-                //this will check the file origin of the image of user
-                if(data.val().imageName!=null && data.val().imageName!="")
-                {
-                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
-                }
-                else
-                {
-                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
-                }
-                var divData =   '<div class="d-flex justify-content-start my-2">'+
-                                                '<div class="px-1 d-flex align-items-end">'+
-                                                    imageFile+
-                                                '</div>'+
-                                                '<div class="otherMsg bg-primary px-2 py-2">'+
-                                                    '<p class="chatName">'+data.val().name+'</p>'+
-                                                    data.val().message+
-                                                '</div>'+
-                                            '</div>';
-
-
-                var msgContainer = document.getElementById('allMsg');
-                msgContainer.insertAdjacentHTML('beforebegin', divData);
-
-            }
-            else if(data.val().name == myName)
-            {
-                //This is for the user message
-
-                //This will get the index position of the name in the array
-                chatInteraction[repoMember.indexOf(data.val().name)] += 1;
-                chatTotal+=1;
-                
-
-                //this will check the file origin of the image of user
-                if(data.val().imageName!=null && data.val().imageName!="")
-                {
-                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
-                }
-                else
-                {
-                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
-                }
-                var divData = '<div class="d-flex justify-content-end my-2">'+
-                                                '<div class="myMsg px-2 py-2">'+
-                                                    '<p class="chatName">'+data.val().name+'</p>'+
-                                                    data.val().message+
-                                                '</div>'+
-                                                '<div class="px-1 d-flex align-items-end">'+
-                                                imageFile+
-                                                '</div>'+
-                                            '</div>';
-                
-                var msgContainer = document.getElementById('allMsg');
-                msgContainer.insertAdjacentHTML('beforebegin', divData);
-            }
-
-            $('#msgBody1').animate({scrollTop: 9999});
-            
-            $('#msgBody1').stop(false,true);
-            
-
-        }
-    });
-    /*
-    var delayInMilliseconds = 1000; //1 second
-
-    setTimeout(function() {
-    //your code to be executed after 1 second
-    }, delayInMilliseconds);
     
-    console.log('Mem: '+chatInteraction);
-    for(var count = 0; count < repoMember.length;count++)
-    {
-        var chatPercentage = chatInteraction[count]/chatTotal;
-        console.log("Total: "+chatInteraction.reduce(function(chatInteraction, val) { return chatInteraction + val; }, 0));
-        chatPercentage = chatPercentage*100;
-        interactionPercent[count] = Math.round(chatPercentage);
-    }
-    */
 
     //To wait the data in chat interaction to fetch completely
-    const myTimeout = setTimeout(barChart, 1500);
+    const myTimeout = setTimeout(getChat, 500);
+    
+    function getChat()
+    {
+        $('#loadingDiv').hide();
+        //$('#barChartDiv').css("height","");
+        onChildAdded(newMsg, (data) => {
+
+            //This will filter all messages that belongs to this repository
+            if(data.val().repoId == currRepoId)
+            {
+
+                if(data.val().name != myName)
+                {
+                    //This is for the other member message
+
+                    //This will get the index position of the name in the array
+                    chatInteraction[repoMember.indexOf(data.val().name)] += 1;
+                    chatTotal++;
+
+                    //this will check the file origin of the image of user
+                    if(data.val().imageName!=null && data.val().imageName!="")
+                    {
+                        var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
+                    }
+                    else
+                    {
+                        var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
+                    }
+                    var divData =   '<div class="d-flex justify-content-start my-2">'+
+                                                    '<div class="px-1 d-flex align-items-end">'+
+                                                        imageFile+
+                                                    '</div>'+
+                                                    '<div class="otherMsg bg-primary px-2 py-2">'+
+                                                        '<p class="chatName">'+data.val().name+'</p>'+
+                                                        data.val().message+
+                                                    '</div>'+
+                                                '</div>';
+
+
+                    var msgContainer = document.getElementById('allMsg');
+                    msgContainer.insertAdjacentHTML('beforebegin', divData);
+
+                }
+                else if(data.val().name == myName)
+                {
+                    //This is for the user message
+
+                    //This will get the index position of the name in the array
+                    chatInteraction[repoMember.indexOf(data.val().name)] += 1;
+                    chatTotal+=1;
+                    
+
+                    //this will check the file origin of the image of user
+                    if(data.val().imageName!=null && data.val().imageName!="")
+                    {
+                        var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
+                    }
+                    else
+                    {
+                        var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
+                    }
+                    var divData = '<div class="d-flex justify-content-end my-2">'+
+                                                    '<div class="myMsg px-2 py-2">'+
+                                                        '<p class="chatName">'+data.val().name+'</p>'+
+                                                        data.val().message+
+                                                    '</div>'+
+                                                    '<div class="px-1 d-flex align-items-end">'+
+                                                    imageFile+
+                                                    '</div>'+
+                                                '</div>';
+                    
+                    var msgContainer = document.getElementById('allMsg');
+                    msgContainer.insertAdjacentHTML('beforebegin', divData);
+                }
+
+                $('#msgBody1').animate({scrollTop: 9999});
+                
+                $('#msgBody1').stop(false,true);
+                
+
+            }
+        });
+       
+    }
 </script>
 <script>
    /* var total = myContri+memberContri;
@@ -1216,12 +1208,6 @@ console.log(repoMember);
         }
     });
 
-    function barChart()
-    {
-        $('#loadingDiv').hide();
-        //$('#barChartDiv').css("height","");
-       
-    }
     
     
 
