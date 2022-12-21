@@ -217,7 +217,7 @@
 </div>
     
 <div class="sidebar text-center">
-    <a class="navbar-brand d-flex justify-content-center" href="#">
+    <div class="navbar-brand d-flex justify-content-center">
         <?php
         
             if($userRow['gmail_Id']!=null)
@@ -242,14 +242,14 @@
                 }
             }
         ?>
-    </a>
+    </div>
     <h4 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="nameLabel"><?php echo $userRow['firstname'].' '.$userRow['lastname']?></h4>
                 
     <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel" style="font-size: 12px;"><?php echo $userRow['username'];?></h6>
     <hr style="height:2px; border-width:0;background-color: #39445c;">
     <a type="button" class="btn btn-sm active mt-1 rounded d-flex justify-content-start mainBtn" href="repodashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-diagram-3 mr-1"></i> Projects</a>
     <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="chartdashboard.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-graph-up-arrow mr-1"></i> Stats</a>
-    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="#maintenance" role="button" data-toggle="modal" data-target="#chatModal" aria-expanded="true" aria-controls="collapseMaintenance"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
+    <a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn" href="chatbox.php?id=<?php echo $_GET['id'];?>" role="button"><i class="bi bi-chat-dots mr-1"></i> Chat</a>
 
     <!--Health Record button-->
   <!--a type="button" class="btn btn-sm mt-1 rounded d-flex justify-content-start mainBtn"  href="#healthRecord" role="button" data-toggle="collapse" data-target="#collapseHealthRecord" aria-expanded="true" aria-controls="collapseHealthRecord"><i class="bi bi-card-checklist mr-1"></i> Health Records</a>

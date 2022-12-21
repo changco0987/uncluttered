@@ -213,7 +213,7 @@
 </div>
     
 <div class="sidebar text-center">
-    <a class="navbar-brand d-flex justify-content-center" href="#">
+    <div class="navbar-brand d-flex justify-content-center">
         <?php
         
             if($userRow['gmail_Id']!=null)
@@ -238,7 +238,7 @@
                 }
             }
         ?>
-    </a>
+    </div>
     <h4 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="nameLabel"><?php echo $userRow['firstname'].' '.$userRow['lastname']?></h4>
                 
     <h6 class="d-flex justify-content-center mx-auto px-auto mt-2 pt-1" id="usernameLabel" style="font-size: 12px;"><?php echo $userRow['username'];?></h6>
