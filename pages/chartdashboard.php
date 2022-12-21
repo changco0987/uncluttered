@@ -701,67 +701,7 @@
         </div>
     </div>
 
-    <style>
-        .myMsg{
-            font-size: 14px;
-            background-color: #53d769;
-            color: #fdfdfd;
-            width: fit-content;
-            max-width: 25rem;
-            border-radius: 12px;
-        }
-
-        .otherMsg{
-            font-size: 14px;
-            background-color: #218aff;
-            color: #fdfdfd;
-            width: fit-content;
-            max-width: 25rem;
-            border-radius: 12px;
-        }
-        #myChatModal{
-            height: 500px;
-        }
-        .chatName{
-            font-weight: lighter;
-            font-size: 13px;
-        }
-    </style>
-
-        
-    <!-- Chat Modal -->
-    <div class="modal fade" id="chatModal" tabindex="1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
-            <div class="modal-content" style="border-radius:12px;" id="myChatModal">
-                <div class="modal-header" style="background-color: #6E85B7; color:whitesmoke; border-radius:7px;">
-                    <h5 class="modal-title" id="accSettModalLongTitle" style="font-size: 18px;"><i class="bi bi-envelope"></i> Group Chat</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mt-2">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="table-wrapper-scroll-y my-custom-scrollbar border rounded" id="msgBody1" style="height:21rem;">
-                                <div id="allMsg">
-                                    <!-- This where the message inserted in JQuery-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-2">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="input-group">
-                                <textarea type="text" class="form-control form-control-sm mr-1" name="messageTb" id="message" placeholder="Write a message..." maxlength="200" required style="height: 2.5rem; max-height: 2.5rem;"></textarea>
-                                <button type="button" class="btn bg-success" name="sendMsg" id="sendMsg" style="color:whitesmoke;"><i class="bi bi-send"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 
 
@@ -893,28 +833,6 @@ console.log(new Date().toLocaleString());
                 chatInteraction[repoMember.indexOf(data.val().name)] += 1;
                 chatTotal++;
 
-                //this will check the file origin of the image of user
-                if(data.val().imageName!=null && data.val().imageName!="")
-                {
-                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
-                }
-                else
-                {
-                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
-                }
-                var divData =   '<div class="d-flex justify-content-start my-2">'+
-                                                '<div class="px-1 d-flex align-items-end">'+
-                                                    imageFile+
-                                                '</div>'+
-                                                '<div class="otherMsg bg-primary px-2 py-2">'+
-                                                    '<p class="chatName">'+data.val().name+'</p>'+
-                                                    data.val().message+
-                                                '</div>'+
-                                            '</div>';
-
-
-                var msgContainer = document.getElementById('allMsg');
-                msgContainer.insertAdjacentHTML('beforebegin', divData);
 
             }
             else if(data.val().name == myName)
@@ -925,28 +843,6 @@ console.log(new Date().toLocaleString());
                 chatInteraction[repoMember.indexOf(data.val().name)] += 1;
                 chatTotal+=1;
                 
-
-                //this will check the file origin of the image of user
-                if(data.val().imageName!=null && data.val().imageName!="")
-                {
-                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
-                }
-                else
-                {
-                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
-                }
-                var divData = '<div class="d-flex justify-content-end my-2">'+
-                                                '<div class="myMsg px-2 py-2">'+
-                                                    '<p class="chatName">'+data.val().name+'</p>'+
-                                                    data.val().message+
-                                                '</div>'+
-                                                '<div class="px-1 d-flex align-items-end">'+
-                                                imageFile+
-                                                '</div>'+
-                                            '</div>';
-                
-                var msgContainer = document.getElementById('allMsg');
-                msgContainer.insertAdjacentHTML('beforebegin', divData);
             }
 
             $('#msgBody1').animate({scrollTop: 9999});
