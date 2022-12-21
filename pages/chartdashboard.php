@@ -974,7 +974,7 @@ console.log(new Date().toLocaleString());
     */
 
     //To wait the data in chat interaction to fetch completely
-    const myTimeout = setTimeout(barChart, 3000);
+    const myTimeout = setTimeout(barChart, 1500);
 </script>
 <script>
    /* var total = myContri+memberContri;
