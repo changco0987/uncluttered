@@ -27,17 +27,21 @@
             }
             else
             {
-                $data->setFilename(substr($_FILES['fileTb']['name'],0,490). "." .$fileExtension);
+                $data->setFilename(substr($_FILES['fileTb']['name'], 0, 490). "." .$fileExtension);
             }
 
             $uploadedFile = $_FILES['fileTb']['tmp_name'];
             
-            //This will check if the folder is already existed
-            if (!file_exists($imgPath))
-             {
-                mkdir($imgPath, 0755, true);
+            //This will check if the user is log in using their email
+            if(!isset($_POST['gmailId']))
+            {
+                //This will check if the folder is already existed
+                if (!file_exists($imgPath))
+                {
+                    mkdir($imgPath, 0755, true);
+                }
+                copy($uploadedFile,$imgPath.$data->getFilename());//This will move the uploaded file into file directory (web)
             }
-            copy($uploadedFile,$imgPath.$data->getFilename());//This will move the uploaded file into file directory (web)
         }
 
         CreateUpdate($conn,$data);

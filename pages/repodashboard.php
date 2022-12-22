@@ -814,12 +814,21 @@
                     <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
                         <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
+
+                        <?php
+                            //This will identify if the user is log in using their gmail
+                            if($userRow['gmail_Id']!=null)
+                            {
+                                ?>
+                                    <input type="hidden" name="gmailId" id="gmailId" value="<?php echo $userRow['gmail_Id'];?>">
+                                <?php
+                            }
+                        ?>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                         <label for="titleTb">Title</label>
                                         <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTb" placeholder="Write a title" maxlength="50" required/>
-                                        
                                     </div>
                                 </div>
                             </div>

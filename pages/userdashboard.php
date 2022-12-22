@@ -367,7 +367,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="userList">
-                                                <!-- user first and last name shows here after the search result-->
+                                                    <!-- user first and last name shows here after the search result-->
                                                     
                                                 </tbody>
                                         </table>
