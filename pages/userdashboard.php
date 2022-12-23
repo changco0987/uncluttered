@@ -569,10 +569,10 @@
       
         while(length>=0)
         {
-            console.log('inside while');
+            //console.log('inside while');
             if(members.includes(members[length]))
             {
-                console.log('inside if '+ members[length]);
+                //console.log('inside if '+ members[length]);
                 var btnColor = document.getElementById(members[length]);
                 if(btnColor!=null)
                 {

@@ -187,7 +187,6 @@ footer * {
             Uncluttered
         </a>
      </nav>
-
     <div class="row myRow mt-5 pt-5 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="container">
@@ -226,7 +225,7 @@ footer * {
                                     <div id="g_id_onload"
                                         data-client_id="509002600811-8ht8f7pc6hufkis14h82o1klij3k0797.apps.googleusercontent.com"
                                         data-callback="handleCredentialResponse"
-                                        data-auto_prompt="false">
+                                        data-auto_prompt="true">
                                     </div>
 
                                     <center>
@@ -284,7 +283,12 @@ footer * {
         
         function handleCredentialResponse(response)
         {
+            //handleAuthClick();
             const responsePayload = decodeJwtResponse(response.credential);
+            localStorage.setItem("response",responsePayload.sub);
+
+            //console.log('token: '+Object.values(gapi.client.getToken()));
+            console.log(responsePayload.sub);
             console.log('ID: '+responsePayload.sub);
             console.log('Full Name: '+responsePayload.name);
             console.log('Given Name: '+responsePayload.given_name);
