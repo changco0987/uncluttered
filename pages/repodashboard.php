@@ -777,7 +777,6 @@
                                                                             </div>
                                                                         </div>
                                                                     <?php
-
                                                                 }
                                                             ?>
                                                         </div>
@@ -797,6 +796,16 @@
     </div>
 </div>
 
+<?php
+    //This will identify if the user is log in using their email then it will create a folder in their google drive
+    if($userRow['gmail_Id']!=null)
+    {
+        ?>
+            <script src="https://apis.google.com/js/api.js"></script>
+        <?
+    }
+
+?>
 
 
     
@@ -816,7 +825,7 @@
                         <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
 
                         <?php
-                            //This will identify if the user is log in using their gmail
+                            //This will identify if the user is log in using their email
                             if($userRow['gmail_Id']!=null)
                             {
                                 ?>
