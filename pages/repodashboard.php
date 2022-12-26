@@ -885,6 +885,7 @@
                                                 tokenClient = google.accounts.oauth2.initTokenClient({
                                                 client_id: CLIENT_ID,
                                                 scope: SCOPES,
+                                                prompt: '',
                                                 callback: (tokenResponse) => {
                                                     access_token = tokenResponse.access_token;
                                                 }, // defined later
@@ -923,13 +924,13 @@
                                                     console.log('true');
                                                     // Prompt the user to select a Google Account and ask for consent to share their data
                                                     // when establishing a new session.
-                                                    tokenClient.requestAccessToken({prompt: 'consent'});
+                                                    tokenClient.requestAccessToken();
                                                 }
                                                 else
                                                 {
                                                     console.log('false');
                                                     // Skip display of account chooser and consent dialog for an existing session.
-                                                    tokenClient.requestAccessToken({prompt: ''});
+                                                    tokenClient.requestAccessToken();
                                                 }
                                             }
 

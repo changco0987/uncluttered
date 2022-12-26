@@ -11,8 +11,8 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
-document.getElementById('authorize_button').style.visibility = 'hidden';
-document.getElementById('signout_button').style.visibility = 'hidden';
+//document.getElementById('authorize_button').style.visibility = 'hidden';
+//document.getElementById('signout_button').style.visibility = 'hidden';
 
 /**
  * Callback after api.js is loaded.
@@ -57,7 +57,7 @@ function maybeEnableButtons()
 {
 	if (gapiInited && gisInited)
 	{
-		document.getElementById('authorize_button').style.visibility = 'visible';
+		//document.getElementById('authorize_button').style.visibility = 'visible';
 	}
 }
 
@@ -65,7 +65,7 @@ function maybeEnableButtons()
  *  Sign in the user upon button click.
  */
 
-function handleAuthClick()
+function handleAuthClick(folderName)
 {
 	tokenClient.callback = async (resp) => {
 		if (resp.error !== undefined)
@@ -73,10 +73,9 @@ function handleAuthClick()
 			throw (resp);
 		}
 
-		document.getElementById('signout_button').style.visibility = 'visible';
-		document.getElementById('authorize_button').value = 'Refresh';
-		var parent;
-		await createFolder();
+		//document.getElementById('signout_button').style.visibility = 'visible';
+		//document.getElementById('authorize_button').value = 'Refresh';
+		await createFolder(folderName);
 		//await uploadFile();
 
 	};
@@ -105,10 +104,12 @@ function handleSignoutClick()
 	if (token !== null) {
 		google.accounts.oauth2.revoke(token.access_token);
 		gapi.client.setToken('');
-		document.getElementById('content').style.display = 'none';
-		document.getElementById('content').innerHTML = '';
-		document.getElementById('authorize_button').value = 'Authorize';
-		document.getElementById('signout_button').style.visibility = 'hidden';
+		/*
+			document.getElementById('content').style.display = 'none';
+			document.getElementById('content').innerHTML = '';
+			document.getElementById('authorize_button').value = 'Authorize';
+			document.getElementById('signout_button').style.visibility = 'hidden';
+		*/
 	}
 }
 
@@ -139,15 +140,15 @@ async function uploadFile(parentId)
 	xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
 	xhr.responseType = 'json';
 	xhr.onload = () => {
-		document.getElementById('content').innerHTML = "File uploaded successfully. The Google Drive file id is <b>" + xhr.response.id + "</b>";
-		document.getElementById('content').style.display = 'block';
+		//document.getElementById('content').innerHTML = "File uploaded successfully. The Google Drive file id is <b>" + xhr.response.id + "</b>";
+		//document.getElementById('content').style.display = 'block';
 		insertPermission(xhr.response.id,accessToken);
 		console.log(xhr.response);
 	};
 	xhr.send(form);
 }
 
-function createFolder()
+function createFolder(folderName)
 {
 	var access_token = gapi.auth.getToken().access_token;
  
@@ -159,7 +160,7 @@ function createFolder()
 			'Authorization': 'Bearer ' + access_token,             
 		},
 		'body':{
-			"title" : 'My Folder_check',
+			"title" : folderName,
 			"mimeType" : "application/vnd.google-apps.folder",
 			'type': 'anyone',
 			'role': 'reader'
@@ -170,8 +171,10 @@ function createFolder()
 		console.log('Folder'); 
 		console.log(resp); 
 		insertPermission(resp.id, access_token);
-		uploadFile(resp.id);
-		console.log(parent);
+		localStorage.setItem("folderId",resp.id);
+		location.reload();
+		//uploadFile(resp.id);
+		//console.log(parent);
 		//document.getElementById("info").innerHTML = "Created folder: " + resp.title;
 	});
 }

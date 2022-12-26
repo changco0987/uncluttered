@@ -16,6 +16,10 @@
         $repo->setMembers($str);
         $repo->setUserAccountId($_POST['creatorId']);
 
+        if(isset($_POST['gmail_Id']))
+        {
+            $repo->setFolderId($_POST['folderId']);
+        }
         CreateRepo($conn,$repo);
 
         header("location: ../pages/userdashboard.php");

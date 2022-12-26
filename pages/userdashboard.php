@@ -338,6 +338,7 @@
                         {
                             ?>
                                 <form action="" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="gmail_Id" id="gmail_Id" value="<?php echo $row['gmail_Id'];?>">
                             <?php
                         }
                         else
@@ -348,7 +349,7 @@
                         }
                     
                     ?>
-                        <input type="hidden" name="creatorId" value="<?php echo $row['id'];?>">
+                        <input type="hidden" name="creatorId" id="creatorId" value="<?php echo $row['id'];?>">
                         <input type="hidden" name="memberTb" id="memberTb" value="<?php echo $row['id'];?>">
                             <div class="row">
                                 <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
@@ -396,13 +397,13 @@
                                     if($row['gmail_Id']!=null)
                                     {
                                         ?>
-                                            <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;" onclick="handleAuthClick()">Create</button>
+                                            <button type="button" class="btn btn-sm bg-success" name="submitRepo" id="submitRepo" style="width: 8rem; color:whitesmoke;" onclick="submitRepoDetails()">Create</button>
                                         <?php
                                     }
                                     else
                                     {
                                         ?>
-                                            <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Create</button>
+                                            <button type="submit" class="btn btn-sm bg-success" name="submitRepo" id="submitRepo" style="width: 8rem; color:whitesmoke;">Create</button>
                                         <?php
                                     }
                                 
@@ -414,6 +415,38 @@
             </div>
         </div>
     </div>
+    <script>
+        var checkRes = false;
+        function submitRepoDetails()
+        {
+            var repoName = document.getElementById('repoNameTb').value;
+            var creatorId = document.getElementById('creatorId').value;
+            var memberTb = document.getElementById('memberTb').value;
+            var gmail_Id = document.getElementById('gmail_Id').value;
+            var memberTb = document.getElementById('memberTb').value;
+            if(repoName)
+            {
+                //repoName is used for the gdrive folder's name
+                handleAuthClick(repoName);
+
+                var http = new XMLHttpRequest();
+                http.open("POST", "../controller/createRepo.php", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+                var folderId = localStorage.getItem("folderId");
+                //This is the form input fields data
+                var params = "repoNameTb=" + repoName+"&creatorId=" + creatorId+"&memberTb=" + memberTb+"&submitRepo=" + submitRepo+"&gmail_Id=" + gmail_Id+"&folderId=" + folderId; // probably use document.getElementById(...).value
+                http.send(params);
+                http.onload = function() {
+                    var data = http.responseText;
+                    console.log(data);
+                }
+                
+                
+            }
+        }
+        
+    </script>
 
 
     <!-- Account Settings Modal -->
