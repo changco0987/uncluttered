@@ -7,6 +7,7 @@
         private $datetimeCreation;
         private $note;
         private $filename;
+        private $fileId;
 
         public function getId()
         {
@@ -77,6 +78,17 @@
         public function setFilename($filename)
         {
             $this->filename = $filename;
+        }
+        
+
+        public function getFileId()
+        {
+            return $this->fileId;
+        }
+        
+        public function setFileId($fileId)
+        {
+            $this->fileId = $fileId;
         }
 
 

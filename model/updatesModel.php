@@ -8,6 +8,7 @@
         private $datetimeCreation;
         private $userAccountId;
         private $repositoryId;
+        private $fileId;
 
         public function getId()
         {
@@ -86,6 +87,17 @@
         public function setRepositoryId($repositoryId)
         {
             $this->repositoryId = $repositoryId;
+        }
+        
+
+        public function getFileId()
+        {
+            return $this->fileId;
+        }
+        
+        public function setFileId($fileId)
+        {
+            $this->fileId = $fileId;
         }
 
 
