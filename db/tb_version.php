@@ -5,8 +5,8 @@
     function CreateVersion($conn,$data)
     {
         $note = mysqli_real_escape_string($conn,$data->getNote());
-        mysqli_query($conn, "INSERT INTO versiontb(updateId, userAccountId, datetimeCreation, note, filename) values('".$data->getUpdateId()."','".
-        $data->getUserAccountId()."','".$data->getDatetimeCreation()."','".$note."','".$data->getFilename()."');");
+        mysqli_query($conn, "INSERT INTO versiontb(updateId, userAccountId, datetimeCreation, note, filename, fileId) values('".$data->getUpdateId()."','".
+        $data->getUserAccountId()."','".$data->getDatetimeCreation()."','".$note."','".$data->getFilename()."','".$data->getFileId()."');");
         $id = mysqli_insert_id($conn);
         return $id;
     }

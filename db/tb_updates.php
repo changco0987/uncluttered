@@ -4,8 +4,8 @@
     $data = new updatesModel;
     function CreateUpdate($conn,$data)
     {
-        mysqli_query($conn, "INSERT INTO updatestb(title, filename, note, datetimeCreation, userAccountId, repositoryId) values('".$data->getTitle()."','".$data->getFilename()
-        ."','".$data->getNote()."','".$data->getDatetimeCreation()."','".$data->getUserAccountId()."','".$data->getRepositoryId()."');");
+        mysqli_query($conn, "INSERT INTO updatestb(title, filename, note, datetimeCreation, userAccountId, repositoryId, fileId) values('".$data->getTitle()."','".$data->getFilename()
+        ."','".$data->getNote()."','".$data->getDatetimeCreation()."','".$data->getUserAccountId()."','".$data->getRepositoryId()."','".$data->getFileId()."');");
         $id = mysqli_insert_id($conn);
         return $id;
     }
