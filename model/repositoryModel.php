@@ -5,6 +5,7 @@
         private $repositoryName;
         private $members;
         private $userAccountId;
+        private $folderId;
 
         public function getId()
         {
@@ -47,6 +48,17 @@
         public function setUserAccountId($userAccountId)
         {
             $this->userAccountId = $userAccountId;
+        }
+
+
+        public function getFolderId()
+        {
+            return $this->folderId;   
+        }
+
+        public function setFolderId($folderId)
+        {
+            $this->folderId = $folderId;
         }
 
 
