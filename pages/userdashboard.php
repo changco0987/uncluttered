@@ -416,7 +416,8 @@
         </div>
     </div>
     <script>
-        function submitRepoDetails()
+
+        async function submitRepoDetails()
         {
             
             var userEmail = <?php echo json_encode($row['email']); ?>;
@@ -426,16 +427,19 @@
             var memberTb = document.getElementById('memberTb').value;
             var gmail_Id = document.getElementById('gmail_Id').value;
             var memberTb = document.getElementById('memberTb').value;
+
             if(repoName)
             {
                 //repoName is used for the gdrive folder's name
-                handleAuthClick(repoName, userEmail);
+                //await, is to make the code below of this function wait until this function is finished
+                await handleAuthClick(repoName, userEmail);
 
                 var http = new XMLHttpRequest();
                 http.open("POST", "../controller/createRepo.php", true);
                 http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
                 var folderId = localStorage.getItem("folderId");
+                console.log(folderId);
                 //This is the form input fields data
                 var params = "repoNameTb=" + repoName+"&creatorId=" + creatorId+"&memberTb=" + memberTb+"&submitRepo=" + submitRepo+"&gmail_Id=" + gmail_Id+"&folderId=" + folderId; // probably use document.getElementById(...).value
                 http.send(params);

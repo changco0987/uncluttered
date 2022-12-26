@@ -85,7 +85,6 @@ function handleAuthClick(folderName, userEmail)
 	
 	//console.log(tokenClient.callback);
 
-	console.log(userEmail);
 	if (gapi.client.getToken() === null)
 	{
 		// Prompt the user to select a Google Account and ask for consent to share their data
@@ -185,8 +184,7 @@ function createFolder(folderName)
 		console.log('Folder'); 
 		console.log(resp); 
 		insertPermission(resp.id, access_token);
-		localStorage.setItem("folderId",resp.id);
-		location.reload();
+		//location.reload();
 		//uploadFile(resp.id);
 		//console.log(parent);
 		//document.getElementById("info").innerHTML = "Created folder: " + resp.title;
@@ -198,6 +196,8 @@ function createFolder(folderName)
 
 function insertPermission(fileId, oauthToken)
 {
+	localStorage.setItem("folderId",fileId);
+	
 	var request1 = gapi.client.request({
 		'path': '/drive/v3/files/' + fileId + '/permissions',
 		'method': 'POST',
