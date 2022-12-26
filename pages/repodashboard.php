@@ -225,7 +225,7 @@
             if($userRow['gmail_Id']!=null)
             {
                 ?>
-                    <img src="<?php echo strval($userRow['imageName']);?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <img src="../upload/userImage/<?php echo $userRow['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                 <?php
             }
             else
@@ -361,7 +361,7 @@
                                         if($latestUserRow['gmail_Id'])
                                         {
                                             ?>
-                                                <img class="mr-1" src="<?php echo strval($latestUserRow['imageName']);?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
+                                                <img class="mr-1" src="../upload/userImage/<?php echo $latestUserRow['imageName'];?>" width="40" height="40" class="border-dark" alt="" style="border-radius: 50%;"> <?php echo $latestUpdateRow['title'];?>
                                             <?php
                                         }
                                         else

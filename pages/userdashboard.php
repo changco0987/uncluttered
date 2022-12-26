@@ -178,7 +178,7 @@
                 if($row['gmail_Id']!=null)
                 {
                     ?>
-                        <img src="<?php echo strval($row['imageName']);?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                        <img src="../upload/userImage/<?php echo $row['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                     <?php
                 }
                 else

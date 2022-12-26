@@ -28,7 +28,9 @@
         $data->setUsername($_POST['usernameTb']);
         $data->setPassword($_POST['passwordTb']);
         $data->setEmail($_POST['emailTb']);
-        $data->setImageName($_POST['imageName']);
+        $randId = rand(11111111, 99999999);
+        copy($_POST['imageName'], "../upload/userImage/img$randId.jpg");
+        $data->setImageName("img$randId.jpg");
 
         //if the program is occur in this area it means that the username is unique and successfully created
         CreateGmailUser($conn,$data);
