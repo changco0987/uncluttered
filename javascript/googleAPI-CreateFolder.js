@@ -44,7 +44,10 @@ function gisLoaded()
 	tokenClient = google.accounts.oauth2.initTokenClient({
 		client_id: CLIENT_ID,
 		scope: SCOPES,
-		callback: '', // defined later
+		prompt: '',
+		callback: (tokenResponse) => {
+			access_token = tokenResponse.access_token;
+		}, // defined later
 	});
 	gisInited = true;
 	maybeEnableButtons();
@@ -65,7 +68,7 @@ function maybeEnableButtons()
  *  Sign in the user upon button click.
  */
 
-function handleAuthClick(folderName)
+function handleAuthClick(folderName, userEmail)
 {
 	tokenClient.callback = async (resp) => {
 		if (resp.error !== undefined)
@@ -82,16 +85,17 @@ function handleAuthClick(folderName)
 	
 	//console.log(tokenClient.callback);
 
+	console.log(userEmail);
 	if (gapi.client.getToken() === null)
 	{
 		// Prompt the user to select a Google Account and ask for consent to share their data
 		// when establishing a new session.
-		tokenClient.requestAccessToken({ prompt: 'consent' });
+		tokenClient.requestAccessToken({ hint: userEmail });
 	}
 	else
 	{
 		// Skip display of account chooser and consent dialog for an existing session.
-		tokenClient.requestAccessToken({ prompt: '' });
+		tokenClient.requestAccessToken({ hint: userEmail });
 	}
 }
 
@@ -150,8 +154,18 @@ async function uploadFile(parentId)
 
 function createFolder(folderName)
 {
+	/*
+	if(localStorage.getItem("access_token") === null)
+	{
+		localStorage.setItem("access_token",access_token);
+	}
+	else
+	{
+		var access_token = localStorage.getItem("access_token");
+	}
+	*/
 	var access_token = gapi.auth.getToken().access_token;
- 
+	
 	var request = gapi.client.request({
 		'path': '/drive/v2/files/',
 		'method': 'POST',

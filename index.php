@@ -180,6 +180,9 @@ footer * {
     <title>Uncluttered - Login</title>
 </head>
 <body>
+    <script>
+        window.localStorage.clear();//This will clean all previously set localstorage
+    </script>
     <!-- Image and text Header-->
     <nav class="navbar navbar-light" style="background-color: #6E85B7;">
         <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C; font-size:25px">
@@ -296,6 +299,8 @@ footer * {
             console.log('Family Name: '+responsePayload.family_name);
             console.log('Image URL: '+responsePayload.picture);
             console.log('Email: '+responsePayload.email);
+
+            localStorage.setItem("userEmail",responsePayload.email);
 
             var http = new XMLHttpRequest();
                 http.open("POST", "controller/loginWithGmail.php", true);

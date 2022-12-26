@@ -416,9 +416,11 @@
         </div>
     </div>
     <script>
-        var checkRes = false;
         function submitRepoDetails()
         {
+            
+            var userEmail = <?php echo json_encode($row['email']); ?>;
+
             var repoName = document.getElementById('repoNameTb').value;
             var creatorId = document.getElementById('creatorId').value;
             var memberTb = document.getElementById('memberTb').value;
@@ -427,7 +429,7 @@
             if(repoName)
             {
                 //repoName is used for the gdrive folder's name
-                handleAuthClick(repoName);
+                handleAuthClick(repoName, userEmail);
 
                 var http = new XMLHttpRequest();
                 http.open("POST", "../controller/createRepo.php", true);
