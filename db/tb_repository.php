@@ -4,8 +4,8 @@
     $data = new repositoryModel;
     function CreateRepo($conn,$data)
     {
-        mysqli_query($conn, "INSERT INTO repositorytb(repositoryName, members, userAccountId) values('".$data->getRepositoryName()."','".$data->getMembers()
-        ."','".$data->getUserAccountId()."');");
+        mysqli_query($conn, "INSERT INTO repositorytb(repositoryName, members, userAccountId, folderId) values('".$data->getRepositoryName()."','".$data->getMembers()
+        ."','".$data->getUserAccountId()."','".$data->getFolderId()."');");
         $id = mysqli_insert_id($conn);
         return $id;
     }
