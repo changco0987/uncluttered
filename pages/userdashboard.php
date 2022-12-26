@@ -333,7 +333,21 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../controller/createRepo.php" method="post" enctype="multipart/form-data">
+                    <?php
+                        if($row['gmail_Id']!=null)
+                        {
+                            ?>
+                                <form action="" method="post" enctype="multipart/form-data">
+                            <?php
+                        }
+                        else
+                        {
+                            ?>
+                                <form action="../controller/createRepo.php" method="post" enctype="multipart/form-data">
+                            <?php
+                        }
+                    
+                    ?>
                         <input type="hidden" name="creatorId" value="<?php echo $row['id'];?>">
                         <input type="hidden" name="memberTb" id="memberTb" value="<?php echo $row['id'];?>">
                             <div class="row">
@@ -361,7 +375,7 @@
                                                 <thead class="text-light" style="background-color:#234471;">
                                                     <tr>
                                                         <th scope="col" >#</th>
-                                                        <th scope="col">Image</th> 
+                                                        <th scope="col" >Image</th> 
                                                         <th scope="col" >Name</th>
                                                         <th scope="col" ></th>
                                                     </tr>
@@ -377,7 +391,22 @@
 
                             <div class="row mt-2">
                                 <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Create</button>
+                                    
+                                <?php
+                                    if($row['gmail_Id']!=null)
+                                    {
+                                        ?>
+                                            <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;" onclick="handleAuthClick()">Create</button>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                            <button type="submit" class="btn btn-sm bg-success" name="submitRepo" style="width: 8rem; color:whitesmoke;">Create</button>
+                                        <?php
+                                    }
+                                
+                                ?>
                                 </div>
                             </div>
                     </form>
@@ -509,6 +538,12 @@
             <?php
         }
     ?>
+    <!-- Google API -->
+    <script type="text/javascript" src="../javascript/googleAPI-CreateFolder.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+        onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client"
+        onload="gisLoaded()"></script>
 </body>
 <script>
     hostRepoCount(hostedRepoCount);
