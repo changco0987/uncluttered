@@ -585,8 +585,129 @@
         onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client"
         onload="gisLoaded()"></script>
+
+    <!-- Firebase API Script -->
+    <script type="text/javascript" src="../javascript/firebaseFetchChat.js"></script>
 </body>
+<script type="module">
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+import { getDatabase, set, ref, push, child, onValue, onChildAdded, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyAS14_LkpIZA55I1BlI0PfTNVkSxuShWCE",
+    authDomain: "collaboratorychat.firebaseapp.com",
+    projectId: "collaboratorychat",
+    storageBucket: "collaboratorychat.appspot.com",
+    messagingSenderId: "843037096034",
+    appId: "1:843037096034:web:8bbec1e76e2a2c3d28393b",
+    measurementId: "G-LXPLGYM2Q6",
+    databaseURL: "https://collaboratorychat-default-rtdb.asia-southeast1.firebasedatabase.app/"
+};
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const analytics = getAnalytics(app);
+
+//console.log(new Date().toLocaleString());
+
+
+
+    var myName = <?php echo json_encode($row['username'])?>;
+    const newMsg = ref(database, 'messages/');
+    
+
+    //To wait the data in chat interaction to fetch completely
+    const myTimeout = setTimeout(getChat, 500);
+    
+    function getChat()
+    {
+        onChildAdded(newMsg, (data) => {
+
+
+            if(data.val().name != myName)
+            {
+                //This is for the other member message
+
+
+                console.log(data.val().imageName);
+                //this will check the file origin of the image of user
+                if(data.val().imageName!=null && data.val().imageName!="")
+                {
+                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+                else
+                {
+                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+
+                var divData =   '<div class="d-flex justify-content-start my-2">'+
+                                                '<div class="px-1 d-flex align-items-end">'+
+                                                    imageFile+
+                                                '</div>'+
+                                                '<div class="otherMsg bg-primary px-2 py-2">'+
+                                                    '<p class="chatName">'+data.val().name+'</p>'+
+                                                    data.val().message+
+                                                '</div>'+
+                                            '</div>';
+
+
+            }
+            else if(data.val().name == myName)
+            {
+                updateFirebase(data.key);
+                    console.log("myData ");
+                    console.log(data.key);
+                //This is for the user message
+                
+
+                //this will check the file origin of the image of user
+                if(data.val().imageName!=null && data.val().imageName!="")
+                {
+                    var imageFile = '<img class="mr-1" src="../upload/userImage/'+data.val().imageName+'" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+                else
+                {
+                    var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
+                }
+
+                var divData = '<div class="d-flex justify-content-end my-2">'+
+                                                '<div class="myMsg px-2 py-2">'+
+                                                    '<p class="chatName">'+data.val().name+'</p>'+
+                                                    data.val().message+
+                                                '</div>'+
+                                                '<div class="px-1 d-flex align-items-end">'+
+                                                imageFile+
+                                                '</div>'+
+                                            '</div>';
+                
+            }
+            
+        });
+       
+    }
+
+    //this will update user image
+    function updateFirebase(id)
+    {
+        var newImg = <?php echo json_encode($row['imageName'])?>;
+        update(ref(database, 'messages/' + id),{
+            imageName: newImg
+        });
+    }
+
+</script>
+
 <script>
+    
     hostRepoCount(hostedRepoCount);
     function hostRepoCount(count)
     {
