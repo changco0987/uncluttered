@@ -219,7 +219,7 @@
             if($userRow['gmail_Id']!=null)
             {
                 ?>
-                    <img src="<?php echo strval($userRow['imageName']);?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <img src="../upload/userImage/<?php echo $userRow['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                 <?php
             }
             else
@@ -755,7 +755,7 @@
 <script type="module">
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-import { getDatabase, set, ref, push, child, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+import { getDatabase, set, ref, push, child, onValue, onChildAdded, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -799,22 +799,22 @@ console.log(new Date().toLocaleString());
 
     $("#sendMsg").click(function(){
         
-    var id = push(child(ref(database), 'messages')).key;
-    var message = document.getElementById('message').value;
-    if(message.length>0 && message.replace(/\s/g, '').length!=0)
-    {
-        set(ref(database, 'messages/' + id),{
-            repoId: currRepoId,
-            userId: myId,
-            name: myName,
-            lastname: myLastName,
-            message: message,
-            imageName: myImage,
-            time: new Date().toLocaleString()
-        });
+        var id = push(child(ref(database), 'messages')).key;
+        var message = document.getElementById('message').value;
+        if(message.length>0 && message.replace(/\s/g, '').length!=0)
+        {
+            set(ref(database, 'messages/' + id),{
+                repoId: currRepoId,
+                userId: myId,
+                name: myName,
+                lastname: myLastName,
+                message: message,
+                imageName: myImage,
+                time: new Date().toLocaleString()
+            });
 
-        $('#message').val('');
-    }
+            $('#message').val('');
+        }
             //alert('message has sent');
     });
 

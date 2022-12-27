@@ -219,7 +219,7 @@
             if($userRow['gmail_Id']!=null)
             {
                 ?>
-                    <img src="<?php echo strval($userRow['imageName']);?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
+                    <img src="../upload/userImage/<?php echo $userRow['imageName'];?>" width="100" height="100" class="border border-dark ml-3 my-1" alt="" style="border-radius: 50%;">
                 <?php
             }
             else
@@ -822,7 +822,7 @@
 <script type="module">
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
-import { getDatabase, set, ref, push, child, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+import { getDatabase, set, ref, push, child, onValue, onChildAdded, update } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -846,7 +846,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const analytics = getAnalytics(app);
 
-console.log(new Date().toLocaleString());
+//console.log(new Date().toLocaleString());
 
     //var message = $('#message').val();
     var myId = <?php echo $userRow['id']?>;
@@ -909,6 +909,7 @@ console.log(new Date().toLocaleString());
                     chatInteraction[repoMember.indexOf(data.val().name)] += 1;
                     chatTotal++;
 
+                    console.log(data.val().imageName);
                     //this will check the file origin of the image of user
                     if(data.val().imageName!=null && data.val().imageName!="")
                     {
@@ -918,6 +919,7 @@ console.log(new Date().toLocaleString());
                     {
                         var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
                     }
+
                     var divData =   '<div class="d-flex justify-content-start my-2">'+
                                                     '<div class="px-1 d-flex align-items-end">'+
                                                         imageFile+
@@ -935,6 +937,9 @@ console.log(new Date().toLocaleString());
                 }
                 else if(data.val().name == myName)
                 {
+                    //updateFirebase(data.key);
+                        console.log("myData ");
+                        console.log(data.key);
                     //This is for the user message
 
                     //This will get the index position of the name in the array
@@ -951,6 +956,7 @@ console.log(new Date().toLocaleString());
                     {
                         var imageFile = '<img class="mr-1" src="../asset/user.png" width="30" height="30" class="border-dark" alt="" style="border-radius: 50%;">';
                     }
+
                     var divData = '<div class="d-flex justify-content-end my-2">'+
                                                     '<div class="myMsg px-2 py-2">'+
                                                         '<p class="chatName">'+data.val().name+'</p>'+
@@ -973,6 +979,16 @@ console.log(new Date().toLocaleString());
             }
         });
        
+    }
+
+    
+    function updateFirebase(id)
+    {
+        var newImg = <?php echo json_encode($userRow['imageName'])?>;
+
+        update(ref(database, 'messages/' + id),{
+            imageName: newImg
+        });
     }
 </script>
 <script>
