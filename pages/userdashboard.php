@@ -93,7 +93,6 @@
 
         .statDiv{
             height: 10rem;
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         }
 
         .sidebar a {
@@ -242,7 +241,7 @@
     </script>
     <div class="content">
         <div class="row no-gutters my-2 py-3 mx-auto px-1 rounded">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 rounded bg-light statDiv">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-light statDiv border">
                 <?php
                     $repo = new repositoryModel();
                     $result = ReadRepo($conn,$repo);
@@ -258,7 +257,7 @@
                     </div>
                 </center>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 rounded bg-light mx-auto statDiv">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-light mx-auto statDiv border">
                 <?php
                     $updateCount = 0;
                     $update = new updatesModel();
@@ -282,7 +281,7 @@
                 </center>
 
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded d-flex align-items-center bg-light statDiv">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded d-flex align-items-center bg-light statDiv border">
             
                 <h5 class="mx-auto">Data Chart: </h5>
 
