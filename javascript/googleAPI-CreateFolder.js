@@ -188,7 +188,7 @@ function createFolder(folderName)
 		console.log('Folder'); 
 		console.log(resp); 
 		insertPermission(resp.id, access_token);
-		//location.reload();
+		location.reload();
 		//uploadFile(resp.id);
 		//console.log(parent);
 		//document.getElementById("info").innerHTML = "Created folder: " + resp.title;
