@@ -216,7 +216,7 @@
             }
         ?>      
         <hr style="height:2px; border-width:0;background-color: #39445c;">
-        <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn bg-danger" id="signoutBtn" href="../controller/wipedata.php" role="button" style="background-color: #485d8c;"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</a>
+        <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn bg-danger" id="signoutBtn" href="#" role="button" style="background-color: #485d8c;" onclick="return signout()"><i class="bi bi-box-arrow-left mr-2"></i>Sign-out</a>
     </div>
 
     <script>
@@ -451,6 +451,8 @@
                 
             }
         }
+
+
         
     </script>
 

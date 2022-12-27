@@ -101,10 +101,11 @@ function handleAuthClick(folderName, userEmail)
 /**
  *  Sign out the user upon button click.
  */
-function handleSignoutClick()
+function signout()
 {
 	const token = gapi.client.getToken();
-	if (token !== null) {
+	if (token !== null)
+	{
 		google.accounts.oauth2.revoke(token.access_token);
 		gapi.client.setToken('');
 		/*
@@ -114,7 +115,10 @@ function handleSignoutClick()
 			document.getElementById('signout_button').style.visibility = 'hidden';
 		*/
 	}
+
+	setTimeout(window.location = '../controller/wipedata.php',2000);
 }
+
 
 /**
  * Upload file to Google Drive.
