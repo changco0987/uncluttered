@@ -5,6 +5,9 @@
     
     include_once '../db/tb_repository.php';
     include_once '../model/repositoryModel.php';
+    
+    include_once '../db/tb_updates.php';
+    include_once '../model/updatesModel.php';
 
     session_start();
     if(!isset($_SESSION['username']))
@@ -19,6 +22,7 @@
         $result = ReadUserAccount($conn,$data);
 
         $row = mysqli_fetch_assoc($result);
+
     }
 
 
@@ -87,6 +91,10 @@
             text-shadow: 1px 1px #1C1C1C;
         }
 
+        .statDiv{
+            height: 10rem;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
 
         .sidebar a {
             display: block;
@@ -117,6 +125,10 @@
                     height: auto;
                     position: relative;
             }
+            .statDiv{
+                height: 10rem;
+                box-shadow: none;
+            }
             div.content {margin-left: 0;}
         }
 
@@ -124,6 +136,10 @@
             .sidebar a {
                     text-align: center;
                     float: none;
+            }
+            .statDiv{
+                height: 10rem;
+                box-shadow: none;
             }
         }
 
@@ -151,6 +167,7 @@
             font-size: 12px;
             color: #234471;
         }
+        
     </style>
     <link rel="icon" href="../asset/appIcon.png">
     <title>Uncluttered - User Dashboard</title>
@@ -225,28 +242,47 @@
     </script>
     <div class="content">
         <div class="row no-gutters my-2 py-3 mx-auto px-1 rounded">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-light" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-            <?php
-                $repo = new repositoryModel();
-                $result = ReadRepo($conn,$repo);
-            ?>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-2 pt-2">
-                
-            <h5 class="mx-auto" style="font-size: 15px;">Hosted Repository: </h5>
-            </div>
-            <center>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-4 pt-2">
-                    <h2 class="mx-auto" style="font-size: 36px; color:#3466AA;"><i class="bi bi-person-workspace"></i> <span id="hostedCount"></span></h2>
-                    <hr style="height:2px; border-width:0;background-color: #39445c;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 rounded bg-light statDiv">
+                <?php
+                    $repo = new repositoryModel();
+                    $result = ReadRepo($conn,$repo);
+                ?>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-2 pt-2">
+                    
+                    <h5 class="mx-auto" style="font-size: 15px;">Hosted Repository: </h5>
                 </div>
-            </center>
+                <center>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-4 pt-2">
+                        <h2 class="mx-auto" style="font-size: 36px; color:#3466AA;"><i class="bi bi-person-workspace"></i> <span id="hostedCount"></span></h2>
+                        <hr style="height:2px; border-width:0;background-color: #39445c;">
+                    </div>
+                </center>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 rounded d-flex align-items-center bg-light mx-auto" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-        
-                <h5 class="mx-auto">Data Chart: </h5>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 rounded bg-light mx-auto statDiv">
+                <?php
+                    $updateCount = 0;
+                    $update = new updatesModel();
+                    $update->setUserAccountId($row['id']);
+
+                    $updateResult = ReadUpdate($conn,$update);//This will retrieved all updates that belongs to the current user
+                    while($updateRow = mysqli_fetch_assoc($updateResult))
+                    {
+                        $updateCount++;
+                    }
+                ?>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-2 pt-2">
+                    
+                    <h5 class="mx-auto" style="font-size: 15px;">Total Contribution: </h5>
+                </div>
+                <center>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-4 pt-2">
+                        <h2 class="mx-auto" style="font-size: 36px; color:#3466AA;"><i class="bi bi-file-earmark-check-fill"></i> <span id="updatesCount"><?php echo $updateCount;?></span></h2>
+                        <hr style="height:2px; border-width:0;background-color: #39445c;">
+                    </div>
+                </center>
 
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded d-flex align-items-center bg-light" style="height: 10rem; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded d-flex align-items-center bg-light statDiv">
             
                 <h5 class="mx-auto">Data Chart: </h5>
 
