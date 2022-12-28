@@ -259,6 +259,8 @@
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-light mx-auto statDiv border">
                 <?php
+                    $updateInRepo = array();//contains repo id
+                    $updateInRepoCount = array();//contains 
                     $updateCount = 0;
                     $update = new updatesModel();
                     $update->setUserAccountId($row['id']);
@@ -267,11 +269,11 @@
                     while($updateRow = mysqli_fetch_assoc($updateResult))
                     {
                         $updateCount++;
+
                     }
                 ?>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-2 pt-2">
-                    
-                    <h5 class="mx-auto" style="font-size: 15px;">Total Contribution: </h5>
+                    <h5 class="mx-auto" style="font-size: 15px;">Overall Contribution: </h5>
                 </div>
                 <center>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-4 pt-2">
@@ -281,10 +283,20 @@
                 </center>
 
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded d-flex align-items-center bg-light statDiv border">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded bg-light statDiv border">
             
-                <h5 class="mx-auto">Data Chart: </h5>
-
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-2 pt-2">
+                    <h5 class="mx-auto" style="font-size: 15px;">Login Time: </h5>
+                </div>
+                <center>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded mt-4 pt-2">
+                        <h2 class="mx-auto" style="font-size: 36px; color:#3466AA;"><i class="bi bi-calendar-check-fill"></i> <span id="loginTime" style="font-size: 17px;"></span></h2>
+                        <hr style="height:2px; border-width:0;background-color: #39445c;">
+                    </div>
+                </center>
+                <script>
+                    document.getElementById('loginTime').innerHTML = new Date().toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute:'2-digit'});
+                </script>
             </div>
         </div>
         <div class="row no-gutters my-1 py-1 mx-auto px-1 rounded">
