@@ -108,12 +108,6 @@ function signout()
 	{
 		google.accounts.oauth2.revoke(token.access_token);
 		gapi.client.setToken('');
-		/*
-			document.getElementById('content').style.display = 'none';
-			document.getElementById('content').innerHTML = '';
-			document.getElementById('authorize_button').value = 'Authorize';
-			document.getElementById('signout_button').style.visibility = 'hidden';
-		*/
 	}
 
 	setTimeout(window.location = '../controller/wipedata.php',2000);
@@ -147,8 +141,6 @@ async function uploadFile(parentId)
 	xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
 	xhr.responseType = 'json';
 	xhr.onload = () => {
-		//document.getElementById('content').innerHTML = "File uploaded successfully. The Google Drive file id is <b>" + xhr.response.id + "</b>";
-		//document.getElementById('content').style.display = 'block';
 		insertPermission(xhr.response.id,accessToken);
 		console.log(xhr.response);
 	};
