@@ -1,3 +1,13 @@
+<?php
+
+    if(!isset($_GET['username']))
+    {
+        //header("location: ../pages/findAccount.php");
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -193,22 +203,31 @@ footer * {
                     <form action="../controller/findAccount.php" method="post" enctype="multipart/form-data">
                         <div class="form-group mt-1 pt-1">
                             <center>
-                                <h3 style="font-weight:bold; color:#3466AA;">Find your account</h3>
+                                <h3 style="font-weight:bold; color:#3466AA;">Reset your password</h3>
                             </center>
                             <hr style="height:2px;border-width:0;color:gray;background-color:gray">
                         </div>
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <label class="d-flex align-items-start" for="usernameTb">Username</label>
-                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom bg-light" id="usernameTb" name="usernameTb" placeholder="Ex. Marie0123" maxlength="20" required style="width: 20rem;">
+                                    <label class="d-flex align-items-start" for="usernameTb">New Password</label>
+                                    <input type="password" class="form-control form-control-sm form-control-plaintext border-primary border-bottom bg-light" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20" required style="width: 20rem;">
+                                    <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="resetCodeTb">Reset Code</label>
+                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom bg-light" id="resetCodeTb" name="resetCodeTb" placeholder="Ex. 16xx-xxxx" maxlength="9" required style="width: 20rem;">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row pb-1 mb-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Find</button>
+                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Reset</button>
                                 </div>
                             </div>
                         </div>

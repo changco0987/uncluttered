@@ -80,6 +80,14 @@
                 ."', email='".$data->getEmail()."' WHERE id =". $data->getId());
             }
         }
+        else if($data->getResetCode()!=null)
+        {
+            mysqli_query($conn,"UPDATE useraccountstb SET resetCode ='".$data->getResetCode()."' WHERE username ='". $data->getUsername()."'");
+        }
+        else if($data->getUsername()!=null)
+        {
+            mysqli_query($conn,"UPDATE useraccountstb SET password ='".$data->getPassword()."' WHERE username ='". $data->getUsername()."'");
+        }
     }
 
     

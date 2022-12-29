@@ -245,7 +245,7 @@ footer * {
                                     </center>
                                     <small>Don't have any account? <a class="text-primary" href="pages/signup.php">Just Click here</a> to create</small><br>
 
-                                    <small><button type="button" class="text-primary border-0" onclick="gotoFindAccount();">Forgot Password?</button></small>
+                                    <small><a class="text-primary border-0" href="pages/findAccount.php">Forgot Password?</a></small>
                                 </div>
                             </div>
                         </div>
