@@ -379,7 +379,7 @@ footer * {
             ?>
                 <script>
                     document.getElementById('alertBox').style.display = 'block';
-                    document.getElementById('errorMsg').innerHTML = 'Incorrect password';
+                    document.getElementById('errorMsg').innerHTML = 'Incorrect username or password';
                 </script>
             <?php
         }

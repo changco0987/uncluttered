@@ -286,19 +286,19 @@ footer * {
         }
     </script>
 <?php
-    if(isset($_GET['signupRes'])==1)
+    if(isset($_GET['response'])==1)
     {
         ?>
         <!-- Alert message container-->
         <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
-            <strong id="errorMsg">Username is already exist!</strong>
+            <strong id="errorMsg">Username doesn't exist!</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <script>
             //to reset the $_GET in URL
-            url.searchParams.delete('signupRes');
+            url.searchParams.delete('response');
             window.history.replaceState(null, null, url); // or pushState
         </script>
         <?php
@@ -307,15 +307,4 @@ footer * {
 
 ?>
 </body>
-    <!--alert message script-->
-    <script>
-        //document.getElementById('alertBox').style.display = 'none';
-        //var successSignal = localStorage.getItem('state');
-
-    //for sign in with Google Button
-    
-
-        //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-        //localStorage.setItem('state',0);
-    </script>
 </html>

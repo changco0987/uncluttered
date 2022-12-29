@@ -26,6 +26,7 @@
                 UpdateUserAccount($conn,$data);
 
                 header("location: ../pages/reset.php?username=".$row['username']);
+                exit;
             }
     
         }
@@ -33,7 +34,7 @@
 
         //if the program is occur in this area it means that the username is unique and successfully created
         //CreateUserAccount($conn,$data);
-        //header("location: ../index.php?signupRes=2");
+        header("location: ../pages/findAccount.php?response=1");
         exit;
 
 
