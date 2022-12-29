@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <?php
     include_once '../db/connection.php';
     include_once '../db/tb_useraccounts.php';
@@ -18,14 +18,14 @@
             {
                 //send error message to signup page
                 $code = rand(11111111, 99999999);
-                session_start();
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['code'] = $code;
                 
                 $data->setResetCode($code);
                 UpdateUserAccount($conn,$data);
 
-                header("location: ../pages/reset.php?username=".$row['username']);
+                header("Location: ../pages/reset.php?username=".$row['username']);
+                //echo "<script>window.location = '../pages/reset.php?username=".$row['username'].";</script>";
                 exit;
             }
     
