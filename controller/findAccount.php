@@ -24,8 +24,8 @@
                 
                 $data->setResetCode($code);
                 UpdateUserAccount($conn,$data);
-                
-                header("location: ../controller/sendCode.php");
+
+                header("location: ../pages/reset.php?username=".$row['username']);
             }
     
         }

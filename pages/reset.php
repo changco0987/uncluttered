@@ -1,8 +1,11 @@
 <?php
 
+    session_start();
+
+    //This is to prevent from bypassing this page
     if(!isset($_GET['username']))
     {
-        //header("location: ../pages/findAccount.php");
+        header("location: ../pages/findAccount.php");
     }
 
 
@@ -27,6 +30,36 @@
 
     <!--Google API (GSI)-->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script type="text/javascript">
+        //to send email
+        function sendCode(reciever, code)
+        {
+            
+            Email.send({
+                SecureToken : "92421880-7d41-4516-b5ce-fd3066b4416b",
+                To : reciever,
+                From : "uncluttered.webapp@gmail.com",
+                Subject : "Request for reset password",
+                Body : "This is your requested reset password code: "+ code
+            });
+            //setTimeout(redirect,2000)
+        }
+
+        //To get randomize code
+        function getCode(min, max)
+        {
+            return Math.floor(Math.random() * (max - min + 1) ) + min;
+        }
+
+        function redirect()
+        {
+            window.location = '../index.php';
+        }
+
+        sendCode(<?php echo json_encode($_SESSION['email']); ?>, <?php echo json_encode($_SESSION['code']); ?>);
+    </script>
     <!--My CSS and JS-->
     <!--link type="text/css" rel="stylesheet" href="../css/signup.css"/-->
     <!--script src="../javascript/index.js"></script-->
@@ -200,12 +233,21 @@ footer * {
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="containerForm my-2">
                 <div class="d-flex justify-content-center">
-                    <form action="../controller/findAccount.php" method="post" enctype="multipart/form-data">
+                    <form action="../controller/resetPass.php" method="post" enctype="multipart/form-data">
                         <div class="form-group mt-1 pt-1">
                             <center>
                                 <h3 style="font-weight:bold; color:#3466AA;">Reset your password</h3>
                             </center>
                             <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                        </div>
+                        <input type="hidden" name="usernameTb" value="<?php echo $_GET['username'];?>">
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="usernameDisplay">Username</label>
+                                    <input type="text" class="form-control form-control-sm form-control-plaintext border-primary border-bottom text-muted" id="usernameDisplay" name="usernameDisplay" placeholder="Ex. Marie0123" maxlength="20" required style="width: 20rem; background-color: #ededed;" value="<?php echo $_GET['username']?>" disabled>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
@@ -305,19 +347,19 @@ footer * {
         }
     </script>
 <?php
-    if(isset($_GET['signupRes'])==1)
+    if(isset($_GET['resetRes'])==1)
     {
         ?>
         <!-- Alert message container-->
         <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
-            <strong id="errorMsg">Username is already exist!</strong>
+            <strong id="errorMsg">Incorrect Code, Please check your code in your email account carefully!</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <script>
             //to reset the $_GET in URL
-            url.searchParams.delete('signupRes');
+            url.searchParams.delete('resetRes');
             window.history.replaceState(null, null, url); // or pushState
         </script>
         <?php
@@ -326,15 +368,4 @@ footer * {
 
 ?>
 </body>
-    <!--alert message script-->
-    <script>
-        //document.getElementById('alertBox').style.display = 'none';
-        //var successSignal = localStorage.getItem('state');
-
-    //for sign in with Google Button
-    
-
-        //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-        //localStorage.setItem('state',0);
-    </script>
 </html>

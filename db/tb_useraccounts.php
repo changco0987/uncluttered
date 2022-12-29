@@ -86,7 +86,8 @@
         }
         else if($data->getUsername()!=null)
         {
-            mysqli_query($conn,"UPDATE useraccountstb SET password ='".$data->getPassword()."' WHERE username ='". $data->getUsername()."'");
+            //This will reset password and clear the reset code
+            mysqli_query($conn,"UPDATE useraccountstb SET password ='".$data->getPassword()."', resetCode ='".$data->getResetCode()."' WHERE username ='". $data->getUsername()."'");
         }
     }
 
