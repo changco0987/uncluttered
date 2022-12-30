@@ -367,7 +367,7 @@
                         //this will get the percentage of the contribution
                         var percent = <?php echo $memberUpdateRow;?>/updateTotal;
                         percent = percent*100;
-                        console.log(Math.round(percent));
+                        //console.log(Math.round(percent));
                         memberUpdates.push(Math.round(percent));
                         chatInteraction.push(0);//This will only inserted to make the chatInteraction array have a same array length as the repoMember
                         interactionPercent.push(0);//This will only inserted to make the interactionPercent array have a same array length as the repoMember
@@ -776,7 +776,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const analytics = getAnalytics(app);
 
-console.log(new Date().toLocaleString());
+//console.log(new Date().toLocaleString());
 
     //var message = $('#message').val();
     var myId = <?php echo $userRow['id']?>;
@@ -893,7 +893,7 @@ console.log(new Date().toLocaleString());
             http.onload = function() 
             {
                 var data = http.responseText;
-                console.log(data);
+                //console.log(data);
 
                 if(data=='deleted')
                 {
@@ -954,7 +954,7 @@ console.log(new Date().toLocaleString());
             }
         }
         const vala = document.getElementById('memberTb').value = JSON.stringify(members);
-        console.log(vala);
+        //console.log(vala);
     }
 
     //This is to preserve the added color 'red' to every button
@@ -964,10 +964,10 @@ console.log(new Date().toLocaleString());
       
         while(length>=0)
         {
-            console.log('inside while');
+            //console.log('inside while');
             if(members.includes(members[length]))
             {
-                console.log('inside if '+ members[length]);
+                //console.log('inside if '+ members[length]);
                 var btnColor = document.getElementById(members[length]);
                 if(btnColor!=null)
                 {
@@ -1030,8 +1030,8 @@ console.log(new Date().toLocaleString());
     });
 */
 
-console.log(interactionPercent);
-console.log(repoMember);
+//console.log(interactionPercent);
+//console.log(repoMember);
     var ctx2 = document.getElementById("line1").getContext('2d');
     var datasets = [43,54,45,32,16,15,51,18];
     var dataStats = [31,32,22,32,34,21,23,12];
@@ -1109,7 +1109,7 @@ console.log(repoMember);
         for(var count = 0; count < repoMember.length;count++)
         {
             var chatPercentage = chatInteraction[count]/chatTotal;
-            console.log("Total: "+chatInteraction.reduce(function(chatInteraction, val) { return chatInteraction + val; }, 0));
+            //console.log("Total: "+chatInteraction.reduce(function(chatInteraction, val) { return chatInteraction + val; }, 0));
             chatPercentage = chatPercentage*100;
             interactionPercent[count] = Math.round(chatPercentage);
         }

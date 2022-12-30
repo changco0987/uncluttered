@@ -887,7 +887,7 @@
                                                     access_token = tokenResponse.access_token;
                                                 }, // defined later
                                                 });
-                                                console.log(access_token);
+                                                //console.log(access_token);
                                                 gisInited = true;
                                                 maybeEnableButtons();
                                             }
@@ -969,7 +969,7 @@
                                                     (str, file) => `${str}${file.name} (${file.id}\n`,
                                                     'Files:\n');
                                                 document.getElementById('content').innerText = output;
-                                                console.log('token: '+Object.values(gapi.client.getToken()));
+                                                //console.log('token: '+Object.values(gapi.client.getToken()));
                                                 localStorage.setItem("token",Object.values(gapi.client.getToken()));
                                                 
                                             }
@@ -1252,7 +1252,7 @@
             http.onload = function() 
             {
                 var data = http.responseText;
-                console.log(data);
+                //console.log(data);
 
                 if(data=='deleted')
                 {
@@ -1313,7 +1313,7 @@
             }
         }
         const vala = document.getElementById('memberTb').value = JSON.stringify(members);
-        console.log(vala);
+        //console.log(vala);
     }
 
     //This is to preserve the added color 'red' to every button
@@ -1323,10 +1323,10 @@
       
         while(length>=0)
         {
-            console.log('inside while');
+            //console.log('inside while');
             if(members.includes(members[length]))
             {
-                console.log('inside if '+ members[length]);
+                //console.log('inside if '+ members[length]);
                 var btnColor = document.getElementById(members[length]);
                 if(btnColor!=null)
                 {

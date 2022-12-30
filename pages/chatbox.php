@@ -367,7 +367,7 @@
                         //this will get the percentage of the contribution
                         var percent = <?php echo $memberUpdateRow;?>/updateTotal;
                         percent = percent*100;
-                        console.log(Math.round(percent));
+                        //console.log(Math.round(percent));
                         memberUpdates.push(Math.round(percent));
                         chatInteraction.push(0);//This will only inserted to make the chatInteraction array have a same array length as the repoMember
                         interactionPercent.push(0);//This will only inserted to make the interactionPercent array have a same array length as the repoMember
@@ -935,8 +935,8 @@ const analytics = getAnalytics(app);
                 else if(data.val().name == myName)
                 {
                     //updateFirebase(data.key);
-                        console.log("myData ");
-                        console.log(data.key);
+                        //console.log("myData ");
+                        //console.log(data.key);
                     //This is for the user message
 
                     //This will get the index position of the name in the array
@@ -1012,7 +1012,7 @@ const analytics = getAnalytics(app);
             http.onload = function() 
             {
                 var data = http.responseText;
-                console.log(data);
+                //console.log(data);
 
                 if(data=='deleted')
                 {
@@ -1073,7 +1073,7 @@ const analytics = getAnalytics(app);
             }
         }
         const vala = document.getElementById('memberTb').value = JSON.stringify(members);
-        console.log(vala);
+        //console.log(vala);
     }
 
     //This is to preserve the added color 'red' to every button
@@ -1083,10 +1083,10 @@ const analytics = getAnalytics(app);
       
         while(length>=0)
         {
-            console.log('inside while');
+            //console.log('inside while');
             if(members.includes(members[length]))
             {
-                console.log('inside if '+ members[length]);
+               // console.log('inside if '+ members[length]);
                 var btnColor = document.getElementById(members[length]);
                 if(btnColor!=null)
                 {
@@ -1103,125 +1103,6 @@ const analytics = getAnalytics(app);
         var length = document.getElementById(noteId).value;
         document.getElementById(txtLength).innerHTML = length.length+'/500';
     }
-
-/*
-    var ctx = document.getElementById("pie1").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['My contribution(%)','Other members(%)'],
-            datasets: [{
-                label: 'Status',
-                data: dataStat,
-                backgroundColor: [
-                    
-                    '#50C878',
-                    '#EE4B2B',
-                    '#8b0000',
-                    '#234471',
-                    '#AEC6CF',
-                    '#0000FF',
-                    '#FF00FF',
-                    '#00FFFF',
-                    '#ffa500',
-                    '#9400d3',
-                    '#808080',
-                    '#00ffff',
-                    '#8fbc8f',
-                    '#1e90ff'
-
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Project Contribution',
-                    fontSize: 300
-                },
-                legend:{
-                    position: 'bottom'
-                }
-            }
-        }
-    });
-*/
-
-console.log(interactionPercent);
-console.log(repoMember);
-    var ctx2 = document.getElementById("line1").getContext('2d');
-    var datasets = [43,54,45,32,16,15,51,18];
-    var dataStats = [31,32,22,32,34,21,23,12];
-    var mybar = new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: repoMember,
-            datasets: [{
-                label: 'Post (%)',
-                data: memberUpdates,
-                backgroundColor: [
-                    '#BE1818',
-                    '#0047AB',
-                    '#FF00FF',
-                    '#925cff',
-                    '#008000',
-                    '#fff75c',
-                    '#00FFFF',
-                    '#ffa500',
-                    '#9400d3',
-                    '#808080',
-                    '#00ffff',
-                    '#8fbc8f',
-                    '#1e90ff'
-
-                ],
-                borderColor: '#BE1818',
-                tension: 0.4,
-                fill: false,
-                spanGaps: true
-            },
-            {
-                label: 'Version (%)',
-                data: dataStats,
-                backgroundColor: [
-                    '#BE1818',
-                    '#0047AB',
-                    '#FF00FF',
-                    '#925cff',
-                    '#008000',
-                    '#fff75c',
-                    '#00FFFF',
-                    '#ffa500',
-                    '#9400d3',
-                    '#808080',
-                    '#00ffff',
-                    '#8fbc8f',
-                    '#1e90ff'
-
-                ],
-                borderColor: '#0047AB',
-                tension: 0.4,
-                fill: false,
-                spanGaps: true
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: "Participation Report",
-                    fontSize: 300
-                },
-                legend:{
-                    display: true
-                }
-            }
-        }
-    });
-
-    
     
 
         

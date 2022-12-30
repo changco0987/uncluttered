@@ -630,8 +630,6 @@
     <script async defer src="https://accounts.google.com/gsi/client"
         onload="gisLoaded()"></script>
 
-    <!-- Firebase API Script -->
-    <script type="text/javascript" src="../javascript/firebaseFetchChat.js"></script>
 </body>
 <script type="module">
 
@@ -682,7 +680,7 @@ const analytics = getAnalytics(app);
                 //This is for the other member message
 
 
-                console.log(data.val().imageName);
+                //console.log(data.val().imageName);
                 //this will check the file origin of the image of user
                 if(data.val().imageName!=null && data.val().imageName!="")
                 {
@@ -707,9 +705,10 @@ const analytics = getAnalytics(app);
             }
             else if(data.val().name == myName)
             {
+                //this function is called to check and update user image
                 updateFirebase(data.key);
-                    console.log("myData ");
-                    console.log(data.key);
+                    //console.log("myData ");
+                    //console.log(data.key);
                 //This is for the user message
                 
 
@@ -800,7 +799,7 @@ const analytics = getAnalytics(app);
             }
         }
         const vala = document.getElementById('memberTb').value = JSON.stringify(members);
-        console.log(vala);
+        //console.log(vala);
     }
 
     //This is to preserve the added color 'red' to every button
