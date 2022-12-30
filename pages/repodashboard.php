@@ -31,7 +31,7 @@
     
             $result = ReadUserAccount($conn,$data);
     
-            $userRow = mysqli_fetch_assoc($result);
+            $userRow = mysqli_fetch_assoc($result);//for current user details
     
 
             $repo = new repositoryModel();
@@ -39,7 +39,7 @@
     
             $result = ReadRepo($conn,$repo);
     
-            $repoRow = mysqli_fetch_assoc($result);
+            $repoRow = mysqli_fetch_assoc($result);//for current repo details
 
 
             
@@ -815,176 +815,31 @@
                 </div>
                 <div class="modal-body">
                     <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="repoId" value="<?php echo $repoRow['id'];?>">
-                        <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
 
                         <?php
                             //This will identify if the user is log in using their email then it will create a folder in their google drive
                             if($userRow['gmail_Id']!=null)
                             {
                                 ?>
-                                
+                                    <form action="" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="gmailId" id="gmailId" value="<?php echo $userRow['gmail_Id'];?>">
-                                    <script>
-                                            /* exported gapiLoaded */
-                                            /* exported gisLoaded */
-                                            /* exported handleAuthClick */
-                                            /* exported handleSignoutClick */
-
-                                            // TODO(developer): Set to client ID and API key from the Developer Console
-                                            const CLIENT_ID = '509002600811-8ht8f7pc6hufkis14h82o1klij3k0797.apps.googleusercontent.com';
-                                            const API_KEY = 'AIzaSyA1sWrq5rW03TVeWoPorXXxIQzr9VAkeOc';
-                                            // Discovery doc URL for APIs used by the quickstart
-                                            const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
-
-                                            // Authorization scopes required by the API; multiple scopes can be
-                                            // included, separated by spaces.
-                                            const SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/userinfo.profile';
-
-                                            let tokenClient = localStorage.getItem("response");
-                                            var access_token;
-                                            let gapiInited = false;
-                                            let gisInited = false;
-
-                                            const resToken = localStorage.getItem('response');
-                                            document.getElementById('authorize_button').style.visibility = 'hidden';
-                                            document.getElementById('signout_button').style.visibility = 'hidden';
-
-                                            /**
-                                             * Callback after api.js is loaded.
-                                             */
-                                            function gapiLoaded() 
-                                            {
-                                                gapi.load('client', initializeGapiClient);
-                                                
-                                                //gapi.client.setToken(localStorage.getItem("token"));
-                                                //console.log(localStorage.getItem("token"));
-                                            }
-
-                                            /**
-                                             * Callback after the API client is loaded. Loads the
-                                             * discovery doc to initialize the API.
-                                             */
-                                            async function initializeGapiClient() {
-                                                await gapi.client.init({
-                                                apiKey: API_KEY,
-                                                discoveryDocs: [DISCOVERY_DOC],
-                                                });
-                                                gapiInited = true;
-                                                maybeEnableButtons();
-                                            }
-
-                                            /**
-                                             * Callback after Google Identity Services are loaded.
-                                             */
-                                            function gisLoaded()
-                                            {
-                                                tokenClient = google.accounts.oauth2.initTokenClient({
-                                                client_id: CLIENT_ID,
-                                                scope: SCOPES,
-                                                prompt: '',
-                                                callback: (tokenResponse) => {
-                                                    access_token = tokenResponse.access_token;
-                                                }, // defined later
-                                                });
-                                                //console.log(access_token);
-                                                gisInited = true;
-                                                maybeEnableButtons();
-                                            }
-
-                                            /**
-                                             * Enables user interaction after all libraries are loaded.
-                                             */
-                                            function maybeEnableButtons() {
-                                                if (gapiInited && gisInited) {
-                                                document.getElementById('authorize_button').style.visibility = 'visible';
-                                                }
-                                            }
-
-                                            /**
-                                             *  Sign in the user upon button click.
-                                             */
-                                            
-                                            function handleAuthClick() {
-                                                tokenClient.callback = async (resp) => {
-                                                    if (resp.error !== undefined) 
-                                                    {
-                                                        throw (resp);
-                                                    }
-                                                    document.getElementById('signout_button').style.visibility = 'visible';
-                                                    document.getElementById('authorize_button').innerText = 'Refresh';
-                                                    await listFiles();
-                                                };
-
-                                                if (gapi.client.getToken() === null) 
-                                                {
-                                                    console.log('true');
-                                                    // Prompt the user to select a Google Account and ask for consent to share their data
-                                                    // when establishing a new session.
-                                                    tokenClient.requestAccessToken();
-                                                }
-                                                else
-                                                {
-                                                    console.log('false');
-                                                    // Skip display of account chooser and consent dialog for an existing session.
-                                                    tokenClient.requestAccessToken();
-                                                }
-                                            }
-
-                                            /**
-                                            *  Sign out the user upon button click.
-                                            */
-                                            function handleSignoutClick() {
-                                                const token = gapi.client.getToken();
-                                                if (token !== null) {
-                                                google.accounts.oauth2.revoke(token.access_token);
-                                                gapi.client.setToken('');
-                                                document.getElementById('content').innerText = '';
-                                                document.getElementById('authorize_button').innerText = 'Authorize';
-                                                document.getElementById('signout_button').style.visibility = 'hidden';
-                                                }
-                                            }
-
-                                            /**
-                                            * Print metadata for first 10 files.
-                                            */
-                                            async function listFiles() {
-                                                let response;
-                                                try {
-                                                response = await gapi.client.drive.files.list({
-                                                    'pageSize': 10,
-                                                    'fields': 'files(id, name)',
-                                                });
-                                                } catch (err) {
-                                                document.getElementById('content').innerText = err.message;
-                                                return;
-                                                }
-                                                const files = response.result.files;
-                                                if (!files || files.length == 0) {
-                                                document.getElementById('content').innerText = 'No files found.';
-                                                return;
-                                                }
-                                                // Flatten to string to display
-                                                const output = files.reduce(
-                                                    (str, file) => `${str}${file.name} (${file.id}\n`,
-                                                    'Files:\n');
-                                                document.getElementById('content').innerText = output;
-                                                //console.log('token: '+Object.values(gapi.client.getToken()));
-                                                localStorage.setItem("token",Object.values(gapi.client.getToken()));
-                                                
-                                            }
-                                            handleAuthClick();
-                                    </script>
-                                    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-                                    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
                                 <?php
                             }
+                            else
+                            {
+                                ?>
+                                    <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
+                                <?php
+
+                            }
                         ?>
+                        <input type="hidden" name="repoId" id="repoIdUpdate" value="<?php echo $repoRow['id'];?>">
+                        <input type="hidden" name="userId" id="userIdUpdate" value="<?php echo $userRow['id'];?>">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                         <label for="titleTb">Title</label>
-                                        <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTb" placeholder="Write a title" maxlength="50" required/>
+                                        <input type="text" class="form-control form-control-sm" name="titleTb" id="titleTbUpdate" placeholder="Write a title" maxlength="50" required/>
                                     </div>
                                 </div>
                             </div>
@@ -992,7 +847,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                         <label for="fileTb">Attach File:</label>
-                                        <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
+                                        <input type="file" class="form-control-file form-control-sm" id="fileTbUpdate" name="fileTb">
                                         
                                     </div>
                                 </div>
@@ -1001,7 +856,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                        <textarea name="noteTb" id="notePostTb" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength(this.id,'postLengthTxt')"></textarea>
+                                        <textarea name="noteTb" id="notePostTbUpdate" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength(this.id,'postLengthTxt')"></textarea>
                                         <span class="d-flex justify-content-end"><p id="postLengthTxt">0/500</p></span>
                                     </div>
                                 </div>
@@ -1009,7 +864,23 @@
 
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
+                                                
+                                    <?php
+                                        //This will identify if the user is log in using their email then it will create a folder in their google drive
+                                        if($userRow['gmail_Id']!=null)
+                                        {
+                                            ?>
+                                                <button type="button" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;" onclick="submitPostDetails()">Submit</button>
+                                            <?php
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                                <button type="submit" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
+                                            <?php  
+                                        }
+                                    ?>
+                                    
                                 </div>
                             </div>
                     </form>
@@ -1019,6 +890,54 @@
     </div>
 
 
+    <script>
+
+        //For uploading file in gdrive
+        async function submitPostDetails()
+        {
+            
+            var userEmail = <?php echo json_encode($userRow['email']); ?>;
+            var folderId = <?php echo json_encode($repoRow['folderId']); ?>;
+
+            var repoId = document.getElementById('repoIdUpdate').value;
+            var userId = document.getElementById('userIdUpdate').value;
+            var titleTb = document.getElementById('titleTbUpdate').value;
+            var fileTb = document.getElementById('fileTbUpdate').value;
+            var notePost = document.getElementById('notePostTbUpdate').value;
+
+
+            var repoName = document.getElementById('repoNameTb').value;
+            var creatorId = document.getElementById('creatorId').value;
+            var memberTb = document.getElementById('memberTb').value;
+
+            var gmail_Id = document.getElementById('gmail_Id').value;
+            var memberTb = document.getElementById('memberTb').value;
+
+            if(repoName)
+            {
+                //repoName is used for the gdrive folder's name
+                //await, is to make the code below of this function wait until this function is finished
+                await handleAuthClick(repoName, userEmail);
+
+                var http = new XMLHttpRequest();
+                http.open("POST", "../controller/createRepo.php", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+                var folderId = localStorage.getItem("folderId");
+                console.log(folderId);
+                //This is the form input fields data
+                var params = "repoNameTb=" + repoName+"&creatorId=" + creatorId+"&memberTb=" + memberTb+"&submitRepo=" + submitRepo+"&gmail_Id=" + gmail_Id+"&folderId=" + folderId; // probably use document.getElementById(...).value
+                http.send(params);
+                http.onload = function() {
+                    var data = http.responseText;
+                    console.log(data);
+                }
+                
+                
+            }
+        }
+        
+    </script>
 
     
     <!-- Repository settings Modal -->
@@ -1175,11 +1094,6 @@
             </div>
         </div>
     </div>
-        
-
-
-
-
 
     <?php
         if(isset($_GET['updateRes']))
@@ -1221,6 +1135,13 @@
             <?php
         }
     ?>
+    
+    <!-- Google API -->
+    <script type="text/javascript" src="../javascript/googleAPI-UploadFile.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+        onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client"
+        onload="gisLoaded()"></script>
 
 </body>
 

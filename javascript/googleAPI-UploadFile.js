@@ -68,7 +68,7 @@ function maybeEnableButtons()
  *  Sign in the user upon button click.
  */
 
-function handleAuthClick(folderName, userEmail)
+function handleAuthClick(folderId, userEmail)
 {
 	tokenClient.callback = async (resp) => {
 		if (resp.error !== undefined)
@@ -78,8 +78,8 @@ function handleAuthClick(folderName, userEmail)
 
 		//document.getElementById('signout_button').style.visibility = 'visible';
 		//document.getElementById('authorize_button').value = 'Refresh';
-		await createFolder(folderName);
-		//await uploadFile();
+		//await createFolder(folderName);
+		await uploadFile();
 
 	};
 	

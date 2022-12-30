@@ -464,6 +464,7 @@
         async function submitRepoDetails()
         {
             
+            $('#submitRepo').prop('disabled',true);
             var userEmail = <?php echo json_encode($row['email']); ?>;
 
             var repoName = document.getElementById('repoNameTb').value;
@@ -489,14 +490,18 @@
                 http.send(params);
                 http.onload = function() {
                     var data = http.responseText;
-                    console.log(data);
+                    //console.log(data);
+                    const myTimeout = setTimeout(reloadPage, 2500);
                 }
                 
                 
             }
         }
 
-
+        function reloadPage()
+        {
+            location.reload();
+        }
         
     </script>
 
