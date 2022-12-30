@@ -88,9 +88,6 @@
         .table-wrapper-scroll-y {
             display: block;
         }
-        .modal-xl {
-            max-width: 50% !important;
-        }
 
         #repoList{
             max-height: 700px;

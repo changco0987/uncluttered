@@ -258,7 +258,7 @@ footer * {
     <div class="row no-gutters">
         <footer class=" text-center text-lg-end fixed-bottom">
             <div class="d-flex justify-content-center p-3" style="background-color: #B2C8DF;">
-                <a href="https://www.iubenda.com/privacy-policy/72207994" class="mx-2" title="Privacy Policy " style="">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+                <a href="https://www.iubenda.com/privacy-policy/72207994" class="mx-2" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
                 
                 <a href="pages/terms.php" class="mx-2">Terms and condition</a>
             
@@ -351,7 +351,7 @@ footer * {
             var tokens = data.split(".");
             return JSON.parse(atob(tokens[1]));
         }
-    </>
+    </script>
 
     <?php
     if(isset($_GET['signupRes']))
@@ -407,58 +407,4 @@ footer * {
     ?>
     
 </body>
-    <!--alert message script-->
-    <script>
-        
-        //document.getElementById('successBox').style.display = 'none';
-        //document.getElementById('alertBox').style.display = 'none';
-        //var successSignal = localStorage.getItem('state');
-/*
-        if(successSignal==1)
-        {
-            //if incorrect password
-            document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = 'Incorrect password please try again';
-            console.log("okay");
-
-        }
-        else if(successSignal==2)
-        {
-            //if email is already taken
-            document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = 'Sorry, this account is not existing';
-            console.log("okay");
-        }
-        else if(successSignal==3)
-        {
-            //if password doesn't matched
-            document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = "Password doesn't match!";
-            console.log("okay");
-        }
-        else if(successSignal==4)
-        {
-            //if password doesn't matched
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "Account Created Successfully!";
-            console.log("okay");
-        }
-        else if(successSignal==5)
-        {
-            //if the account is locked
-            document.getElementById('alertBox').style.display = 'block';
-            document.getElementById('errorMsg').innerHTML = "This account is locked, please contact the admin";
-            console.log("okay");
-        }
-        else if(successSignal==6)
-        {
-            //if the user is successfully reset password
-            document.getElementById('successBox').style.display = 'block';
-            document.getElementById('successMsg').innerHTML = "Reset Password Successfully!";
-            console.log("okay");
-        }
-*/
-        //To make signl back to normmal and to prevent for the success page to appear every time the page was reload or refresh
-        //localStorage.setItem('state',0);
-    </script>
 </html>
