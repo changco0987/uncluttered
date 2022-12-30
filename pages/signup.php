@@ -273,7 +273,8 @@ footer * {
     <div class="row no-gutters">
         <footer class=" text-center text-lg-end fixed-bottom">
             <div class="d-flex justify-content-center p-3" style="background-color: #B2C8DF;">
-            <a href="privacy.php" target="_blank" rel="noopener noreferrer">Privacy and Policy</a>
+            <a href="privacy.php" class="mx-2" target="_blank" rel="noopener noreferrer">Privacy and Policy</a>
+            <a href="terms.php" class="mx-2">Terms and condition</a>
             <!--  <h5 style="background-color:#E78F14;"><a href="https://www.facebook.com/balayan.sti.edu/" target="_blank" class="mx-2" style="background-color:#E78F14;"><i class="bi bi-facebook" style="background-color:#E78F14;"></i></a></h5>
                 <h5 style="background-color:#E78F14;"><a href="mailto:richardjohn.encarnacion@batangas.sti.edu" target="_blank" class="mx-2"><i class="bi bi-envelope-fill" style="background-color:#E78F14;"></i></a></h5>
                 <h5 style="background-color:#E78F14;"><a href="https://maps.google.com/?q=STI College - Batangas, 865 National Road, Batangas, 4200 Batangas" target="_blank" class="mx-2"><i class="bi bi-geo-alt-fill" style="background-color:#E78F14;"></i></a></h5>

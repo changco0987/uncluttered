@@ -1,52 +1,221 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <!-- saved from url=(0053)https://www.iubenda.com/privacy-policy/72207994/legal -->
-<html id="iubenda_policy" class="iubenda_fixed_policy" lang="en"><script async="false" type="text/javascript" src="chrome-extension://fnjhmkhhmkbjkkabndcnnogagogbneec/in-page.js"></script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
-
-  <title>Privacy Policy of uncluterredapp.000webhostapp.com/</title>
-
-  <meta http-equiv="Content-Language" content="en">
+<html id="iubenda_policy" class="iubenda_fixed_policy" lang="en">
+<script async="false" type="text/javascript" src="chrome-extension://fnjhmkhhmkbjkkabndcnnogagogbneec/in-page.js"></script>
   
-  <meta http-equiv="date" content="2022-12-25">
-  <meta http-equiv="last-modified" content="2022-12-25">
-  <meta itemprop="name" content="Privacy Policy of uncluterredapp.000webhostapp.com/">
-  <meta itemprop="description" content="This Application collects some Personal Data from its Users.">
-  <meta itemprop="image" content="https://www.iubenda.com/seo/assets/default.png">
-  <meta name="locale" content="en">
-  <meta name="title" content="This Application collects some Personal Data from its Users.">
-  <meta name="description" content="This Application collects some Personal Data from its Users.">
-  <meta name="image" content="https://www.iubenda.com/seo/assets/default.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Privacy Policy of uncluterredapp.000webhostapp.com/">
-  <meta name="twitter:description" content="This Application collects some Personal Data from its Users.">
-  <meta name="twitter:site" content="@iubenda">
-  <meta name="twitter:image:src" content="https://www.iubenda.com/seo/assets/default.png">
-  <meta property="og:title" content="Privacy Policy of uncluterredapp.000webhostapp.com/">
-  <meta property="og:description" content="This Application collects some Personal Data from its Users.">
-  <meta property="og:image" content="https://www.iubenda.com/seo/assets/default.png">
-  <meta property="og:url" content="https://www.iubenda.com/privacy-policy/72207994/legal">
-  <meta property="og:site_name" content="iubenda">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
-  <meta property="fb:app_id" content="190131204371223">
-  <link rel="canonical" href="https://www.iubenda.com/privacy-policy/72207994/legal">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+    <meta http-equiv="date" content="2022-12-25">
+    <meta http-equiv="last-modified" content="2022-12-25">
+    <meta itemprop="name" content="Privacy Policy of uncluterredapp.000webhostapp.com/">
+    <meta itemprop="description" content="This Application collects some Personal Data from its Users.">
+    <meta itemprop="image" content="https://www.iubenda.com/seo/assets/default.png">
+    <meta name="locale" content="en">
+    <meta name="title" content="This Application collects some Personal Data from its Users.">
+    <meta name="description" content="This Application collects some Personal Data from its Users.">
+    <meta name="image" content="https://www.iubenda.com/seo/assets/default.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Privacy Policy of uncluterredapp.000webhostapp.com/">
+    <meta name="twitter:description" content="This Application collects some Personal Data from its Users.">
+    <meta name="twitter:site" content="@iubenda">
+    <meta name="twitter:image:src" content="https://www.iubenda.com/seo/assets/default.png">
+    <meta property="og:title" content="Privacy Policy of uncluterredapp.000webhostapp.com/">
+    <meta property="og:description" content="This Application collects some Personal Data from its Users.">
+    <meta property="og:image" content="https://www.iubenda.com/seo/assets/default.png">
+    <meta property="og:url" content="https://www.iubenda.com/privacy-policy/72207994/legal">
+    <meta property="og:site_name" content="iubenda">
+    <meta property="og:locale" content="en">
+    <meta property="og:type" content="website">
+    <meta property="fb:app_id" content="190131204371223">
+    <link rel="canonical" href="https://www.iubenda.com/privacy-policy/72207994/legal">
 
-  <meta name="viewport" content="width=device-width">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!--Bootstrap icon--> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/defaultStyle.css">
 
-  <meta content="noindex, follow" name="robots">
-  <link href="../css/privacyStyle.css" media="screen" rel="stylesheet">
-  <script src="../javascript/privacyJs.js"></script>
+    <link href="../css/privacyStyle.css" media="screen" rel="stylesheet">
+    <script src="../javascript/privacyJs.js"></script>
 
-<style type="text/css">#iubenda_policy .close {display: none;}
-#iubenda_policy #wbars {   overflow-y: auto;   -webkit-box-shadow: none;   -moz-box-shadow: none;   box-shadow: none;   height: auto; }
-#iubenda_policy .iub_container {  margin-top: 30px;  margin-bottom: 30px; }
-#iubenda_policy .iub_container > .iub_footer {  -webkit-box-shadow: none;  -moz-box-shadow: none;  box-shadow: none;  -webkit-border-radius: none;  -moz-border-radius: none;  border-radius: none; }
-</style>
+    <!--Google API (GSI)-->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!--My CSS and JS-->
+    <!--link type="text/css" rel="stylesheet" href="../css/signup.css"/-->
+    <!--script src="../javascript/index.js"></script-->
+    <style>
+        #iubenda_policy .close {display: none;}
+        #iubenda_policy #wbars {   overflow-y: auto;   -webkit-box-shadow: none;   -moz-box-shadow: none;   box-shadow: none;   height: auto; }
+        #iubenda_policy .iub_container {  margin-top: 30px;  margin-bottom: 30px; }
+        #iubenda_policy .iub_container > .iub_footer {  -webkit-box-shadow: none;  -moz-box-shadow: none;  box-shadow: none;  -webkit-border-radius: none;  -moz-border-radius: none;  border-radius: none; }
+            
+        label{
+            font-size: 12px;
+            color: #234471;
+        }
 
-<link rel="icon" href="../asset/appIcon.png">
+        .containerForm{
+            background-color: #f1f1f1; /* Fallback color */
+            color: black;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            height: max-content;
+            width: max-content;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            
+        }
+
+
+        .form-control{
+            border: 0;
+        }
+
+
+        @media screen and (max-height: 850px) {
+
+        .containerForm {
+            background-color: #f1f1f1; /* Fallback color */
+            color: black;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            height: max-content;
+            width: max-content;
+            padding: 15px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        }
+
+        @media screen and (max-width: 650px) {
+            body{  
+            background-color: #f1f1f1;
+            font-family: "Bahnschrift", Times, serif;
+        }
+        .containerForm {
+            background-color: #f1f1f1; /* Fallback color */
+            color: black;
+            font-weight: bold;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-35%);
+            height: 750px;
+            width: 385px;
+            padding: 5px;
+            text-align: center;
+            border-radius: 0px;
+            box-shadow: none;
+        }
+        }
+
+        /* S20 Ultra and iphone6/7/8 Plus*/
+        @media screen and (max-width: 450px) {
+            body{  
+            background-color: #f1f1f1;
+        }
+        .containerForm {
+            background-color: #f1f1f1; /* Fallback color */
+            color: black;
+            font-weight: bold;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-40%);
+            height: 700px;
+            width: 385px;
+            padding: 5px;
+            text-align: center;
+            border-radius: 0px;
+            box-shadow: none;
+        }
+        }
+
+        /* S8+ */
+        @media screen and (max-width: 360px) {
+            body{  
+            background-color: #f1f1f1;
+            font-family: "Bahnschrift", Times, serif;
+        }
+        .containerForm {
+            background-color: #f1f1f1; /* Fallback color */
+            color: black;
+            font-weight: bold;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-35%);
+            height: 890px;
+            width: 350px;
+            padding: 5px;
+            text-align: center;
+            border-radius: 0px;
+            box-shadow: none;
+        }
+        }
+
+        /* S9 */
+        @media screen and (max-width: 320px) {
+        body{  
+            background-color: #f1f1f1;
+            font-family: "Bahnschrift", Times, serif;
+        }
+        .containerForm {
+            background-color: #f1f1f1; /* Fallback color */
+            color: black;
+            font-weight: bold;
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-25%);
+            height: 750px;
+            width: 300px;
+            padding: 5px;
+            text-align: center;
+            border-radius: 0px;
+            box-shadow: none;
+        }
+
+        footer * {
+            font-size: 17px;
+        }
+
+        }
+
+    </style>
+    <link rel="icon" href="../asset/appIcon.png">
+    <title>Uncluttered - Privacy Policy of uncluterredapp.000webhostapp.com/</title>
+
 </head>
 <body class="" data-new-gr-c-s-check-loaded="14.1026.0" data-gr-ext-installed="">
+
+    
+    <!-- Image and text Header-->
+    <nav class="navbar navbar-light" style="background-color: #6E85B7;">
+        <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C; font-size:25px">
+            <img src="../asset/appIcon.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            Uncluttered
+        </a>
+    </nav>
+
+
+    
   <script type="text/javascript">
     var $body = $('body');
 
@@ -424,6 +593,7 @@ Should the changes affect processing activities performed on the basis of the Us
 
 </div> <!-- /footer -->
 
+
 <script type="text/javascript">
   window.tryFunc = function(fName,args){
     if(typeof window[fName]==='function'){
@@ -473,4 +643,86 @@ Should the changes affect processing activities performed on the basis of the Us
 
 
 
-</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+
+    <script>
+        
+        function handleCredentialResponse(response)
+        {
+            const responsePayload = decodeJwtResponse(response.credential);
+            console.log('ID: '+responsePayload.sub);
+            console.log('Full Name: '+responsePayload.name);
+            console.log('Given Name: '+responsePayload.given_name);
+            console.log('Family Name: '+responsePayload.family_name);
+            console.log('Image URL: '+responsePayload.picture);
+            console.log('Email: '+responsePayload.email);
+
+            var http = new XMLHttpRequest();
+                http.open("POST", "../controller/signupWithGmail.php", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+                //This is the form input fields data
+                var params = "submitBtn="+true+
+                            "&usernameTb="+responsePayload.email+
+                            "&passwordTb="+responsePayload.sub+
+                            "&fnameTb="+responsePayload.given_name+
+                            "&lnameTb="+responsePayload.family_name+
+                            "&emailTb="+responsePayload.email+
+                            "&imageName="+responsePayload.picture+
+                            "&gmail_IdTb="+responsePayload.sub; // probably use document.getElementById(...).value
+
+                http.send(params);
+                http.onload = function() 
+                {
+                    var signupRes = http.responseText;
+                    console.log(signupRes);
+
+                    if(signupRes =='1')
+                    {
+                        url.searchParams.set('signupRes', signupRes);
+                        window.history.replaceState(null, null, url); // or pushState
+                        location.reload();
+                        
+                    }
+                    else if(signupRes =='2')
+                    {
+                        url.searchParams.set('signupRes', signupRes);
+                        window.history.replaceState(null, null, url); // or pushState
+                        window.location = '../index.php';
+                    }
+                    //returnDate();
+                    //console.log(params);
+                }
+        }
+
+        function decodeJwtResponse(data)
+        {
+            var tokens = data.split(".");
+            return JSON.parse(atob(tokens[1]));
+        }
+    </script>
+<?php
+    if(isset($_GET['response'])==1)
+    {
+        ?>
+        <!-- Alert message container-->
+        <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
+            <strong id="errorMsg">Username doesn't exist!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <script>
+            //to reset the $_GET in URL
+            url.searchParams.delete('response');
+            window.history.replaceState(null, null, url); // or pushState
+        </script>
+        <?php
+
+    }
+
+?>
+</body>
+    <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</html>
+

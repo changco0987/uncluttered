@@ -258,7 +258,9 @@ footer * {
     <div class="row no-gutters">
         <footer class=" text-center text-lg-end fixed-bottom">
             <div class="d-flex justify-content-center p-3" style="background-color: #B2C8DF;">
-            <a href="https://www.iubenda.com/privacy-policy/72207994" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+                <a href="https://www.iubenda.com/privacy-policy/72207994" class="mx-2" title="Privacy Policy " style="">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+                
+                <a href="pages/terms.php" class="mx-2">Terms and condition</a>
             
                 <!--  <h5 style="background-color:#E78F14;"><a href="https://www.facebook.com/balayan.sti.edu/" target="_blank" class="mx-2" style="background-color:#E78F14;"><i class="bi bi-facebook" style="background-color:#E78F14;"></i></a></h5>
                 <h5 style="background-color:#E78F14;"><a href="mailto:richardjohn.encarnacion@batangas.sti.edu" target="_blank" class="mx-2"><i class="bi bi-envelope-fill" style="background-color:#E78F14;"></i></a></h5>
@@ -349,7 +351,7 @@ footer * {
             var tokens = data.split(".");
             return JSON.parse(atob(tokens[1]));
         }
-    </script>
+    </>
 
     <?php
     if(isset($_GET['signupRes']))
