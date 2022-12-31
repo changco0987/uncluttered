@@ -647,7 +647,7 @@
                 //await, is to make the code below of this function wait until this function is finished
                 await handleAuthClick(repoName, userEmail);
 
-                submit(repoName,creatorId, memberTb, gmail_Id);
+                //submit(repoName,creatorId, memberTb, gmail_Id);
                 //const myTimeout = setTimeout(submit(repoName,creatorId, memberTb, gmail_Id), 2500);
                 
                 
