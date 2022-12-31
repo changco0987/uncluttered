@@ -460,6 +460,172 @@
         </div>
     </div>
     <script>
+                
+        /**
+         * Callback after api.js is loaded.
+         */
+        function gapiLoaded()
+        {
+            gapi.load('client', initializeGapiClient);
+        }
+
+        /**
+         * Callback after the API client is loaded. Loads the
+         * discovery doc to initialize the API.
+         */
+        async function initializeGapiClient()
+        {
+            await gapi.client.init({
+                apiKey: API_KEY,
+                discoveryDocs: [DISCOVERY_DOC],
+            });
+            gapiInited = true;
+            maybeEnableButtons();
+        }
+
+        /**
+         * Callback after Google Identity Services are loaded.
+         */
+        function gisLoaded()
+        {
+            tokenClient = google.accounts.oauth2.initTokenClient({
+                client_id: CLIENT_ID,
+                scope: SCOPES,
+                prompt: '',
+                callback: (tokenResponse) => {
+                    access_token = tokenResponse.access_token;
+                }, // defined later
+            });
+            gisInited = true;
+            maybeEnableButtons();
+        }
+
+        /**
+         * Enables user interaction after all libraries are loaded.
+         */
+        function maybeEnableButtons()
+        {
+            if (gapiInited && gisInited)
+            {
+                //document.getElementById('authorize_button').style.visibility = 'visible';
+            }
+        }
+
+        /**
+         *  Sign in the user upon button click.
+         */
+
+        function handleAuthClick(folderName, userEmail)
+        {
+            tokenClient.callback = async (resp) => {
+                if (resp.error !== undefined)
+                {
+                    throw (resp);
+                }
+
+                //document.getElementById('signout_button').style.visibility = 'visible';
+                //document.getElementById('authorize_button').value = 'Refresh';
+                await createFolder(folderName);
+                //await uploadFile();
+
+            };
+            
+            //console.log(tokenClient.callback);
+
+            if (gapi.client.getToken() === null)
+            {
+                // Prompt the user to select a Google Account and ask for consent to share their data
+                // when establishing a new session.
+                tokenClient.requestAccessToken({ hint: userEmail });
+            }
+            else
+            {
+                // Skip display of account chooser and consent dialog for an existing session.
+                tokenClient.requestAccessToken({ hint: userEmail });
+            }
+        }
+
+        /**
+         *  Sign out the user upon button click.
+         */
+        function signout()
+        {
+            const token = gapi.client.getToken();
+            if (token !== null)
+            {
+                google.accounts.oauth2.revoke(token.access_token);
+                gapi.client.setToken('');
+            }
+
+            setTimeout(window.location = '../controller/wipedata.php',2000);
+        }
+
+
+        function createFolder(folderName)
+        {
+            /*
+            if(localStorage.getItem("access_token") === null)
+            {
+                localStorage.setItem("access_token",access_token);
+            }
+            else
+            {
+                var access_token = localStorage.getItem("access_token");
+            }
+            */
+            var access_token = gapi.auth.getToken().access_token;
+            
+            var request = gapi.client.request({
+                'path': '/drive/v2/files/',
+                'method': 'POST',
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + access_token,             
+                },
+                'body':{
+                    "title" : folderName,
+                    "mimeType" : "application/vnd.google-apps.folder",
+                    'type': 'anyone',
+                    'role': 'reader'
+                }
+            });
+        
+            request.execute(function(resp)
+            { 
+                submit(resp.id);
+                console.log('Folder'); 
+                console.log(resp); 
+                insertPermission(resp.id, access_token);
+                location.reload();
+                //uploadFile(resp.id);
+                //console.log(parent);
+                //document.getElementById("info").innerHTML = "Created folder: " + resp.title;
+            });
+        }
+
+
+
+        function insertPermission(fileId, oauthToken)
+        {
+            
+            var request1 = gapi.client.request({
+                'path': '/drive/v3/files/' + fileId + '/permissions',
+                'method': 'POST',
+                'headers': {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + oauthToken
+                },
+                'body':{
+                    'type': 'anyone',
+                    'role': 'reader'
+                }
+            });
+            request1.execute(function(resp) {
+                console.log(resp);
+            });
+        }
+
+
 
         async function submitRepoDetails()
         {
@@ -468,34 +634,49 @@
             var userEmail = <?php echo json_encode($row['email']); ?>;
 
             var repoName = document.getElementById('repoNameTb').value;
+            /*
             var creatorId = document.getElementById('creatorId').value;
             var memberTb = document.getElementById('memberTb').value;
             var gmail_Id = document.getElementById('gmail_Id').value;
             var memberTb = document.getElementById('memberTb').value;
-
+            */
+            //var folderId;
             if(repoName)
             {
                 //repoName is used for the gdrive folder's name
                 //await, is to make the code below of this function wait until this function is finished
                 await handleAuthClick(repoName, userEmail);
 
-                var http = new XMLHttpRequest();
+                submit(repoName,creatorId, memberTb, gmail_Id);
+                //const myTimeout = setTimeout(submit(repoName,creatorId, memberTb, gmail_Id), 2500);
+                
+                
+            }
+        }
+
+        function submit(folderId)
+        {
+
+            var repoName = document.getElementById('repoNameTb').value;
+            var creatorId = document.getElementById('creatorId').value;
+            var memberTb = document.getElementById('memberTb').value;
+            var gmail_Id = document.getElementById('gmail_Id').value;
+            var memberTb = document.getElementById('memberTb').value;
+
+            var http = new XMLHttpRequest();
                 http.open("POST", "../controller/createRepo.php", true);
                 http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
-                var folderId = localStorage.getItem("folderId");
                 console.log(folderId);
                 //This is the form input fields data
                 var params = "repoNameTb=" + repoName+"&creatorId=" + creatorId+"&memberTb=" + memberTb+"&submitRepo=" + submitRepo+"&gmail_Id=" + gmail_Id+"&folderId=" + folderId; // probably use document.getElementById(...).value
                 http.send(params);
-                http.onload = function() {
+                http.onload = function()
+                {
                     var data = http.responseText;
                     //console.log(data);
                     const myTimeout = setTimeout(reloadPage, 2500);
                 }
-                
-                
-            }
         }
 
         function reloadPage()
@@ -629,7 +810,7 @@
         }
     ?>
     <!-- Google API -->
-    <script type="text/javascript" src="../javascript/googleAPI-CreateFolder.js"></script>
+    <script type="text/javascript" src="../javascript/googleAPI-Credentials.js"></script>
     <script async defer src="https://apis.google.com/js/api.js"
         onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client"

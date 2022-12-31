@@ -30,5 +30,10 @@
         //$arr = unserialize($str);//This will be used to decrypt and back to the array type
         //print_r($members);
     }
+    else
+    {
+        
+        header("location: ../index.php");
+    }
 
 ?>

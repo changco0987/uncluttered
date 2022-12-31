@@ -198,7 +198,7 @@ footer * {
                         <input type="hidden" name="accType" value="visitor">
                         <div class="form-group">
                             <center>
-                            <h2>Welcome</h2>
+                                <h2>Welcome</h2>
                             </center>
                             <hr style="height:2px; border-width:0;background-color: #3466AA">
                         </div>
