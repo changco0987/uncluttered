@@ -633,9 +633,20 @@
                                                                 //This will only trigger if theres a file to download
                                                                 if($updateRow['filename']!="")
                                                                 {
-                                                                    ?>
-                                                                        <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
-                                                                    <?php
+                                                                   
+                                                                
+                                                                    if($updateRow['fileId'])
+                                                                    {
+                                                                        ?>
+                                                                            <a class="dropdown-item"  href="https://drive.google.com/file/d/<?php echo $updateRow['fileId'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
+                                                                        <?php
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        ?>
+                                                                            <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
+                                                                        <?php
+                                                                    }
                                                                 }
                                                             ?>
                                                         </div>
@@ -1033,7 +1044,7 @@
             }
             else if(titleTb)
             {
-                submit(null);
+                submit('');
             }
         }
         
@@ -1055,7 +1066,7 @@
             }
             else
             {
-                fileTb = null;
+                fileTb = '';
             }
 
             console.log(gmail_Id);
@@ -1069,7 +1080,7 @@
                 http.onload = function() {
                     var data = http.responseText;
 
-                    if(postId==null)
+                    if(!postId)
                     {
                         location.reload();
                     }
