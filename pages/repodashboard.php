@@ -562,10 +562,20 @@
                                                                                                             <?php
                                                                                                                 if($updateRow['filename'])
                                                                                                                 {
-                                                                                                                    ?>
-                                                                                                                        <label for="fileTb">Attached File:</label>
-                                                                                                                        <a class="text-success" href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>"><?php echo $updateRow['filename'];?></a>
-                                                                                                                    <?php
+                                                                                                                    if($updateRow['fileId'])
+                                                                                                                    {
+                                                                                                                        ?>
+                                                                                                                            <label for="fileTb">Attached File:</label>
+                                                                                                                            <a class="text-success" href="https://drive.google.com/file/d/<?php echo $updateRow['fileId'];?>" target="_blank"> <?php echo $updateRow['filename'];?></a>
+                                                                                                                        <?php
+                                                                                                                    }
+                                                                                                                    else
+                                                                                                                    {
+                                                                                                                        ?>
+                                                                                                                            <label for="fileTb">Attached File:</label>
+                                                                                                                            <a class="text-success" href="../upload/repoId<?php echo $repoRow['id'];?>/<?php echo $updateRow['filename'];?>"><?php echo $updateRow['filename'];?></a>
+                                                                                                                        <?php
+                                                                                                                    }
 
                                                                                                                 }
                                                                                                                 else
