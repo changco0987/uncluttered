@@ -18,7 +18,7 @@
         $data->setDatetimeCreation();
 
         
-        if(isset($_FILES['fileTb']['name'])!="")
+        if(isset($_FILES['fileTb']['name']) && $_FILES['fileTb']['name']!="")
         {
             $fileExtension = pathinfo($_FILES['fileTb']['name'],PATHINFO_EXTENSION);
             if(strlen($_FILES['fileTb']['name']) <= 490)
@@ -51,7 +51,7 @@
 
         CreateUpdate($conn,$data);
 
-        //header("Location: ../pages/repodashboard.php?id=".$_POST['repoId']."&updateRes=1");
+        header("Location: ../pages/repodashboard.php?id=".$_POST['repoId']."&updateRes=1");
 
 
         
