@@ -460,57 +460,7 @@
         </div>
     </div>
     <script>
-                
-        /**
-         * Callback after api.js is loaded.
-         */
-        function gapiLoaded()
-        {
-            gapi.load('client', initializeGapiClient);
-        }
-
-        /**
-         * Callback after the API client is loaded. Loads the
-         * discovery doc to initialize the API.
-         */
-        async function initializeGapiClient()
-        {
-            await gapi.client.init({
-                apiKey: API_KEY,
-                discoveryDocs: [DISCOVERY_DOC],
-            });
-            gapiInited = true;
-            maybeEnableButtons();
-        }
-
-        /**
-         * Callback after Google Identity Services are loaded.
-         */
-        function gisLoaded()
-        {
-            tokenClient = google.accounts.oauth2.initTokenClient({
-                client_id: CLIENT_ID,
-                scope: SCOPES,
-                prompt: '',
-                callback: (tokenResponse) => {
-                    access_token = tokenResponse.access_token;
-                }, // defined later
-            });
-            gisInited = true;
-            maybeEnableButtons();
-        }
-
-        /**
-         * Enables user interaction after all libraries are loaded.
-         */
-        function maybeEnableButtons()
-        {
-            if (gapiInited && gisInited)
-            {
-                //document.getElementById('authorize_button').style.visibility = 'visible';
-            }
-        }
-
+            
         /**
          *  Sign in the user upon button click.
          */
@@ -630,7 +580,7 @@
         async function submitRepoDetails()
         {
             
-            $('#submitRepo').prop('disabled',true);
+            $('#submitRepo').prop('disabled',true);//To prevent submitting the form multiple times
             var userEmail = <?php echo json_encode($row['email']); ?>;
 
             var repoName = document.getElementById('repoNameTb').value;
@@ -654,6 +604,7 @@
             }
         }
 
+        //To save repo info to database
         function submit(folderId)
         {
 

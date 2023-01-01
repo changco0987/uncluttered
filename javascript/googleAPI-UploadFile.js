@@ -79,7 +79,7 @@ function handleAuthClick(folderId, userEmail)
 		//document.getElementById('signout_button').style.visibility = 'visible';
 		//document.getElementById('authorize_button').value = 'Refresh';
 		//await createFolder(folderName);
-		await uploadFile();
+		await uploadFile(folderId);
 
 	};
 	
@@ -141,7 +141,7 @@ async function uploadFile(parentId)
 	xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
 	xhr.responseType = 'json';
 	xhr.onload = () => {
-		insertPermission(xhr.response.id,accessToken);
+		insertPermission(xhr.response.id, accessToken);
 		console.log(xhr.response);
 	};
 	xhr.send(form);
