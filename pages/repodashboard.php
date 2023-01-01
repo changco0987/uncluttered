@@ -822,7 +822,7 @@
                             {
                                 ?>
                                     <form action="" method="post" enctype="multipart/form-data">
-                                    <input type="hidden" name="gmailId" id="gmailId" value="<?php echo $userRow['gmail_Id'];?>">
+                                    <input type="hidden" name="gmailId" id="gmail_Id" value="<?php echo $userRow['gmail_Id'];?>">
                                 <?php
                             }
                             else
@@ -830,7 +830,6 @@
                                 ?>
                                     <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
                                 <?php
-
                             }
                         ?>
                         <input type="hidden" name="repoId" id="repoIdUpdate" value="<?php echo $repoRow['id'];?>">
@@ -870,13 +869,13 @@
                                         if($userRow['gmail_Id']!=null)
                                         {
                                             ?>
-                                                <button type="button" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;" onclick="submitPostDetails()">Submit</button>
+                                                <button type="button" class="btn btn-sm bg-success" name="submitPost" id="submitPost" style="width: 8rem; color:whitesmoke;" onclick="submitPostDetails()">Submit</button>
                                             <?php
                                         }
                                         else
                                         {
                                             ?>
-                                                <button type="submit" class="btn btn-sm bg-success" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
+                                                <button type="submit" class="btn btn-sm bg-success" name="submitPost" id="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
                                             <?php  
                                         }
                                     ?>
@@ -891,50 +890,195 @@
 
 
     <script>
+                    
+        /**
+         *  Sign in the user upon button click.
+         */
+
+         function handleAuthClick(folderId, fileName, userEmail)
+        {
+            tokenClient.callback = async (resp) => {
+                if (resp.error !== undefined)
+                {
+                    throw (resp);
+                }
+
+                //document.getElementById('signout_button').style.visibility = 'visible';
+                //document.getElementById('authorize_button').value = 'Refresh';
+                await uploadFile(folderId, fileName);
+                //await uploadFile();
+
+            };
+            
+            //console.log(tokenClient.callback);
+
+            if (gapi.client.getToken() === null)
+            {
+                // Prompt the user to select a Google Account and ask for consent to share their data
+                // when establishing a new session.
+                tokenClient.requestAccessToken({ hint: userEmail });
+            }
+            else
+            {
+                // Skip display of account chooser and consent dialog for an existing session.
+                tokenClient.requestAccessToken({ hint: userEmail });
+            }
+        }
+
+        /**
+         *  Sign out the user upon button click.
+         */
+        function signout()
+        {
+            const token = gapi.client.getToken();
+            if (token !== null)
+            {
+                google.accounts.oauth2.revoke(token.access_token);
+                gapi.client.setToken('');
+            }
+
+            setTimeout(window.location = '../controller/wipedata.php',2000);
+        }
+
+
+        /**
+         * Upload file to Google Drive.
+         */
+        async function uploadFile(parentId, fileName)
+        {
+            var myFile;
+
+            console.log(fileName[0]);
+            var fileContent = fileName[0]; // As a sample, upload a text file.
+            var file = new Blob([fileContent], { type: fileName[0].type });
+            var metadata = {
+                'name': fileName[0].name, // Filename at Google Drive
+                'mimeType': fileName[0].type,// mimeType at Google Drive
+                //'body': fileName[0],
+                'parents': [parentId] 
+                // TODO [Optional]: Set the below credentials
+                // Note: remove this parameter, if no target is needed
+                //'parents': ['SET-GOOGLE-DRIVE-FOLDER-ID'], // Folder ID at Google Drive which is optional
+            };
+
+            var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
+            console.log(accessToken);
+            var form = new FormData();
+            form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+            form.append('file', file);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('post', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true&fields=id');
+            xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+            xhr.responseType = 'json';
+            xhr.onload = () => {
+            console.log('API: '+xhr.response.id);
+                submit(xhr.response.id);
+                localStorage.setItem("fileId", xhr.response.id);
+                insertPermission(xhr.response.id, accessToken);
+                location.reload();
+                console.log(xhr.response);
+            };
+            xhr.send(form);
+        }
+
+
+
+        function insertPermission(fileId, oauthToken)
+        {
+            
+            var request1 = gapi.client.request({
+                'path': '/drive/v3/files/' + fileId + '/permissions',
+                'method': 'POST',
+                'headers': {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + oauthToken
+                },
+                'body':{
+                    'type': 'anyone',
+                    'role': 'reader'
+                }
+            });
+            request1.execute(function(resp) {
+                console.log(resp);
+            });
+        }
+
+
+        var post;
+        fileTbUpdate.onchange = evt => {
+            post = fileTbUpdate.files
+            
+        }
 
         //For uploading file in gdrive
         async function submitPostDetails()
         {
             
+            $('#submitPost').prop('disabled',true);//To prevent submitting the form multiple times
             var userEmail = <?php echo json_encode($userRow['email']); ?>;
             var folderId = <?php echo json_encode($repoRow['folderId']); ?>;
+            var titleTb = document.getElementById('titleTbUpdate').value;//just to identify that the form has content
 
+            //fileTb = document.getElementById('fileTbUpdate');
+            //console.log(fileTb);
+         
+
+            if(post)
+            {
+               // console.log(post[0].type);
+                //repoName is used for the gdrive folder's name
+                //await, is to make the code below of this function wait until this function is finished
+                await handleAuthClick(folderId, post, userEmail);
+            }
+            else if(titleTb)
+            {
+                submit(null);
+            }
+        }
+        
+        //To save repo info to database
+        function submit(postId)
+        {
             var repoId = document.getElementById('repoIdUpdate').value;
             var userId = document.getElementById('userIdUpdate').value;
             var titleTb = document.getElementById('titleTbUpdate').value;
-            var fileTb = document.getElementById('fileTbUpdate').value;
-            var notePost = document.getElementById('notePostTbUpdate').value;
-
-
-            var repoName = document.getElementById('repoNameTb').value;
-            var creatorId = document.getElementById('creatorId').value;
-            var memberTb = document.getElementById('memberTb').value;
-
+            
+            var fileTb;
+            var noteTb = document.getElementById('notePostTbUpdate').value;
             var gmail_Id = document.getElementById('gmail_Id').value;
-            var memberTb = document.getElementById('memberTb').value;
 
-            if(repoName)
+            
+            if(postId)
             {
-                //repoName is used for the gdrive folder's name
-                //await, is to make the code below of this function wait until this function is finished
-                await handleAuthClick(repoName, userEmail);
+                fileTb = post[0].name;
+            }
+            else
+            {
+                fileTb = null;
+            }
 
-                var http = new XMLHttpRequest();
-                http.open("POST", "../controller/createRepo.php", true);
+            console.log(gmail_Id);
+            var http = new XMLHttpRequest();
+                http.open("POST", "../controller/createPost.php", true);
                 http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
-                var folderId = localStorage.getItem("folderId");
-                console.log(folderId);
                 //This is the form input fields data
-                var params = "repoNameTb=" + repoName+"&creatorId=" + creatorId+"&memberTb=" + memberTb+"&submitRepo=" + submitRepo+"&gmail_Id=" + gmail_Id+"&folderId=" + folderId; // probably use document.getElementById(...).value
+                var params = "userId=" + userId+"&repoId=" + repoId+"&titleTb=" + titleTb+"&noteTb=" + noteTb+"&fileTb=" + fileTb+"&submitPost=" + submitPost+"&gmail_Id=" + gmail_Id+"&postId=" + postId; // probably use document.getElementById(...).value
                 http.send(params);
                 http.onload = function() {
                     var data = http.responseText;
-                    console.log(data);
+
+                    if(postId==null)
+                    {
+                        location.reload();
+                    }
                 }
-                
-                
-            }
+        }
+
+        function reloadPage()
+        {
+            location.reload();
         }
         
     </script>
@@ -1137,7 +1281,7 @@
     ?>
     
     <!-- Google API -->
-    <script type="text/javascript" src="../javascript/googleAPI-UploadFile.js"></script>
+    <script type="text/javascript" src="../javascript/googleAPI-Credentials.js"></script>
     <script async defer src="https://apis.google.com/js/api.js"
         onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client"

@@ -12,7 +12,7 @@ let gapiInited = false;
 let gisInited = false;
 
 
-/**
+/*
  * Callback after api.js is loaded.
  */
 function gapiLoaded()
