@@ -1031,7 +1031,7 @@
         async function submitPostDetails()
         {
             
-            $('#submitPost').prop('disabled',true);//To prevent submitting the form multiple times
+
             var userEmail = <?php echo json_encode($userRow['email']); ?>;
             var folderId = <?php echo json_encode($repoRow['folderId']); ?>;
             var titleTb = document.getElementById('titleTbUpdate').value;//just to identify that the form has content
@@ -1040,9 +1040,12 @@
             //console.log(fileTb);
          
 
-            if(post)
+            //This will check if the user inputted a file to upload or just uploading plain text post
+            if(post && titleTb)
             {
-               // console.log(post[0].type);
+                $("body").css({"pointer-events": "none", "opacity": "0.5"});//This will disable the click and add gray shade in body
+                $('#submitPost').prop('disabled',true);//To prevent submitting the form multiple times
+                // console.log(post[0].type);
                 //repoName is used for the gdrive folder's name
                 //await, is to make the code below of this function wait until this function is finished
                 await handleAuthClick(folderId, post, userEmail);

@@ -579,7 +579,8 @@
 
         async function submitRepoDetails()
         {
-            
+            $("body").css({"pointer-events": "none", "opacity": "0.5"});//This will disable the click and add gray shade in body
+
             $('#submitRepo').prop('disabled',true);//To prevent submitting the form multiple times
             var userEmail = <?php echo json_encode($row['email']); ?>;
 
