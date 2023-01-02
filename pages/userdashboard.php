@@ -614,20 +614,28 @@
             var gmail_Id = document.getElementById('gmail_Id').value;
             var memberTb = document.getElementById('memberTb').value;
 
-            var http = new XMLHttpRequest();
-                http.open("POST", "../controller/createRepo.php", true);
-                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //This will ensure that the folder is truely created in the user google drive via checking the folderId
+            if(folderId)
+            {
+                var http = new XMLHttpRequest();
+                    http.open("POST", "../controller/createRepo.php", true);
+                    http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
-                console.log(folderId);
-                //This is the form input fields data
-                var params = "repoNameTb=" + repoName+"&creatorId=" + creatorId+"&memberTb=" + memberTb+"&submitRepo=" + submitRepo+"&gmail_Id=" + gmail_Id+"&folderId=" + folderId; // probably use document.getElementById(...).value
-                http.send(params);
-                http.onload = function()
-                {
-                    var data = http.responseText;
-                    //console.log(data);
-                    const myTimeout = setTimeout(reloadPage, 2500);
-                }
+                    console.log(folderId);
+                    //This is the form input fields data
+                    var params = "repoNameTb=" + repoName+"&creatorId=" + creatorId+"&memberTb=" + memberTb+"&submitRepo=" + submitRepo+"&gmail_Id=" + gmail_Id+"&folderId=" + folderId; // probably use document.getElementById(...).value
+                    http.send(params);
+                    http.onload = function()
+                    {
+                        var data = http.responseText;
+                        //console.log(data);
+                        const myTimeout = setTimeout(reloadPage, 2500);
+                    }
+            }
+            else
+            {
+                console.log('null folderId');
+            }
         }
 
         function reloadPage()
