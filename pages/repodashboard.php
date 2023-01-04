@@ -589,7 +589,7 @@
                                                                                                 <div class="form-group">
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                                            <textarea name="noteTb" id="noteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onfocus="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')" oninput="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')"><?php echo $updateRow['title'];?></textarea>
+                                                                                                            <textarea name="noteTb" id="noteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onfocus="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')" oninput="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')"><?php echo $updateRow['note'];?></textarea>
                                                                                                             
                                                                                                             <span class="d-flex justify-content-end"><p id="lengthTxt<?php echo $updateRow['id'];?>">0/500</p></span>
                                                                                                         </div>
@@ -656,6 +656,7 @@
                                                             ?>
                                                         </div>
                                                     </div>
+
                                                     <!-- Create Version Modal -->
                                                     <div class="modal fade" id="versionModal<?php echo $updateRow['id'];?>" tabindex="-1" role="dialog" aria-labelledby="accSettModalTitle" aria-hidden="true" style="border-radius:12px;">
                                                         <div class="modal-dialog modal-xl modal-dialog-centered" role="document" style="border-radius:12px;">
@@ -667,7 +668,23 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="../controller/createVersion.php" method="post" enctype="multipart/form-data">
+                                                                <?php
+                                                                    //This will identify if the user is log in using their email then it will create a folder in their google drive
+                                                                    if($userRow['gmail_Id']!=null)
+                                                                    {
+                                                                        ?>
+                                                                            <form action="" method="post" enctype="multipart/form-data">
+                                                                            <input type="hidden" name="gmailId" id="gmail_Id" value="<?php echo $userRow['gmail_Id'];?>">
+                                                                        <?php
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        
+                                                                        ?>
+                                                                            <form action="../controller/createVersion.php" method="post" enctype="multipart/form-data">
+                                                                        <?php
+                                                                    }    
+                                                                ?>
                                                                         <input type="hidden" name="updateId" id="updateId" value="<?php echo $updateRow['id'];?>">
                                                                         <input type="hidden" name="repoId" id="repoId" value="<?php echo $repoRow['id'];?>">
                                                                         <input type="hidden" name="userId" id="userId" value="<?php echo $userRow['id'];?>">
@@ -830,14 +847,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../controller/createPost.php" method="post" enctype="multipart/form-data">
+                    <!--form action="../controller/createPost.php" method="post" enctype="multipart/form-data"-->
 
                         <?php
                             //This will identify if the user is log in using their email then it will create a folder in their google drive
                             if($userRow['gmail_Id']!=null)
                             {
                                 ?>
-                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <form action="" method="post" enctype="multipart/form-data"> 
                                     <input type="hidden" name="gmailId" id="gmail_Id" value="<?php echo $userRow['gmail_Id'];?>">
                                 <?php
                             }
@@ -911,7 +928,7 @@
          *  Sign in the user upon button click.
          */
 
-         function handleAuthClick(folderId, fileName, userEmail)
+         function handleAuthClick(folderId, fileName, isVersion, userEmail)
         {
             tokenClient.callback = async (resp) => {
                 if (resp.error !== undefined)
@@ -921,7 +938,7 @@
 
                 //document.getElementById('signout_button').style.visibility = 'visible';
                 //document.getElementById('authorize_button').value = 'Refresh';
-                await uploadFile(folderId, fileName);
+                await uploadFile(folderId, fileName, isVersion);
                 //await uploadFile();
 
             };
@@ -960,11 +977,11 @@
         /**
          * Upload file to Google Drive.
          */
-        async function uploadFile(parentId, fileName)
+        async function uploadFile(parentId, fileName, isVersion)
         {
             var myFile;
 
-            console.log(fileName[0]);
+            //console.log(fileName[0]);
             var fileContent = fileName[0]; // As a sample, upload a text file.
             var file = new Blob([fileContent], { type: fileName[0].type });
             var metadata = {
@@ -978,7 +995,7 @@
             };
 
             var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
-            console.log(accessToken);
+            //console.log(accessToken);
             var form = new FormData();
             form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
             form.append('file', file);
@@ -988,12 +1005,22 @@
             xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
             xhr.responseType = 'json';
             xhr.onload = () => {
-            console.log('API: '+xhr.response.id);
-                submit(xhr.response.id);
+            //console.log('API: '+xhr.response.id);
+                //this is to indicate if the user trigger this function in version or post modal
+                if(isVersion)
+                {
+                    //version
+                    submitVersion(xhr.response.id);
+                }
+                else
+                {
+                    //post
+                    submit(xhr.response.id);
+                }
                 localStorage.setItem("fileId", xhr.response.id);
                 insertPermission(xhr.response.id, accessToken);
                 location.reload();
-                console.log(xhr.response);
+                //console.log(xhr.response);
             };
             xhr.send(form);
         }
@@ -1048,7 +1075,7 @@
                 // console.log(post[0].type);
                 //repoName is used for the gdrive folder's name
                 //await, is to make the code below of this function wait until this function is finished
-                await handleAuthClick(folderId, post, userEmail);
+                await handleAuthClick(folderId, post, false, userEmail);
             }
             else if(titleTb)
             {
@@ -1059,6 +1086,7 @@
         //To save repo info to database
         function submit(postId)
         {
+            //input fields data
             var repoId = document.getElementById('repoIdUpdate').value;
             var userId = document.getElementById('userIdUpdate').value;
             var titleTb = document.getElementById('titleTbUpdate').value;
@@ -1080,6 +1108,47 @@
             console.log(gmail_Id);
             var http = new XMLHttpRequest();
                 http.open("POST", "../controller/createPost.php", true);
+                http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+                //This is the form input fields data
+                var params = "userId=" + userId+"&repoId=" + repoId+"&titleTb=" + titleTb+"&noteTb=" + noteTb+"&fileTb=" + fileTb+"&submitPost=" + submitPost+"&gmail_Id=" + gmail_Id+"&postId=" + postId; // probably use document.getElementById(...).value
+                http.send(params);
+                http.onload = function() {
+                    var data = http.responseText;
+
+                    if(!postId)
+                    {
+                        location.reload();
+                    }
+                }
+        }
+
+
+        function submitVersion()
+        {
+
+            //input fields data
+            var repoId = document.getElementById('repoIdUpdate').value;
+            var userId = document.getElementById('userIdUpdate').value;
+            var titleTb = document.getElementById('titleTbUpdate').value;
+            
+            var fileTb;
+            var noteTb = document.getElementById('notePostTbUpdate').value;
+            var gmail_Id = document.getElementById('gmail_Id').value;
+
+            
+            if(postId)
+            {
+                fileTb = post[0].name;
+            }
+            else
+            {
+                fileTb = '';
+            }
+
+            console.log(gmail_Id);
+            var http = new XMLHttpRequest();
+                http.open("POST", "../controller/createVersion.php", true);
                 http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
                 //This is the form input fields data

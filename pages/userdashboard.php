@@ -391,7 +391,6 @@
                                 <form action="../controller/createRepo.php" method="post" enctype="multipart/form-data">
                             <?php
                         }
-                    
                     ?>
                         <input type="hidden" name="creatorId" id="creatorId" value="<?php echo $row['id'];?>">
                         <input type="hidden" name="memberTb" id="memberTb" value="<?php echo $row['id'];?>">
