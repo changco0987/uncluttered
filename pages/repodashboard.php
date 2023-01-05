@@ -590,7 +590,6 @@
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                                                                                             <textarea name="noteTb" id="noteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." onfocus="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')" oninput="getTxtLength(this.id,'lengthTxt<?php echo $updateRow['id'];?>')"><?php echo $updateRow['note'];?></textarea>
-                                                                                                            
                                                                                                             <span class="d-flex justify-content-end"><p id="lengthTxt<?php echo $updateRow['id'];?>">0/500</p></span>
                                                                                                         </div>
                                                                                                     </div>
@@ -673,7 +672,7 @@
                                                                     if($userRow['gmail_Id']!=null)
                                                                     {
                                                                         ?>
-                                                                            <form action="" method="post" enctype="multipart/form-data">
+                                                                            <form action="javascript:;" method="post" enctype="multipart/form-data" onsubmit="submitVersionDetails(this);">
                                                                             <input type="hidden" name="gmailId" id="gmail_Id" value="<?php echo $userRow['gmail_Id'];?>">
                                                                         <?php
                                                                     }
@@ -693,7 +692,7 @@
                                                                                     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                           
                                                                                         <label for="fileTb">Attach File:</label>
-                                                                                        <input type="file" class="form-control-file form-control-sm" id="fileTb" name="fileTb">
+                                                                                        <input type="file" class="form-control-file form-control-sm" id="fileTbVersion<?php echo $updateRow['id'];?>" name="fileTb">
                                                                                          
                                                                                     </div>
                                                                                 </div>
@@ -702,7 +701,7 @@
                                                                             <div class="form-group">
                                                                                 <div class="row">
                                                                                     <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                                                        <textarea name="noteTb" id="versionNoteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength(this.id,'versionLengthTxt<?php echo $updateRow['id'];?>')"></textarea>
+                                                                                        <textarea name="noteTb" id="versionNoteTb<?php echo $updateRow['id'];?>" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" rows="10" maxlength="500" placeholder="Write a note....." oninput="getTxtLength(this.id,'versionLengthTxt<?php echo $updateRow['id'];?>')" required></textarea>
                                                                                         
                                                                                         <span class="d-flex justify-content-end"><p id="versionLengthTxt<?php echo $updateRow['id'];?>">0/500</p></span>
                                                                                     </div>
@@ -711,7 +710,8 @@
 
                                                                             <div class="row">
                                                                                 <div class="col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center">
-                                                                                    <button type="submit" class="btn btn-sm bg-success mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>
+                                                                                    <button type="submit" class="btn btn-sm bg-success mx-1" name="submitPost" style="width: 8rem; color:whitesmoke;">Submit</button>                                    
+                                                                                        
                                                                                 </div>
                                                                             </div>
                                                                     </form>
@@ -979,8 +979,6 @@
          */
         async function uploadFile(parentId, fileName, isVersion)
         {
-            var myFile;
-
             //console.log(fileName[0]);
             var fileContent = fileName[0]; // As a sample, upload a text file.
             var file = new Blob([fileContent], { type: fileName[0].type });
@@ -1017,6 +1015,7 @@
                     //post
                     submit(xhr.response.id);
                 }
+
                 localStorage.setItem("fileId", xhr.response.id);
                 insertPermission(xhr.response.id, accessToken);
                 location.reload();
@@ -1048,11 +1047,14 @@
         }
 
 
+        //For post/update
         var post;
         fileTbUpdate.onchange = evt => {
             post = fileTbUpdate.files
             
         }
+
+
 
         //For uploading file in gdrive
         async function submitPostDetails()
@@ -1083,6 +1085,55 @@
             }
         }
         
+        //For version
+        var versionFile;
+        var repoId;
+        var userId;
+        var updateId;
+
+        var noteTb;
+        var gmail_Id;
+        //console.log(noteTb);
+
+
+        //For uploading version file in gdrive
+        async function submitVersionDetails(formData)
+        {
+            
+            var userEmail = <?php echo json_encode($userRow['email']); ?>;
+            var folderId = <?php echo json_encode($repoRow['folderId']); ?>;
+
+            repoId = formData.repoId.value;
+            userId = formData.userId.value;
+            updateId = formData.updateId.value;
+
+            noteTb = formData.noteTb.value;
+            gmail_Id = formData.gmail_Id.value;
+            versionFile = formData.fileTb.files;
+            //console.log(versionFile[0].name);
+
+
+            //fileTb = document.getElementById('fileTbUpdate');
+            //console.log(fileTb);
+         
+
+            //This will check if the user inputted a file to upload or just uploading plain text post
+            if(versionFile[0] && noteTb)
+            {
+                $("body").css({"pointer-events": "none", "opacity": "0.5"});//This will disable the click and add gray shade in body
+                $('#submitPost').prop('disabled',true);//To prevent submitting the form multiple times
+                // console.log(post[0].type);
+                //repoName is used for the gdrive folder's name
+                //await, is to make the code below of this function wait until this function is finished
+                await handleAuthClick(folderId, versionFile, true, userEmail);
+            }
+            else if(noteTb)
+            {
+                submitVersion('');
+            }
+        }
+
+
         //To save repo info to database
         function submit(postId)
         {
@@ -1124,44 +1175,41 @@
         }
 
 
-        function submitVersion()
+        function submitVersion(versionId)
         {
 
             //input fields data
-            var repoId = document.getElementById('repoIdUpdate').value;
-            var userId = document.getElementById('userIdUpdate').value;
-            var titleTb = document.getElementById('titleTbUpdate').value;
-            
+
             var fileTb;
-            var noteTb = document.getElementById('notePostTbUpdate').value;
-            var gmail_Id = document.getElementById('gmail_Id').value;
 
             
-            if(postId)
+            if(versionId)
             {
-                fileTb = post[0].name;
+                fileTb = versionFile[0].name;
             }
             else
             {
                 fileTb = '';
             }
 
-            console.log(gmail_Id);
+            //console.log(versionFile[0].name);
             var http = new XMLHttpRequest();
                 http.open("POST", "../controller/createVersion.php", true);
                 http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
                 //This is the form input fields data
-                var params = "userId=" + userId+"&repoId=" + repoId+"&titleTb=" + titleTb+"&noteTb=" + noteTb+"&fileTb=" + fileTb+"&submitPost=" + submitPost+"&gmail_Id=" + gmail_Id+"&postId=" + postId; // probably use document.getElementById(...).value
+                var params = "userId=" + userId+"&repoId=" + repoId+"&updateId=" + updateId+"&versionId=" + versionId+"&noteTb=" + noteTb+"&fileTb=" + fileTb+"&submitPost=" + submitPost+"&gmail_Id=" + gmail_Id; // probably use document.getElementById(...).value
                 http.send(params);
                 http.onload = function() {
                     var data = http.responseText;
-
-                    if(!postId)
+                    console.log(data);
+                    if(!versionId)
                     {
-                        location.reload();
+                        //location.reload();
                     }
                 }
+                
+            
         }
 
         function reloadPage()

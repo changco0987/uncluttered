@@ -9,7 +9,6 @@
             
         $imgPath = '../upload/repoId'.$_POST['repoId'].'/version/';
         $tempFilename = '';
-        $fileExtension = pathinfo($_FILES['fileTb']['name'],PATHINFO_EXTENSION);
 
         $data = new versionModel();
         $data->setUpdateId($_POST['updateId']);
@@ -18,8 +17,9 @@
         $data->setDatetimeCreation();
 
         
-        if($_FILES['fileTb']['name']!="")
+        if(isset($_FILES['fileTb']['name']) && $_FILES['fileTb']['name']!="")
         {
+            $fileExtension = pathinfo($_FILES['fileTb']['name'],PATHINFO_EXTENSION);
             if(strlen($_FILES['fileTb']['name']) <= 490)
             {
                 $data->setFilename($_FILES['fileTb']['name']);
@@ -30,7 +30,6 @@
             }
 
             $uploadedFile = $_FILES['fileTb']['tmp_name'];
-            
             //This will check if the folder is already existed
             if (!file_exists($imgPath))
              {
@@ -39,9 +38,17 @@
             copy($uploadedFile,$imgPath.$data->getFilename());//This will move the uploaded file into file directory (web)
         }
 
+        //This will check if the user is log in using their email
+        if(isset($_POST['gmail_Id']))
+        {
+            echo 'pumasok';
+            $data->setFilename($_POST['fileTb']);
+            $data->setFileId($_POST['versionId']);
+        }
+
         CreateVersion($conn,$data);
 
-        header("Location: ../pages/repodashboard.php?id=".$_POST['repoId']."&updateRes=3");
+        //header("Location: ../pages/repodashboard.php?id=".$_POST['repoId']."&updateRes=3");
 
 
         

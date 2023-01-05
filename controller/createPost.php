@@ -44,7 +44,7 @@
         //This will check if the user is log in using their email
         if(isset($_POST['gmail_Id']))
         {
-            echo 'pumasok';
+            //echo 'pumasok';
             $data->setFilename($_POST['fileTb']);
             $data->setFileId($_POST['postId']);
         }
