@@ -638,7 +638,6 @@
                                                                 if($updateRow['filename']!="")
                                                                 {
                                                                    
-                                                                
                                                                     if($updateRow['fileId'])
                                                                     {
                                                                         ?>
@@ -751,36 +750,20 @@
                                                                                     //This will only trigger if theres a file to download
                                                                                     if($versionRow['filename'] != "")
                                                                                     {
-                                                                                        ?>
-                                                                                            <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/version/<?php echo $versionRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
-                                                                                        <?php
-
-                                                                                        /*
-                                                                                        //Temporary removed
-                                                                                        //to check the file extension type that appropriate to be check
-                                                                                        $updateExtension = pathinfo($updateRow['filename'],PATHINFO_EXTENSION);
-                                                                                        $versionExtension = pathinfo($versionRow['filename'],PATHINFO_EXTENSION);
-
-                                                                                        if(strtolower($updateExtension) == 'txt' ||
-                                                                                           strtolower($updateExtension) == 'doc' || 
-                                                                                           strtolower($updateExtension) == 'docx' ||
-                                                                                           strtolower($updateExtension) == 'pdf')
+                                                                                        
+                                                                                        
+                                                                                        if($updateRow['fileId'])
                                                                                         {
-                                                                                            if(strtolower($versionExtension) == 'txt' ||
-                                                                                               strtolower($versionExtension) == 'doc' || 
-                                                                                               strtolower($versionExtension) == 'docx' ||
-                                                                                               strtolower($versionExtension) == 'pdf')
-                                                                                            {
-                                                                                                $fileData1 = file_get_contents("../upload/repoId". $repoRow['id'] ."/". $updateRow['filename']);
-                                                                                                $fileData2 = file_get_contents("../upload/repoId". $repoRow['id'] ."/version/". $versionRow['filename']);
-
-                                                                                                
-                                                                                                echo checkSimilarity($fileData1,$fileData2);
-
-                                                                                            }
+                                                                                            ?>
+                                                                                                <a class="dropdown-item"  href="https://drive.google.com/file/d/<?php echo $versionRow['fileId'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
+                                                                                            <?php
                                                                                         }
-                                                                                        */
-                                 
+                                                                                        else
+                                                                                        {
+                                                                                            ?>
+                                                                                                <a class="dropdown-item"  href="../upload/repoId<?php echo $repoRow['id'];?>/version/<?php echo $versionRow['filename'];?>" target="_blank"><i class="bi bi-download mr-1"></i>Download</a>
+                                                                                            <?php
+                                                                                        }
 
                                                                                     }
                                                                                 ?>

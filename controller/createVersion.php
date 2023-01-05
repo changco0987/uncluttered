@@ -49,7 +49,7 @@
 
         CreateVersion($conn,$data);
 
-        //header("Location: ../pages/repodashboard.php?id=".$_POST['repoId']."&updateRes=3");
+        header("Location: ../pages/repodashboard.php?id=".$_POST['repoId']."&updateRes=3");
 
 
         
