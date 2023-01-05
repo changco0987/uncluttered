@@ -37,11 +37,13 @@
         $data->setFirstname($_POST['fnameTb']);
         $data->setLastname($_POST['lnameTb']);
 
+        //To check if the password is changed
         if($_POST['passwordTb']!=null)
         {
             $data->setPassword($_POST['passwordTb']);
         }
 
+        //To check if the file has data = meaning the user changed his/her image
         if($_FILES['imgTb']['name'] != "" && $_FILES['imgTb']['size'] != 0)
         {
             $data->setImageName('user'.$_POST['idTb']. "." .$fileExtension);
@@ -57,6 +59,7 @@
         }
         else
         {
+            //This is the default = unchanged
             $data->setImageName($_POST['imageNameTb']);
         }
 
