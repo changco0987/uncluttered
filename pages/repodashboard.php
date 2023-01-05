@@ -276,6 +276,19 @@
              
               <button type="button" class="collapse-item btn btn-sm my-1 collapseBtn" id="repoSettBtn" data-toggle="modal" data-target="#editRepoModal"><i class="bi bi-wrench-adjustable-circle"></i> Repository</button><br>
               <?php
+
+
+                //To check if the user log in via gmail, gmail user are forbidden to edit account details          
+                if($userRow['gmail_Id']!=null)
+                {
+                    ?>
+                        <script>
+                            $('#accSettBtn').prop('disabled',true);//this will disable the edit repo button if the user is not the creator
+                        </script>
+                    <?php
+                }
+
+                //if the user is not the creator they can't edit repository
                 if($repoRow['userAccountId'] != $userRow['id'])
                 {
                     ?>
@@ -284,6 +297,7 @@
                         </script>
                     <?php
                 }
+                
               ?>
       
         </div>
