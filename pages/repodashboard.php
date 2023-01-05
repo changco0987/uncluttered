@@ -1192,7 +1192,7 @@
                 fileTb = '';
             }
 
-            //console.log(versionFile[0].name);
+            //console.log('versionID: '+versionId);
             var http = new XMLHttpRequest();
                 http.open("POST", "../controller/createVersion.php", true);
                 http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -1205,7 +1205,7 @@
                     console.log(data);
                     if(!versionId)
                     {
-                        //location.reload();
+                        location.reload();
                     }
                 }
                 

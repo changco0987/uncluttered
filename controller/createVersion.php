@@ -19,6 +19,7 @@
         
         if(isset($_FILES['fileTb']['name']) && $_FILES['fileTb']['name']!="")
         {
+            echo 'file';
             $fileExtension = pathinfo($_FILES['fileTb']['name'],PATHINFO_EXTENSION);
             if(strlen($_FILES['fileTb']['name']) <= 490)
             {
@@ -41,7 +42,7 @@
         //This will check if the user is log in using their email
         if(isset($_POST['gmail_Id']))
         {
-            echo 'pumasok';
+            //echo 'pumasok';
             $data->setFilename($_POST['fileTb']);
             $data->setFileId($_POST['versionId']);
         }
