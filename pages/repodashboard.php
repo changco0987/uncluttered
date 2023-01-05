@@ -320,12 +320,7 @@
             </ul>
             <form class="form my-2 my-lg-0">
                 <div class="input-group">
-                    <input class="form-control form-control-sm border-right-0" type="search" placeholder="Search" aria-label="Search">
-                    <span class="input-group-append bg-white border-left-0">
-                        <span class="input-group-text bg-transparent">
-                            <i class="bi bi-search"></i>
-                        </span>
-                    </span>
+                    <a type="button" class="form-control form-control-sm btn btn-sm nav-link bg-danger rounded text-light" id="signoutBtn" href="#" role="button" style="background-color: #485d8c;" onclick="return signout()"><i class="bi bi-power mr-2"></i>Sign-out</a>
                 </div>
             </form>
         </div>
