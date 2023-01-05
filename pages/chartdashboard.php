@@ -298,12 +298,7 @@
             </ul>
             <form class="form my-2 my-lg-0">
                 <div class="input-group">
-                    <input class="form-control form-control-sm border-right-0" type="search" placeholder="Search" aria-label="Search">
-                    <span class="input-group-append bg-white border-left-0">
-                        <span class="input-group-text bg-transparent">
-                            <i class="bi bi-search"></i>
-                        </span>
-                    </span>
+                    <a type="button" class="form-control form-control-sm btn btn-sm nav-link bg-danger rounded text-light" id="signoutBtn" href="#" role="button" style="background-color: #485d8c;" onclick="return signout()"><i class="bi bi-power mr-2"></i>Sign-out</a>
                 </div>
             </form>
         </div>
@@ -745,6 +740,30 @@
             <?php
         }
     ?>
+
+    <script>
+        
+        /**
+         *  Sign out the user upon button click.
+         */
+        function signout()
+        {
+            const token = gapi.client.getToken();
+            if (token !== null)
+            {
+                google.accounts.oauth2.revoke(token.access_token);
+                gapi.client.setToken('');
+            }
+
+            setTimeout(window.location = '../controller/wipedata.php',2000);
+        }
+    </script>
+    <!-- Google API -->
+    <script type="text/javascript" src="../javascript/googleAPI-Credentials.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+        onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client"
+        onload="gisLoaded()"></script>
 
 </body>
 
