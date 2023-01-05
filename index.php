@@ -254,6 +254,7 @@ footer * {
             </div>
         </div>
     </div>
+    
     <!--Footer Section-->
     <div class="row no-gutters">
         <footer class=" text-center text-lg-end fixed-bottom">
@@ -278,7 +279,7 @@ footer * {
     </div>
 
     <!-- Alert message container-->
-    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none ;">
+    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
         <strong id="errorMsg"></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

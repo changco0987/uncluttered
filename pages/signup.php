@@ -186,7 +186,7 @@ footer * {
             Uncluttered
         </a>
      </nav>
-    <div class="row myRow mt-5 py-5 mx-auto">
+    <div class="row myRow mt-5 py-4 mx-auto">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
             <div class="containerForm my-2">
                 <div class="d-flex justify-content-center">
@@ -261,6 +261,11 @@ footer * {
                                         
                                         <div id="buttonDiv"></div> 
                                     </center>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <small class="text-danger"><i class="bi bi-exclamation-diamond-fill mr-1"></i>Use Google Account to sign-up to get better experience</small>
                                 </div>
                             </div>
                         </div>
