@@ -709,6 +709,14 @@
                         <div class="form-group">
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                                    <label class="d-flex align-items-start" for="passwordTb">Current Password</label>
+                                    <input type="password" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="currentPassTb" name="currentPassTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row pt-1 mt-1">
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="passwordTb">New Password</label>
                                     <input type="password" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20">
                                     <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
