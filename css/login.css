@@ -11,19 +11,20 @@ body{
 .container{
     background-color: #f1f1f1; /* Fallback color */
     color: black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+
     border-radius: 15px;
     width: 400px;
-    height: max-content;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-
+/*
 .myRow{
     position: absolute;
     top: 30%;
     left: 50%;
     transform: translateX(-50%) translateY(-30%);
+}
+*/
+
+.myRow{
+    height: 52rem;
 }

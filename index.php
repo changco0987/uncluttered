@@ -43,10 +43,7 @@
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+
     height:max-content;
     width:max-content;
     padding: 5px;
@@ -65,10 +62,7 @@
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+
     height:max-content;
     width:max-content;
     padding: 5px;
@@ -87,10 +81,7 @@
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+
     height:max-content;
     width:max-content;
     padding: 5px;
@@ -110,10 +101,7 @@
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+
     height:max-content;
     width:max-content;
     padding: 20px;
@@ -132,10 +120,7 @@ body{
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+
     height:max-content;
     width:max-content;
     padding: 5px;
@@ -159,10 +144,7 @@ body{
     background-color: #f1f1f1; /* Fallback color */
     color: black;
     font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+
     height:max-content;
     width:max-content;
     padding: 5px;
@@ -190,8 +172,12 @@ footer * {
             Uncluttered
         </a>
      </nav>
-    <div class="row myRow mt-5 pt-5 mx-auto">
-        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 my-5 py-5">
+    <div class="row myRow mx-auto ">
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 bg-success mb-1 d-flex align-items-center">
+            <img src="asset/setup.jpg" class="img-fluid img-thumbnail" alt="" srcset="">
+          
+        </div>
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mb-1 d-flex align-items-center">
             <div class="container">
                 <div class="d-flex justify-content-center my-3 mx-3">
                     <form action="controller/login.php" method="post" enctype="multipart/form-data">  
