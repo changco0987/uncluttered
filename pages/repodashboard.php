@@ -1418,6 +1418,66 @@
                 </script>
             <?php
         }
+
+
+        //reponse for account settings
+        if(isset($_GET['editAccRes']))
+        {
+            if($_GET['editAccRes']==1)
+            {
+                ?>
+                    <script>
+                        document.getElementById('alertBox').style.display = 'block';
+                        document.getElementById('errorMsg').innerHTML = 'Username already Exist!';
+                    </script>
+                <?php
+            }
+            else if($_GET['editAccRes']==2)
+            {
+                ?>
+                    <script>
+                        document.getElementById('successBox').style.display = 'block';
+                        document.getElementById('successMsg').innerHTML = 'Saved Data successfully!';
+                    </script>
+                <?php
+            }
+            else if($_GET['editAccRes']==3)
+            {
+                ?>
+                    <script>
+                        document.getElementById('alertBox').style.display = 'block';
+                        document.getElementById('errorMsg').innerHTML = 'New password is empty!';
+                    </script>
+                <?php
+            }
+            else if($_GET['editAccRes']==4)
+            {
+                ?>
+                    <script>
+                        document.getElementById('alertBox').style.display = 'block';
+                        document.getElementById('errorMsg').innerHTML = 'Incorrect current password!';
+                    </script>
+                <?php
+            }
+            else if($_GET['editAccRes']==5)
+            {
+                ?>
+                    <script>
+                        document.getElementById('alertBox').style.display = 'block';
+                        document.getElementById('errorMsg').innerHTML = 'Current password is empty!';
+                    </script>
+                <?php
+            }
+
+            ?>
+                <script>
+                    //to reset the $_GET in URL
+                    const url2 = new URL(window.location.href);
+                    url2.searchParams.delete('editAccRes');
+                    window.history.replaceState(null, null, url2); // or pushState
+                </script>
+            <?php
+        }
     ?>
     
     <!-- Google API -->

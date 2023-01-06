@@ -660,6 +660,7 @@
                     <form action="../controller/editAccount.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="idTb" value="<?php echo $row['id'];?>">
                         <input type="hidden" name="imageNameTb" value="<?php echo $row['imageName'];?>">
+                        <input type="hidden" name="userPassTb" value="<?php echo $row['password'];?>">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-2 mt-2 d-flex justify-content-center">
@@ -710,7 +711,7 @@
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="passwordTb">Current Password</label>
-                                    <input type="password" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="currentPassTb" name="currentPassTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20">
+                                    <input type="password" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="currentPassTb" name="currentPassTb" placeholder="Ex. CMarie123" minlength="8" maxlength="15">
                                 </div>
                             </div>
                         </div>
@@ -718,7 +719,7 @@
                             <div class="row pt-1 mt-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
                                     <label class="d-flex align-items-start" for="passwordTb">New Password</label>
-                                    <input type="password" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="20">
+                                    <input type="password" class="form-control form-control-sm form-control-plaintext border-primary border-bottom border-top-0 bg-light" id="passwordTb" name="passwordTb" placeholder="Ex. CMarie123" minlength="8" maxlength="15">
                                     <small class="d-flex align-items-start" style="color:red;">Use at least 8 or up to 15 characters for your password </small>
                                 </div>
                             </div>
@@ -766,6 +767,34 @@
                     </script>
                 <?php
             }
+            else if($_GET['editAccRes']==3)
+            {
+                ?>
+                    <script>
+                        document.getElementById('alertBox').style.display = 'block';
+                        document.getElementById('errorMsg').innerHTML = 'New password is empty!';
+                    </script>
+                <?php
+            }
+            else if($_GET['editAccRes']==4)
+            {
+                ?>
+                    <script>
+                        document.getElementById('alertBox').style.display = 'block';
+                        document.getElementById('errorMsg').innerHTML = 'Incorrect current password!';
+                    </script>
+                <?php
+            }
+            else if($_GET['editAccRes']==5)
+            {
+                ?>
+                    <script>
+                        document.getElementById('alertBox').style.display = 'block';
+                        document.getElementById('errorMsg').innerHTML = 'Current password is empty!';
+                    </script>
+                <?php
+            }
+
             ?>
                 <script>
                     //to reset the $_GET in URL

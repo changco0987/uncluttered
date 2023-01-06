@@ -21,6 +21,7 @@
             $result = ReadUserAccount($conn,$data);
             while($row = mysqli_fetch_assoc($result))
             {
+
                 //this will check if the inputted username is existed
                 if($row['username'] == $data->getUsername())
                 {
@@ -32,17 +33,40 @@
             }
         }
             
+
+        //To check if the password is changed
+        //if the currentPassTb has data it means that the user try to changed the password
+        if($_POST['currentPassTb'] != null)
+        {
+            //checking the inputted current pass if true
+            if(strtoupper(hash('sha256',$_POST['currentPassTb'])) == $_POST['userPassTb'])
+            {
+                if($_POST['passwordTb'] != null)
+                {
+                    $data->setPassword($_POST['passwordTb']);
+                }
+                else
+                {
+                    header("location: ../pages/userdashboard.php?editAccRes=3");//error response = new password is empty
+                    exit;
+                }
+            }
+            else
+            {
+                header("location: ../pages/userdashboard.php?editAccRes=4");//error response = current password incorrect
+                exit;
+            }
+        }
+        else if($_POST['currentPassTb'] == null && $_POST['passwordTb'] != null)
+        {
+            header("location: ../pages/userdashboard.php?editAccRes=5");//error response = current password is empty
+            exit;
+        }
+
     
         $data->setId($_POST['idTb']);
         $data->setFirstname($_POST['fnameTb']);
         $data->setLastname($_POST['lnameTb']);
-
-        //To check if the password is changed
-        if($_POST['passwordTb']!=null)
-        {
-            $data->setPassword($_POST['passwordTb']);
-        }
-
         //To check if the file has data = meaning the user changed his/her image
         if($_FILES['imgTb']['name'] != "" && $_FILES['imgTb']['size'] != 0)
         {
