@@ -20,7 +20,7 @@
                 $data->setPassword($_POST['passwordTb']);
                 UpdateUserAccount($conn,$data);//This will input the new password
                 
-                header("location: ../index.php");
+                header("location: ../login.php");
             }
             else
             {

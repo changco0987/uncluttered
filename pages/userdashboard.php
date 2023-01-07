@@ -12,7 +12,7 @@
     session_start();
     if(!isset($_SESSION['username']))
     {
-        header("location: ../index.php");
+        header("location: ../login.php");
     }
     else
     {
@@ -224,6 +224,7 @@
                 ?>
                     <script>
                         $('#accSettBtn').prop('disabled',true);//this will disable the edit repo button if the user is not the creator
+                        $("#accSettBtn").css({"opacity": "0.5"});//This will disable the account settings
                     </script>
                 <?php
             }

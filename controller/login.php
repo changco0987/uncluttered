@@ -26,7 +26,7 @@
                 else
                 {
                     //show a error message - incorrect password
-                    header("location: ../index.php?loginRes=1");
+                    header("location: ../login.php?loginRes=1");
                     exit;
                 }
             }
@@ -34,10 +34,15 @@
         }
         
         //show a error message - username doesn't exist
-        header("location: ../index.php?loginRes=2");
+        header("location: ../login.php?loginRes=2");
         exit;
         
 
+    }
+    else
+    {
+        header("location: ../login.php");
+        exit;
     }
 
 

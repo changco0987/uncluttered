@@ -11,5 +11,5 @@
         unset($_SESSION[$key]);
     } 
     session_unset();
-    header('Location: ../index.php');
+    header('Location: ../login.php');
 ?>

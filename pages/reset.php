@@ -55,7 +55,7 @@
 
         function redirect()
         {
-            window.location = '../index.php';
+            window.location = '../login.php';
         }
 
         sendCode(<?php echo json_encode($_SESSION['email']); ?>, <?php echo json_encode($_SESSION['code']); ?>);
@@ -334,7 +334,7 @@ footer * {
                     {
                         url.searchParams.set('signupRes', signupRes);
                         window.history.replaceState(null, null, url); // or pushState
-                        window.location = '../index.php';
+                        window.location = '../login.php';
                     }
                     //returnDate();
                     //console.log(params);

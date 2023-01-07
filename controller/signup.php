@@ -30,7 +30,7 @@
 
         //if the program is occur in this area it means that the username is unique and successfully created
         CreateUserAccount($conn,$data);
-        header("location: ../index.php?signupRes=2");
+        header("location: ../login.php?signupRes=2");
         exit;
 
 

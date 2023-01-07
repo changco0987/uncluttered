@@ -273,7 +273,7 @@ footer * {
                     {
                         url.searchParams.set('signupRes', signupRes);
                         window.history.replaceState(null, null, url); // or pushState
-                        window.location = '../index.php';
+                        window.location = '../login.php';
                     }
                     //returnDate();
                     //console.log(params);

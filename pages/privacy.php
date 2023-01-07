@@ -528,7 +528,7 @@ Some of the services listed below may also collect Personal Data for targeting a
     Changes to this privacy policy
   </h3>
   <p>The Owner reserves the right to make changes to this privacy policy at any time by notifying its Users on this page and possibly within this Application and/or - as far as technically and legally feasible - sending a notice to Users via any contact information available to the Owner. It is strongly recommended to check this page often, referring to the date of the last modification listed at the bottom. <br><br>
-Should the changes affect processing activities performed on the basis of the User’s consent, the Owner shall collect new consent from the User, where required.</p>
+Should the changes affect processing activities performed on the basis of the User's consent, the Owner shall collect new consent from the User, where required.</p>
 
 </div>
 
@@ -687,7 +687,7 @@ Should the changes affect processing activities performed on the basis of the Us
                     {
                         url.searchParams.set('signupRes', signupRes);
                         window.history.replaceState(null, null, url); // or pushState
-                        window.location = '../index.php';
+                        window.location = '../login.php';
                     }
                     //returnDate();
                     //console.log(params);
