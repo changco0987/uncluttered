@@ -166,16 +166,57 @@ footer * {
         window.localStorage.clear();//This will clean all previously set localstorage
     </script>
     <!-- Image and text Header-->
-    <nav class="navbar navbar-light" style="background-color: #6E85B7;">
-        <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C; font-size:25px">
-            <img src="asset/appIcon.png" width="40" height="40" class="d-inline-block align-top" alt="">
-            Uncluttered
-        </a>
-     </nav>
+    <!-- Header has been removed-->
     <div class="row myRow mx-auto ">
-        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 bg-success mb-1 d-flex align-items-center">
-            <img src="asset/setup.jpg" class="img-fluid img-thumbnail" alt="" srcset="">
-          
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mb-1 " style="background-color: #5484c4; color:white;">
+            <!--img src="asset/setup.jpg" class="img-fluid img-thumbnail" alt="" srcset=""-->
+            <div class="row my-3 py-1">
+                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 d-flex justify-content-start align-items-end">
+                    <img src="asset/appIcon.png" width="80" height="80" class="img-fluid mb-2 mr-2" alt="" srcset=""><h1>Be productive with Uncluttered</h1></img>
+                </div>
+                <div class="container-fluid">
+
+                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        <h6 style="font-weight:lighter;">A web-based application that will serve as a digital working environment for group or individual projects to enhance user productivity. This can be a tool for exterminating unorganized important files and tracking the unresponsive members wherever they are participating or not.</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-3 mb-1">
+                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 d-flex justify-content-start align-items-end mb-3">
+                    <img src="asset/folder.png" width="50" height="50"  class="img-fluid mr-2" alt="" srcset=""><h4>Organized files</h4></img>
+                </div>
+
+                <div class="container-fluid" >
+                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        <h6 style="font-size: 15px; font-weight:lighter;">Uncluttered has the capability to securely store Important files in one place, thanks to integrated Google Drive storage file system.</h6>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row pt-3 mb-1">
+                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 d-flex justify-content-start align-items-end mb-3">
+                    <img src="asset/bar-chart.png" width="50" height="50"  class="img-fluid mr-2" alt="" srcset=""><h4>Track Members</h4></img>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        <h6 style="font-size: 15px; font-weight:lighter;">This can also be used to monitor all member's participation and to track individual contributions to a team project.</h6>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row pt-3">
+                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 d-flex justify-content-start align-items-end mb-3">
+                    <img src="asset/communication.png" width="50" height="50"  class="img-fluid mr-2" alt="" srcset=""><h4>Communication</h4></img>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        <h6 style="font-size: 15px; font-weight:lighter;">Uncluttered has a built-in chat system that you can use to brainstorm and share ideas with other members of your team.</h6>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mb-1 d-flex align-items-center">
             <div class="container">
