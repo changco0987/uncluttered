@@ -168,6 +168,7 @@ footer * {
     <!-- Image and text Header-->
     <!-- Header has been removed-->
     <div class="row myRow mx-auto ">
+        <!-- Left display-->
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mb-1 " style="background-color: #5484c4; color:white;">
             <!--img src="asset/setup.jpg" class="img-fluid img-thumbnail" alt="" srcset=""-->
             <div class="row my-3 py-1">
@@ -218,9 +219,11 @@ footer * {
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mb-1 d-flex align-items-center">
-            <div class="container mb-4 pb-1">
-                <div class="d-flex justify-content-center mt-3 mb-4 mx-3">
+        
+        <!-- Right display-->
+        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 pb-2 mb-4 d-flex align-items-center">
+            <div class="container mb-4 pb-2 pt-1 bg-warning">
+                <div class="d-flex justify-content-center mt-3 mx-3">
                     <form action="controller/login.php" method="post" enctype="multipart/form-data">  
                         <input type="hidden" name="accType" value="visitor">
                         <div class="form-group">
@@ -249,7 +252,7 @@ footer * {
                                     <button type="submit" class="form-control btn" id="submitLogin" name="submitLogin" style="background-color: #3466AA; color:white;">Login</button>
                                 </div>
                             </div>
-                            <div class="row mt-2">
+                            <div class="row mt-2 pb-2 mb-2">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 text-center">
                                     <h6 style="font-size: 13px;">OR</h6>
                                     <div id="g_id_onload"
