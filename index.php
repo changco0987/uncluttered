@@ -219,8 +219,8 @@ footer * {
             </div>
         </div>
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mb-1 d-flex align-items-center">
-            <div class="container">
-                <div class="d-flex justify-content-center my-3 mx-3">
+            <div class="container mb-4 pb-1">
+                <div class="d-flex justify-content-center mt-3 mb-4 mx-3">
                     <form action="controller/login.php" method="post" enctype="multipart/form-data">  
                         <input type="hidden" name="accType" value="visitor">
                         <div class="form-group">
