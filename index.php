@@ -222,7 +222,7 @@ footer * {
         
         <!-- Right display-->
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 pb-2 mb-4 d-flex align-items-center">
-            <div class="container mb-4 pb-2 pt-1 bg-warning">
+            <div class="container mb-4 pb-2 pt-1">
                 <div class="d-flex justify-content-center mt-3 mx-3">
                     <form action="controller/login.php" method="post" enctype="multipart/form-data">  
                         <input type="hidden" name="accType" value="visitor">

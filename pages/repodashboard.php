@@ -350,7 +350,7 @@
             <h5 class="ml-2 pt-3 pb-1 mb-2" style="font-size: 15px;">Recent Updates</h5>
             <div class="list-group mx-2 bg-light rounded" style="height: 17rem;" id="repoList">
                 <?php
-                //This will only get the newes 3 updates
+                //This will only get the newes 10 updates
                     $count = 0;
                     $data = new userAccountModel();
                     while($latestUpdateRow = mysqli_fetch_assoc($latestResult))
