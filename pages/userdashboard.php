@@ -22,6 +22,8 @@
         $result = ReadUserAccount($conn,$data);
 
         $row = mysqli_fetch_assoc($result);
+        //for future used of the current user id
+        $_SESSION['id'] = $row['id'];
 
     }
 
