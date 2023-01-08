@@ -171,16 +171,18 @@ footer * {
         <!-- Left display-->
         <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mb-1 " style="background-color: #5484c4; color:white;">
             <!--img src="asset/setup.jpg" class="img-fluid img-thumbnail" alt="" srcset=""-->
+
             <div class="row my-3 py-1">
                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 d-flex justify-content-start align-items-end">
-                    <img src="asset/appIcon.png" width="80" height="80" class="img-fluid mb-2 mr-2" alt="" srcset=""><h1>Be productive with Uncluttered</h1></img>
+                    <img src="asset/appIcon.png" width="80" height="80" class="img-fluid mb-1 mr-2" alt="" srcset=""><h1>Uncluttered</h1></img>
                 </div>
-                <div class="container-fluid">
+            </div>
 
-                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                        <h6 style="font-weight:lighter;">A web-based application that will serve as a digital working environment for group or individual projects to enhance user productivity. This can be a tool for exterminating unorganized important files and tracking the unresponsive members wherever they are participating or not.</h6>
-                    </div>
-                </div>
+            <div class="row my-4 py-2">
+                <!-- This is just a blank row to act like a spacing -->
+            </div>
+            <div class="row my-4 py-2">
+                <!-- This is just a blank row to act like a spacing -->
             </div>
 
             <div class="row pt-3 mb-1">
