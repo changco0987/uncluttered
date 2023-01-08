@@ -1557,7 +1557,7 @@
     members = <?php echo json_encode(unserialize($repoRow['members']));?>;
     document.getElementById('memberTb').value = JSON.stringify(members);
 
-    console.log(members);//uncomment this to see the current member of repository
+    //console.log(members);//uncomment this to see the current member of repository
     //for adding user as member
     function addUser(userId)
     {
