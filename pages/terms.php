@@ -277,6 +277,8 @@ footer * {
 
             </div>
         </div>
+        <div class="row mx-auto my-3 py-3">
+        </div>
      </div>
     <!--Footer Section-->
     <div class="row no-gutters">
