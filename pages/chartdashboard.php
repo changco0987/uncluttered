@@ -351,6 +351,7 @@
                 $memberUpdateResult = ReadUpdate($conn,$data);
                 $memberUpdateRow = mysqli_num_rows($memberUpdateResult);
 
+
                 //To get the member update in the currect repository
                 /*$data = new versionModel();
                 $data->setUserAccountId($userId);
@@ -1081,7 +1082,7 @@ const analytics = getAnalytics(app);
                 tension: 0.4,
                 fill: false,
                 spanGaps: true
-            },
+            }/*,
             {
                 label: 'Version (%)',
                 data: dataStats,
@@ -1105,7 +1106,7 @@ const analytics = getAnalytics(app);
                 tension: 0.4,
                 fill: false,
                 spanGaps: true
-            }]
+            }*/]
         },
         options: {
             plugins: {

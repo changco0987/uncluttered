@@ -18,8 +18,16 @@
         
         if($data->getUpdateId())
         {
-            //if theres id in data
-            $dbData = mysqli_query($conn, "SELECT * FROM versiontb WHERE updateId =".$data->getUpdateId());
+            if($data->getUpdateId() && $data->getUserAccountId())
+            {
+                //if theres id and userAccountId
+                $dbData = mysqli_query($conn, "SELECT * FROM versiontb WHERE updateId =".$data->getUpdateId()." AND userAccountId =".$data->getUserAccountId());
+            }
+            else
+            {
+                //if theres id in data
+                $dbData = mysqli_query($conn, "SELECT * FROM versiontb WHERE updateId =".$data->getUpdateId());
+            }
         }
         else
         {
