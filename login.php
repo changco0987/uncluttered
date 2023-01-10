@@ -162,9 +162,26 @@ footer * {
     <title>Uncluttered - Login</title>
 </head>
 <body>
+    
     <script>
         window.localStorage.clear();//This will clean all previously set localstorage
     </script>
+    
+    <!-- Alert message container-->
+    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none; position:absolute; z-index:1;">
+        <strong id="successMsg"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- Alert message container-->
+    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none; position:absolute; z-index:1;">
+        <strong id="errorMsg"></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <!-- Image and text Header-->
     <!-- Header has been removed-->
     <div class="row myRow mx-auto ">
@@ -303,21 +320,6 @@ footer * {
             </div>
         </footer>
     </div>
-    <!-- Alert message container-->
-    <div id="successBox" class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;">
-        <strong id="successMsg"></strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-
-    <!-- Alert message container-->
-    <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
-        <strong id="errorMsg"></strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
 
     <script>
         const url = new URL(window.location.href);
@@ -365,15 +367,19 @@ footer * {
                     }
                     else if(loginRes =='1')
                     {
-                        url.searchParams.set('loginRes', loginRes);
-                        window.history.replaceState(null, null, url); // or pushState
-                        location.reload();
+                        /*
+                            url.searchParams.set('loginRes', loginRes);
+                            window.history.replaceState(null, null, url); // or pushState
+                            location.reload();
+                        */
+                        gmailLoginResponse(loginRes);
                     }
                     else if(loginRes =='2')
                     {
-                        url.searchParams.set('loginRes', loginRes);
-                        window.history.replaceState(null, null, url); // or pushState
-                        location.reload();
+                        //url.searchParams.set('loginRes', loginRes);
+                        //window.history.replaceState(null, null, url); // or pushState
+                        //location.reload();
+                        gmailLoginResponse(loginRes);
                     }
                     //returnDate();
                     //console.log(params);
@@ -385,6 +391,32 @@ footer * {
             var tokens = data.split(".");
             return JSON.parse(atob(tokens[1]));
         }
+
+        //The responses for gmail log-in
+        function gmailLoginResponse(loginRes)
+        {
+            if(loginRes)
+            {
+                if(loginRes == 1)
+                {
+                    document.getElementById('errorMsg').innerHTML = 'Incorrect username or password';
+                    $('#alertBox').show();
+                    
+                }
+                else if(loginRes == 2)
+                {
+                    document.getElementById('errorMsg').innerHTML = 'Username doesn\'t exist';
+                    $('#alertBox').show();
+                
+                }
+                //to reset the $_GET in URL
+                url.searchParams.delete('loginRes');
+                window.history.replaceState(null, null, url); // or pushState
+                
+            }
+        }
+
+
     </script>
 
     <?php
@@ -436,8 +468,6 @@ footer * {
             </script>
         <?php
     }
-    
-
     ?>
     
 </body>
