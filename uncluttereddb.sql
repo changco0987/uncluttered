@@ -33,7 +33,7 @@ CREATE TABLE `commentstb` (
   `updateId` int(11) NOT NULL,
   `comment` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+ 
 -- --------------------------------------------------------
 
 --

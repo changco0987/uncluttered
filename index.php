@@ -194,7 +194,7 @@ footer * {
                 <img src="asset/burst.png" width="80" height="80" class="img-fluid mb-2 mr-2" alt="" srcset=""><h1>Be productive with Uncluttered</h1></img>
             </div>
             <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 mt-1 pt-2 d-flex align-items-center">
-                <h6 style="font-weight:lighter;">A web-based application that will serve as a digital working environment for group or individual projects to enhance user productivity. This can be a tool for exterminating unorganized important files and tracking the unresponsive members wherever they are participating or not.</h6>
+                <h6 style="font-weight:lighter;">A web-based application that will serve as a digital working environment for group or individual projects to enhance user productivity. This can be used as a tool to exterminate important unorganized files and help to track unresponsive and idle members wherever they are participating and contributing or not.</h6>
             </div>
         </div>
         <div class="row my-4 pb-4">

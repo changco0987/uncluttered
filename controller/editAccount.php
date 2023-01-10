@@ -76,7 +76,7 @@
             
             //This will check if the folder is already existed
             if (!file_exists($imgPath))
-             {
+            {
                 mkdir($imgPath, 0755, true);
             }
             copy($uploadedFile,$imgPath.$data->getImageName());//This will move the uploaded file into file directory (web)
