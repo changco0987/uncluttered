@@ -942,7 +942,7 @@ const analytics = getAnalytics(app);
                                                     '</div>'+
                                                     '<div class="otherMsg bg-primary px-2 py-2">'+
                                                         '<p class="chatName">'+data.val().name+'</p>'+
-                                                        data.val().message+
+                                                        data.val().message.replace(/</g, "&lt;").replace(/>/g, "&gt;")+ // the .replace(/</g, "&lt;").replace(/>/g, "&gt;") is used to prevent JS injection
                                                     '</div>'+
                                                 '</div>';
 
@@ -976,7 +976,7 @@ const analytics = getAnalytics(app);
                     var divData = '<div class="d-flex justify-content-end my-2">'+
                                                     '<div class="myMsg px-2 py-2">'+
                                                         '<p class="chatName">'+data.val().name+'</p>'+
-                                                        data.val().message+
+                                                        data.val().message.replace(/</g, "&lt;").replace(/>/g, "&gt;")+ // the .replace(/</g, "&lt;").replace(/>/g, "&gt;") is used to prevent JS injection
                                                     '</div>'+
                                                     '<div class="px-1 d-flex align-items-end">'+
                                                     imageFile+
