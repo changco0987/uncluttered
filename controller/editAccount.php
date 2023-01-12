@@ -32,6 +32,8 @@
         
             }
         }
+        $_SESSION['username'] = $data->getUsername();
+
             
 
         //To check if the password is changed
