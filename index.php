@@ -176,11 +176,6 @@ footer * {
     <title>Uncluttered - Terms and Conditions</title>
 </head>
 <body>
-    <script>
-        
-        const url = new URL(window.location.href);
-    </script>
-    
     <!-- Image and text Header-->
     <nav class="navbar navbar-light" style="background-color: #6E85B7;">
         <a class="navbar-brand" href="#" style="font-weight:bold; color: whitesmoke; text-shadow: 1px 1px #1C1C1C; font-size:25px">
@@ -243,36 +238,7 @@ footer * {
             </div>
         </footer>
     </div>
-    <script>
-        
 
-        function decodeJwtResponse(data)
-        {
-            var tokens = data.split(".");
-            return JSON.parse(atob(tokens[1]));
-        }
-    </script>
-<?php
-    if(isset($_GET['response'])==1)
-    {
-        ?>
-        <!-- Alert message container-->
-        <div id="alertBox" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:block ;">
-            <strong id="errorMsg">Username doesn't exist!</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <script>
-            //to reset the $_GET in URL
-            url.searchParams.delete('response');
-            window.history.replaceState(null, null, url); // or pushState
-        </script>
-        <?php
-
-    }
-
-?>
 </body>
 </html>
 
