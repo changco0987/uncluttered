@@ -331,6 +331,7 @@ footer * {
             localStorage.setItem("response",responsePayload.sub);
 
             //console.log('token: '+Object.values(gapi.client.getToken()));
+            /*
             console.log(responsePayload.sub);
             console.log('ID: '+responsePayload.sub);
             console.log('Full Name: '+responsePayload.name);
@@ -338,6 +339,7 @@ footer * {
             console.log('Family Name: '+responsePayload.family_name);
             console.log('Image URL: '+responsePayload.picture);
             console.log('Email: '+responsePayload.email);
+            */
 
             localStorage.setItem("userEmail",responsePayload.email);
 
