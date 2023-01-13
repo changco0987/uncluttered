@@ -277,7 +277,7 @@ footer * {
                                     <div id="g_id_onload"
                                         data-client_id="509002600811-8ht8f7pc6hufkis14h82o1klij3k0797.apps.googleusercontent.com"
                                         data-callback="handleCredentialResponse"
-                                        data-auto_prompt="true">
+                                        data-auto_prompt="false">
                                     </div>
 
                                     <center>
