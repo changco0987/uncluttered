@@ -173,7 +173,7 @@ footer * {
 
     </style>
     <link rel="icon" href="asset/appIcon.png">
-    <title>Uncluttered - Terms and Conditions</title>
+    <title>Uncluttered - Homepage</title>
 </head>
 <body>
     <!-- Image and text Header-->
