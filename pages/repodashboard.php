@@ -1295,6 +1295,7 @@
                     <form action="../controller/editAccount.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="idTb" value="<?php echo $userRow['id'];?>">
                         <input type="hidden" name="imageNameTb" value="<?php echo $userRow['imageName'];?>">
+                        <input type="hidden" name="userPassTb" value="<?php echo $userRow['password'];?>">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 pt-2 mt-2 d-flex justify-content-center">
