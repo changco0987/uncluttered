@@ -851,7 +851,7 @@ const analytics = getAnalytics(app);
         if(data.val().repoId == currRepoId)
         {
 
-            if(data.val().name != myName)
+            if(data.val().userId != myId)
             {
                 //This is for the other member message
 
@@ -861,7 +861,7 @@ const analytics = getAnalytics(app);
 
 
             }
-            else if(data.val().name == myName)
+            else if(data.val().userId == myId)
             {
                 //This is for the user message
 

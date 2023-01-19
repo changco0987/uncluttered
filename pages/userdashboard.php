@@ -848,6 +848,8 @@ const analytics = getAnalytics(app);
 
 
 
+    var myId = <?php echo $row['id']?>;
+    console.log(myId);
     var myName = <?php echo json_encode($row['username'])?>;
     const newMsg = ref(database, 'messages/');
     
@@ -860,6 +862,7 @@ const analytics = getAnalytics(app);
         onChildAdded(newMsg, (data) => {
 
 
+            console.log(data.val().userId==myId);
             if(data.val().name != myName)
             {
                 //This is for the other member message
@@ -888,7 +891,7 @@ const analytics = getAnalytics(app);
 
 
             }
-            else if(data.val().name == myName)
+            else if(data.val().userId == myId)
             {
                 //this function is called to check and update user image
                 updateFirebase(data.key);
@@ -927,8 +930,10 @@ const analytics = getAnalytics(app);
     function updateFirebase(id)
     {
         var newImg = <?php echo json_encode($row['imageName'])?>;
+        var newName = <?php echo json_encode($row['username'])?>;
         update(ref(database, 'messages/' + id),{
-            imageName: newImg
+            imageName: newImg,
+            name: newName
         });
     }
 
