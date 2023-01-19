@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- 
+   
     <meta http-equiv="date" content="2022-12-25">
-    <meta http-equiv="last-modified" content="2022-12-25">
-    <meta itemprop="name" content="Privacy Policy of uncluterredapp.000webhostapp.com/">
+    <meta http-equiv="last-modified" content="2023-01-19">
+    <meta itemprop="name" content="Privacy Policy of uncluttered">
     <meta itemprop="description" content="This Application collects some Personal Data from its Users.">
     <meta itemprop="image" content="https://www.iubenda.com/seo/assets/default.png">
     <meta name="locale" content="en">
@@ -18,11 +18,11 @@
     <meta name="description" content="This Application collects some Personal Data from its Users.">
     <meta name="image" content="https://www.iubenda.com/seo/assets/default.png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Privacy Policy of uncluterredapp.000webhostapp.com/">
+    <meta name="twitter:title" content="Privacy Policy of uncluttered">
     <meta name="twitter:description" content="This Application collects some Personal Data from its Users.">
     <meta name="twitter:site" content="@iubenda">
     <meta name="twitter:image:src" content="https://www.iubenda.com/seo/assets/default.png">
-    <meta property="og:title" content="Privacy Policy of uncluterredapp.000webhostapp.com/">
+    <meta property="og:title" content="Privacy Policy of uncluttered">
     <meta property="og:description" content="This Application collects some Personal Data from its Users.">
     <meta property="og:image" content="https://www.iubenda.com/seo/assets/default.png">
     <meta property="og:url" content="https://www.iubenda.com/privacy-policy/72207994/legal">
@@ -200,7 +200,7 @@
 
     </style>
     <link rel="icon" href="../asset/appIcon.png">
-    <title>Uncluttered - Privacy Policy of uncluterredapp.000webhostapp.com/</title>
+    <title>Uncluttered - Privacy Policy of unclutteredapp.000webhostapp.com/</title>
 
 </head>
 <body class="" data-new-gr-c-s-check-loaded="14.1026.0" data-gr-ext-installed="">
@@ -249,10 +249,11 @@
         
 <div class="iub_header">
 
-    <h1>Privacy Policy of <strong>uncluterredapp.000webhostapp.com/</strong></h1>
+  <h1>Privacy Policy of <strong>uncluttered</strong></h1>
 
-      <p>This Application collects some Personal Data from its Users.</p><br>
-      <p>This document can be printed for reference by using the print command in the settings of any browser.</p>
+  <p>This Application collects some Personal Data from its Users.</p><br>
+  <p>Users may be subject to different protection standards and broader standards may therefore apply to some. In order to learn more about the protection criteria, Users can refer to the applicability section.</p>
+  <p>This document can be printed for reference by using the print command in the settings of any browser.</p>
 </div> <!-- /header -->
 
 
@@ -305,7 +306,7 @@
   </h3>
   <p>The Data is processed at the Owner's operating offices and in any other places where the parties involved in the processing are located.<br><br>
 Depending on the User's location, data transfers may involve transferring the User's Data to a country other than their own. To find out more about the place of processing of such transferred Data, Users can check the section containing details about the processing of Personal Data.</p>
-  <p>Users are also entitled to learn about the legal basis of Data transfers to a country outside the European Union or to any international organization governed by public international law or set up by two or more countries, such as the UN, and about the security measures taken by the Owner to safeguard their Data.<br><br>
+  <p>If broader protection standards are applicable, Users are also entitled to learn about the legal basis of Data transfers to a country outside the European Union or to any international organization governed by public international law or set up by two or more countries, such as the UN, and about the security measures taken by the Owner to safeguard their Data.<br><br>
 If any such transfer takes place, Users can find out more by checking the relevant sections of this document or inquire with the Owner using the information provided in the contact section.</p>
   <h3 class="iub-subheading iub-subheading-legal-time">
     Retention time
@@ -468,6 +469,7 @@ Some of the services listed below may also collect Personal Data for targeting a
 <div class="one_line_col">
   <h2 id="rights_subjects">The rights of Users</h2>
   <p>Users may exercise certain rights regarding their Data processed by the Owner.</p>
+    <p>Users entitled to broader protection standards may exercise any of the rights described below. In all other cases, Users may inquire with the Owner to find out which rights apply to them.</p>
   <p>In particular, Users have the right to do the following:</p>
 
   <ul>
@@ -495,6 +497,17 @@ Some of the services listed below may also collect Personal Data for targeting a
 </div>
 
 
+  <div class="one_line_col">
+    <h2>Applicability of broader protection standards</h2>
+    <p>While most provisions of this document concern all Users, some provisions expressly only apply if the processing of Personal Data is subject to broader protection standards.</p>
+    <p>Such broader protection standards apply when the processing:</p>
+
+    <ul>
+      <li>is performed by an Owner based within the EU;</li>
+      <li>concerns the Personal Data of Users who are in the EU and is related to the offering of paid or unpaid goods or services, to such Users;</li>
+      <li>concerns the Personal Data of Users who are in the EU and allows the Owner to monitor such Users’ behavior taking place in the EU.</li>
+    </ul>
+  </div>
 
 
     
@@ -513,7 +526,7 @@ Some of the services listed below may also collect Personal Data for targeting a
   <h3 class="iub-subheading iub-subheading-legal-maintenance">
     System logs and maintenance
   </h3>
-  <p>For operation and maintenance purposes, this Application and any third-party services may collect files that record interaction with this Application (System logs) use other Personal Data (such as the IP Address) for this purpose.</p>
+  <p>For operation and maintenance purposes, this Application and any third-party services may collect files that record interaction with this Application (System logs) or use other Personal Data (such as the IP Address) for this purpose.</p>
   <h3 class="iub-subheading iub-subheading-legal-information-not-contained">
     Information not contained in this policy
   </h3>
@@ -528,7 +541,7 @@ Some of the services listed below may also collect Personal Data for targeting a
     Changes to this privacy policy
   </h3>
   <p>The Owner reserves the right to make changes to this privacy policy at any time by notifying its Users on this page and possibly within this Application and/or - as far as technically and legally feasible - sending a notice to Users via any contact information available to the Owner. It is strongly recommended to check this page often, referring to the date of the last modification listed at the bottom. <br><br>
-Should the changes affect processing activities performed on the basis of the User's consent, the Owner shall collect new consent from the User, where required.</p>
+Should the changes affect processing activities performed on the basis of the User’s consent, the Owner shall collect new consent from the User, where required.</p>
 
 </div>
 
@@ -536,11 +549,11 @@ Should the changes affect processing activities performed on the basis of the Us
 
 
 <div class="one_line_col">
-  <div class="box_primary box_10 definitions expand expanded">
+  <div class="box_primary box_10 definitions expand collapsed">
     <h3 id="definitions_and_legal_references" class="expand-click w_icon_24 icon_ribbon">
       Definitions and legal references
     </h3>
-    <div class="expand-content" style="">
+    <div class="expand-content" style="display: none;">
       <h4>Personal Data (or Data)</h4>
       <p>Any information that directly, indirectly, or in connection with other information — including a personal identification number — allows for the identification or identifiability of a natural person.</p>
 
@@ -581,7 +594,7 @@ Should the changes affect processing activities performed on the basis of the Us
 <div class="iub_footer">
 
   <p>
-    Latest update: December 25, 2022
+    Latest update: January 19, 2023
   </p>
 
   
@@ -592,7 +605,6 @@ Should the changes affect processing activities performed on the basis of the Us
           <a href="https://www.iubenda.com/privacy-policy/72207994" title="Show the simplified Privacy Policy" class="show_comp_link iframe-preserve an-preserve">Show the simplified Privacy Policy</a>
 
 </div> <!-- /footer -->
-
 
 <script type="text/javascript">
   window.tryFunc = function(fName,args){
@@ -617,7 +629,7 @@ Should the changes affect processing activities performed on the basis of the Us
 
       <div class="iub_footer">
 
-        <p>Privacy Policy generated with <a href="https://www.iubenda.com/" class="no_border" title="iubenda" target="_blank" rel="noopener"><img alt="iubenda" src="./Privacy Policy of uncluterredapp.000webhostapp.com__files/logo_min.png"></a></p>
+        <p>Privacy Policy generated with <a href="https://www.iubenda.com/" class="no_border" title="iubenda" target="_blank" rel="noopener"><img alt="iubenda" src="../asset/logo_min.png"></a></p>
 
           <a href="https://www.iubenda.com/" target="_blank" rel="noopener" class="btn iubgreen" title="Generate a privacy policy">Generate yours</a>
 
