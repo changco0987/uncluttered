@@ -863,7 +863,7 @@ const analytics = getAnalytics(app);
 
 
             console.log(data.val().userId==myId);
-            if(data.val().name != myName)
+            if(data.val().userId != myId)
             {
                 //This is for the other member message
 
