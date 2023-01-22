@@ -469,7 +469,7 @@
                     </div>
                 </div>
             
-            
+                <!-- Loading animation -->
                 <div id="loadingDiv">
                     <ul class="loadingUl">
                         <li class="loadingLi"> </li>

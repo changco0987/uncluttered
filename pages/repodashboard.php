@@ -439,8 +439,10 @@
     
     <!-- 3rd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1">
+        
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 rounded" style="height: 27rem;">
             <div class="table-wrapper-scroll-y my-custom-scrollbar rounded " style="height:25rem;">
+
                 <table class="table table-striped table-hover table-sm text-justify mb-0 rounded" >
                         <caption id="tbCaption"></caption>
                         <thead class="text-light rounded" style="background-color:#234471;">
@@ -829,6 +831,65 @@
     </div>
 </div>
 
+        <style>
+                
+            .loadingUl{
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,50%);
+                margin:0;
+                padding:0;
+                display:flex;
+    
+            }
+    
+            .loadingUl li {
+                list-style:none;
+                width:20px;
+                height:20px;
+                background:#2169ce;
+                margin:0 5px;
+                border-radius:50%;
+                animation:animate 1.4s linear infinite;
+            }
+    
+            @keyframes animate{
+                0%{
+                    transform:translateY(0);
+                }
+                60%{
+                    transform:translateY(0);
+                }
+                80%{
+                    transform:translateY(-20px);
+                }
+                
+                100%{
+                    transform:translateY(0px);
+                }
+            }
+    
+            .loadingUl li:nth-child(1){
+                animation-delay:-1.2s;
+            }
+    
+            .loadingUl li:nth-child(2){
+                animation-delay:-1.0s;
+            }
+    
+            .loadingUl li:nth-child(3){
+                animation-delay: -.8s;
+            }
+    
+            .loadingUl li:nth-child(4){
+                animation-delay:-0.6s;
+            }
+    
+    
+        </style>
+        
+        
 
 
     
@@ -843,6 +904,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    
+                    <!-- Loading animation -->
+                    <div id="loadingDiv" style="position:relative; z-index: 2;">
+                        <ul class="loadingUl">
+                            <li class="loadingLi"> </li>
+                            <li class="loadingLi"> </li>
+                            <li class="loadingLi"> </li>
+                            <li class="loadingLi"> </li>
+                        </ul>
+                    </div>
                     <!--form action="../controller/createPost.php" method="post" enctype="multipart/form-data"-->
 
                         <?php
@@ -919,7 +990,8 @@
 
 
     <script>
-                    
+        
+        $("#loadingDiv").hide();
         /**
          *  Sign in the user upon button click.
          */
@@ -1070,6 +1142,8 @@
             {
                 $("body").css({"pointer-events": "none", "opacity": "0.5"});//This will disable the click and add gray shade in body
                 $('#submitPost').prop('disabled',true);//To prevent submitting the form multiple times
+                
+                $("#loadingDiv").show();
                 // console.log(post[0].type);
                 //repoName is used for the gdrive folder's name
                 //await, is to make the code below of this function wait until this function is finished
@@ -1118,6 +1192,9 @@
             {
                 $("body").css({"pointer-events": "none", "opacity": "0.5"});//This will disable the click and add gray shade in body
                 $('#submitPost').prop('disabled',true);//To prevent submitting the form multiple times
+                
+                $("#loadingDiv").show();
+
                 // console.log(post[0].type);
                 //repoName is used for the gdrive folder's name
                 //await, is to make the code below of this function wait until this function is finished
@@ -1128,7 +1205,6 @@
                 submitVersion('');
             }
         }
-
 
         //To save repo info to database
         function submit(postId)
