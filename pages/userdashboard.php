@@ -581,9 +581,6 @@
 
         async function submitRepoDetails()
         {
-            $("body").css({"pointer-events": "none", "opacity": "0.5"});//This will disable the click and add gray shade in body
-
-            $('#submitRepo').prop('disabled',true);//To prevent submitting the form multiple times
             var userEmail = <?php echo json_encode($row['email']); ?>;
 
             var repoName = document.getElementById('repoNameTb').value;
@@ -596,6 +593,9 @@
             //var folderId;
             if(repoName)
             {
+                $("body").css({"pointer-events": "none", "opacity": "0.5"});//This will disable the click and add gray shade in body
+
+                $('#submitRepo').prop('disabled',true);//To prevent submitting the form multiple times
                 //repoName is used for the gdrive folder's name
                 //await, is to make the code below of this function wait until this function is finished
                 await handleAuthClick(repoName, userEmail);
