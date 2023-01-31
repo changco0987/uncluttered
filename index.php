@@ -215,7 +215,7 @@ footer * {
                 <h4>Get Started:</h4>
             </div>
             <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mt-1 pt-2 d-flex justify-content-md-end">
-                <a type="button" class="btn btn-sm nav-link rounded text-light col-md-3" id="siginBtn" href="pages/signup.php" role="button" style="background-color: #485d8c;" onclick="return signout()"><i class="bi bi-pencil-square mr-2"></i>Sign-in</a>
+                <a type="button" class="btn btn-sm nav-link rounded text-light col-md-3" id="siginBtn" href="pages/signup.php" role="button" style="background-color: #485d8c;" onclick="return signout()"><i class="bi bi-pencil-square mr-2"></i>Sign-up</a>
             </div>
             <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6 mt-1 pt-2">
                 <a type="button" class="btn btn-sm nav-link rounded text-light col-md-3" id="loginBtn" href="login.php" role="button" style="background-color: #3466AA; color:white;" onclick="return signout()"><i class="bi bi-box-arrow-in-right mr-2"></i>Log in</a>
