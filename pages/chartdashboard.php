@@ -269,6 +269,17 @@
     <hr style="height:2px; border-width:0;background-color: #39445c;">
     <a type="button" class="btn btn-sm rounded d-flex justify-content-start mainBtn" href="userdashboard.php" role="button" style="background-color: #485d8c;"><i class="bi bi-arrow-left mr-1"></i> Return</a>
 </div>
+<style>
+    @media print
+    {
+        body *{
+            visibility: hidden;
+        }
+        #stat1 *, #stat2 *{
+            visibility:visible;
+        }
+    }
+</style>
 
 <div class="content">
     <!--Header of the page-->
@@ -284,20 +295,10 @@
                 <li class="nav-item active">
                     <a type="button" class="btn btn-sm nav-link bg-success rounded text-light" role="button" data-toggle="modal" data-target="#createPostModal"><i class="bi bi-plus-lg"></i> Create Post <span class="sr-only">(current)</span></a>
                 </li>
-                <!--li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li-->
             </ul>
             <form class="form my-2 my-lg-0">
                 <div class="input-group">
+                    <a type="button" class="form-control-sm btn btn-sm nav-link bg-warning rounded" id="printBtn" href="#" role="button" onclick="return window.print();"><i class="bi bi-printer-fill mr-2"></i>Print</a>
                     <a type="button" class="form-control form-control-sm btn btn-sm nav-link bg-danger rounded text-light" id="signoutBtn" href="#" role="button" style="background-color: #485d8c;" onclick="return signout()"><i class="bi bi-power mr-2"></i>Sign-out</a>
                 </div>
             </form>
@@ -387,9 +388,9 @@
         }
     
     ?>
-
+    
     <!-- 2nd main div in content-->
-    <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
+    <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded" id="stat1">
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-light rounded border">
             <div class="chart-container mx-auto">
@@ -456,7 +457,7 @@
     </style>
     
     <!-- 3rd main div in content-->
-    <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded">
+    <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded" id="stat2">
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-light rounded border" id="barChartDiv" style="height: 24rem;">
             <div class="chart-container mx-auto">
