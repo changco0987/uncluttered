@@ -1,6 +1,6 @@
 // TODO: Set the below credentials
-const CLIENT_ID = '509002600811-8ht8f7pc6hufkis14h82o1klij3k0797.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyA1sWrq5rW03TVeWoPorXXxIQzr9VAkeOc';
+const CLIENT_ID = 'REPLACE THIS WITH YOUR CLIENT ID FROM GOOGLE CONSOLE'; // Client ID
+const API_KEY = 'REPLACE THIS WITH YOUR API KEY FROM GOOGLE CONSOLE'; //API key
 
 // Discovery URL for APIs used by the quickstart
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';

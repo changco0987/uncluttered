@@ -391,7 +391,6 @@
     
     <!-- 2nd main div in content-->
     <div class="row no-gutters my-2 py-2 mx-auto px-1 rounded" id="stat1">
-
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bg-light rounded border">
             <div class="chart-container mx-auto">
                 <canvas id="line1" style="width: 100px; height: 35px;"></canvas>
