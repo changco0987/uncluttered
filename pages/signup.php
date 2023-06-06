@@ -237,7 +237,9 @@ footer * {
                         <div class="form-group">
                             <div class="row pb-1 mb-1">
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>
+                                    <!-- Uncomment submit btn to make the signup page work -->
+                                    <!--<button type="submit" class="form-control btn btn-sm" id="submitBtn" name="submitBtn" style="background-color: #3466AA; color:white;">Submit</button>-->
+                                    <button type="submit" class="form-control btn btn-sm" id="submitBtn2" name="submitBtn" style="background-color: #3466AA; color:white;" disabled>Submit</button>
                                 </div>
                             </div>
                             <div class="row pb-1 mb-1">
